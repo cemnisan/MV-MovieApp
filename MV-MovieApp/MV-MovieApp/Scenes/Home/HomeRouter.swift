@@ -7,4 +7,9 @@
 
 import Foundation
 
-final class HomeRouter { }
+final class HomeRouter: HomeRouterProtocol {
+    
+    func navigate(to route: HomeRoute) {
+        
+    }
+}
