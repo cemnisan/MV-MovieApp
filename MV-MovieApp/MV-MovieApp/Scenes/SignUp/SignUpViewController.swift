@@ -10,12 +10,20 @@ import MV_Components
 
 final class SignUpViewController: UIViewController {
     
-    private let signUpContent = MVSecondaryLabel(textAlignment: .left,
-                                                 fontSize: 16,
-                                                 textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
-    private let stackView     = UIStackView()
-    private let appleView     = UIView()
-    private let googleView    = UIView()
+    private let signUpContent       = MVSecondaryLabel(textAlignment: .left,
+                                                       fontSize: 16,
+                                                       textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let stackView           = UIStackView()
+    private let appleView           = UIView()
+    private let googleView          = UIView()
+            
+    private let nameLabel           = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let emailLabel          = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let passwordLabel       = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    
+    private let nameTextField       = MVSignUpTextFields(placeHolder: "Enter your name")
+    private let emailTextField      = MVSignUpTextFields(placeHolder: "Enter you email")
+    private let passwordTextField   = MVSignUpTextFields(placeHolder: "Enter you password.")
     
     var homePresenter: HomePresenter!
     
@@ -34,6 +42,9 @@ extension SignUpViewController {
         configureUIElements()
         configureViews()
         configureStackView()
+        configureNameElements()
+        configureEmailElements()
+        configurePasswordElements()
     }
     
     private func configureViewController() {
@@ -82,6 +93,57 @@ extension SignUpViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             stackView.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func configureNameElements() {
+        [nameLabel, nameTextField].forEach { view.addSubview($0) }
+        nameLabel.text = "Name"
+        
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 48),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            nameLabel.heightAnchor.constraint(equalToConstant: 25),
+            
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            nameTextField.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configureEmailElements() {
+        [emailLabel, emailTextField].forEach { view.addSubview($0) }
+        emailLabel.text = "Email"
+        
+        NSLayoutConstraint.activate([
+            emailLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 30),
+            emailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            emailLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            emailLabel.heightAnchor.constraint(equalToConstant: 25),
+            
+            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            emailTextField.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func configurePasswordElements() {
+        [passwordLabel, passwordTextField].forEach { view.addSubview($0) }
+        passwordLabel.text = "Email"
+        
+        NSLayoutConstraint.activate([
+            passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30),
+            passwordLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            passwordLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            passwordLabel.heightAnchor.constraint(equalToConstant: 25),
+            
+            passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
