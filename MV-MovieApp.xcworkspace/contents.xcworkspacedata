@@ -4,6 +4,9 @@
    <FileRef
       location = "group:MV-MovieApp/MV-MovieApp.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:MV-Components">
+   </FileRef>
    <Group
       location = "container:"
       name = "Packages">

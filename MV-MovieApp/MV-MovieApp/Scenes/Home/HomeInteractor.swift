@@ -11,11 +11,13 @@ import MovieDB_Wrapper
 final class HomeInteractor {
     
     weak var delegate: HomeInteractorDelegate?
-    
     private let moviesService: MoviesServiceable
  
-    private var popularMovies  = [Movies]()
-    private var topRatedMovies = [Movies]()
+    private var popularMoviesPageNumber  = 1
+    private var topRatedMoviesPageNumber = 1
+    
+    private var popularMovies            = [Movies]()
+    private var topRatedMovies           = [Movies]()
     
     init(moviesService: MoviesServiceable) {
         self.moviesService = moviesService
@@ -26,23 +28,32 @@ final class HomeInteractor {
 extension HomeInteractor: HomeInteractorProtocol {
     
     func loadPopularMovies() async {
-        delegate?.handleOutput(.setLoading(true))
+        delegate?.handleOutput(.setPopularMoviesLoading(true))
         let result = await moviesService.getPopularMovies(language: nil,
-                                                          pageNumber: 1,
+                                                          pageNumber: popularMoviesPageNumber,
                                                           region: nil)
-        delegate?.handleOutput(.setLoading(false))
+        delegate?.handleOutput(.setPopularMoviesLoading(false))
         
         await popularMoviesResult(result: result)
     }
     
     func loadTopRatedMovies() async {
-        delegate?.handleOutput(.setLoading(true))
+        delegate?.handleOutput(.setTopRatedMoviesLoading(true))
         let result = await moviesService.getTopRatedMovies(language: nil,
-                                                           pageNumber: 1,
+                                                           pageNumber: topRatedMoviesPageNumber,
                                                            region: nil)
-        delegate?.handleOutput(.setLoading(false))
+        delegate?.handleOutput(.setTopRatedMoviesLoading(false))
         
         await topRatedMoviesResult(result: result)
+    }
+    
+    func increasePageNumber(from movies: HomeMovies) {
+        switch movies {
+        case .popular:
+            popularMoviesPageNumber  += 1
+        case .topRated:
+            topRatedMoviesPageNumber += 1
+        }
     }
 }
 
@@ -54,6 +65,7 @@ extension HomeInteractor {
         case .success(let popularMovies):
             self.popularMovies.append(contentsOf: popularMovies.results)
             delegate?.handleOutput(.showPopularMovies(self.popularMovies.lazy.map { $0 }))
+            
         case .failure(let error):
             print(error)
         }
@@ -63,7 +75,8 @@ extension HomeInteractor {
         switch result {
         case .success(let topRatedMovies):
             self.topRatedMovies.append(contentsOf: topRatedMovies.results)
-            delegate?.handleOutput(.showTopRatedMovies(self.topRatedMovies))
+            delegate?.handleOutput(.showTopRatedMovies(self.topRatedMovies.lazy.map { $0 }))
+            
         case .failure(let error):
             print(error)
         }

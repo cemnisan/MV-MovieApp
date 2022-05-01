@@ -14,6 +14,8 @@ protocol HomeInteractorProtocol: AnyObject {
     
     func loadPopularMovies() async
     func loadTopRatedMovies() async
+    
+    func increasePageNumber(from movies: HomeMovies)
 }
 
 protocol HomeInteractorDelegate: AnyObject {
@@ -21,16 +23,18 @@ protocol HomeInteractorDelegate: AnyObject {
 }
 
 enum HomeInteractorOutput {
-    case setLoading(Bool)
+    case setPopularMoviesLoading(Bool)
+    case setTopRatedMoviesLoading(Bool)
     case showPopularMovies([Movies])
     case showTopRatedMovies([Movies])
 }
 
 // MARK: - Presenter Contracts
 protocol HomePresenterProtocol: AnyObject {
-    
     func loadPopularMovies() async
     func loadTopRatedMovies() async
+    
+    func increasePageNumber(from movies: HomeMovies)
 }
 
 protocol HomeViewProtocol: AnyObject {
@@ -38,8 +42,8 @@ protocol HomeViewProtocol: AnyObject {
 }
 
 enum HomePresenterOutput {
-    case updateTitle(String)
-    case setLoading(Bool)
+    case setPopularMoviesLoading(Bool)
+    case setTopRatedMoviesLoading(Bool)
     case showPopularMovies([PopularMoviesPresentation])
     case showTopRatedMovies([TopRatedMoviesPresentation])
 }

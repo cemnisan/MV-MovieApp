@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
+		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
+		7E8A7B9A281EBB0E000676EC /* SignUpContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */; };
+		7E8A7B9C281EBC4F000676EC /* SignUpAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */; };
+		7E8A7B9E281EBCA6000676EC /* SignUpGoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */; };
+		7E8A7BA1281EC884000676EC /* SignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */; };
+		7E8A7BA3281EC88A000676EC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */; };
 		7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318D281D906600A1CFE9 /* AppDelegate.swift */; };
 		7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */; };
 		7EF73197281D906700A1CFE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF73196281D906700A1CFE9 /* Assets.xcassets */; };
@@ -25,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
+		7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContainerViewController.swift; sourceTree = "<group>"; };
+		7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAppleViewController.swift; sourceTree = "<group>"; };
+		7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGoogleViewController.swift; sourceTree = "<group>"; };
+		7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBuilder.swift; sourceTree = "<group>"; };
+		7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MV-MovieApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF7318D281D906600A1CFE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +62,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF731A3281D907300A1CFE9 /* MovieDB-Wrapper in Frameworks */,
+				7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E8A7B95281EBAC6000676EC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7E8A7B96281EBACB000676EC /* SignUp */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7E8A7B96281EBACB000676EC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				7E8A7B98281EBAF7000676EC /* Child */,
+				7E8A7B97281EBAF4000676EC /* Parent */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		7E8A7B97281EBAF4000676EC /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		7E8A7B98281EBAF7000676EC /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */,
+				7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */,
+			);
+			path = Child;
+			sourceTree = "<group>";
+		};
+		7E8A7B9F281EC87D000676EC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				7E8A7B95281EBAC6000676EC /* Components */,
+				7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */,
+				7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		7EF73181281D906600A1CFE9 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +173,7 @@
 		7EF731A6281D90CC00A1CFE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7E8A7B9F281EC87D000676EC /* SignUp */,
 				7EF731A7281D90D300A1CFE9 /* Home */,
 			);
 			path = Scenes;
@@ -153,6 +212,7 @@
 		7EF731C2281D9D8300A1CFE9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7E8A7B91281EAB13000676EC /* HomeMovies.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -175,6 +235,7 @@
 			name = "MV-MovieApp";
 			packageProductDependencies = (
 				7EF731A2281D907300A1CFE9 /* MovieDB-Wrapper */,
+				7E8A7B93281EACF6000676EC /* MV-Components */,
 			);
 			productName = "MV-MovieApp";
 			productReference = 7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */;
@@ -233,13 +294,19 @@
 				7EF731AB281D90F500A1CFE9 /* HomeContracts.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
+				7E8A7BA1281EC884000676EC /* SignUpBuilder.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
+				7E8A7B9C281EBC4F000676EC /* SignUpAppleViewController.swift in Sources */,
+				7E8A7BA3281EC88A000676EC /* SignUpViewController.swift in Sources */,
 				7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */,
 				7EF731AF281D910000A1CFE9 /* HomePresenter.swift in Sources */,
+				7E8A7B9A281EBB0E000676EC /* SignUpContainerViewController.swift in Sources */,
 				7EF731C1281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift in Sources */,
 				7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */,
+				7E8A7B9E281EBCA6000676EC /* SignUpGoogleViewController.swift in Sources */,
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
+				7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,
 			);
@@ -384,6 +451,7 @@
 				INFOPLIST_FILE = "MV-MovieApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -410,6 +478,7 @@
 				INFOPLIST_FILE = "MV-MovieApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -449,6 +518,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E8A7B93281EACF6000676EC /* MV-Components */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "MV-Components";
+		};
 		7EF731A2281D907300A1CFE9 /* MovieDB-Wrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "MovieDB-Wrapper";

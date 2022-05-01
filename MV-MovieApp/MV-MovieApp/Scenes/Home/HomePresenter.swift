@@ -34,19 +34,29 @@ extension HomePresenter: HomePresenterProtocol {
     func loadTopRatedMovies() async {
         await interactor.loadTopRatedMovies()
     }
+    
+    func increasePageNumber(from movies: HomeMovies) {
+        interactor.increasePageNumber(from: movies)
+    }
 }
 
 extension HomePresenter: HomeInteractorDelegate {
     
     func handleOutput(_ output: HomeInteractorOutput) {
         switch output {
-        case .setLoading(let isLoading):
-            view.handleOutput(.setLoading(isLoading))
+        case .setPopularMoviesLoading(let isLoading):
+            view.handleOutput(.setPopularMoviesLoading(isLoading))
+            
         case .showPopularMovies(let popularMovies):
             let popularMoviesPresentation = popularMovies.map { PopularMoviesPresentation(movies: $0) }
             view.handleOutput(.showPopularMovies(popularMoviesPresentation))
+            
+        case .setTopRatedMoviesLoading(let isLoading):
+            view.handleOutput(.setTopRatedMoviesLoading(isLoading))
+            
         case .showTopRatedMovies(let topRatedMovies):
-            print(topRatedMovies)
+            let topRatedMoviesPresentation = topRatedMovies.map { TopRatedMoviesPresentation(movies: $0) }
+            view.handleOutput(.showTopRatedMovies(topRatedMoviesPresentation))
         }
     }
 }

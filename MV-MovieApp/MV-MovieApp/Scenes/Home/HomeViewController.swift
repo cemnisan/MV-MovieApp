@@ -14,24 +14,10 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Task {
-            await homePresenter.loadPopularMovies()
-        }
     }
 }
 
+// MARK: - HomeView Protocol
 extension HomeViewController: HomeViewProtocol {
-    
-    func handleOutput(_ output: HomePresenterOutput) {
-        switch output {
-        case .updateTitle(_):
-            print("")
-        case .setLoading(_):
-            print("")
-        case .showPopularMovies(let popularMovie):
-            print(popularMovie)
-        case .showTopRatedMovies(_):
-            print("")
-        }
-    }
+    func handleOutput(_ output: HomePresenterOutput) {}
 }

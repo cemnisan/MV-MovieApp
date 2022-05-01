@@ -8,8 +8,5 @@
 import Foundation
 
 final class HomeRouter: HomeRouterProtocol {
-    
-    func navigate(to route: HomeRoute) {
-        
-    }
+    func navigate(to route: HomeRoute) {}
 }
