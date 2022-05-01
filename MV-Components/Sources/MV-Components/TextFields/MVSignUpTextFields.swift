@@ -26,7 +26,7 @@ public final class MVSignUpTextFields: UITextField {
         self.init(frame: .zero)
         
         attributedPlaceholder = NSAttributedString(string: placeHolder,
-                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                   attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1)])
     }
     
     public override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -52,7 +52,7 @@ extension MVSignUpTextFields {
         font                      = UIFont.systemFont(ofSize: 16)
         adjustsFontSizeToFitWidth = true
         minimumFontSize           = 12
-        
+                
         backgroundColor           = #colorLiteral(red: 0.2076013088, green: 0.2020693719, blue: 0.2528569102, alpha: 1)
         autocorrectionType        = .no
         translatesAutoresizingMaskIntoConstraints = false

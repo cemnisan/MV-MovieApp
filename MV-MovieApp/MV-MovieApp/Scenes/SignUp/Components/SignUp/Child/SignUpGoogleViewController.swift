@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol SignUpGoogleDelegate: AnyObject {
+protocol SignUpWithGoogleDelegate: AnyObject {
     func userDidTappedSignUpWithGoogle()
 }
 
 final class SignUpGoogleViewController: SignUpContainerViewController {
     
-    weak var delegate: SignUpGoogleDelegate?
+    weak var delegate: SignUpWithGoogleDelegate?
     
-    init(delegate: SignUpGoogleDelegate) {
+    init(delegate: SignUpWithGoogleDelegate) {
         super.init(nibName: nil, bundle: nil)
         
         self.delegate = delegate

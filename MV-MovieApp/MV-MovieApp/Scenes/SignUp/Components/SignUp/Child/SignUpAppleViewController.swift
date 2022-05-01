@@ -5,17 +5,17 @@
 //  Created by Cem Nisan on 1.05.2022.
 //
 
-import UIKit
+import Foundation
 
-protocol SignUpAppleProtocol: AnyObject {
+protocol SignUpWithAppleDelegate: AnyObject {
     func userDidTappedSignUpWithApple()
 }
 
 final class SignUpAppleViewController: SignUpContainerViewController {
     
-    weak var delegate: SignUpAppleProtocol?
+    weak var delegate: SignUpWithAppleDelegate?
     
-    init(delegate: SignUpAppleProtocol) {
+    init(delegate: SignUpWithAppleDelegate) {
         super.init(nibName: nil, bundle: nil)
 
         self.delegate = delegate

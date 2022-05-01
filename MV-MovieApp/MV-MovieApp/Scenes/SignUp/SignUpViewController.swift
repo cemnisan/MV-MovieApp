@@ -10,24 +10,23 @@ import MV_Components
 
 final class SignUpViewController: UIViewController {
     
-    private let signUpContent       = MVSecondaryLabel(textAlignment: .left,
-                                                       fontSize: 16,
-                                                       textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
-    private let stackView           = UIStackView()
-    private let appleView           = UIView()
-    private let googleView          = UIView()
-            
-    private let nameLabel           = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let emailLabel          = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let passwordLabel       = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let signUpContent           = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+        
+    private let stackView               = UIStackView()
+    private let appleView               = UIView()
+    private let googleView              = UIView()
+                
+    private let nameLabel               = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let emailLabel              = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let passwordLabel           = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+        
+    private let nameTextField           = MVSignUpTextFields(placeHolder: "Enter your name")
+    private let emailTextField          = MVSignUpTextFields(placeHolder: "Enter you email")
+    private let passwordTextField       = MVSignUpTextFields(placeHolder: "Enter you password.")
     
-    private let nameTextField       = MVSignUpTextFields(placeHolder: "Enter your name")
-    private let emailTextField      = MVSignUpTextFields(placeHolder: "Enter you email")
-    private let passwordTextField   = MVSignUpTextFields(placeHolder: "Enter you password.")
-    
-    private let createAccountButton = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
-    
-    private let alreadyAccountLabel = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let passwordVisibiltyButton = MVButton(frame: .zero)
+    private let createAccountButton     = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
+    private let alreadyAccountLabel     = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
     
     var homePresenter: HomePresenter!
     
@@ -49,6 +48,7 @@ extension SignUpViewController {
         configureNameElements()
         configureEmailElements()
         configurePasswordElements()
+        configurePasswordVisibilty()
         configureCreateButton()
         configureAlreadyAccountLabel()
     }
@@ -138,7 +138,8 @@ extension SignUpViewController {
     
     private func configurePasswordElements() {
         [passwordLabel, passwordTextField].forEach { view.addSubview($0) }
-        passwordLabel.text = "Password"
+        passwordTextField.isSecureTextEntry = true
+        passwordLabel.text                  = "Password"
         
         NSLayoutConstraint.activate([
             passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30),
@@ -153,9 +154,26 @@ extension SignUpViewController {
         ])
     }
     
+    private func configurePasswordVisibilty() {
+        passwordVisibiltyButton.tintColor = #colorLiteral(red: 0.6139065027, green: 0.6139065027, blue: 0.6139065623, alpha: 1)
+        passwordVisibiltyButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        passwordVisibiltyButton.addTarget(self, action: #selector(changePasswordVisibilty), for: .touchUpInside)
+        
+        view.addSubview(passwordVisibiltyButton)
+       
+        NSLayoutConstraint.activate([
+            passwordVisibiltyButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            passwordVisibiltyButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -16),
+            passwordVisibiltyButton.widthAnchor.constraint(equalToConstant: 30),
+            passwordVisibiltyButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
     private func configureCreateButton() {
         view.addSubview(createAccountButton)
-        
+        createAccountButton.addTarget(self,
+                                      action: #selector(createAccountTapped),
+                                      for: .touchUpInside)
         NSLayoutConstraint.activate([
             createAccountButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 53),
             createAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
@@ -197,14 +215,35 @@ extension SignUpViewController {
     }
 }
 
-extension SignUpViewController: SignUpAppleProtocol {
+// MARK: - Button Tapped
+extension SignUpViewController {
+    
+    @objc
+    private func createAccountTapped() {}
+    
+    @objc
+    private func changePasswordVisibilty() {
+        passwordTextField.isSecureTextEntry.toggle()
+        
+        switch passwordTextField.isSecureTextEntry {
+        case true:
+            passwordVisibiltyButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        case false:
+            passwordVisibiltyButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        }
+    }
+}
+
+// MARK: - Sign Up With Apple Protocol
+extension SignUpViewController: SignUpWithAppleDelegate {
     
     func userDidTappedSignUpWithApple() {
         print("did tapped sign up with apple.")
     }
 }
 
-extension SignUpViewController: SignUpGoogleDelegate {
+// MARK: - Sign Up With Google Protocol
+extension SignUpViewController: SignUpWithGoogleDelegate {
     
     func userDidTappedSignUpWithGoogle() {
         print("did tapped sign up with google")
