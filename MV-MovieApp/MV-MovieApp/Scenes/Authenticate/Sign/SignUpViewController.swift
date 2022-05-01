@@ -54,6 +54,9 @@ extension SignUpViewController {
     // MARK: - Configure View Controller
     private func configureViewController() {
         view.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
+        title                = "Register"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     // MARK: - Configure Content
@@ -61,7 +64,7 @@ extension SignUpViewController {
         view.addSubview(signUpContent)
                 
         NSLayoutConstraint.activate([
-            signUpContent.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            signUpContent.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             signUpContent.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             signUpContent.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             signUpContent.heightAnchor.constraint(equalToConstant: 20)
@@ -100,8 +103,8 @@ extension SignUpViewController {
     }
     
     private func addChildElements() {
-        let signUpAppleViewController  = SignUpAppleViewController(delegate: self)
-        let signUpGoogleViewController = SignUpGoogleViewController(delegate: self)
+        let signUpAppleViewController  = AuthAppleViewController(delegate: self)
+        let signUpGoogleViewController = AuthGoogleViewController(delegate: self)
         
         add(childVC: signUpAppleViewController, to: appleView)
         add(childVC: signUpGoogleViewController, to: googleView)
@@ -259,17 +262,17 @@ extension SignUpViewController {
 }
 
 // MARK: - Sign Up With Apple - Protocol
-extension SignUpViewController: SignUpWithAppleDelegate {
+extension SignUpViewController: AuthAppleDelegate {
     
-    func userDidTappedSignUpWithApple() {
+    func userDidAuthWithApple() {
         print("did tapped sign up with apple.")
     }
 }
 
 // MARK: - Sign Up With Google - Protocol
-extension SignUpViewController: SignUpWithGoogleDelegate {
+extension SignUpViewController: AuthGoogleDelegate {
     
-    func userDidTappedSignUpWithGoogle() {
+    func userDidAuthWithGoogle() {
         print("did tapped sign up with google")
     }
 }

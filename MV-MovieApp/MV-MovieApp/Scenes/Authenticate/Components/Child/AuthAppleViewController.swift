@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol SignUpWithAppleDelegate: AnyObject {
-    func userDidTappedSignUpWithApple()
+protocol AuthAppleDelegate: AnyObject {
+    func userDidAuthWithApple()
 }
 
-final class SignUpAppleViewController: SignUpContainerViewController {
+final class AuthAppleViewController: AuthenticateContainerViewController {
     
-    weak var delegate: SignUpWithAppleDelegate?
+    weak var delegate: AuthAppleDelegate?
     
-    init(delegate: SignUpWithAppleDelegate) {
+    init(delegate: AuthAppleDelegate) {
         super.init(nibName: nil, bundle: nil)
 
         self.delegate = delegate
@@ -31,13 +31,13 @@ final class SignUpAppleViewController: SignUpContainerViewController {
         configure()
     }
     
-    override func signUpWithSelectedContainer() {
-        delegate?.userDidTappedSignUpWithApple()
+    override func authWithSelectedContainer() {
+        delegate?.userDidAuthWithApple()
     }
 }
 
 // MARK: - Configure
-extension SignUpAppleViewController {
+extension AuthAppleViewController {
     
     private func configure() {
         setButton(with: .apple)

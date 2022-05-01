@@ -13,9 +13,9 @@
 		7E685055281F1E5C007C15B0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685054281F1E5C007C15B0 /* UIViewController+Ex.swift */; };
 		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
-		7E8A7B9A281EBB0E000676EC /* SignUpContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */; };
-		7E8A7B9C281EBC4F000676EC /* SignUpAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */; };
-		7E8A7B9E281EBCA6000676EC /* SignUpGoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */; };
+		7E8A7B9A281EBB0E000676EC /* AuthenticateContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthenticateContainerViewController.swift */; };
+		7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */; };
+		7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */; };
 		7E8A7BA1281EC884000676EC /* SignUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */; };
 		7E8A7BA3281EC88A000676EC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */; };
 		7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318D281D906600A1CFE9 /* AppDelegate.swift */; };
@@ -41,9 +41,9 @@
 		7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpBuilder.swift; sourceTree = "<group>"; };
 		7E685054281F1E5C007C15B0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
-		7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContainerViewController.swift; sourceTree = "<group>"; };
-		7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAppleViewController.swift; sourceTree = "<group>"; };
-		7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpGoogleViewController.swift; sourceTree = "<group>"; };
+		7E8A7B99281EBB0E000676EC /* AuthenticateContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateContainerViewController.swift; sourceTree = "<group>"; };
+		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
+		7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGoogleViewController.swift; sourceTree = "<group>"; };
 		7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBuilder.swift; sourceTree = "<group>"; };
 		7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MV-MovieApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,27 +94,29 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
-		7E8A7B95281EBAC6000676EC /* Components */ = {
+		7E685056281F289E007C15B0 /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
-				7E8A7B96281EBACB000676EC /* SignUp */,
+				7E8A7B95281EBAC6000676EC /* Components */,
+				7E41D4C4281F1BD5004E198E /* Login */,
+				7E8A7B9F281EC87D000676EC /* Sign */,
 			);
-			path = Components;
+			path = Authenticate;
 			sourceTree = "<group>";
 		};
-		7E8A7B96281EBACB000676EC /* SignUp */ = {
+		7E8A7B95281EBAC6000676EC /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				7E8A7B98281EBAF7000676EC /* Child */,
 				7E8A7B97281EBAF4000676EC /* Parent */,
 			);
-			path = SignUp;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		7E8A7B97281EBAF4000676EC /* Parent */ = {
 			isa = PBXGroup;
 			children = (
-				7E8A7B99281EBB0E000676EC /* SignUpContainerViewController.swift */,
+				7E8A7B99281EBB0E000676EC /* AuthenticateContainerViewController.swift */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -122,8 +124,8 @@
 		7E8A7B98281EBAF7000676EC /* Child */ = {
 			isa = PBXGroup;
 			children = (
-				7E8A7B9B281EBC4F000676EC /* SignUpAppleViewController.swift */,
-				7E8A7B9D281EBCA6000676EC /* SignUpGoogleViewController.swift */,
+				7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */,
+				7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */,
 			);
 			path = Child;
 			sourceTree = "<group>";
@@ -131,7 +133,6 @@
 		7E8A7B9F281EC87D000676EC /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				7E8A7B95281EBAC6000676EC /* Components */,
 				7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */,
 				7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */,
 			);
@@ -198,8 +199,7 @@
 		7EF731A6281D90CC00A1CFE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				7E41D4C4281F1BD5004E198E /* Login */,
-				7E8A7B9F281EC87D000676EC /* Sign */,
+				7E685056281F289E007C15B0 /* Authenticate */,
 				7EF731A7281D90D300A1CFE9 /* Home */,
 			);
 			path = Scenes;
@@ -324,16 +324,16 @@
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* SignUpBuilder.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
-				7E8A7B9C281EBC4F000676EC /* SignUpAppleViewController.swift in Sources */,
+				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E8A7BA3281EC88A000676EC /* SignUpViewController.swift in Sources */,
 				7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */,
 				7EF731AF281D910000A1CFE9 /* HomePresenter.swift in Sources */,
-				7E8A7B9A281EBB0E000676EC /* SignUpContainerViewController.swift in Sources */,
+				7E8A7B9A281EBB0E000676EC /* AuthenticateContainerViewController.swift in Sources */,
 				7EF731C1281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift in Sources */,
 				7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */,
 				7E685051281F1C00007C15B0 /* LoginUpBuilder.swift in Sources */,
 				7E685055281F1E5C007C15B0 /* UIViewController+Ex.swift in Sources */,
-				7E8A7B9E281EBCA6000676EC /* SignUpGoogleViewController.swift in Sources */,
+				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
 				7E41D4C3281EE64F004E198E /* ButtonTypes.swift in Sources */,
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7E68504F281F1BFA007C15B0 /* LoginUpViewController.swift in Sources */,

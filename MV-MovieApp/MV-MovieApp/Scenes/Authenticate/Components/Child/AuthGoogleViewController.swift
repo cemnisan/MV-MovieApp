@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol SignUpWithGoogleDelegate: AnyObject {
-    func userDidTappedSignUpWithGoogle()
+protocol AuthGoogleDelegate: AnyObject {
+    func userDidAuthWithGoogle()
 }
 
-final class SignUpGoogleViewController: SignUpContainerViewController {
+final class AuthGoogleViewController: AuthenticateContainerViewController {
     
-    weak var delegate: SignUpWithGoogleDelegate?
+    weak var delegate: AuthGoogleDelegate?
     
-    init(delegate: SignUpWithGoogleDelegate) {
+    init(delegate: AuthGoogleDelegate) {
         super.init(nibName: nil, bundle: nil)
         
         self.delegate = delegate
@@ -31,13 +31,13 @@ final class SignUpGoogleViewController: SignUpContainerViewController {
         configure()
     }
     
-    override func signUpWithSelectedContainer() {
-        delegate?.userDidTappedSignUpWithGoogle()
+    override func authWithSelectedContainer() {
+        delegate?.userDidAuthWithGoogle()
     }
 }
 
 // MARK: - Configure
-extension SignUpGoogleViewController {
+extension AuthGoogleViewController {
     
     private func configure() {
         setButton(with: .google)

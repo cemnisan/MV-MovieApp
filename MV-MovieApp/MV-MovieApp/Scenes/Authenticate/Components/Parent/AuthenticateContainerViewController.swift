@@ -8,8 +8,7 @@
 import UIKit
 import MV_Components
 
-
-class SignUpContainerViewController: UIViewController {
+class AuthenticateContainerViewController: UIViewController {
     
     let signUpButton = MVButton(frame: .zero)
     
@@ -21,7 +20,7 @@ class SignUpContainerViewController: UIViewController {
 }
 
 // MARK: - Configure
-extension SignUpContainerViewController {
+extension AuthenticateContainerViewController {
     
     private func configure() {
         view.addSubview(signUpButton)
@@ -36,26 +35,26 @@ extension SignUpContainerViewController {
 }
 
 // MARK: - Button Tapped
-extension SignUpContainerViewController {
+extension AuthenticateContainerViewController {
     
     @objc
-    func signUpWithSelectedContainer() { }
+    func authWithSelectedContainer() { }
 }
 
 // MARK: - Type Selector
-extension SignUpContainerViewController {
+extension AuthenticateContainerViewController {
     
     func setButton(with type: SignUpButtonTypes) {
         switch type {
         case .apple:
             signUpButton.setImage(UIImage(named: "apple"), for: .normal)
             signUpButton.addTarget(self,
-                                   action: #selector(signUpWithSelectedContainer),
+                                   action: #selector(authWithSelectedContainer),
                                    for: .touchUpInside)
         case .google:
             signUpButton.setImage(UIImage(named: "google"), for: .normal)
             signUpButton.addTarget(self,
-                                   action: #selector(signUpWithSelectedContainer),
+                                   action: #selector(authWithSelectedContainer),
                                    for: .touchUpInside)
         }
     }

@@ -51,6 +51,9 @@ extension LoginUpViewController {
     // MARK: - Configure View Controller
     private func configureViewController() {
         view.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
+        title                = "Login"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     // MARK: - Configure Content
@@ -59,7 +62,7 @@ extension LoginUpViewController {
         view.addSubview(loginContentLabel)
         
         NSLayoutConstraint.activate([
-            loginContentLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            loginContentLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             loginContentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             loginContentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             loginContentLabel.heightAnchor.constraint(equalToConstant: 20)
@@ -100,8 +103,8 @@ extension LoginUpViewController {
     }
     
     private func addChildElements() {
-        let loginUpWithAppleViewController = SignUpAppleViewController(delegate: self)
-        let loginUpWithGoogleViewController = SignUpGoogleViewController(delegate: self)
+        let loginUpWithAppleViewController  = AuthAppleViewController(delegate: self)
+        let loginUpWithGoogleViewController = AuthGoogleViewController(delegate: self)
         
         add(childVC: loginUpWithAppleViewController, to: appleView)
         add(childVC: loginUpWithGoogleViewController, to: googleView)
@@ -109,8 +112,6 @@ extension LoginUpViewController {
     
     // MARK: - Configure Email Elements
     private func configureEmailElements() {
-        emailLabel.text = "Email"
-    
         [emailLabel, emailTextField].forEach {
             view.addSubview($0)
             
@@ -132,7 +133,6 @@ extension LoginUpViewController {
     // MARK: - Configure Password Elements
     private func configurePasswordElements() {
         passwordTextField.isSecureTextEntry = true
-        passwordLabel.text                  = "Password"
         
         [passwordLabel, passwordTextField].forEach {
             view.addSubview($0)
@@ -236,17 +236,17 @@ extension LoginUpViewController {
 }
 
 // MARK: - Login With Apple
-extension LoginUpViewController: SignUpWithAppleDelegate {
+extension LoginUpViewController: AuthAppleDelegate {
     
-    func userDidTappedSignUpWithApple() {
+    func userDidAuthWithApple() {
         print("login up with apple")
     }
 }
 
 // MARK: - Login with Google
-extension LoginUpViewController: SignUpWithGoogleDelegate {
+extension LoginUpViewController: AuthGoogleDelegate {
     
-    func userDidTappedSignUpWithGoogle() {
+    func userDidAuthWithGoogle() {
         print("login up with google")
     }
 }
