@@ -25,6 +25,10 @@ final class SignUpViewController: UIViewController {
     private let emailTextField      = MVSignUpTextFields(placeHolder: "Enter you email")
     private let passwordTextField   = MVSignUpTextFields(placeHolder: "Enter you password.")
     
+    private let createAccountButton = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
+    
+    private let alreadyAccountLabel = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    
     var homePresenter: HomePresenter!
     
     override func viewDidLoad() {
@@ -45,6 +49,8 @@ extension SignUpViewController {
         configureNameElements()
         configureEmailElements()
         configurePasswordElements()
+        configureCreateButton()
+        configureAlreadyAccountLabel()
     }
     
     private func configureViewController() {
@@ -109,7 +115,7 @@ extension SignUpViewController {
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50)
+            nameTextField.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
     
@@ -126,13 +132,13 @@ extension SignUpViewController {
             emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            emailTextField.heightAnchor.constraint(equalToConstant: 50)
+            emailTextField.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
     
     private func configurePasswordElements() {
         [passwordLabel, passwordTextField].forEach { view.addSubview($0) }
-        passwordLabel.text = "Email"
+        passwordLabel.text = "Password"
         
         NSLayoutConstraint.activate([
             passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30),
@@ -143,7 +149,30 @@ extension SignUpViewController {
             passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 50)
+            passwordTextField.heightAnchor.constraint(equalToConstant: 55)
+        ])
+    }
+    
+    private func configureCreateButton() {
+        view.addSubview(createAccountButton)
+        
+        NSLayoutConstraint.activate([
+            createAccountButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 53),
+            createAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            createAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            createAccountButton.heightAnchor.constraint(equalToConstant: 55)
+        ])
+    }
+    
+    private func configureAlreadyAccountLabel() {
+        view.addSubview(alreadyAccountLabel)
+        alreadyAccountLabel.text = "Already have an account? Login"
+        
+        NSLayoutConstraint.activate([
+            alreadyAccountLabel.heightAnchor.constraint(equalToConstant: 20),
+            alreadyAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            alreadyAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            alreadyAccountLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72)
         ])
     }
     

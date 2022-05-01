@@ -25,6 +25,12 @@ public final class MVButton: UIButton {
         setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
     }
+    
+    public convenience init(image: UIImage) {
+        self.init(frame: .zero)
+        
+        self.setImage(image, for: .normal)
+    }
 }
 
 extension MVButton {

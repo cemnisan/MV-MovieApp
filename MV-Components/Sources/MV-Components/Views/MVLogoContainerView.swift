@@ -11,7 +11,7 @@ public enum LogoType { case apple, google }
 
 public final class MVLogoContainerView: UIView {
     
-    private let logoImageView = MVLogoImage(frame: .zero)
+    private let logoImageView = MVButton(frame: .zero)
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,9 +46,9 @@ extension MVLogoContainerView {
     public func set(type: LogoType) {
         switch type {
         case .apple:
-            logoImageView.image = UIImage(named: "apple")
+            logoImageView.setImage(UIImage(named: "apple"), for: .normal)
         case .google:
-            logoImageView.image = UIImage(named: "google")
+            logoImageView.setImage(UIImage(named: "google"), for: .normal)
         }
     }
 }
