@@ -19,12 +19,16 @@ public final class MVSecondaryLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat, textColor: UIColor) {
+    public convenience init(textAlignment: NSTextAlignment,
+                            fontSize: CGFloat,
+                            textColor: UIColor,
+                            text: String?) {
         self.init(frame: .zero)
         
         self.textAlignment = textAlignment
         self.font          = UIFont.systemFont(ofSize: fontSize, weight: .medium)
         self.textColor     = textColor
+        self.text          = text
     }
 }
 

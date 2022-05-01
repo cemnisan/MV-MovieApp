@@ -18,7 +18,7 @@ final class AppRouter {
 extension AppRouter {
     
     func start(with windowScene: UIWindowScene) {
-        let rootNavigationController = SignUpBuilder.make()
+        let rootNavigationController = LoginUpBuilder.make()
         
         window.windowScene           = windowScene
         window.rootViewController    = rootNavigationController

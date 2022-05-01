@@ -10,14 +10,14 @@ import MV_Components
 
 final class SignUpViewController: UIViewController {
     
-    private let signUpContent             = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let signUpContent             = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: "Sign up with one of following options")
     
-    private let appleView                 = UIView()
-    private let googleView                = UIView()
+    private let appleView                 = MVContainerView(backgroundColor: #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1))
+    private let googleView                = MVContainerView(backgroundColor: #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1))
     
-    private let nameLabel                 = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let emailLabel                = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let nameLabel                 = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white, text: "Name")
+    private let emailLabel                = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white, text: "Email")
+    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white, text: "Password")
     
     private let nameTextField             = MVSignUpTextFields(placeHolder: "Enter your name")
     private let emailTextField            = MVSignUpTextFields(placeHolder: "Enter you email")
@@ -25,11 +25,9 @@ final class SignUpViewController: UIViewController {
     
     private let passwordVisibiltyButton   = MVButton(frame: .zero)
     private let createAccountButton       = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
-    private let alreadyAccountLabel       = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let alreadyAccountLabel       = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: "Already have an account?")
     private let alreadyAccountLoginButton = MVButton(frame: .zero)
-    
-    var homePresenter: HomePresenter!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,9 +42,7 @@ extension SignUpViewController {
     private func configureUI() {
         configureViewController()
         configureContent()
-        configureChildElements()
-        configureViews()
-        layoutChildViews()
+        configureChildViews()
         configureNameElements()
         configureEmailElements()
         configurePasswordElements()
@@ -62,8 +58,6 @@ extension SignUpViewController {
     
     // MARK: - Configure Content
     private func configureContent() {
-        signUpContent.text = "Sign up with one of following options"
-
         view.addSubview(signUpContent)
                 
         NSLayoutConstraint.activate([
@@ -75,25 +69,22 @@ extension SignUpViewController {
     }
     
     // MARK: - Configure Apple/Google Views
-    private func configureViews() {
+    private func configureChildViews() {
         [appleView, googleView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.layer.cornerRadius = 10
-            $0.backgroundColor    = #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1)
-            
             NSLayoutConstraint.activate([
                 $0.heightAnchor.constraint(equalToConstant: 60),
                 $0.widthAnchor.constraint(equalToConstant: 160)
             ])
         }
+        
+        layoutChildViews()
+        addChildElements()
     }
     
     private func layoutChildViews() {
         let stackView          = UIStackView()
         stackView.axis         = .horizontal
         stackView.distribution = .equalSpacing
-        stackView.frame        = view.bounds
-        stackView.spacing      = 14
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         [appleView, googleView].forEach { stackView.addArrangedSubview($0) }
@@ -108,7 +99,7 @@ extension SignUpViewController {
         ])
     }
     
-    private func configureChildElements() {
+    private func addChildElements() {
         let signUpAppleViewController  = SignUpAppleViewController(delegate: self)
         let signUpGoogleViewController = SignUpGoogleViewController(delegate: self)
         
@@ -118,8 +109,6 @@ extension SignUpViewController {
     
     // MARK: - Configure Name Elements
     private func configureNameElements() {
-        nameLabel.text = "Name"
-        
         [nameLabel, nameTextField].forEach {
             view.addSubview($0)
             
@@ -140,8 +129,6 @@ extension SignUpViewController {
     
     // MARK: - Configure Email Elements
     private func configureEmailElements() {
-        emailLabel.text = "Email"
-        
         [emailLabel, emailTextField].forEach {
             view.addSubview($0)
             
@@ -163,7 +150,6 @@ extension SignUpViewController {
     // MARK: - Configure Password Elements
     private func configurePasswordElements() {
         passwordTextField.isSecureTextEntry = true
-        passwordLabel.text                  = "Password"
         
         [passwordLabel, passwordTextField].forEach {
             view.addSubview($0)
@@ -219,10 +205,6 @@ extension SignUpViewController {
     }
     
     // MARK: - Configure Already Account
-    private func configureAlreadyAccountLabel() {
-        alreadyAccountLabel.text = "Already have an account?"
-    }
-    
     private func configureAlreadyAccountButton() {
         alreadyAccountLoginButton.setTitle("Login",
                                            for: .normal)
@@ -238,7 +220,6 @@ extension SignUpViewController {
         stackView.distribution   = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        configureAlreadyAccountLabel()
         configureAlreadyAccountButton()
         
         [alreadyAccountLabel,
@@ -248,23 +229,10 @@ extension SignUpViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
+            stackView.bottomAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 72),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
-            stackView.heightAnchor.constraint(equalToConstant: 25),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72)
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68)
         ])
-    }
-}
-
-// MARK: - UI Helpers
-extension SignUpViewController {
-    
-    private func add(childVC: UIViewController,
-                     to containerView: UIView) {
-        addChild(childVC)
-        containerView.addSubview(childVC.view)
-        childVC.view.frame = containerView.bounds
-        childVC.didMove(toParent: self)
     }
 }
 
