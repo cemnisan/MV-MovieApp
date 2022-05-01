@@ -10,23 +10,24 @@ import MV_Components
 
 final class SignUpViewController: UIViewController {
     
-    private let signUpContent           = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
-        
-    private let stackView               = UIStackView()
-    private let appleView               = UIView()
-    private let googleView              = UIView()
-                
-    private let nameLabel               = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let emailLabel              = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-    private let passwordLabel           = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
-        
-    private let nameTextField           = MVSignUpTextFields(placeHolder: "Enter your name")
-    private let emailTextField          = MVSignUpTextFields(placeHolder: "Enter you email")
-    private let passwordTextField       = MVSignUpTextFields(placeHolder: "Enter you password.")
+    private let signUpContent             = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
     
-    private let passwordVisibiltyButton = MVButton(frame: .zero)
-    private let createAccountButton     = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
-    private let alreadyAccountLabel     = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let stackView                 = UIStackView()
+    private let appleView                 = UIView()
+    private let googleView                = UIView()
+            
+    private let nameLabel                 = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let emailLabel                = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white)
+    
+    private let nameTextField             = MVSignUpTextFields(placeHolder: "Enter your name")
+    private let emailTextField            = MVSignUpTextFields(placeHolder: "Enter you email")
+    private let passwordTextField         = MVSignUpTextFields(placeHolder: "Enter you password.")
+
+    private let passwordVisibiltyButton   = MVButton(frame: .zero)
+    private let createAccountButton       = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: "Create Account")
+    private let alreadyAccountLabel       = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1))
+    private let alreadyAccountLoginButton = MVButton(frame: .zero)
     
     var homePresenter: HomePresenter!
     
@@ -50,7 +51,7 @@ extension SignUpViewController {
         configurePasswordElements()
         configurePasswordVisibilty()
         configureCreateButton()
-        configureAlreadyAccountLabel()
+        configureAlreadyAccount()
     }
     
     private func configureViewController() {
@@ -181,19 +182,43 @@ extension SignUpViewController {
             createAccountButton.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
-    
+
     private func configureAlreadyAccountLabel() {
-        view.addSubview(alreadyAccountLabel)
-        alreadyAccountLabel.text = "Already have an account? Login"
-        
-        NSLayoutConstraint.activate([
-            alreadyAccountLabel.heightAnchor.constraint(equalToConstant: 20),
-            alreadyAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            alreadyAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            alreadyAccountLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72)
-        ])
+        alreadyAccountLabel.text = "Already have an account?"
     }
     
+    private func configureAlreadyAccountButton() {
+        alreadyAccountLoginButton.setTitle("Login",
+                                           for: .normal)
+        alreadyAccountLoginButton.titleLabel?.font = UIFont.systemFont(ofSize: 18,
+                                                                       weight: .bold)
+        alreadyAccountLoginButton.addTarget(self, action: #selector(userDidLoginButton),
+                                            for: .touchUpInside)
+    }
+    
+    private func configureAlreadyAccount() {
+        let stackView            = UIStackView()
+        stackView.axis           = .horizontal
+        stackView.distribution   = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+                
+        configureAlreadyAccountLabel()
+        configureAlreadyAccountButton()
+        
+        [alreadyAccountLabel,
+         alreadyAccountLoginButton
+        ].forEach { stackView.addArrangedSubview($0) }
+        
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
+            stackView.heightAnchor.constraint(equalToConstant: 25),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -72)
+        ])
+    }
+        
     private func configureUIElements() {
         let signUpAppleViewController  = SignUpAppleViewController(delegate: self)
         let signUpGoogleViewController = SignUpGoogleViewController(delegate: self)
@@ -232,6 +257,9 @@ extension SignUpViewController {
             passwordVisibiltyButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
         }
     }
+    
+    @objc
+    private func userDidLoginButton() {}
 }
 
 // MARK: - Sign Up With Apple Protocol
