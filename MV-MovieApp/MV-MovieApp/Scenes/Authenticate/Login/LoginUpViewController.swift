@@ -25,11 +25,16 @@ final class LoginUpViewController: UIViewController {
     private let noAccountLabel           = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: "Don't have an account?")
     private let noAccountLoginButton     = MVButton(frame: .zero)
     
+    var loginUpPresenter: LoginUpPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+    }
+    
+    deinit {
+        print("login up de init")
     }
 }
 
@@ -231,8 +236,12 @@ extension LoginUpViewController {
     
     @objc
     private func userTappedSignUpButton() {
-        print("to sign up")
+        loginUpPresenter.userDidTappedSignUpButton()
     }
+}
+
+extension LoginUpViewController: LoginUpViewProtocol {
+    
 }
 
 // MARK: - Login With Apple

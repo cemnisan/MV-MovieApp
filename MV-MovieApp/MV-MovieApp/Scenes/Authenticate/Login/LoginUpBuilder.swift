@@ -11,6 +11,10 @@ final class LoginUpBuilder {
     
     static func make() -> UINavigationController {
         let viewController = LoginUpViewController()
+        let router         = LoginUpRouter(view: viewController)
+        let interactor     = LoginUpInteractor()
+        let presenter      = LoginUpPresenter(view: viewController, interactor: interactor, router: router)
+        viewController.loginUpPresenter = presenter
         
         return UINavigationController(rootViewController: viewController)
     }

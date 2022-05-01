@@ -33,6 +33,10 @@ final class SignUpViewController: UIViewController {
         
         configureUI()
     }
+    
+    deinit {
+        print("sign up de init")
+    }
 }
 
 // MARK: - Configure

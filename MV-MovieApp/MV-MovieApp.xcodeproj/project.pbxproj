@@ -11,6 +11,10 @@
 		7E68504F281F1BFA007C15B0 /* LoginUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */; };
 		7E685051281F1C00007C15B0 /* LoginUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */; };
 		7E685055281F1E5C007C15B0 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685054281F1E5C007C15B0 /* UIViewController+Ex.swift */; };
+		7E685058281F2AD1007C15B0 /* LoginUpContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685057281F2AD1007C15B0 /* LoginUpContracts.swift */; };
+		7E68505A281F2ADD007C15B0 /* LoginUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685059281F2ADD007C15B0 /* LoginUpInteractor.swift */; };
+		7E68505C281F2AE3007C15B0 /* LoginUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505B281F2AE3007C15B0 /* LoginUpPresenter.swift */; };
+		7E68505E281F2AED007C15B0 /* LoginUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505D281F2AED007C15B0 /* LoginUpRouter.swift */; };
 		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthenticateContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthenticateContainerViewController.swift */; };
@@ -40,6 +44,10 @@
 		7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpViewController.swift; sourceTree = "<group>"; };
 		7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpBuilder.swift; sourceTree = "<group>"; };
 		7E685054281F1E5C007C15B0 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		7E685057281F2AD1007C15B0 /* LoginUpContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpContracts.swift; sourceTree = "<group>"; };
+		7E685059281F2ADD007C15B0 /* LoginUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpInteractor.swift; sourceTree = "<group>"; };
+		7E68505B281F2AE3007C15B0 /* LoginUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpPresenter.swift; sourceTree = "<group>"; };
+		7E68505D281F2AED007C15B0 /* LoginUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpRouter.swift; sourceTree = "<group>"; };
 		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
 		7E8A7B99281EBB0E000676EC /* AuthenticateContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateContainerViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +90,10 @@
 			children = (
 				7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */,
 				7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */,
+				7E685057281F2AD1007C15B0 /* LoginUpContracts.swift */,
+				7E685059281F2ADD007C15B0 /* LoginUpInteractor.swift */,
+				7E68505B281F2AE3007C15B0 /* LoginUpPresenter.swift */,
+				7E68505D281F2AED007C15B0 /* LoginUpRouter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -320,10 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF731AB281D90F500A1CFE9 /* HomeContracts.swift in Sources */,
+				7E68505E281F2AED007C15B0 /* LoginUpRouter.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
+				7E68505A281F2ADD007C15B0 /* LoginUpInteractor.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* SignUpBuilder.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
+				7E68505C281F2AE3007C15B0 /* LoginUpPresenter.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E8A7BA3281EC88A000676EC /* SignUpViewController.swift in Sources */,
 				7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */,
@@ -337,6 +352,7 @@
 				7E41D4C3281EE64F004E198E /* ButtonTypes.swift in Sources */,
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7E68504F281F1BFA007C15B0 /* LoginUpViewController.swift in Sources */,
+				7E685058281F2AD1007C15B0 /* LoginUpContracts.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
 				7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,

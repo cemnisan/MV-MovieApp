@@ -9,9 +9,9 @@ import UIKit
 
 final class SignUpBuilder {
     
-    static func make() -> UINavigationController {
+    static func make() -> SignUpViewController {
         let viewController = SignUpViewController()
         
-        return UINavigationController(rootViewController: viewController)
+        return viewController
     }
 }
