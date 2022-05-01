@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E39EA9A281F348E0073A591 /* SignUpContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA99281F348E0073A591 /* SignUpContracts.swift */; };
+		7E39EA9C281F34960073A591 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9B281F34960073A591 /* SignUpInteractor.swift */; };
+		7E39EA9E281F34A00073A591 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9D281F34A00073A591 /* SignUpPresenter.swift */; };
+		7E39EAA0281F34A80073A591 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9F281F34A80073A591 /* SignUpRouter.swift */; };
 		7E41D4C3281EE64F004E198E /* ButtonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E41D4C2281EE64F004E198E /* ButtonTypes.swift */; };
 		7E68504F281F1BFA007C15B0 /* LoginUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */; };
 		7E685051281F1C00007C15B0 /* LoginUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */; };
@@ -40,6 +44,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E39EA99281F348E0073A591 /* SignUpContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContracts.swift; sourceTree = "<group>"; };
+		7E39EA9B281F34960073A591 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
+		7E39EA9D281F34A00073A591 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		7E39EA9F281F34A80073A591 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
 		7E41D4C2281EE64F004E198E /* ButtonTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTypes.swift; sourceTree = "<group>"; };
 		7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpViewController.swift; sourceTree = "<group>"; };
 		7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUpBuilder.swift; sourceTree = "<group>"; };
@@ -88,12 +96,12 @@
 		7E41D4C4281F1BD5004E198E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */,
 				7E685050281F1C00007C15B0 /* LoginUpBuilder.swift */,
 				7E685057281F2AD1007C15B0 /* LoginUpContracts.swift */,
 				7E685059281F2ADD007C15B0 /* LoginUpInteractor.swift */,
 				7E68505B281F2AE3007C15B0 /* LoginUpPresenter.swift */,
 				7E68505D281F2AED007C15B0 /* LoginUpRouter.swift */,
+				7E68504E281F1BFA007C15B0 /* LoginUpViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -146,6 +154,10 @@
 			isa = PBXGroup;
 			children = (
 				7E8A7BA0281EC884000676EC /* SignUpBuilder.swift */,
+				7E39EA99281F348E0073A591 /* SignUpContracts.swift */,
+				7E39EA9B281F34960073A591 /* SignUpInteractor.swift */,
+				7E39EA9D281F34A00073A591 /* SignUpPresenter.swift */,
+				7E39EA9F281F34A80073A591 /* SignUpRouter.swift */,
 				7E8A7BA2281EC88A000676EC /* SignUpViewController.swift */,
 			);
 			path = Sign;
@@ -331,8 +343,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E39EAA0281F34A80073A591 /* SignUpRouter.swift in Sources */,
 				7EF731AB281D90F500A1CFE9 /* HomeContracts.swift in Sources */,
 				7E68505E281F2AED007C15B0 /* LoginUpRouter.swift in Sources */,
+				7E39EA9A281F348E0073A591 /* SignUpContracts.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
 				7E68505A281F2ADD007C15B0 /* LoginUpInteractor.swift in Sources */,
@@ -356,6 +370,8 @@
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
 				7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
+				7E39EA9C281F34960073A591 /* SignUpInteractor.swift in Sources */,
+				7E39EA9E281F34A00073A591 /* SignUpPresenter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

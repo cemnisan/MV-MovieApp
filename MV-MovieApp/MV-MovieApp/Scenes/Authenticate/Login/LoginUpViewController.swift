@@ -230,9 +230,7 @@ extension LoginUpViewController {
     }
     
     @objc
-    private func userTappedLoginButton() {
-        print("login")
-    }
+    private func userTappedLoginButton() {}
     
     @objc
     private func userTappedSignUpButton() {
@@ -240,22 +238,15 @@ extension LoginUpViewController {
     }
 }
 
-extension LoginUpViewController: LoginUpViewProtocol {
-    
-}
+// MARK: - Login Up View Protocol
+extension LoginUpViewController: LoginUpViewProtocol {}
 
 // MARK: - Login With Apple
 extension LoginUpViewController: AuthAppleDelegate {
-    
-    func userDidAuthWithApple() {
-        print("login up with apple")
-    }
+    func userDidAuthWithApple() {}
 }
 
 // MARK: - Login with Google
 extension LoginUpViewController: AuthGoogleDelegate {
-    
-    func userDidAuthWithGoogle() {
-        print("login up with google")
-    }
+    func userDidAuthWithGoogle() {}
 }

@@ -28,6 +28,8 @@ final class SignUpViewController: UIViewController {
     private let alreadyAccountLabel       = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: "Already have an account?")
     private let alreadyAccountLoginButton = MVButton(frame: .zero)
         
+    var signUpPresenter: SignUpPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +63,7 @@ extension SignUpViewController {
         title                = "Register"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = .white
     }
     
     // MARK: - Configure Content
@@ -247,9 +250,6 @@ extension SignUpViewController {
 extension SignUpViewController {
     
     @objc
-    private func createAccountTapped() {}
-    
-    @objc
     private func changePasswordVisibilty() {
         passwordTextField.isSecureTextEntry.toggle()
         
@@ -262,21 +262,23 @@ extension SignUpViewController {
     }
     
     @objc
-    private func userDidLoginButton() {}
+    private func createAccountTapped() {}
+    
+    @objc
+    private func userDidLoginButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
+
+// MARK: - Sign Up View Protocol
+extension SignUpViewController: SignUpViewProtocol {}
 
 // MARK: - Sign Up With Apple - Protocol
 extension SignUpViewController: AuthAppleDelegate {
-    
-    func userDidAuthWithApple() {
-        print("did tapped sign up with apple.")
-    }
+    func userDidAuthWithApple() {}
 }
 
 // MARK: - Sign Up With Google - Protocol
 extension SignUpViewController: AuthGoogleDelegate {
-    
-    func userDidAuthWithGoogle() {
-        print("did tapped sign up with google")
-    }
+    func userDidAuthWithGoogle() {}
 }

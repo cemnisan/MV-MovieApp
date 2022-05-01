@@ -23,7 +23,7 @@ extension LoginUpRouter: LoginUpRouterProtocol {
         switch route {
         case .signUp:
             let signUpView = SignUpBuilder.make()
-            view.navigationController?.pushViewController(signUpView, animated: true)
+            view.navigationController?.show(signUpView, sender: true)
         }
     }
 }
