@@ -19,7 +19,7 @@ public final class MVButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(backgroundColor: UIColor, title: String) {
+    public convenience init(backgroundColor: UIColor, title: String?) {
         self.init(frame: .zero)
         
         setTitle(title, for: .normal)
