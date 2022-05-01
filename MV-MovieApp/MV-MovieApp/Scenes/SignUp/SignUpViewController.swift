@@ -177,8 +177,8 @@ extension SignUpViewController {
     }
     
     private func configureUIElements() {
-        let signUpAppleViewController  = SignUpAppleViewController()
-        let signUpGoogleViewController = SignUpGoogleViewController()
+        let signUpAppleViewController  = SignUpAppleViewController(delegate: self)
+        let signUpGoogleViewController = SignUpGoogleViewController(delegate: self)
         
         add(childVC: signUpAppleViewController, to: appleView)
         add(childVC: signUpGoogleViewController, to: googleView)
@@ -197,3 +197,16 @@ extension SignUpViewController {
     }
 }
 
+extension SignUpViewController: SignUpAppleProtocol {
+    
+    func userDidTappedSignUpWithApple() {
+        print("did tapped sign up with apple.")
+    }
+}
+
+extension SignUpViewController: SignUpGoogleDelegate {
+    
+    func userDidTappedSignUpWithGoogle() {
+        print("did tapped sign up with google")
+    }
+}

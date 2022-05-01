@@ -8,10 +8,10 @@
 import UIKit
 import MV_Components
 
+
 class SignUpContainerViewController: UIViewController {
     
-    let signUpApple       = MVLogoContainerView(frame: .zero)
-    let signUpGoogle      = MVLogoContainerView(frame: .zero)
+    let signUpButton = MVButton(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +24,40 @@ class SignUpContainerViewController: UIViewController {
 extension SignUpContainerViewController {
     
     private func configure() {
-        [signUpApple, signUpGoogle].forEach {
-            view.addSubview($0)
-            
-            NSLayoutConstraint.activate([
-                $0.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                $0.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
+        view.addSubview(signUpButton)
+        
+        NSLayoutConstraint.activate([
+            signUpButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpButton.widthAnchor.constraint(equalToConstant: 24),
+            signUpButton.heightAnchor.constraint(equalToConstant: 24)
+        ])
+    }
+}
+
+// MARK: - Button Tapped
+extension SignUpContainerViewController {
+    
+    @objc
+    func signUpWithSelectedContainer() { }
+}
+
+// MARK: - Type Selector
+extension SignUpContainerViewController {
+    
+    func setButton(with type: SignUpButtonTypes) {
+        switch type {
+        case .apple:
+            signUpButton.setImage(UIImage(named: "apple"), for: .normal)
+            signUpButton.addTarget(self,
+                                   action: #selector(signUpWithSelectedContainer),
+                                   for: .touchUpInside)
+        case .google:
+            signUpButton.setImage(UIImage(named: "google"), for: .normal)
+            signUpButton.addTarget(self,
+                                   action: #selector(signUpWithSelectedContainer),
+                                   for: .touchUpInside)
         }
     }
+
 }

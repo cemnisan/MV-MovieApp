@@ -7,12 +7,32 @@
 
 import Foundation
 
+protocol SignUpGoogleDelegate: AnyObject {
+    func userDidTappedSignUpWithGoogle()
+}
+
 final class SignUpGoogleViewController: SignUpContainerViewController {
+    
+    weak var delegate: SignUpGoogleDelegate?
+    
+    init(delegate: SignUpGoogleDelegate) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+    }
+    
+    override func signUpWithSelectedContainer() {
+        delegate?.userDidTappedSignUpWithGoogle()
     }
 }
 
@@ -20,6 +40,6 @@ final class SignUpGoogleViewController: SignUpContainerViewController {
 extension SignUpGoogleViewController {
     
     private func configure() {
-        signUpApple.set(type: .google)
+        setButton(with: .google)
     }
 }

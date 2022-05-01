@@ -7,12 +7,32 @@
 
 import UIKit
 
+protocol SignUpAppleProtocol: AnyObject {
+    func userDidTappedSignUpWithApple()
+}
+
 final class SignUpAppleViewController: SignUpContainerViewController {
+    
+    weak var delegate: SignUpAppleProtocol?
+    
+    init(delegate: SignUpAppleProtocol) {
+        super.init(nibName: nil, bundle: nil)
+
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+    }
+    
+    override func signUpWithSelectedContainer() {
+        delegate?.userDidTappedSignUpWithApple()
     }
 }
 
@@ -20,6 +40,6 @@ final class SignUpAppleViewController: SignUpContainerViewController {
 extension SignUpAppleViewController {
     
     private func configure() {
-        signUpApple.set(type: .apple)
+        setButton(with: .apple)
     }
 }
