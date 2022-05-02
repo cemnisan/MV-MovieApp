@@ -31,13 +31,25 @@ class BaseAuthViewController: UIViewController {
     }
 }
 
-// MARK: - Configure
+// MARK: - Add
 extension BaseAuthViewController {
     
+    func addElements() {
+        addSubviews(views: screenDescriptionLabel,
+                    passwordLabel,
+                    passwordTextField,
+                    appleView,
+                    googleView,
+                    passwordVisibilityButton,
+                    actionButton)
+    }
+}
+
+// MARK: - Configure
+extension BaseAuthViewController {
+
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
-        view.addSubview(screenDescriptionLabel)
-        
         NSLayoutConstraint.activate([
             screenDescriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             screenDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
@@ -51,8 +63,6 @@ extension BaseAuthViewController {
         passwordTextField.isSecureTextEntry = true
         
         [passwordLabel, passwordTextField].forEach {
-            view.addSubview($0)
-            
             NSLayoutConstraint.activate([
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22)
@@ -71,8 +81,6 @@ extension BaseAuthViewController {
     // MARK: - Configure Apple/Google View
     func configureChildViews() {
         [appleView, googleView].forEach {
-            view.addSubview($0)
-            
             NSLayoutConstraint.activate([
                 $0.heightAnchor.constraint(equalToConstant: 60),
                 $0.widthAnchor.constraint(equalToConstant: 160)
@@ -102,17 +110,11 @@ extension BaseAuthViewController {
     }
     
     // MARK: - Configure Password Visibility
-    func configureVisibilityButton() {
+    func configurePasswordVisibilty() {
         passwordVisibilityButton.tintColor = K.Auth.globalColor
-        passwordVisibilityButton.setImage(K.Auth.passwordVisibleImage, for: .normal)
+        passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
         passwordVisibilityButton.addTarget(self, action: #selector(changePasswordVisibility), for: .touchUpInside)
         
-        view.addSubview(passwordVisibilityButton)
-    }
-    
-    func configurePasswordVisibilty() {
-        configureVisibilityButton()
-                
         NSLayoutConstraint.activate([
             passwordVisibilityButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
             passwordVisibilityButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -16),
@@ -124,8 +126,6 @@ extension BaseAuthViewController {
     // MARK: - Configure Login or Register Button
     func configureActionButton() {
         actionButton.addTarget(self, action: #selector(userTappedActionButton), for: .touchUpInside)
-        
-        view.addSubview(actionButton)
         
         NSLayoutConstraint.activate([
             actionButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 53),
@@ -203,7 +203,7 @@ extension BaseAuthViewController {
         case true:
             passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
         case false:
-            passwordVisibilityButton.setImage(K.Auth.passwordVisibleImage, for: .normal)
+            passwordVisibilityButton.setImage(K.Auth.passwordVisible, for: .normal)
         }
     }
 }

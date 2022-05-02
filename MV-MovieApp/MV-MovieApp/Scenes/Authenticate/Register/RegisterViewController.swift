@@ -64,6 +64,7 @@ extension RegisterViewController {
     // MARK: - All configuration
     private func configureUI() {
         configureViewController()
+        addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
         configureNameElements()
@@ -76,11 +77,11 @@ extension RegisterViewController {
     
     // MARK: - Configure View Controller
     private func configureViewController() {
-        view.backgroundColor = K.Auth.backgroundColor
-        title                = K.Auth.registerNavTitle
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                                         = K.Auth.backgroundColor
+        title                                                        = K.Auth.registerNavTitle
+        navigationController?.navigationBar.prefersLargeTitles       = true
         navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
-        navigationController?.navigationBar.tintColor = K.Auth.labelTextColor
+        navigationController?.navigationBar.tintColor                = K.Auth.labelTextColor
     }
 
     // MARK: - Configure Name Elements

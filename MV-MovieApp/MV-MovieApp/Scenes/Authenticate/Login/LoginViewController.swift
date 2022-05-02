@@ -23,7 +23,7 @@ final class LoginViewController: BaseAuthViewController {
         let loginUpWithAppleViewController  = AuthAppleViewController(delegate: self)
         let loginUpWithGoogleViewController = AuthGoogleViewController(delegate: self)
         
-        add(childVC: loginUpWithAppleViewController, to: appleView)
+        add(childVC: loginUpWithAppleViewController,  to: appleView)
         add(childVC: loginUpWithGoogleViewController, to: googleView)
     }
     
@@ -61,6 +61,7 @@ extension LoginViewController {
     // MARK: - All Configuration
     private func configureUI() {
         configureViewController()
+        addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
         configureEmailElements()
@@ -72,9 +73,9 @@ extension LoginViewController {
     
     // MARK: - Configure View Controller
     private func configureViewController() {
-        view.backgroundColor = K.Auth.backgroundColor
-        title                = K.Auth.loginNavTitle
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                                         = K.Auth.backgroundColor
+        title                                                        = K.Auth.loginNavTitle
+        navigationController?.navigationBar.prefersLargeTitles       = true
         navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
     }
 }
