@@ -7,4 +7,4 @@
 
 import Foundation
 
-enum SelectAuthController { case login, signup }
+enum SelectAuthController { case login, register }

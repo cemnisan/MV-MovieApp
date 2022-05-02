@@ -60,7 +60,7 @@ extension LoginViewController {
     
     // MARK: - All Configuration
     private func configureUI() {
-        configureViewController()
+        configureViewController(on: .login)
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
@@ -69,14 +69,6 @@ extension LoginViewController {
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()
-    }
-    
-    // MARK: - Configure View Controller
-    private func configureViewController() {
-        view.backgroundColor                                         = K.Auth.backgroundColor
-        title                                                        = K.Auth.loginNavTitle
-        navigationController?.navigationBar.prefersLargeTitles       = true
-        navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
     }
 }
 

@@ -19,7 +19,7 @@ final class RegisterViewController: BaseAuthViewController {
         super.viewDidLoad()
         
         configureUI()
-        setUIElements(on: .signup)
+        setUIElements(on: .register)
     }
     
     override func addChildElements() {
@@ -63,7 +63,7 @@ extension RegisterViewController {
     
     // MARK: - All configuration
     private func configureUI() {
-        configureViewController()
+        configureViewController(on: .register)
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
@@ -73,15 +73,6 @@ extension RegisterViewController {
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()
-    }
-    
-    // MARK: - Configure View Controller
-    private func configureViewController() {
-        view.backgroundColor                                         = K.Auth.backgroundColor
-        title                                                        = K.Auth.registerNavTitle
-        navigationController?.navigationBar.prefersLargeTitles       = true
-        navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
-        navigationController?.navigationBar.tintColor                = K.Auth.labelTextColor
     }
 
     // MARK: - Configure Name Elements

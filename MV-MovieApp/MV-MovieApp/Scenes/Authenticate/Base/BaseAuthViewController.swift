@@ -47,7 +47,23 @@ extension BaseAuthViewController {
 
 // MARK: - Configure
 extension BaseAuthViewController {
+    
+    // MARK: - Configure VC.
+    func configureViewController(on controller: SelectAuthController) {
+        view.backgroundColor                                             = K.Auth.backgroundColor
+        navigationController?.navigationBar.prefersLargeTitles           = true
 
+        switch controller {
+        case .login:
+            title                                                        = K.Auth.loginNavTitle
+            navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
+        case .register:
+            title                                                        = K.Auth.registerNavTitle
+            navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
+            navigationController?.navigationBar.tintColor                = K.Auth.labelTextColor
+        }
+    }
+    
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
         NSLayoutConstraint.activate([
@@ -140,7 +156,6 @@ extension BaseAuthViewController {
         let stackView            = UIStackView()
         stackView.axis           = .horizontal
         stackView.distribution   = .fill
-        stackView.spacing        = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         accountActionButton.addTarget(self, action: #selector(userTappedAccountActionButton), for: .touchUpInside)
@@ -171,7 +186,7 @@ extension BaseAuthViewController {
             accountLabel.text           = K.Auth.loginAccountLabel
             actionButton.setTitle(K.Auth.loginActionButton, for: .normal)
             accountActionButton.setTitle(K.Auth.loginAccountActionButton, for: .normal)
-        case .signup:
+        case .register:
             screenDescriptionLabel.text = K.Auth.registerScreenTitle
             accountLabel.text           = K.Auth.registerAccountLabel
             actionButton.setTitle(K.Auth.registerActionButton, for: .normal)
