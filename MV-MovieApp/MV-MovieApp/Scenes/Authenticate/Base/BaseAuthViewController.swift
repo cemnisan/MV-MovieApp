@@ -10,21 +10,21 @@ import MV_Components
 
 class BaseAuthViewController: UIViewController {
     
-    let screenDescriptionLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: nil)
+    private let screenDescriptionLabel    = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: K.Auth.globalColor, text: nil)
     
-    let appleView                          = MVContainerView(backgroundColor: #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1))
-    let googleView                         = MVContainerView(backgroundColor: #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1))
+    let appleView                         = MVContainerView(backgroundColor: K.Auth.childViewsColor)
+    let googleView                        = MVContainerView(backgroundColor: K.Auth.childViewsColor)
+              
+    let emailLabel                        = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.emailLabel)
+    let emailTextField                    = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
     
-    let emailLabel               		   = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: .white, text: "Email")
-    let emailTextField           		   = MVSignUpTextFields(placeHolder: "Enter your email")
-    
-    let passwordLabel            		   = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: .white, text: "Password")
-    let passwordTextField        		   = MVSignUpTextFields(placeHolder: "Enter you password")
-    let passwordVisibilityButton           = MVButton(frame: .zero)
+    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor:  K.Auth.labelTextColor, text: K.Auth.passwordLabel)
+    private let passwordTextField         = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    private let passwordVisibilityButton  = MVButton(frame: .zero)
 
-    let actionButton                       = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: nil)
-    let accountLabel                       = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: #colorLiteral(red: 0.6117647059, green: 0.6117647059, blue: 0.6117647059, alpha: 1), text: nil)
-    let accountActionButton                = MVButton(frame: .zero)
+    private let actionButton              = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)
+    private let accountLabel              = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: K.Auth.globalColor, text: nil)
+    private let accountActionButton       = MVButton(frame: .zero)
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,8 @@ class BaseAuthViewController: UIViewController {
 
 // MARK: - Configure
 extension BaseAuthViewController {
-
+    
+    // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
         view.addSubview(screenDescriptionLabel)
         
@@ -44,9 +45,6 @@ extension BaseAuthViewController {
             screenDescriptionLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-    
-    @objc
-    func configureEmailElements() {}
     
     // MARK: - Configure Password Elements
     func configurePasswordElements() {
@@ -70,6 +68,7 @@ extension BaseAuthViewController {
         ])
     }
     
+    // MARK: - Configure Apple/Google View
     func configureChildViews() {
         [appleView, googleView].forEach {
             view.addSubview($0)
@@ -102,17 +101,18 @@ extension BaseAuthViewController {
         ])
     }
     
+    // MARK: - Configure Password Visibility
     func configureVisibilityButton() {
-        passwordVisibilityButton.tintColor = #colorLiteral(red: 0.6139065027, green: 0.6139065027, blue: 0.6139065623, alpha: 1)
-        passwordVisibilityButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        passwordVisibilityButton.tintColor = K.Auth.globalColor
+        passwordVisibilityButton.setImage(K.Auth.passwordVisibleImage, for: .normal)
         passwordVisibilityButton.addTarget(self, action: #selector(changePasswordVisibility), for: .touchUpInside)
+        
+        view.addSubview(passwordVisibilityButton)
     }
     
     func configurePasswordVisibilty() {
         configureVisibilityButton()
-        
-        view.addSubview(passwordVisibilityButton)
-        
+                
         NSLayoutConstraint.activate([
             passwordVisibilityButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
             passwordVisibilityButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -16),
@@ -121,6 +121,7 @@ extension BaseAuthViewController {
         ])
     }
     
+    // MARK: - Configure Login or Register Button
     func configureActionButton() {
         actionButton.addTarget(self, action: #selector(userTappedActionButton), for: .touchUpInside)
         
@@ -134,6 +135,7 @@ extension BaseAuthViewController {
         ])
     }
     
+    // MARK: - Layout Already or don't account.
     func layoutAccount() {
         let stackView            = UIStackView()
         stackView.axis           = .horizontal
@@ -141,7 +143,6 @@ extension BaseAuthViewController {
         stackView.spacing        = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        accountActionButton.setTitle("Sign Up", for: .normal)
         accountActionButton.addTarget(self, action: #selector(userTappedAccountActionButton), for: .touchUpInside)
         
         [accountLabel,
@@ -153,7 +154,8 @@ extension BaseAuthViewController {
         NSLayoutConstraint.activate([
             stackView.bottomAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 72),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68)
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
+            stackView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 
@@ -165,13 +167,15 @@ extension BaseAuthViewController {
     func setUIElements(on controller: SelectAuthController) {
         switch controller {
         case .login:
-            screenDescriptionLabel.text = "Log in with one of following options"
-            accountLabel.text           = "Don’t have an account?"
-            actionButton.setTitle("Log in", for: .normal)
+            screenDescriptionLabel.text = K.Auth.loginScreenTitle
+            accountLabel.text           = K.Auth.loginAccountLabel
+            actionButton.setTitle(K.Auth.loginActionButton, for: .normal)
+            accountActionButton.setTitle(K.Auth.loginAccountActionButton, for: .normal)
         case .signup:
-            screenDescriptionLabel.text = "Sign up with one of following options"
-            accountLabel.text           = "Already have an account?"
-            actionButton.setTitle("Create Account", for: .normal)
+            screenDescriptionLabel.text = K.Auth.registerScreenTitle
+            accountLabel.text           = K.Auth.registerAccountLabel
+            actionButton.setTitle(K.Auth.registerActionButton, for: .normal)
+            accountActionButton.setTitle(K.Auth.registerAccountActionButton, for: .normal)
         }
     }
 }
@@ -186,9 +190,6 @@ extension BaseAuthViewController {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
-    
-    @objc
-    func addChildElements() {}
 }
 
 // MARK: - Button Tapped
@@ -200,15 +201,29 @@ extension BaseAuthViewController {
         
         switch passwordTextField.isSecureTextEntry {
         case true:
-            passwordVisibilityButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
         case false:
-            passwordVisibilityButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            passwordVisibilityButton.setImage(K.Auth.passwordVisibleImage, for: .normal)
         }
     }
+}
+
+// MARK: - Overriding
+extension BaseAuthViewController {
     
     @objc
+    /// Override to set constraints of Email Label and Email Text Field
+    func configureEmailElements() {}
+    
+    @objc
+    /// Override to show apple/google views on the screen and set their delegates.
+    func addChildElements() {}
+    
+    @objc
+    /// Override for Login or Register action
     func userTappedActionButton() {}
     
     @objc
+    /// Override it if the user doesn't have an account / already an account
     func userTappedAccountActionButton() {}
 }

@@ -11,7 +11,7 @@ protocol AuthAppleDelegate: AnyObject {
     func userDidAuthWithApple()
 }
 
-final class AuthAppleViewController: AuthenticateContainerViewController {
+final class AuthAppleViewController: AuthContainerViewController {
     
     weak var delegate: AuthAppleDelegate?
     
@@ -28,18 +28,10 @@ final class AuthAppleViewController: AuthenticateContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
+        setButton(with: .apple)
     }
     
     override func authWithSelectedContainer() {
         delegate?.userDidAuthWithApple()
-    }
-}
-
-// MARK: - Configure
-extension AuthAppleViewController {
-    
-    private func configure() {
-        setButton(with: .apple)
     }
 }

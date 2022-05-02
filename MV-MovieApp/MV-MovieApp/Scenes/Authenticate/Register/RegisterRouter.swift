@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SignUpRouter {
+final class RegisterRouter {
     
     unowned let view: UIViewController
     
@@ -16,8 +16,7 @@ final class SignUpRouter {
     }
 }
 
-extension SignUpRouter: SignUpRouterProtocol {
+extension RegisterRouter: RegisterRouterProtocol {
     
-    func navigate(to route: SignUpRoute) {
-            }
+    func navigate(to route: RegisterUpRoute) {}
 }

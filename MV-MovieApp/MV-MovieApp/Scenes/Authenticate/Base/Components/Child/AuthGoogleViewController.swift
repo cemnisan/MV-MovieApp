@@ -11,7 +11,7 @@ protocol AuthGoogleDelegate: AnyObject {
     func userDidAuthWithGoogle()
 }
 
-final class AuthGoogleViewController: AuthenticateContainerViewController {
+final class AuthGoogleViewController: AuthContainerViewController {
     
     weak var delegate: AuthGoogleDelegate?
     
@@ -28,18 +28,10 @@ final class AuthGoogleViewController: AuthenticateContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
+        setButton(with: .google)
     }
     
     override func authWithSelectedContainer() {
         delegate?.userDidAuthWithGoogle()
-    }
-}
-
-// MARK: - Configure
-extension AuthGoogleViewController {
-    
-    private func configure() {
-        setButton(with: .google)
     }
 }

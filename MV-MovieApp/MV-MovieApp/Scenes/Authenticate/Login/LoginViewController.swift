@@ -8,9 +8,9 @@
 import UIKit
 import MV_Components
 
-final class LoginUpViewController: BaseAuthViewController {
+final class LoginViewController: BaseAuthViewController {
     
-    var loginUpPresenter: LoginUpPresenterProtocol!
+    var loginUpPresenter: LoginPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +51,12 @@ final class LoginUpViewController: BaseAuthViewController {
     }
     
     override func userTappedAccountActionButton() {
-        loginUpPresenter.userDidTappedSignUpButton()
+        loginUpPresenter.userDidTappedRegisterButton()
     }
 }
 
 // MARK: - Configure
-extension LoginUpViewController {
+extension LoginViewController {
     
     // MARK: - All Configuration
     private func configureUI() {
@@ -72,22 +72,22 @@ extension LoginUpViewController {
     
     // MARK: - Configure View Controller
     private func configureViewController() {
-        view.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
-        title                = "Login"
+        view.backgroundColor = K.Auth.backgroundColor
+        title                = K.Auth.loginNavTitle
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
     }
 }
 
 // MARK: - Login Up View Protocol
-extension LoginUpViewController: LoginUpViewProtocol {}
+extension LoginViewController: LoginViewProtocol {}
 
 // MARK: - Login With Apple
-extension LoginUpViewController: AuthAppleDelegate {
+extension LoginViewController: AuthAppleDelegate {
     func userDidAuthWithApple() {}
 }
 
 // MARK: - Login with Google
-extension LoginUpViewController: AuthGoogleDelegate {
+extension LoginViewController: AuthGoogleDelegate {
     func userDidAuthWithGoogle() {}
 }

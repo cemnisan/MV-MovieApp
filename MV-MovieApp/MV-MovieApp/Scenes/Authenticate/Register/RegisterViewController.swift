@@ -1,5 +1,5 @@
 //
-//  SignUpViewController.swift
+//  RegisterViewController.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 1.05.2022.
@@ -8,12 +8,12 @@
 import UIKit
 import MV_Components
 
-final class SignUpViewController: BaseAuthViewController {
+final class RegisterViewController: BaseAuthViewController {
     
-    private let nameLabel                 = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: .white, text: "Name")
-    private let nameTextField             = MVSignUpTextFields(placeHolder: "Enter your name")
+    private let nameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: K.Auth.labelTextColor, text: K.Auth.nameLabel)
+    private let nameTextField = MVSignUpTextFields(placeHolder: K.Auth.nameTextField)
   
-    var signUpPresenter: SignUpPresenterProtocol!
+    var registerPresenter: RegisterPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ final class SignUpViewController: BaseAuthViewController {
 }
 
 // MARK: - Configure
-extension SignUpViewController {
+extension RegisterViewController {
     
     // MARK: - All configuration
     private func configureUI() {
@@ -76,11 +76,11 @@ extension SignUpViewController {
     
     // MARK: - Configure View Controller
     private func configureViewController() {
-        view.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
-        title                = "Register"
+        view.backgroundColor = K.Auth.backgroundColor
+        title                = K.Auth.registerNavTitle
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
+        navigationController?.navigationBar.tintColor = K.Auth.labelTextColor
     }
 
     // MARK: - Configure Name Elements
@@ -105,14 +105,14 @@ extension SignUpViewController {
 }
 
 // MARK: - Sign Up View Protocol
-extension SignUpViewController: SignUpViewProtocol {}
+extension RegisterViewController: RegisterViewProtocol {}
 
 // MARK: - Sign Up With Apple - Protocol
-extension SignUpViewController: AuthAppleDelegate {
+extension RegisterViewController: AuthAppleDelegate {
     func userDidAuthWithApple() {}
 }
 
 // MARK: - Sign Up With Google - Protocol
-extension SignUpViewController: AuthGoogleDelegate {
+extension RegisterViewController: AuthGoogleDelegate {
     func userDidAuthWithGoogle() {}
 }
