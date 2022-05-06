@@ -76,65 +76,27 @@ extension LoginViewController {
     }
 }
 
-// MARK: - Login Up View Protocol
-extension LoginViewController: LoginViewProtocol {}
-
 // MARK: - Login With Apple
 extension LoginViewController: AuthAppleDelegate {
     
-    func userDidAuthWithApple() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request         = appleIDProvider.createRequest()
-        
-        request.requestedScopes = [.fullName, .email]
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        
-        authorizationController.delegate = self
-        authorizationController.performRequests()
-    }
-}
-
-extension LoginViewController: ASAuthorizationControllerDelegate {
-    
-    func authorizationController(controller: ASAuthorizationController,
-                                 didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let _       = appleIDCredential.user
-            let _       = appleIDCredential.fullName
-            let _       = appleIDCredential.email
-        }
-    }
-    
-    func authorizationController(controller: ASAuthorizationController,
-                                 didCompleteWithError error: Error) {
-    }
+    func userDidAuthWithApple() {}
 }
 
 // MARK: - Login with Google
 extension LoginViewController: AuthGoogleDelegate {
     
     func userDidAuthWithGoogle() {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        let config = GIDConfiguration(clientID: clientID)
-        
-        GIDSignIn
-            .sharedInstance
-            .signIn(with: config,
-                    presenting: self) { [unowned self] user, error in
-                guard error == nil else { return }
-                
-                guard self == self,
-                      let authentication = user?.authentication,
-                      let idToken = authentication.idToken else { return }
-                let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                               accessToken: authentication.accessToken)
-                Auth.auth().signIn(with: credential) { result, error in
-                    guard error == nil else { return }
-                    
-                    print(result)
-                }
+        loginUpPresenter.userDidTappedLoginWithGoogle(presenterViewController: self)
+    }
+}
+
+// MARK: - Login Up View Protocol
+extension LoginViewController: LoginViewProtocol {
+    
+    func handleOutput(_ output: LoginPresenterOutput) {
+        switch output {
+        case .setLoginLoading(let isLoading):
+            print(isLoading)
         }
     }
 }

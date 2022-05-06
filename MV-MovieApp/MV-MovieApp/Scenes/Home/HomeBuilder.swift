@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeBuilder {
     
-    static func make() -> UINavigationController {
+    static func make(with user: UserPresentation) -> UINavigationController {
         let router                   = HomeRouter()
         let interactor               = HomeInteractor(moviesService: app.service)
         let viewController           = HomeViewController()
@@ -17,6 +17,7 @@ final class HomeBuilder {
                                                      interactor: interactor,
                                                      router: router)
         viewController.homePresenter = presenter
+        viewController.user          = user
         
         return UINavigationController(rootViewController: viewController)
     }

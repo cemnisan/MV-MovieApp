@@ -28,6 +28,7 @@
 		7E68505A281F2ADD007C15B0 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685059281F2ADD007C15B0 /* LoginInteractor.swift */; };
 		7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */; };
 		7E68505E281F2AED007C15B0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505D281F2AED007C15B0 /* LoginRouter.swift */; };
+		7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */; };
 		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */; };
@@ -70,6 +71,7 @@
 		7E685059281F2ADD007C15B0 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		7E68505D281F2AED007C15B0 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresentation.swift; sourceTree = "<group>"; };
 		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
 		7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				7EF731BE281D9B3100A1CFE9 /* PopularMoviesPresentation.swift */,
 				7EF731C0281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift */,
+				7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				7E39EA9A281F348E0073A591 /* RegisterContracts.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
+				7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */,
 				7E68505A281F2ADD007C15B0 /* LoginInteractor.swift in Sources */,
 				7E5B9061281FE1BD00D0B278 /* Constants.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */,

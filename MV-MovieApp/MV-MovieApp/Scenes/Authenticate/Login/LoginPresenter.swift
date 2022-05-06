@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 final class LoginPresenter {
     
@@ -19,12 +20,30 @@ final class LoginPresenter {
         self.view       = view
         self.interactor = interactor
         self.router     = router
+        
+        self.interactor.delegate = self
     }
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
     
+    func userDidTappedLoginWithGoogle(presenterViewController presenter: UIViewController) {
+        interactor.loginWithGoogle(presenterViewController: presenter)
+    }
+
     func userDidTappedRegisterButton() {
         router.navigate(to: .register)
+    }
+}
+
+extension LoginPresenter: LoginInteractorDelegate {
+    
+    func handleOutput(_ output: LoginInteractorOutput) {
+        switch output {
+        case .setLoginLoading(let isLoading):
+            view.handleOutput(.setLoginLoading(isLoading))
+        case .showHomePage(let userPresentation):
+            router.navigate(to: .home(userPresentation))
+        }
     }
 }
