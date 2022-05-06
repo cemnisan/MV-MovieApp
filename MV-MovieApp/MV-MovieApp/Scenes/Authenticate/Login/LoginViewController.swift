@@ -7,6 +7,10 @@
 
 import UIKit
 import MV_Components
+import AuthenticationServices
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 final class LoginViewController: BaseAuthViewController {
     
@@ -20,11 +24,11 @@ final class LoginViewController: BaseAuthViewController {
     }
     
     override func addChildElements() {
-        let loginUpWithAppleViewController  = AuthAppleViewController(delegate: self)
-        let loginUpWithGoogleViewController = AuthGoogleViewController(delegate: self)
+        let loginWithAppleViewController  = AuthAppleViewController(delegate: self)
+        let loginWithGoogleViewController = AuthGoogleViewController(delegate: self)
         
-        add(childVC: loginUpWithAppleViewController,  to: appleView)
-        add(childVC: loginUpWithGoogleViewController, to: googleView)
+        add(childVC: loginWithAppleViewController,  to: appleView)
+        add(childVC: loginWithGoogleViewController, to: googleView)
     }
     
     override func configureEmailElements() {
@@ -77,10 +81,60 @@ extension LoginViewController: LoginViewProtocol {}
 
 // MARK: - Login With Apple
 extension LoginViewController: AuthAppleDelegate {
-    func userDidAuthWithApple() {}
+    
+    func userDidAuthWithApple() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request         = appleIDProvider.createRequest()
+        
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let _       = appleIDCredential.user
+            let _       = appleIDCredential.fullName
+            let _       = appleIDCredential.email
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithError error: Error) {
+    }
 }
 
 // MARK: - Login with Google
 extension LoginViewController: AuthGoogleDelegate {
-    func userDidAuthWithGoogle() {}
+    
+    func userDidAuthWithGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        
+        GIDSignIn
+            .sharedInstance
+            .signIn(with: config,
+                    presenting: self) { [unowned self] user, error in
+                guard error == nil else { return }
+                
+                guard self == self,
+                      let authentication = user?.authentication,
+                      let idToken = authentication.idToken else { return }
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                               accessToken: authentication.accessToken)
+                Auth.auth().signIn(with: credential) { result, error in
+                    guard error == nil else { return }
+                    
+                    print(result)
+                }
+        }
+    }
 }

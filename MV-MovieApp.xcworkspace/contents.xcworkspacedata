@@ -7,11 +7,4 @@
    <FileRef
       location = "group:MV-Components">
    </FileRef>
-   <Group
-      location = "container:"
-      name = "Packages">
-      <FileRef
-         location = "group:../MovieDB-Wrapper">
-      </FileRef>
-   </Group>
 </Workspace>

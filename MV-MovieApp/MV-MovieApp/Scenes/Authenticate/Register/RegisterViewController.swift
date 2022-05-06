@@ -23,11 +23,11 @@ final class RegisterViewController: BaseAuthViewController {
     }
     
     override func addChildElements() {
-        let loginUpWithAppleViewController  = AuthAppleViewController(delegate: self)
-        let loginUpWithGoogleViewController = AuthGoogleViewController(delegate: self)
+        let registerWithAppleViewController  = AuthAppleViewController(delegate: self)
+        let registerWithGoogleViewController = AuthGoogleViewController(delegate: self)
         
-        add(childVC: loginUpWithAppleViewController, to: appleView)
-        add(childVC: loginUpWithGoogleViewController, to: googleView)
+        add(childVC: registerWithAppleViewController, to: appleView)
+        add(childVC: registerWithGoogleViewController, to: googleView)
     }
     
     override func configureEmailElements() {
