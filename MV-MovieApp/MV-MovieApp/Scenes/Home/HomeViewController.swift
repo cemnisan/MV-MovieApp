@@ -11,9 +11,11 @@ import MV_Components
 final class HomeViewController: UIViewController {
     
     var homePresenter: HomePresenter!
-    var user: UserPresentation!
     
-    private let usernameLabel = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: .white, text: nil)
+    private let usernameLabel = MVSecondaryLabel(textAlignment: .left,
+                                                 fontSize: 24,
+                                                 textColor: .white,
+                                                 text: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +42,11 @@ extension HomeViewController {
     private func configureUsernameLabel() {
         view.addSubview(usernameLabel)
         
-        usernameLabel.text = "Welcome, \(user.username)"
+        usernameLabel.text = "Welcome, Cameron Howe"
         
         NSLayoutConstraint.activate([
             usernameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            usernameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            usernameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             usernameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             usernameLabel.heightAnchor.constraint(equalToConstant: 22)
         ])

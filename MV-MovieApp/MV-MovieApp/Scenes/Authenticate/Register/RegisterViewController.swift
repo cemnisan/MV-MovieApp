@@ -101,10 +101,10 @@ extension RegisterViewController: RegisterViewProtocol {}
 
 // MARK: - Sign Up With Apple - Protocol
 extension RegisterViewController: AuthAppleDelegate {
-    func userDidAuthWithApple() {}
+    func userTappedAuthWithApple() {}
 }
 
 // MARK: - Sign Up With Google - Protocol
 extension RegisterViewController: AuthGoogleDelegate {
-    func userDidAuthWithGoogle() {}
+    func userTappedAuthWithGoogle() {}
 }

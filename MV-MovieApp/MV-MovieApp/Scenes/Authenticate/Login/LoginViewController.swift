@@ -7,14 +7,10 @@
 
 import UIKit
 import MV_Components
-import AuthenticationServices
-import FirebaseCore
-import FirebaseAuth
-import GoogleSignIn
 
 final class LoginViewController: BaseAuthViewController {
     
-    var loginUpPresenter: LoginPresenterProtocol!
+    var loginPresenter: LoginPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +51,7 @@ final class LoginViewController: BaseAuthViewController {
     }
     
     override func userTappedAccountActionButton() {
-        loginUpPresenter.userDidTappedRegisterButton()
+        loginPresenter.userDidTappedRegisterButton()
     }
 }
 
@@ -78,15 +74,14 @@ extension LoginViewController {
 
 // MARK: - Login With Apple
 extension LoginViewController: AuthAppleDelegate {
-    
-    func userDidAuthWithApple() {}
+    func userTappedAuthWithApple() {}
 }
 
 // MARK: - Login with Google
 extension LoginViewController: AuthGoogleDelegate {
     
-    func userDidAuthWithGoogle() {
-        loginUpPresenter.userDidTappedLoginWithGoogle(presenterViewController: self)
+    func userTappedAuthWithGoogle() {
+        loginPresenter.userDidTappedLoginWithGoogle(presenterViewController: self)
     }
 }
 

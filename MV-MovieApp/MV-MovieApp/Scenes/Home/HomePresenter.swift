@@ -12,7 +12,7 @@ final class HomePresenter {
     private unowned let view: HomeViewProtocol
     private let interactor: HomeInteractorProtocol
     private let router: HomeRouterProtocol
-    
+        
     init(view: HomeViewProtocol,
          interactor: HomeInteractorProtocol,
          router: HomeRouterProtocol)

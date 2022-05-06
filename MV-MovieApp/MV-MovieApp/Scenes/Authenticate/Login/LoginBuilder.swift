@@ -14,7 +14,7 @@ final class LoginBuilder {
         let router                      = LoginRouter(view: viewController)
         let interactor                  = LoginInteractor()
         let presenter                   = LoginPresenter(view: viewController, interactor: interactor, router: router)
-        viewController.loginUpPresenter = presenter
+        viewController.loginPresenter = presenter
         
         return UINavigationController(rootViewController: viewController)
     }

@@ -9,15 +9,15 @@ import UIKit
 
 final class HomeBuilder {
     
-    static func make(with user: UserPresentation) -> UINavigationController {
+    static func make() -> UINavigationController {
         let router                   = HomeRouter()
         let interactor               = HomeInteractor(moviesService: app.service)
         let viewController           = HomeViewController()
         let presenter                = HomePresenter(view: viewController,
                                                      interactor: interactor,
                                                      router: router)
+        viewController.tabBarItem    = UITabBarItem(tabBarSystemItem: .history, tag: 0)
         viewController.homePresenter = presenter
-        viewController.user          = user
         
         return UINavigationController(rootViewController: viewController)
     }

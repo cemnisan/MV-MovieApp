@@ -21,10 +21,10 @@ extension LoginRouter: LoginRouterProtocol {
 
     func navigate(to route: LoginRoute) {
         switch route {
-        case .home(let user):
-            let homeView                    = HomeBuilder.make(with: user)
+        case .home(_):
+            let homeView                    = HomeBuilder.make()
             homeView.modalPresentationStyle = .fullScreen
-            homeView.modalTransitionStyle   = .coverVertical
+            homeView.modalTransitionStyle   = .crossDissolve
             view.show(homeView, sender: nil)
         case .register:
             let registerView = RegisterBuilder.make()

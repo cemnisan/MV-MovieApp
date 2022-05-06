@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AuthAppleDelegate: AnyObject {
-    func userDidAuthWithApple()
+    func userTappedAuthWithApple()
 }
 
 final class AuthAppleViewController: AuthContainerViewController {
@@ -32,6 +32,6 @@ final class AuthAppleViewController: AuthContainerViewController {
     }
     
     override func authWithSelectedContainer() {
-        delegate?.userDidAuthWithApple()
+        delegate?.userTappedAuthWithApple()
     }
 }

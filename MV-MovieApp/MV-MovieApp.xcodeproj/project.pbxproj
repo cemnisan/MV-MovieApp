@@ -29,6 +29,12 @@
 		7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */; };
 		7E68505E281F2AED007C15B0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505D281F2AED007C15B0 /* LoginRouter.swift */; };
 		7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */; };
+		7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */; };
+		7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */; };
+		7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025392825CEB000D2E0B0 /* SearchViewController.swift */; };
+		7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */; };
+		7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */; };
+		7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */; };
 		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */; };
@@ -72,6 +78,12 @@
 		7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		7E68505D281F2AED007C15B0 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresentation.swift; sourceTree = "<group>"; };
+		7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
+		7E8025392825CEB000D2E0B0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
+		7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
 		7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +167,33 @@
 				7E8A7B9F281EC87D000676EC /* Register */,
 			);
 			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		7E8025312825CE6600D2E0B0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7E8025392825CEB000D2E0B0 /* SearchViewController.swift */,
+				7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		7E8025332825CE8100D2E0B0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */,
+				7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		7E8025342825CE8F00D2E0B0 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */,
+				7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		7E8A7B95281EBAC6000676EC /* Components */ = {
@@ -268,7 +307,10 @@
 			isa = PBXGroup;
 			children = (
 				7E685056281F289E007C15B0 /* Authenticate */,
+				7E8025342825CE8F00D2E0B0 /* Favorites */,
 				7EF731A7281D90D300A1CFE9 /* Home */,
+				7E8025332825CE8100D2E0B0 /* Profile */,
+				7E8025312825CE6600D2E0B0 /* Search */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -418,7 +460,9 @@
 				7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */,
 				7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */,
 				7E5B9064281FE86A00D0B278 /* UIViewController+Ex.swift in Sources */,
+				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
+				7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */,
 				7E8A7BA3281EC88A000676EC /* RegisterViewController.swift in Sources */,
 				7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */,
 				7EF731AF281D910000A1CFE9 /* HomePresenter.swift in Sources */,
@@ -426,15 +470,19 @@
 				7EF731C1281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift in Sources */,
 				7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */,
 				7E685051281F1C00007C15B0 /* LoginBuilder.swift in Sources */,
+				7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */,
 				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
+				7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */,
 				7E41D4C3281EE64F004E198E /* ButtonTypes.swift in Sources */,
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7E68504F281F1BFA007C15B0 /* LoginViewController.swift in Sources */,
+				7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */,
 				7E685058281F2AD1007C15B0 /* LoginContracts.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
 				7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
 				7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */,
+				7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */,
 				7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,
 			);

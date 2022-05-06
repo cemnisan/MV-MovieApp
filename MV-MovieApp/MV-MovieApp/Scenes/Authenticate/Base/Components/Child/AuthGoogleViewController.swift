@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AuthGoogleDelegate: AnyObject {
-    func userDidAuthWithGoogle()
+    func userTappedAuthWithGoogle()
 }
 
 final class AuthGoogleViewController: AuthContainerViewController {
@@ -32,6 +32,6 @@ final class AuthGoogleViewController: AuthContainerViewController {
     }
     
     override func authWithSelectedContainer() {
-        delegate?.userDidAuthWithGoogle()
+        delegate?.userTappedAuthWithGoogle()
     }
 }
