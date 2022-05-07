@@ -17,8 +17,8 @@ final class GoogleAuthenticatorAdapter {
     init() {}
 }
 
-extension GoogleAuthenticatorAdapter: AuthenticationService {
-    
+// MARK: - Base Auth Service
+extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
     func login(presenterViewController presenter: UIViewController,
                completed: @escaping (Result<UserPresentation, Error>) -> Void) {
         
@@ -42,7 +42,10 @@ extension GoogleAuthenticatorAdapter: AuthenticationService {
             }
         }
     }
-    
+}
+
+// MARK: - Login Service
+extension GoogleAuthenticatorAdapter: LoginService {
     func login(with email: String,
                password: String,
                completed: @escaping (Result<UserPresentation, Error>) -> Void) {
@@ -53,7 +56,10 @@ extension GoogleAuthenticatorAdapter: AuthenticationService {
             completed(.success(user))
         }
     }
-    
+}
+
+// MARK: - Register Service
+extension GoogleAuthenticatorAdapter: RegisterService {
     func register(with username: String,
                   email: String,
                   password: String,
@@ -65,7 +71,10 @@ extension GoogleAuthenticatorAdapter: AuthenticationService {
             completed(.success(user))
         }
     }
-    
+}
+
+// MARK: - Sign Out Service
+extension GoogleAuthenticatorAdapter: SignOutService {
     func signOut(completed: @escaping (Result<Bool, Error>) -> Void) {
         do {
             try firebaseAuth.signOut()

@@ -10,15 +10,16 @@ import UIKit.UIViewController
 
 final class RegisterInteractor {
     
-    var service: AuthenticationService
+    var service: RegisterService
     var delegate: RegisterInteractorDelegate?
     var user: UserPresentation!
     
-    init(service: AuthenticationService) {
+    init(service: RegisterService) {
         self.service = service
     }
 }
 
+// MARK: - Interactor Protocol
 extension RegisterInteractor: RegisterInteractorProtocol {
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
         service.login(presenterViewController: presenter) { (result) in

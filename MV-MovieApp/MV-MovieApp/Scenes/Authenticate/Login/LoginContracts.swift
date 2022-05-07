@@ -28,9 +28,9 @@ enum LoginInteractorOutput {
 
 // MARK: - Presenter
 protocol LoginPresenterProtocol: AnyObject {
-    func userDidTappedLoginWithGoogle(presenterViewController presenter: UIViewController)
+    func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController)
     func userTappedLoginButton(email: String, password: String)
-    func userDidTappedRegisterButton()
+    func userTappedRegisterButton()
 }
 
 protocol LoginViewProtocol: AnyObject {

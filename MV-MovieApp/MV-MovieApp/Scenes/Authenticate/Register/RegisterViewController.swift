@@ -19,7 +19,7 @@ final class RegisterViewController: BaseAuthViewController {
         super.viewDidLoad()
         
         configureUI()
-        setUIElements(on: .register)
+        setUIElements(for: .register)
     }
     
     override func addChildElements() {
@@ -110,12 +110,12 @@ extension RegisterViewController: RegisterViewProtocol {
     }
 }
 
-// MARK: - Sign Up With Apple - Protocol
+// MARK: - Login Up With Apple - Protocol
 extension RegisterViewController: AuthAppleDelegate {
     func userDidTappedAuthWithApple() {}
 }
 
-// MARK: - Sign Up With Google - Protocol
+// MARK: - Login Up With Google - Protocol
 extension RegisterViewController: AuthGoogleDelegate {
     func userDidTappedAuthWithGoogle() {
         registerPresenter.userTappedLoginWithGoogle(presenterViewController: self)

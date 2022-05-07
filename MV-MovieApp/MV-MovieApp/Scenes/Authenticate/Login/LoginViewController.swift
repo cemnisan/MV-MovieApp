@@ -16,7 +16,7 @@ final class LoginViewController: BaseAuthViewController {
         super.viewDidLoad()
         
         configureUI()
-        setUIElements(on: .login)
+        setUIElements(for: .login)
     }
     
     override func addChildElements() {
@@ -52,7 +52,7 @@ final class LoginViewController: BaseAuthViewController {
     }
     
     override func userTappedAccountActionButton() {
-        loginPresenter.userDidTappedRegisterButton()
+        loginPresenter.userTappedRegisterButton()
     }
 }
 
@@ -82,7 +82,7 @@ extension LoginViewController: AuthAppleDelegate {
 extension LoginViewController: AuthGoogleDelegate {
     
     func userDidTappedAuthWithGoogle() {
-        loginPresenter.userDidTappedLoginWithGoogle(presenterViewController: self)
+        loginPresenter.userTappedLoginWithGoogle(presenterViewController: self)
     }
 }
 

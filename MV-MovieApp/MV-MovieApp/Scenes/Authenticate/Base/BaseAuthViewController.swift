@@ -179,7 +179,7 @@ extension BaseAuthViewController {
 // MARK: - Set UI
 extension BaseAuthViewController {
     
-    func setUIElements(on controller: SelectAuthController) {
+    func setUIElements(for controller: SelectAuthController) {
         switch controller {
         case .login:
             screenDescriptionLabel.text = K.Auth.loginScreenTitle

@@ -42,8 +42,11 @@
 		7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */; };
 		7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA0281EC884000676EC /* RegisterBuilder.swift */; };
 		7E8A7BA3281EC88A000676EC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7BA2281EC88A000676EC /* RegisterViewController.swift */; };
-		7E8AA53C2826965900A90ED2 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA53B2826965900A90ED2 /* AuthenticationService.swift */; };
+		7E8AA53C2826965900A90ED2 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA53B2826965900A90ED2 /* LoginService.swift */; };
 		7E8AA53F282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA53E282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift */; };
+		7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */; };
+		7E8AA5432826C14B00A90ED2 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5422826C14B00A90ED2 /* RegisterService.swift */; };
+		7E8AA5452826C15700A90ED2 /* SignOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5442826C15700A90ED2 /* SignOutService.swift */; };
 		7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */; };
 		7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */; };
 		7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318D281D906600A1CFE9 /* AppDelegate.swift */; };
@@ -92,8 +95,11 @@
 		7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGoogleViewController.swift; sourceTree = "<group>"; };
 		7E8A7BA0281EC884000676EC /* RegisterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterBuilder.swift; sourceTree = "<group>"; };
 		7E8A7BA2281EC88A000676EC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		7E8AA53B2826965900A90ED2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		7E8AA53B2826965900A90ED2 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		7E8AA53E282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticatorAdapter.swift; sourceTree = "<group>"; };
+		7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateService.swift; sourceTree = "<group>"; };
+		7E8AA5422826C14B00A90ED2 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
+		7E8AA5442826C15700A90ED2 /* SignOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutService.swift; sourceTree = "<group>"; };
 		7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAuthController.swift; sourceTree = "<group>"; };
 		7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MV-MovieApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,18 +256,20 @@
 		7E8AA5392826963900A90ED2 /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				7E8AA53D282696BB00A90ED2 /* Class */,
-				7E8AA53A2826963E00A90ED2 /* Protocol */,
+				7E8AA5462826C2DE00A90ED2 /* Authenticate */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
 		};
-		7E8AA53A2826963E00A90ED2 /* Protocol */ = {
+		7E8AA53A2826963E00A90ED2 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7E8AA53B2826965900A90ED2 /* AuthenticationService.swift */,
+				7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */,
+				7E8AA53B2826965900A90ED2 /* LoginService.swift */,
+				7E8AA5422826C14B00A90ED2 /* RegisterService.swift */,
+				7E8AA5442826C15700A90ED2 /* SignOutService.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		7E8AA53D282696BB00A90ED2 /* Class */ = {
@@ -270,6 +278,15 @@
 				7E8AA53E282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		7E8AA5462826C2DE00A90ED2 /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+				7E8AA53D282696BB00A90ED2 /* Class */,
+				7E8AA53A2826963E00A90ED2 /* Protocols */,
+			);
+			path = Authenticate;
 			sourceTree = "<group>";
 		};
 		7EC7E8B2281F4454003155F1 /* Base */ = {
@@ -496,10 +513,13 @@
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
 				7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */,
 				7E8AA53F282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift in Sources */,
-				7E8AA53C2826965900A90ED2 /* AuthenticationService.swift in Sources */,
+				7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */,
+				7E8AA53C2826965900A90ED2 /* LoginService.swift in Sources */,
 				7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */,
 				7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */,
 				7E5B9064281FE86A00D0B278 /* UIViewController+Ex.swift in Sources */,
+				7E8AA5452826C15700A90ED2 /* SignOutService.swift in Sources */,
+				7E8AA5432826C14B00A90ED2 /* RegisterService.swift in Sources */,
 				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */,

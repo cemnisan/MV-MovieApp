@@ -10,11 +10,11 @@ import UIKit.UIViewController
 
 final class LoginInteractor: LoginInteractorProtocol {
     
-    var service: AuthenticationService
+    var service: LoginService
     var delegate: LoginInteractorDelegate?
     var user: UserPresentation!
     
-    init(service: AuthenticationService) {
+    init(service: LoginService) {
         self.service = service
     }
 }
@@ -33,10 +33,12 @@ extension LoginInteractor {
     }
     
     func login(with email: String, password: String) {
-        service.login(with: email, password: password) { (result) in
+        service.login(with: email,
+                      password: password) { (result) in
             switch result {
             case .success(let user):
                 print(user)
+                self.delegate?.handleOutput(.showHomePage(user))
             case .failure(let error):
                 self.delegate?.handleOutput(.setError(error))
             }
