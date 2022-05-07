@@ -22,6 +22,7 @@ protocol LoginInteractorDelegate: AnyObject {
 enum LoginInteractorOutput {
     case setLoginLoading(Bool)
     case showHomePage(UserPresentation)
+    case setError(Error)
 }
 
 // MARK: - Presenter
@@ -36,6 +37,7 @@ protocol LoginViewProtocol: AnyObject {
 
 enum LoginPresenterOutput {
     case setLoginLoading(Bool)
+    case setError(Error)
 }
 
 // MARK: - Router

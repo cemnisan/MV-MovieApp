@@ -18,7 +18,7 @@ final class AppRouter {
 extension AppRouter {
     
     func start(with windowScene: UIWindowScene) {
-        let isLoggin = true
+        let isLoggin = false
         var rootNavigationController: UIViewController!
         
         switch isLoggin {

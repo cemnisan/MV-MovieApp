@@ -92,6 +92,8 @@ extension LoginViewController: LoginViewProtocol {
         switch output {
         case .setLoginLoading(let isLoading):
             print(isLoading)
+        case .setError(let error):
+            print(error)
         }
     }
 }

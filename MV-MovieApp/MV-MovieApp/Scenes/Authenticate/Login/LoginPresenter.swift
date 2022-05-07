@@ -44,6 +44,8 @@ extension LoginPresenter: LoginInteractorDelegate {
             view.handleOutput(.setLoginLoading(isLoading))
         case .showHomePage(let userPresentation):
             router.navigate(to: .home(userPresentation))
+        case .setError(let error):
+            view.handleOutput(.setError(error))
         }
     }
 }

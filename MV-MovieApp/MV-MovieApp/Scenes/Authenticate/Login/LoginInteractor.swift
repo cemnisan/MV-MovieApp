@@ -7,44 +7,28 @@
 
 import Foundation
 import UIKit.UIViewController
-import FirebaseCore
-import FirebaseAuth
-import GoogleSignIn
 
 final class LoginInteractor: LoginInteractorProtocol {
     
+    var service: AuthenticationService
     var delegate: LoginInteractorDelegate?
     var user: UserPresentation!
     
-    init() { }
+    init(service: AuthenticationService) {
+        self.service = service
+    }
 }
 
 extension LoginInteractor {
     
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        delegate?.handleOutput(.setLoginLoading(true))
-        
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        let config = GIDConfiguration(clientID: clientID)
-        
-        GIDSignIn.sharedInstance.signIn(with: config,
-                                        presenting: presenter) { user, error in
-            guard error == nil else { return }
+        service.loginWithGoogle(presenterViewController: presenter) { (result) in
             
-            guard let authentication = user?.authentication,
-                  let idToken        = authentication.idToken else { return }
-            let credential           = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                                     accessToken: authentication.accessToken)
-            Auth.auth().signIn(with: credential) { result, error in
-                self.delegate?.handleOutput(.setLoginLoading(false))
-                
-                guard error == nil else { return }
-                
-                let user  = UserPresentation(username: result?.user.displayName ?? "", email: result?.user.email ?? "")
-                self.user = user
-                
-                self.delegate?.handleOutput(.showHomePage(self.user))
+            switch result {
+            case .success(let user):
+                self.delegate?.handleOutput(.showHomePage(user))
+            case .failure(let error):
+                self.delegate?.handleOutput(.setError(error))
             }
         }
     }
