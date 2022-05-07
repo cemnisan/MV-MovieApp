@@ -17,6 +17,13 @@ final class RegisterRouter {
 }
 
 extension RegisterRouter: RegisterRouterProtocol {
-    
-    func navigate(to route: RegisterUpRoute) {}
+    func navigate(to route: RegisterRoute) {
+        switch route {
+        case .home:
+            let homeView = HomeBuilder.make()
+            homeView.modalPresentationStyle = .fullScreen
+            homeView.modalTransitionStyle   = .crossDissolve
+            view.show(homeView, sender: nil)
+        }
+    }
 }

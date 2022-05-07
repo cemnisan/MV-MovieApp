@@ -19,7 +19,7 @@ final class GoogleAuthenticatorAdapter {
 
 extension GoogleAuthenticatorAdapter: AuthenticationService {
     
-    func loginWithGoogle(presenterViewController presenter: UIViewController,
+    func login(presenterViewController presenter: UIViewController,
                          completed: @escaping (Result<UserPresentation, Error>) -> Void) {
         
         guard let clientID = firebase?.options.clientID else { return }

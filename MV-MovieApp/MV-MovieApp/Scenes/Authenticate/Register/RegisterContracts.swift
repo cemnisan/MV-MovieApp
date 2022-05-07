@@ -6,20 +6,44 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 // MARK: - Interactor
-protocol RegisterInteractorProtocol: AnyObject {}
-protocol RegisterInteractorDelegate: AnyObject {}
-enum RegisterInteractorOutput {}
+protocol RegisterInteractorProtocol: AnyObject {
+    var delegate: RegisterInteractorDelegate? { get set }
+    
+    func loginWithGoogle(presenterViewController presenter: UIViewController)
+}
+
+protocol RegisterInteractorDelegate: AnyObject {
+    func handleOutput(_ output: RegisterInteractorOutput)
+}
+
+enum RegisterInteractorOutput {
+    case setLoading(Bool)
+    case showHomePage
+    case setError(Error)
+}
 
 // MARK: - Presenter
-protocol RegisterPresenterProtocol: AnyObject {}
-protocol RegisterViewProtocol: AnyObject {}
-protocol RegisterPresenterOutput {}
+protocol RegisterPresenterProtocol: AnyObject {
+    func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController)
+}
+
+protocol RegisterViewProtocol: AnyObject {
+    func handleOutput(_ output: RegisterPresenterOutput)
+}
+
+enum RegisterPresenterOutput {
+    case setLoading(Bool)
+    case setError(Error)
+}
 
 // MARK: - Router
 protocol RegisterRouterProtocol: AnyObject {
-    func navigate(to route: RegisterUpRoute)
+    func navigate(to route: RegisterRoute)
 }
 
-enum RegisterUpRoute {}
+enum RegisterRoute {
+    case home
+}

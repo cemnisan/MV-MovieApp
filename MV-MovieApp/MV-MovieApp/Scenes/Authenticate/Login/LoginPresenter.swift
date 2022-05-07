@@ -40,7 +40,7 @@ extension LoginPresenter: LoginInteractorDelegate {
     
     func handleOutput(_ output: LoginInteractorOutput) {
         switch output {
-        case .setLoginLoading(let isLoading):
+        case .setLoading(let isLoading):
             view.handleOutput(.setLoginLoading(isLoading))
         case .showHomePage(let userPresentation):
             router.navigate(to: .home(userPresentation))

@@ -74,13 +74,13 @@ extension LoginViewController {
 
 // MARK: - Login With Apple
 extension LoginViewController: AuthAppleDelegate {
-    func userTappedAuthWithApple() {}
+    func userDidTappedAuthWithApple() {}
 }
 
 // MARK: - Login with Google
 extension LoginViewController: AuthGoogleDelegate {
     
-    func userTappedAuthWithGoogle() {
+    func userDidTappedAuthWithGoogle() {
         loginPresenter.userDidTappedLoginWithGoogle(presenterViewController: self)
     }
 }

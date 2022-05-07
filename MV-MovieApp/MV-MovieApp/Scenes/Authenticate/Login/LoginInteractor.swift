@@ -22,8 +22,7 @@ final class LoginInteractor: LoginInteractorProtocol {
 extension LoginInteractor {
     
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        service.loginWithGoogle(presenterViewController: presenter) { (result) in
-            
+        service.login(presenterViewController: presenter) { (result) in
             switch result {
             case .success(let user):
                 self.delegate?.handleOutput(.showHomePage(user))

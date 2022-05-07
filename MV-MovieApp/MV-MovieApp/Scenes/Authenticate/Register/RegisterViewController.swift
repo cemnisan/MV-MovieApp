@@ -97,14 +97,25 @@ extension RegisterViewController {
 }
 
 // MARK: - Sign Up View Protocol
-extension RegisterViewController: RegisterViewProtocol {}
+extension RegisterViewController: RegisterViewProtocol {
+    func handleOutput(_ output: RegisterPresenterOutput) {
+        switch output {
+        case .setLoading(let isLoading):
+            print(isLoading)
+        case .setError(let error):
+            print(error)
+        }
+    }
+}
 
 // MARK: - Sign Up With Apple - Protocol
 extension RegisterViewController: AuthAppleDelegate {
-    func userTappedAuthWithApple() {}
+    func userDidTappedAuthWithApple() {}
 }
 
 // MARK: - Sign Up With Google - Protocol
 extension RegisterViewController: AuthGoogleDelegate {
-    func userTappedAuthWithGoogle() {}
+    func userDidTappedAuthWithGoogle() {
+        registerPresenter.userTappedLoginWithGoogle(presenterViewController: self)
+    }
 }

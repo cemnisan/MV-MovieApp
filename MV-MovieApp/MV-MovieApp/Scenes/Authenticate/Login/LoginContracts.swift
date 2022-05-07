@@ -20,7 +20,7 @@ protocol LoginInteractorDelegate: AnyObject {
 }
 
 enum LoginInteractorOutput {
-    case setLoginLoading(Bool)
+    case setLoading(Bool)
     case showHomePage(UserPresentation)
     case setError(Error)
 }

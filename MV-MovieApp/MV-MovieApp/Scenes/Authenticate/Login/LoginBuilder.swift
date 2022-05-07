@@ -13,7 +13,9 @@ final class LoginBuilder {
         let viewController              = LoginViewController()
         let router                      = LoginRouter(view: viewController)
         let interactor                  = LoginInteractor(service: GoogleAuthenticatorAdapter())
-        let presenter                   = LoginPresenter(view: viewController, interactor: interactor, router: router)
+        let presenter                   = LoginPresenter(view: viewController,
+                                                         interactor: interactor,
+                                                         router: router)
         viewController.loginPresenter = presenter
         
         return UINavigationController(rootViewController: viewController)

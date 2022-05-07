@@ -6,5 +6,29 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
-final class RegisterInteractor: RegisterInteractorProtocol { }
+final class RegisterInteractor {
+    
+    var service: AuthenticationService
+    var delegate: RegisterInteractorDelegate?
+    var user: UserPresentation!
+    
+    init(service: AuthenticationService) {
+        self.service = service
+    }
+}
+
+extension RegisterInteractor: RegisterInteractorProtocol {
+    func loginWithGoogle(presenterViewController presenter: UIViewController) {
+        service.login(presenterViewController: presenter) { (result) in
+            switch result {
+            case .success(let user):
+                print(user)
+                self.delegate?.handleOutput(.showHomePage)
+            case .failure(let error):
+                self.delegate?.handleOutput(.setError(error))
+            }
+        }
+    }
+}

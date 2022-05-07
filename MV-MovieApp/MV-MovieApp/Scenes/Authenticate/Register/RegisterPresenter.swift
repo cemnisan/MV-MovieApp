@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 final class RegisterPresenter {
     
@@ -19,11 +20,26 @@ final class RegisterPresenter {
         self.view       = view
         self.interactor = interactor
         self.router     = router
+        
+        self.interactor.delegate = self
     }
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
-    
-   
+    func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController) {
+        interactor.loginWithGoogle(presenterViewController: presenter)
+    }
 }
 
+extension RegisterPresenter: RegisterInteractorDelegate {
+    func handleOutput(_ output: RegisterInteractorOutput) {
+        switch output {
+        case .setLoading(let isLoading):
+            print(isLoading)
+        case .showHomePage:
+            router.navigate(to: .home)
+        case .setError(let error):
+            view.handleOutput(.setError(error))
+        }
+    }
+}

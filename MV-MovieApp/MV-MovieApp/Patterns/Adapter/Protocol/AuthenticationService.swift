@@ -9,6 +9,6 @@ import Foundation
 import UIKit.UIViewController
 
 protocol AuthenticationService {
-    func loginWithGoogle(presenterViewController presenter: UIViewController,
-                         completed: @escaping (Result<UserPresentation, Error>) -> Void)
+    func login(presenterViewController presenter: UIViewController,
+               completed: @escaping (Result<UserPresentation, Error>) -> Void)
 }
