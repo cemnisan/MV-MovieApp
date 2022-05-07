@@ -14,4 +14,8 @@ protocol AuthenticationService {
     func login(with email: String,
                password: String,
                completed: @escaping (Result<UserPresentation, Error>) -> Void)
+    func register(with username: String,
+                  email: String,
+                  password: String,
+                  completed: @escaping (Result<UserPresentation, Error>) -> Void)
 }

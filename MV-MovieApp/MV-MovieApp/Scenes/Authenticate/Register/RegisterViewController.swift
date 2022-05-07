@@ -50,7 +50,9 @@ final class RegisterViewController: BaseAuthViewController {
     }
     
     override func userTappedActionButton() {
-        print("user did tapped create action button.")
+        registerPresenter.userTappedRegisterButton(username: nameTextField.text!,
+                                                   email: emailTextField.text!,
+                                                   password: passwordTextField.text!)
     }
     
     override func userTappedAccountActionButton() {

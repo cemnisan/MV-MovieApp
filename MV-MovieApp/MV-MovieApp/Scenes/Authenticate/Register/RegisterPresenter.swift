@@ -26,8 +26,15 @@ final class RegisterPresenter {
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
+    
     func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController) {
         interactor.loginWithGoogle(presenterViewController: presenter)
+    }
+    
+    func userTappedRegisterButton(username: String,
+                                  email: String,
+                                  password: String) {
+        interactor.register(with: username, email: email, password: password)
     }
 }
 

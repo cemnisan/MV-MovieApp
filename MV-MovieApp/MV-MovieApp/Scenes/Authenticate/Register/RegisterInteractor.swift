@@ -31,4 +31,20 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             }
         }
     }
+    
+    func register(with username: String,
+                  email: String,
+                  password: String) {
+        service.register(with: username,
+                         email: email,
+                         password: password) { (result) in
+            switch result {
+            case .success(let user):
+                print(user)
+                self.delegate?.handleOutput(.showHomePage)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
