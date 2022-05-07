@@ -47,7 +47,8 @@ final class LoginViewController: BaseAuthViewController {
     }
     
     override func userTappedActionButton() {
-        print("user did tapped login button.")
+        loginPresenter.userTappedLoginButton(email: emailTextField.text!,
+                                             password: passwordTextField.text!)
     }
     
     override func userTappedAccountActionButton() {

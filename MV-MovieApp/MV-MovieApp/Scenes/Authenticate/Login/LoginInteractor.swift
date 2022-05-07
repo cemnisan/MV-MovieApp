@@ -31,4 +31,15 @@ extension LoginInteractor {
             }
         }
     }
+    
+    func login(with email: String, password: String) {
+        service.login(with: email, password: password) { (result) in
+            switch result {
+            case .success(let user):
+                print(user)
+            case .failure(let error):
+                self.delegate?.handleOutput(.setError(error))
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ class BaseAuthViewController: UIViewController {
     let emailTextField                    = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
     
     private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor:  K.Auth.labelTextColor, text: K.Auth.passwordLabel)
-    private let passwordTextField         = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    let passwordTextField         = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
     private let passwordVisibilityButton  = MVButton(frame: .zero)
 
     private let actionButton              = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)

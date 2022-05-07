@@ -42,4 +42,15 @@ extension GoogleAuthenticatorAdapter: AuthenticationService {
             }
         }
     }
+    
+    func login(with email: String,
+               password: String,
+               completed: @escaping (Result<UserPresentation, Error>) -> Void) {
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { (result, error) in
+            guard error == nil else { completed(.failure(error!)); return }
+            let user = UserPresentation(username: result?.user.displayName ?? "", email: result?.user.email ?? "")
+            completed(.success(user))
+        }
+    }
 }

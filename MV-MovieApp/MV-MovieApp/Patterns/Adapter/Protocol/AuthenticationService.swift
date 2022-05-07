@@ -11,4 +11,7 @@ import UIKit.UIViewController
 protocol AuthenticationService {
     func login(presenterViewController presenter: UIViewController,
                completed: @escaping (Result<UserPresentation, Error>) -> Void)
+    func login(with email: String,
+               password: String,
+               completed: @escaping (Result<UserPresentation, Error>) -> Void)
 }

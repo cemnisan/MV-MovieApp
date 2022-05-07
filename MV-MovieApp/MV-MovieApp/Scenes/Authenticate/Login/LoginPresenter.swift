@@ -30,6 +30,10 @@ extension LoginPresenter: LoginPresenterProtocol {
     func userDidTappedLoginWithGoogle(presenterViewController presenter: UIViewController) {
         interactor.loginWithGoogle(presenterViewController: presenter)
     }
+    
+    func userTappedLoginButton(email: String, password: String) {
+        interactor.login(with: email, password: password)
+    }
 
     func userDidTappedRegisterButton() {
         router.navigate(to: .register)

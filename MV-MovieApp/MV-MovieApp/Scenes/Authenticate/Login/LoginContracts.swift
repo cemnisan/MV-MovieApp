@@ -13,6 +13,7 @@ protocol LoginInteractorProtocol: AnyObject {
     var delegate: LoginInteractorDelegate? { get set }
     
     func loginWithGoogle(presenterViewController presenter: UIViewController)
+    func login(with email: String, password: String)
 }
 
 protocol LoginInteractorDelegate: AnyObject {
@@ -28,6 +29,7 @@ enum LoginInteractorOutput {
 // MARK: - Presenter
 protocol LoginPresenterProtocol: AnyObject {
     func userDidTappedLoginWithGoogle(presenterViewController presenter: UIViewController)
+    func userTappedLoginButton(email: String, password: String)
     func userDidTappedRegisterButton()
 }
 
