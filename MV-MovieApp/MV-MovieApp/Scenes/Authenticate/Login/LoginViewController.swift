@@ -95,7 +95,7 @@ extension LoginViewController: LoginViewProtocol {
         case .setLoginLoading(let isLoading):
             print(isLoading)
         case .setError(let error):
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }

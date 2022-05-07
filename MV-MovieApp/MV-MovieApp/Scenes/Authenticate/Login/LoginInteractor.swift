@@ -35,7 +35,7 @@ extension LoginInteractor {
     
     func login(with email: String, password: String) {
         do {
-            try validate(email: email, password: password)
+            try Validation.validate(email: email, password: password)
             
             service.login(with: email, password: password) { (result) in
                 switch result {
@@ -49,18 +49,5 @@ extension LoginInteractor {
         } catch {
             self.delegate?.handleOutput(.setError(error))
         }
-    }
-}
-
-// MARK: - Validation
-extension LoginInteractor {
-    
-    private func validate(email: String,
-                          password: String) throws {
-        guard !email.isEmpty else { throw ValidationError.emptyEmail }
-        guard K.Auth.emailRegex.matches(email) else { throw ValidationError.invalidEmail}
-        
-        guard !password.isEmpty else { throw ValidationError.emptyPassword }
-        guard K.Auth.passwordRegex.matches(password) else { throw ValidationError.invalidPassword }
     }
 }

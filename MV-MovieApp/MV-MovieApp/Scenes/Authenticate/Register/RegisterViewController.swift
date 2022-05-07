@@ -108,7 +108,7 @@ extension RegisterViewController: RegisterViewProtocol {
         case .setLoading(let isLoading):
             print(isLoading)
         case .setError(let error):
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }
