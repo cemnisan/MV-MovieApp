@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7E1240DF2826D93500FCB848 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240DE2826D93500FCB848 /* Validation.swift */; };
 		7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */; };
+		7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12F83728271EA600B3C966 /* Constant+Auth.swift */; };
+		7E12F83A28271ED500B3C966 /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12F83928271ED500B3C966 /* HomeMovies.swift */; };
 		7E39EA9A281F348E0073A591 /* RegisterContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA99281F348E0073A591 /* RegisterContracts.swift */; };
 		7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9B281F34960073A591 /* RegisterInteractor.swift */; };
 		7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9D281F34A00073A591 /* RegisterPresenter.swift */; };
@@ -22,7 +24,7 @@
 		7E5A3FA328257BA700D70F69 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3FA228257BA700D70F69 /* FirebaseCrashlytics */; };
 		7E5A3FA528257BA700D70F69 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3FA428257BA700D70F69 /* FirebaseDynamicLinks */; };
 		7E5A3FA82825852500D70F69 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3FA72825852500D70F69 /* GoogleSignIn */; };
-		7E5B9061281FE1BD00D0B278 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B9060281FE1BD00D0B278 /* Constants.swift */; };
+		7E5B9061281FE1BD00D0B278 /* Constant+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B9060281FE1BD00D0B278 /* Constant+API.swift */; };
 		7E5B9064281FE86A00D0B278 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B9063281FE86A00D0B278 /* UIViewController+Ex.swift */; };
 		7E68504F281F1BFA007C15B0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68504E281F1BFA007C15B0 /* LoginViewController.swift */; };
 		7E685051281F1C00007C15B0 /* LoginBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E685050281F1C00007C15B0 /* LoginBuilder.swift */; };
@@ -37,7 +39,6 @@
 		7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */; };
 		7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */; };
 		7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */; };
-		7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B91281EAB13000676EC /* HomeMovies.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */; };
 		7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */; };
@@ -73,6 +74,8 @@
 /* Begin PBXFileReference section */
 		7E1240DE2826D93500FCB848 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValidationError+Ex.swift"; sourceTree = "<group>"; };
+		7E12F83728271EA600B3C966 /* Constant+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Auth.swift"; sourceTree = "<group>"; };
+		7E12F83928271ED500B3C966 /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
 		7E39EA99281F348E0073A591 /* RegisterContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContracts.swift; sourceTree = "<group>"; };
 		7E39EA9B281F34960073A591 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		7E39EA9D281F34A00073A591 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
@@ -80,7 +83,7 @@
 		7E41D4C2281EE64F004E198E /* ButtonTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTypes.swift; sourceTree = "<group>"; };
 		7E5A3F922825331400D70F69 /* SigninWithApple.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SigninWithApple.entitlements; sourceTree = "<group>"; };
 		7E5A3F93282571BE00D70F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7E5B9060281FE1BD00D0B278 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7E5B9060281FE1BD00D0B278 /* Constant+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+API.swift"; sourceTree = "<group>"; };
 		7E5B9063281FE86A00D0B278 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		7E68504E281F1BFA007C15B0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7E685050281F1C00007C15B0 /* LoginBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBuilder.swift; sourceTree = "<group>"; };
@@ -95,7 +98,6 @@
 		7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
-		7E8A7B91281EAB13000676EC /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
 		7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGoogleViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E12F83628271E3100B3C966 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				7E8AA5492826CADE00A90ED2 /* ValidationError.swift */,
+				7E1240DE2826D93500FCB848 /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		7E41D4C4281F1BD5004E198E /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +175,8 @@
 		7E5B9062281FE1C100D0B278 /* Contants */ = {
 			isa = PBXGroup;
 			children = (
-				7E5B9060281FE1BD00D0B278 /* Constants.swift */,
+				7E5B9060281FE1BD00D0B278 /* Constant+API.swift */,
+				7E12F83728271EA600B3C966 /* Constant+Auth.swift */,
 			);
 			path = Contants;
 			sourceTree = "<group>";
@@ -416,11 +428,10 @@
 		7EF731C2281D9D8300A1CFE9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				7E8A7B91281EAB13000676EC /* HomeMovies.swift */,
+				7E12F83628271E3100B3C966 /* Validation */,
 				7E41D4C2281EE64F004E198E /* ButtonTypes.swift */,
 				7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */,
-				7E8AA5492826CADE00A90ED2 /* ValidationError.swift */,
-				7E1240DE2826D93500FCB848 /* Validation.swift */,
+				7E12F83928271ED500B3C966 /* HomeMovies.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -523,7 +534,8 @@
 				7E8AA54C2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift in Sources */,
 				7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */,
 				7E68505A281F2ADD007C15B0 /* LoginInteractor.swift in Sources */,
-				7E5B9061281FE1BD00D0B278 /* Constants.swift in Sources */,
+				7E12F83A28271ED500B3C966 /* HomeMovies.swift in Sources */,
+				7E5B9061281FE1BD00D0B278 /* Constant+API.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
 				7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */,
@@ -555,8 +567,8 @@
 				7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */,
 				7E685058281F2AD1007C15B0 /* LoginContracts.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
-				7E8A7B92281EAB13000676EC /* HomeMovies.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
+				7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */,
 				7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */,
 				7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */,
 				7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */,

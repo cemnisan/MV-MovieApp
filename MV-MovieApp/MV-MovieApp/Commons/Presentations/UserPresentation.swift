@@ -11,7 +11,8 @@ struct UserPresentation {
     var username: String
     var email: String
     
-    init(username: String, email: String) {
+    init(username: String,
+         email: String) {
         self.username = username
         self.email    = email
     }

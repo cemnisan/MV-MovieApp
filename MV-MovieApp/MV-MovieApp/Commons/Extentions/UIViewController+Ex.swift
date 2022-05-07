@@ -6,10 +6,23 @@
 //
 
 import UIKit
+import MV_Components
 
 extension UIViewController {
     
     func addSubviews(views: UIView...) {
         views.forEach { view.addSubview($0) }
+    }
+    
+    func showErrorAlert(with title: String,
+                        message: String,
+                        buttonTitle: String) {
+        let alert = MVErrorAlertController(alertTitle: title,
+                                           alertMessage: message,
+                                           alertButtonTitle: buttonTitle)
+        alert.modalPresentationStyle = .overFullScreen
+        alert.modalTransitionStyle   = .crossDissolve
+        
+        self.present(alert, animated: true)
     }
 }

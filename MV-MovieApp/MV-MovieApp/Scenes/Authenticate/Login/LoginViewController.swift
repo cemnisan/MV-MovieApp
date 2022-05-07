@@ -95,7 +95,9 @@ extension LoginViewController: LoginViewProtocol {
         case .setLoginLoading(let isLoading):
             print(isLoading)
         case .setError(let error):
-            print(error.localizedDescription)
+            showErrorAlert(with: "Login Error",
+                           message: error.localizedDescription,
+                           buttonTitle: "OK")
         }
     }
 }
