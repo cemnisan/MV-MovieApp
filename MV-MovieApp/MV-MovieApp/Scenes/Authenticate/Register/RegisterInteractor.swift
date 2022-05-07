@@ -11,7 +11,7 @@ import UIKit.UIViewController
 final class RegisterInteractor {
     
     var service: RegisterService
-    var delegate: RegisterInteractorDelegate?
+    weak var delegate: RegisterInteractorDelegate?
     var user: UserPresentation!
     
     init(service: RegisterService) {

@@ -28,8 +28,8 @@ enum RegisterInteractorOutput {
 
 // MARK: - Presenter
 protocol RegisterPresenterProtocol: AnyObject {
-    func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController)
-    func userTappedRegisterButton(username: String, email: String, password: String)
+    func loginWithGoogle(presenterViewController presenter: UIViewController)
+    func register(username: String, email: String, password: String)
 }
 
 protocol RegisterViewProtocol: AnyObject {

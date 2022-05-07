@@ -11,7 +11,7 @@ import MV_Components
 final class LoginViewController: BaseAuthViewController {
     
     var loginPresenter: LoginPresenterProtocol!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +46,13 @@ final class LoginViewController: BaseAuthViewController {
         ])
     }
     
-    override func userTappedActionButton() {
-        loginPresenter.userTappedLoginButton(email: emailTextField.text!,
-                                             password: passwordTextField.text!)
+    override func userDidTappedActionButton() {
+        guard let email    = emailTextField.text,
+              let password = passwordTextField.text else { return }
+        loginPresenter.login(with: email, password: password)
     }
     
-    override func userTappedAccountActionButton() {
+    override func userDidTappedAccountButton() {
         loginPresenter.userTappedRegisterButton()
     }
 }
@@ -82,7 +83,7 @@ extension LoginViewController: AuthAppleDelegate {
 extension LoginViewController: AuthGoogleDelegate {
     
     func userDidTappedAuthWithGoogle() {
-        loginPresenter.userTappedLoginWithGoogle(presenterViewController: self)
+        loginPresenter.loginWithGoogle(presenterViewController: self)
     }
 }
 

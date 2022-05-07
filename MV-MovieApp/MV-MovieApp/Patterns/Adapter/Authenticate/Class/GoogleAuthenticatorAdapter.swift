@@ -52,7 +52,8 @@ extension GoogleAuthenticatorAdapter: LoginService {
         firebaseAuth.signIn(withEmail: email,
                             password: password) { (result, error) in
             guard error == nil else { completed(.failure(error!)); return }
-            let user = UserPresentation(username: result?.user.displayName ?? "", email: result?.user.email ?? "")
+            let user = UserPresentation(username: result?.user.displayName ?? "",
+                                        email: result?.user.email ?? "")
             completed(.success(user))
         }
     }
@@ -67,7 +68,8 @@ extension GoogleAuthenticatorAdapter: RegisterService {
         firebaseAuth.createUser(withEmail: email,
                                 password: password) { (result, error) in
             guard error == nil else { completed(.failure(error!)); return }
-            let user = UserPresentation(username: username, email: result?.user.email ?? "")
+            let user = UserPresentation(username: username,
+                                        email: result?.user.email ?? "")
             completed(.success(user))
         }
     }

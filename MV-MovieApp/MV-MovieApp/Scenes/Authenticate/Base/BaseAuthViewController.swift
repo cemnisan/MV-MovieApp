@@ -10,20 +10,32 @@ import MV_Components
 
 class BaseAuthViewController: UIViewController {
     
-    private let screenDescriptionLabel    = MVSecondaryLabel(textAlignment: .left, fontSize: 16, textColor: K.Auth.globalColor, text: nil)
+    private let screenDescriptionLabel    = MVSecondaryLabel(textAlignment: .left,
+                                                             fontSize: 16,
+                                                             textColor: K.Auth.globalColor,
+                                                             text: nil)
     
     let appleView                         = MVContainerView(backgroundColor: K.Auth.childViewsColor)
     let googleView                        = MVContainerView(backgroundColor: K.Auth.childViewsColor)
-              
-    let emailLabel                        = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.emailLabel)
+    
+    let emailLabel                        = MVSecondaryLabel(textAlignment: .left,
+                                                             fontSize: 24,
+                                                             textColor: K.Auth.labelTextColor,
+                                                             text: K.Auth.emailLabel)
     let emailTextField                    = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
     
-    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor:  K.Auth.labelTextColor, text: K.Auth.passwordLabel)
-    let passwordTextField         = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left,
+                                                             fontSize: 24,
+                                                             textColor: K.Auth.labelTextColor,
+                                                             text: K.Auth.passwordLabel)
+    let passwordTextField                 = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    
     private let passwordVisibilityButton  = MVButton(frame: .zero)
-
     private let actionButton              = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)
-    private let accountLabel              = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: K.Auth.globalColor, text: nil)
+    private let accountLabel              = MVSecondaryLabel(textAlignment: .center,
+                                                             fontSize: 20,
+                                                             textColor: K.Auth.globalColor,
+                                                             text: nil)
     private let accountActionButton       = MVButton(frame: .zero)
         
     override func viewDidLoad() {
@@ -141,7 +153,7 @@ extension BaseAuthViewController {
     
     // MARK: - Configure Login or Register Button
     func configureActionButton() {
-        actionButton.addTarget(self, action: #selector(userTappedActionButton), for: .touchUpInside)
+        actionButton.addTarget(self, action: #selector(userDidTappedActionButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             actionButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 53),
@@ -158,7 +170,7 @@ extension BaseAuthViewController {
         stackView.distribution   = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        accountActionButton.addTarget(self, action: #selector(userTappedAccountActionButton), for: .touchUpInside)
+        accountActionButton.addTarget(self, action: #selector(userDidTappedAccountButton), for: .touchUpInside)
         
         [accountLabel,
          accountActionButton
@@ -236,9 +248,9 @@ extension BaseAuthViewController {
     
     @objc
     /// Override for Login or Register action
-    func userTappedActionButton() {}
+    func userDidTappedActionButton() {}
     
     @objc
     /// Override it if the user doesn't have an account / already an account
-    func userTappedAccountActionButton() {}
+    func userDidTappedAccountButton() {}
 }

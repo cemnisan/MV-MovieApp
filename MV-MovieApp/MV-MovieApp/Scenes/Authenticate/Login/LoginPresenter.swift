@@ -27,11 +27,11 @@ final class LoginPresenter {
 
 extension LoginPresenter: LoginPresenterProtocol {
     
-    func userTappedLoginWithGoogle(presenterViewController presenter: UIViewController) {
+    func loginWithGoogle(presenterViewController presenter: UIViewController) {
         interactor.loginWithGoogle(presenterViewController: presenter)
     }
     
-    func userTappedLoginButton(email: String, password: String) {
+    func login(with email: String, password: String) {
         interactor.login(with: email, password: password)
     }
 

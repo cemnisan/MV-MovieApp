@@ -46,5 +46,9 @@ struct K {
             
         static let passwordVisible             = UIImage(systemName: "eye.fill")
         static let passwordInvisible           = UIImage(systemName: "eye.slash.fill")
+        
+        static let emailRegex                  = NSRegularExpression("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+        // Minimum 8 characters at least 1 Alphabet and 1 Number:
+        static let passwordRegex               = NSRegularExpression("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")
     }
 }

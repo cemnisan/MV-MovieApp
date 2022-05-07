@@ -10,7 +10,10 @@ import MV_Components
 
 final class RegisterViewController: BaseAuthViewController {
     
-    private let nameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: K.Auth.labelTextColor, text: K.Auth.nameLabel)
+    private let nameLabel     = MVSecondaryLabel(textAlignment: .left,
+                                                 fontSize: 21,
+                                                 textColor: K.Auth.labelTextColor,
+                                                 text: K.Auth.nameLabel)
     private let nameTextField = MVSignUpTextFields(placeHolder: K.Auth.nameTextField)
   
     var registerPresenter: RegisterPresenterProtocol!
@@ -49,13 +52,13 @@ final class RegisterViewController: BaseAuthViewController {
         ])
     }
     
-    override func userTappedActionButton() {
-        registerPresenter.userTappedRegisterButton(username: nameTextField.text!,
+    override func userDidTappedActionButton() {
+        registerPresenter.register(username: nameTextField.text!,
                                                    email: emailTextField.text!,
                                                    password: passwordTextField.text!)
     }
     
-    override func userTappedAccountActionButton() {
+    override func userDidTappedAccountButton() {
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -98,7 +101,7 @@ extension RegisterViewController {
     }
 }
 
-// MARK: - Sign Up View Protocol
+// MARK: - Register View Protocol
 extension RegisterViewController: RegisterViewProtocol {
     func handleOutput(_ output: RegisterPresenterOutput) {
         switch output {
@@ -110,14 +113,14 @@ extension RegisterViewController: RegisterViewProtocol {
     }
 }
 
-// MARK: - Login Up With Apple - Protocol
+// MARK: - Login With Apple - Protocol
 extension RegisterViewController: AuthAppleDelegate {
     func userDidTappedAuthWithApple() {}
 }
 
-// MARK: - Login Up With Google - Protocol
+// MARK: - Login With Google - Protocol
 extension RegisterViewController: AuthGoogleDelegate {
     func userDidTappedAuthWithGoogle() {
-        registerPresenter.userTappedLoginWithGoogle(presenterViewController: self)
+        registerPresenter.loginWithGoogle(presenterViewController: self)
     }
 }
