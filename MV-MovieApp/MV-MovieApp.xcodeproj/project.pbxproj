@@ -55,6 +55,7 @@
 		7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */; };
 		7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */; };
 		7ECDE3512828175300FE76BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDE3502828175300FE76BC /* BaseViewController.swift */; };
+		7ECDE35328282F0700FE76BC /* BaseAuthenticateContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDE35228282F0700FE76BC /* BaseAuthenticateContracts.swift */; };
 		7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318D281D906600A1CFE9 /* AppDelegate.swift */; };
 		7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */; };
 		7EF73197281D906700A1CFE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF73196281D906700A1CFE9 /* Assets.xcassets */; };
@@ -114,6 +115,7 @@
 		7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAuthController.swift; sourceTree = "<group>"; };
 		7ECDE3502828175300FE76BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7ECDE35228282F0700FE76BC /* BaseAuthenticateContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateContracts.swift; sourceTree = "<group>"; };
 		7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MV-MovieApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF7318D281D906600A1CFE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			children = (
 				7E8A7B95281EBAC6000676EC /* Components */,
 				7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */,
+				7ECDE35228282F0700FE76BC /* BaseAuthenticateContracts.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */,
 				7E685058281F2AD1007C15B0 /* LoginContracts.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
+				7ECDE35328282F0700FE76BC /* BaseAuthenticateContracts.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
 				7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */,
 				7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */,

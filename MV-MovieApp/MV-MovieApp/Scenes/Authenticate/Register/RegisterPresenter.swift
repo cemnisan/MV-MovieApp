@@ -28,15 +28,11 @@ final class RegisterPresenter {
 extension RegisterPresenter: RegisterPresenterProtocol {
     
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        interactor.loginWithGoogle(presenterViewController: presenter)
+        interactor.loginWithGoogle(presenterController: presenter)
     }
     
-    func register(username: String,
-                  email: String,
-                  password: String) {
-        interactor.register(with: username,
-                            email: email,
-                            password: password)
+    func register(username: String,email: String, password: String) {
+        interactor.register(with: username, email: email, password: password)
     }
 }
 
@@ -46,15 +42,15 @@ extension RegisterPresenter: RegisterInteractorOutput {
         view.showError(error: error)
     }
     
-    func displayIndicatorView() {
-        view.displayIndicatorView()
+    func displayLoadingIndicator() {
+        view.displayLoadingIndicator()
     }
     
-    func dismissIndicatorView() {
-        view.dismissIndicatorView()
+    func dismissLoadingIndicator() {
+        view.dismissLoadingIndicator()
     }
     
-    func showHomePage() {
+    func showHome() {
         router.navigate(to: .home)
     }
 }

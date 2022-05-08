@@ -21,17 +21,17 @@ final class RegisterInteractor {
 
 // MARK: - Interactor Protocol
 extension RegisterInteractor: RegisterInteractorProtocol {
-    func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        delegate?.displayIndicatorView()
+    func loginWithGoogle(presenterController presenter: UIViewController) {
+        delegate?.displayLoadingIndicator()
         
         service.login(presenterViewController: presenter) { [weak self] (result) in
             guard let self = self else { return }
-            self.delegate?.dismissIndicatorView()
+            self.delegate?.dismissLoadingIndicator()
             
             switch result {
             case .success(let user):
                 print(user)
-                self.delegate?.showHomePage()
+                self.delegate?.showHome()
             case .failure(let error):
                 self.delegate?.showError(error: error)
             }
@@ -45,18 +45,18 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             try Validation.validate(username: username,
                                     email: email,
                                     password: password)
-            delegate?.displayIndicatorView()
+            delegate?.displayLoadingIndicator()
             
             service.register(with: username,
                              email: email,
                              password: password) { [weak self] (result) in
                 guard let self = self else { return }
-                self.delegate?.dismissIndicatorView()
+                self.delegate?.dismissLoadingIndicator()
                 
                 switch result {
                 case .success(let user):
                     print(user)
-                    self.delegate?.showHomePage()
+                    self.delegate?.showHome()
                 case .failure(let error):
                     self.delegate?.showError(error: error)
                 }

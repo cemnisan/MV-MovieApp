@@ -6,42 +6,30 @@
 //
 
 import Foundation
-import UIKit.UIViewController
 
-// MARK: - Interactor
-protocol LoginInteractorProtocol: AnyObject {
+// MARK: - Login Interactor
+protocol LoginInteractorProtocol: BaseAuthenticateInteractorProtocol {
     var delegate: LoginInteractorOutput? { get set }
     
-    func loginWithGoogle(presenterViewController presenter: UIViewController)
     func login(with email: String, password: String) 
 }
 
-protocol LoginInteractorOutput: AnyObject {
-    func displayLoadingIndicator()
-    func dismissLoadingIndicator()
-    func showError(error: Error)
-    func showHome()
-}
+// MARK: - Login Interactor Output
+protocol LoginInteractorOutput: BaseInteractorOutput {}
 
-// MARK: - Presenter
-protocol LoginPresenterProtocol: AnyObject {
-    func loginWithGoogle(presenterViewController presenter: UIViewController)
+// MARK: - Login Presenter
+protocol LoginPresenterProtocol: BasePresenterProtocol {
     func login(with email: String, password: String)
     func userTappedRegisterButton()
 }
 
-protocol LoginPresenterOutput: AnyObject {
-    func displayLoadingIndicator()
-    func dismissLoadingIndicator()
-    func showError(error: Error)
-}
+// MARK: - Login Presenter Output
+protocol LoginPresenterOutput: BasePresenterOutput {}
 
-// MARK: - Router
+// MARK: - Login Navigator
 protocol LoginRouterProtocol: AnyObject {
     func navigate(to route: LoginRoute)
 }
 
-enum LoginRoute {
-    case home
-    case register
-}
+// MARK: - Login Route
+enum LoginRoute { case home, register }

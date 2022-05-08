@@ -101,27 +101,25 @@ extension RegisterViewController {
 // MARK: - Register View Protocol
 extension RegisterViewController: RegisterPresenterOutput {
     
-    func displayIndicatorView() {
+    func displayLoadingIndicator() {
         showLoadingView()
     }
     
-    func dismissIndicatorView() {
+    func dismissLoadingIndicator() {
         dismissLoadingView()
     }
     
     func showError(error: Error) {
-        showErrorAlert(with: "Register Error",
-                       message: error.localizedDescription,
-                       buttonTitle: "OK")
+        showErrorAlert(with: "Register Error", message: error.localizedDescription, buttonTitle: "OK")
     }
 }
 
-// MARK: - Login With Apple - Protocol
+// MARK: - Auth Apple Protocol
 extension RegisterViewController: AuthAppleDelegate {
     func userDidTappedAuthWithApple() {}
 }
 
-// MARK: - Login With Google - Protocol
+// MARK: - Auth Google Protocol
 extension RegisterViewController: AuthGoogleDelegate {
     func userDidTappedAuthWithGoogle() {
         registerPresenter.loginWithGoogle(presenterViewController: self)

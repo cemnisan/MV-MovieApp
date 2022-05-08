@@ -22,7 +22,7 @@ final class LoginInteractor: LoginInteractorProtocol {
 // MARK: - Google Services Interactor
 extension LoginInteractor {
     
-    func loginWithGoogle(presenterViewController presenter: UIViewController) {
+    func loginWithGoogle(presenterController presenter: UIViewController) {
         delegate?.displayLoadingIndicator()
         
         service.login(presenterViewController: presenter) { [weak self] (result) in
