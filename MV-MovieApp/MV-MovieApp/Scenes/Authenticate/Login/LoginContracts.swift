@@ -15,21 +15,18 @@ protocol LoginInteractorProtocol: BaseAuthenticateInteractorProtocol {
 }
 
 // MARK: - Login Interactor Output
-protocol LoginInteractorOutput: BaseInteractorOutput {}
+protocol LoginInteractorOutput: BaseAuthenticateInteractorOutput {}
 
 // MARK: - Login Presenter
-protocol LoginPresenterProtocol: BasePresenterProtocol {
+protocol LoginPresenterProtocol: BaseAuthenticatePresenterProtocol {
     func login(with email: String, password: String)
     func userTappedRegisterButton()
 }
 
 // MARK: - Login Presenter Output
-protocol LoginPresenterOutput: BasePresenterOutput {}
-
-// MARK: - Login Navigator
-protocol LoginRouterProtocol: AnyObject {
-    func navigate(to route: LoginRoute)
-}
+protocol LoginPresenterOutput: BaseAuthenticatePresenterOutput {}
 
 // MARK: - Login Route
-enum LoginRoute { case home, register }
+protocol LoginRoute: BaseAuthenticateRoute {
+    func toRegister()
+}

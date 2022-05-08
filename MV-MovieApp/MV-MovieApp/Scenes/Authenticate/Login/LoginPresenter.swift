@@ -12,11 +12,11 @@ final class LoginPresenter {
     
     private unowned let view: LoginPresenterOutput
     private let interactor: LoginInteractorProtocol
-    private let router: LoginRouterProtocol
+    private let router: LoginRoute
     
     init(view: LoginPresenterOutput,
          interactor: LoginInteractorProtocol,
-         router: LoginRouterProtocol) {
+         router: LoginRoute) {
         self.view       = view
         self.interactor = interactor
         self.router     = router
@@ -36,7 +36,7 @@ extension LoginPresenter: LoginPresenterProtocol {
     }
 
     func userTappedRegisterButton() {
-        router.navigate(to: .register)
+        router.toRegister()
     }
 }
 
@@ -55,6 +55,6 @@ extension LoginPresenter: LoginInteractorOutput {
     }
     
     func showHome() {
-        router.navigate(to: .home)
+        router.toHome()
     }
 }

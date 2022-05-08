@@ -14,7 +14,7 @@ protocol BaseAuthenticateInteractorProtocol: AnyObject {
 }
 
 // MARK: - Base Interactor Output
-protocol BaseInteractorOutput: AnyObject {
+protocol BaseAuthenticateInteractorOutput: AnyObject {
     func showError(error: Error)
     func displayLoadingIndicator()
     func dismissLoadingIndicator()
@@ -22,13 +22,18 @@ protocol BaseInteractorOutput: AnyObject {
 }
 
 // MARK: - Base Presenter
-protocol BasePresenterProtocol: AnyObject {
+protocol BaseAuthenticatePresenterProtocol: AnyObject {
     func loginWithGoogle(presenterViewController presenter: UIViewController)
 }
 
 // MARK: - Base Presenter Output
-protocol BasePresenterOutput: AnyObject {
+protocol BaseAuthenticatePresenterOutput: AnyObject {
     func showError(error: Error)
     func displayLoadingIndicator()
     func dismissLoadingIndicator()
+}
+
+// MARK: - Base Route
+protocol BaseAuthenticateRoute: AnyObject {
+    func toHome()
 }

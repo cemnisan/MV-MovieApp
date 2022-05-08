@@ -15,22 +15,15 @@ protocol RegisterInteractorProtocol: BaseAuthenticateInteractorProtocol {
 }
 
 // MARK: - Register Interactor Output
-protocol RegisterInteractorOutput: BaseInteractorOutput {}
+protocol RegisterInteractorOutput: BaseAuthenticateInteractorOutput {}
 
 // MARK: - Register Presenter
-protocol RegisterPresenterProtocol: BasePresenterProtocol {
+protocol RegisterPresenterProtocol: BaseAuthenticatePresenterProtocol {
     func register(username: String, email: String, password: String)
 }
 
 // MARK: - Register Presenter Output
-protocol RegisterPresenterOutput: BasePresenterOutput {}
+protocol RegisterPresenterOutput: BaseAuthenticatePresenterOutput {}
 
 // MARK: - Register Navigator
-protocol RegisterRouterProtocol: AnyObject {
-    func navigate(to route: RegisterRoute)
-}
-
-// MARK: - Register Route
-enum RegisterRoute {
-    case home
-}
+protocol RegisterRoute: BaseAuthenticateRoute {}

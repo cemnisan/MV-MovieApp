@@ -12,11 +12,11 @@ final class RegisterPresenter {
     
     private unowned let view: RegisterPresenterOutput
     private let interactor: RegisterInteractorProtocol
-    private let router: RegisterRouter
+    private let router: RegisterRoute
     
     init(view: RegisterPresenterOutput,
          interactor: RegisterInteractorProtocol,
-         router: RegisterRouter) {
+         router: RegisterRoute) {
         self.view       = view
         self.interactor = interactor
         self.router     = router
@@ -51,6 +51,6 @@ extension RegisterPresenter: RegisterInteractorOutput {
     }
     
     func showHome() {
-        router.navigate(to: .home)
+        router.toHome()
     }
 }

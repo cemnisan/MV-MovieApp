@@ -17,18 +17,17 @@ final class LoginRouter {
 }
 
 // MARK: - Login Up Router Protocol
-extension LoginRouter: LoginRouterProtocol {
-
-    func navigate(to route: LoginRoute) {
-        switch route {
-        case .home:
-            let homeView                    = HomeBuilder.make()
-            homeView.modalPresentationStyle = .fullScreen
-            homeView.modalTransitionStyle   = .crossDissolve
-            view.show(homeView, sender: nil)
-        case .register:
-            let registerView = RegisterBuilder.make()
-            view.navigationController?.show(registerView, sender: true)
-        }
+extension LoginRouter: LoginRoute {
+    
+    func toHome() {
+        let homeView                    = HomeBuilder.make()
+        homeView.modalPresentationStyle = .fullScreen
+        homeView.modalTransitionStyle   = .crossDissolve
+        view.show(homeView, sender: nil)
+    }
+    
+    func toRegister() {
+        let registerView = RegisterBuilder.make()
+        view.navigationController?.show(registerView, sender: true)
     }
 }
