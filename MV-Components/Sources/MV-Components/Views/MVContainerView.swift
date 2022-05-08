@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class MVContainerView: UIView {
+public class MVContainerView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

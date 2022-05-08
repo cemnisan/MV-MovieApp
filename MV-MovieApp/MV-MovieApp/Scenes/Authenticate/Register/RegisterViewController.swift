@@ -10,12 +10,9 @@ import MV_Components
 
 final class RegisterViewController: BaseAuthViewController {
     
-    private let nameLabel     = MVSecondaryLabel(textAlignment: .left,
-                                                 fontSize: 21,
-                                                 textColor: K.Auth.labelTextColor,
-                                                 text: K.Auth.nameLabel)
+    private let nameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: K.Auth.labelTextColor, text: K.Auth.nameLabel)
     private let nameTextField = MVSignUpTextFields(placeHolder: K.Auth.nameTextField)
-  
+    
     var registerPresenter: RegisterPresenterProtocol!
     
     override func viewDidLoad() {
@@ -54,8 +51,8 @@ final class RegisterViewController: BaseAuthViewController {
     
     override func userDidTappedActionButton() {
         registerPresenter.register(username: nameTextField.text!,
-                                                   email: emailTextField.text!,
-                                                   password: passwordTextField.text!)
+                                   email: emailTextField.text!,
+                                   password: passwordTextField.text!)
     }
     
     override func userDidTappedAccountButton() {
@@ -79,7 +76,7 @@ extension RegisterViewController {
         configureActionButton()
         layoutAccount()
     }
-
+    
     // MARK: - Configure Name Elements
     private func configureNameElements() {
         [nameLabel, nameTextField].forEach {
@@ -102,16 +99,20 @@ extension RegisterViewController {
 }
 
 // MARK: - Register View Protocol
-extension RegisterViewController: RegisterViewProtocol {
-    func handleOutput(_ output: RegisterPresenterOutput) {
-        switch output {
-        case .setLoading(let isLoading):
-            print(isLoading)
-        case .setError(let error):
-            showErrorAlert(with: "Register Error",
-                           message: error.localizedDescription,
-                           buttonTitle: "OK")
-        }
+extension RegisterViewController: RegisterPresenterOutput {
+    
+    func displayIndicatorView() {
+        showLoadingView()
+    }
+    
+    func dismissIndicatorView() {
+        dismissLoadingView()
+    }
+    
+    func showError(error: Error) {
+        showErrorAlert(with: "Register Error",
+                       message: error.localizedDescription,
+                       buttonTitle: "OK")
     }
 }
 

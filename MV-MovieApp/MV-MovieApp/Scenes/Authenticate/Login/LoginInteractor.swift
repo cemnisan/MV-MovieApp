@@ -11,7 +11,7 @@ import UIKit.UIViewController
 final class LoginInteractor: LoginInteractorProtocol {
     
     var service: LoginService
-    weak var delegate: LoginInteractorDelegate?
+    weak var delegate: LoginInteractorOutput?
     var user: UserPresentation!
     
     init(service: LoginService) {
@@ -23,12 +23,17 @@ final class LoginInteractor: LoginInteractorProtocol {
 extension LoginInteractor {
     
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        service.login(presenterViewController: presenter) { (result) in
+        delegate?.displayLoadingIndicator()
+        
+        service.login(presenterViewController: presenter) { [weak self] (result) in
+            guard let self = self else { return }
+            self.delegate?.dismissLoadingIndicator()
+            
             switch result {
-            case .success(let user):
-                self.delegate?.handleOutput(.showHomePage(user))
+            case .success(_):
+                self.delegate?.showHome()
             case .failure(let error):
-                self.delegate?.handleOutput(.setError(error))
+                self.delegate?.showError(error: error)
             }
         }
     }
@@ -36,18 +41,23 @@ extension LoginInteractor {
     func login(with email: String, password: String) {
         do {
             try Validation.validate(email: email, password: password)
-            
-            service.login(with: email, password: password) { (result) in
+            delegate?.displayLoadingIndicator()
+
+            service.login(with: email,
+                          password: password) { [weak self] (result) in
+                guard let self = self else { return }
+                self.delegate?.dismissLoadingIndicator()
+                
                 switch result {
                 case .success(let user):
                     print(user)
-                    self.delegate?.handleOutput(.showHomePage(user))
+                    self.delegate?.showHome()
                 case .failure(let error):
-                    self.delegate?.handleOutput(.setError(error))
+                    self.delegate?.showError(error: error)
                 }
             }
         } catch {
-            self.delegate?.handleOutput(.setError(error))
+            delegate?.showError(error: error)
         }
     }
 }

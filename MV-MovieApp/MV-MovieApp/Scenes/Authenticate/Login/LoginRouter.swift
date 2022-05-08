@@ -21,7 +21,7 @@ extension LoginRouter: LoginRouterProtocol {
 
     func navigate(to route: LoginRoute) {
         switch route {
-        case .home(_):
+        case .home:
             let homeView                    = HomeBuilder.make()
             homeView.modalPresentationStyle = .fullScreen
             homeView.modalTransitionStyle   = .crossDissolve

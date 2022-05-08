@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SignOutService {
-    func signOut(completed: @escaping (Result<Bool, Error>) -> Void)
+    func signOut(completed: @escaping (Error?) -> Void)
 }

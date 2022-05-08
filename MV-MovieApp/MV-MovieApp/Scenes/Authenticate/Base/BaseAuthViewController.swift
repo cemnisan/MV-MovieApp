@@ -8,46 +8,30 @@
 import UIKit
 import MV_Components
 
-class BaseAuthViewController: UIViewController {
+class BaseAuthViewController: BaseViewController {
     
-    private let screenDescriptionLabel    = MVSecondaryLabel(textAlignment: .left,
-                                                             fontSize: 16,
-                                                             textColor: K.Auth.globalColor,
-                                                             text: nil)
+    let descriptionLabel         = MVSecondaryLabel(textAlignment: .left,fontSize: 16,textColor: K.Auth.globalColor,text: nil)
     
-    let appleView                         = MVContainerView(backgroundColor: K.Auth.childViewsColor)
-    let googleView                        = MVContainerView(backgroundColor: K.Auth.childViewsColor)
+    let appleView                = MVContainerView(backgroundColor: K.Auth.childViewsColor)
+    let googleView               = MVContainerView(backgroundColor: K.Auth.childViewsColor)
     
-    let emailLabel                        = MVSecondaryLabel(textAlignment: .left,
-                                                             fontSize: 24,
-                                                             textColor: K.Auth.labelTextColor,
-                                                             text: K.Auth.emailLabel)
-    let emailTextField                    = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
+    let emailLabel               = MVSecondaryLabel(textAlignment: .left,fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.emailLabel)
+    let emailTextField           = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
     
-    private let passwordLabel             = MVSecondaryLabel(textAlignment: .left,
-                                                             fontSize: 24,
-                                                             textColor: K.Auth.labelTextColor,
-                                                             text: K.Auth.passwordLabel)
-    let passwordTextField                 = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    let passwordLabel            = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.passwordLabel)
+    let passwordTextField        = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
     
-    private let passwordVisibilityButton  = MVButton(frame: .zero)
-    private let actionButton              = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)
-    private let accountLabel              = MVSecondaryLabel(textAlignment: .center,
-                                                             fontSize: 20,
-                                                             textColor: K.Auth.globalColor,
-                                                             text: nil)
-    private let accountActionButton       = MVButton(frame: .zero)
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    let passwordVisibilityButton = MVButton(frame: .zero)
+    let actionButton             = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)
+    let accountLabel             = MVSecondaryLabel(textAlignment: .center, fontSize: 20,textColor: K.Auth.globalColor, text: nil)
+    let accountActionButton      = MVButton(frame: .zero)
 }
 
-// MARK: - Add
+// MARK: - Add Elements
 extension BaseAuthViewController {
     
     func addElements() {
-        addSubviews(views: screenDescriptionLabel,
+        addSubviews(views: descriptionLabel,
                     passwordLabel,
                     passwordTextField,
                     appleView,
@@ -60,11 +44,11 @@ extension BaseAuthViewController {
 // MARK: - Configure
 extension BaseAuthViewController {
     
-    // MARK: - Configure VC.
+    // MARK: - Configure ViewController
     func configureViewController(on controller: SelectAuthController) {
         view.backgroundColor                                             = K.Auth.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles           = true
-
+        
         switch controller {
         case .login:
             title                                                        = K.Auth.loginNavTitle
@@ -75,14 +59,14 @@ extension BaseAuthViewController {
             navigationController?.navigationBar.tintColor                = K.Auth.labelTextColor
         }
     }
-    
+        
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
         NSLayoutConstraint.activate([
-            screenDescriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            screenDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            screenDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            screenDescriptionLabel.heightAnchor.constraint(equalToConstant: 20)
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -130,7 +114,7 @@ extension BaseAuthViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: screenDescriptionLabel.bottomAnchor, constant: 42),
+            stackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 42),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             stackView.heightAnchor.constraint(equalToConstant: 60)
@@ -185,7 +169,7 @@ extension BaseAuthViewController {
             stackView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
-
+    
 }
 
 // MARK: - Set UI
@@ -194,13 +178,13 @@ extension BaseAuthViewController {
     func setUIElements(for controller: SelectAuthController) {
         switch controller {
         case .login:
-            screenDescriptionLabel.text = K.Auth.loginScreenTitle
-            accountLabel.text           = K.Auth.loginAccountLabel
+            descriptionLabel.text = K.Auth.loginScreenTitle
+            accountLabel.text     = K.Auth.loginAccountLabel
             actionButton.setTitle(K.Auth.loginActionButton, for: .normal)
             accountActionButton.setTitle(K.Auth.loginAccountActionButton, for: .normal)
         case .register:
-            screenDescriptionLabel.text = K.Auth.registerScreenTitle
-            accountLabel.text           = K.Auth.registerAccountLabel
+            descriptionLabel.text = K.Auth.registerScreenTitle
+            accountLabel.text     = K.Auth.registerAccountLabel
             actionButton.setTitle(K.Auth.registerActionButton, for: .normal)
             accountActionButton.setTitle(K.Auth.registerAccountActionButton, for: .normal)
         }
@@ -211,7 +195,7 @@ extension BaseAuthViewController {
 extension BaseAuthViewController {
     
     func add(childVC: UIViewController,
-              to containerView: UIView) {
+             to containerView: UIView) {
         addChild(childVC)
         containerView.addSubview(childVC.view)
         childVC.view.frame = containerView.bounds

@@ -78,7 +78,8 @@ extension MVErrorAlertController {
     
     private func configureAlertMessageLabel() {
         containerView.addSubview(alertMessageLabel)
-        alertMessageLabel.text = alertMessage
+        alertMessageLabel.text          = alertMessage
+        alertMessageLabel.numberOfLines = 3
         
         NSLayoutConstraint.activate([
             alertMessageLabel.topAnchor.constraint(equalTo: alertTitleLabel.bottomAnchor, constant: 8),
@@ -90,8 +91,7 @@ extension MVErrorAlertController {
     
     private func configureAlertDoneButton() {
         containerView.addSubview(alertDoneButton)
-        alertDoneButton.setTitle(alertButtonTitle,
-                                 for: .normal)
+        alertDoneButton.setTitle(alertButtonTitle, for: .normal)
         alertDoneButton.addTarget(self,
                                   action: #selector(dismissAlertViewController),
                                   for: .touchUpInside)

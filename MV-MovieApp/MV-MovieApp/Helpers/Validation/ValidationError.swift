@@ -9,7 +9,7 @@ import Foundation
 
 enum ValidationError: Error {
     case emptyUsername
-    case invalidUsername
+    case invalidUsername(username: String)
     case emptyEmail
     case invalidEmail
     case emptyPassword

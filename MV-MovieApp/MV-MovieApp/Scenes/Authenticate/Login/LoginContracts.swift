@@ -10,20 +10,17 @@ import UIKit.UIViewController
 
 // MARK: - Interactor
 protocol LoginInteractorProtocol: AnyObject {
-    var delegate: LoginInteractorDelegate? { get set }
+    var delegate: LoginInteractorOutput? { get set }
     
     func loginWithGoogle(presenterViewController presenter: UIViewController)
-    func login(with email: String, password: String)
+    func login(with email: String, password: String) 
 }
 
-protocol LoginInteractorDelegate: AnyObject {
-    func handleOutput(_ output: LoginInteractorOutput)
-}
-
-enum LoginInteractorOutput {
-    case setLoading(Bool)
-    case showHomePage(UserPresentation)
-    case setError(Error)
+protocol LoginInteractorOutput: AnyObject {
+    func displayLoadingIndicator()
+    func dismissLoadingIndicator()
+    func showError(error: Error)
+    func showHome()
 }
 
 // MARK: - Presenter
@@ -33,13 +30,10 @@ protocol LoginPresenterProtocol: AnyObject {
     func userTappedRegisterButton()
 }
 
-protocol LoginViewProtocol: AnyObject {
-    func handleOutput(_ output: LoginPresenterOutput)
-}
-
-enum LoginPresenterOutput {
-    case setLoginLoading(Bool)
-    case setError(Error)
+protocol LoginPresenterOutput: AnyObject {
+    func displayLoadingIndicator()
+    func dismissLoadingIndicator()
+    func showError(error: Error)
 }
 
 // MARK: - Router
@@ -48,6 +42,6 @@ protocol LoginRouterProtocol: AnyObject {
 }
 
 enum LoginRoute {
-    case home(UserPresentation)
+    case home
     case register
 }

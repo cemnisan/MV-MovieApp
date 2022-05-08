@@ -11,7 +11,7 @@ import UIKit.UIViewController
 final class RegisterInteractor {
     
     var service: RegisterService
-    weak var delegate: RegisterInteractorDelegate?
+    weak var delegate: RegisterInteractorOutput?
     var user: UserPresentation!
     
     init(service: RegisterService) {
@@ -22,13 +22,18 @@ final class RegisterInteractor {
 // MARK: - Interactor Protocol
 extension RegisterInteractor: RegisterInteractorProtocol {
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        service.login(presenterViewController: presenter) { (result) in
+        delegate?.displayIndicatorView()
+        
+        service.login(presenterViewController: presenter) { [weak self] (result) in
+            guard let self = self else { return }
+            self.delegate?.dismissIndicatorView()
+            
             switch result {
             case .success(let user):
                 print(user)
-                self.delegate?.handleOutput(.showHomePage)
+                self.delegate?.showHomePage()
             case .failure(let error):
-                self.delegate?.handleOutput(.setError(error))
+                self.delegate?.showError(error: error)
             }
         }
     }
@@ -40,19 +45,24 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             try Validation.validate(username: username,
                                     email: email,
                                     password: password)
+            delegate?.displayIndicatorView()
+            
             service.register(with: username,
                              email: email,
-                             password: password) { (result) in
+                             password: password) { [weak self] (result) in
+                guard let self = self else { return }
+                self.delegate?.dismissIndicatorView()
+                
                 switch result {
                 case .success(let user):
                     print(user)
-                    self.delegate?.handleOutput(.showHomePage)
+                    self.delegate?.showHomePage()
                 case .failure(let error):
-                    print(error)
+                    self.delegate?.showError(error: error)
                 }
             }
         } catch {
-            delegate?.handleOutput(.setError(error))
+            delegate?.showError(error: error)
         }
     }
 }

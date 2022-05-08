@@ -12,8 +12,8 @@ extension ValidationError: LocalizedError {
         switch self {
         case .emptyUsername:
             return "Empty username"
-        case .invalidUsername:
-            return "Invalid username"
+        case .invalidUsername(let username):
+            return "Invalid \(username), please change it."
         case .emptyEmail:
             return "Empty Email"
         case .invalidEmail:

@@ -10,11 +10,11 @@ import UIKit.UIViewController
 
 final class RegisterPresenter {
     
-    private unowned let view: RegisterViewProtocol
+    private unowned let view: RegisterPresenterOutput
     private let interactor: RegisterInteractorProtocol
     private let router: RegisterRouter
     
-    init(view: RegisterViewProtocol,
+    init(view: RegisterPresenterOutput,
          interactor: RegisterInteractorProtocol,
          router: RegisterRouter) {
         self.view       = view
@@ -32,23 +32,29 @@ extension RegisterPresenter: RegisterPresenterProtocol {
     }
     
     func register(username: String,
-                                  email: String,
-                                  password: String) {
+                  email: String,
+                  password: String) {
         interactor.register(with: username,
                             email: email,
                             password: password)
     }
 }
 
-extension RegisterPresenter: RegisterInteractorDelegate {
-    func handleOutput(_ output: RegisterInteractorOutput) {
-        switch output {
-        case .setLoading(let isLoading):
-            view.handleOutput(.setLoading(isLoading))
-        case .showHomePage:
-            router.navigate(to: .home)
-        case .setError(let error):
-            view.handleOutput(.setError(error))
-        }
+extension RegisterPresenter: RegisterInteractorOutput {
+    
+    func showError(error: Error) {
+        view.showError(error: error)
+    }
+    
+    func displayIndicatorView() {
+        view.displayIndicatorView()
+    }
+    
+    func dismissIndicatorView() {
+        view.dismissIndicatorView()
+    }
+    
+    func showHomePage() {
+        router.navigate(to: .home)
     }
 }

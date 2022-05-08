@@ -37,6 +37,8 @@ final class LoginViewController: BaseAuthViewController {
             ])
         }
         
+        emailTextField.text = "cnisan2132@gmail.com"
+        
         NSLayoutConstraint.activate([
             emailLabel.topAnchor.constraint(equalTo: appleView.bottomAnchor, constant: 30),
             emailLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -88,16 +90,19 @@ extension LoginViewController: AuthGoogleDelegate {
 }
 
 // MARK: - Login Up View Protocol
-extension LoginViewController: LoginViewProtocol {
+extension LoginViewController: LoginPresenterOutput {
     
-    func handleOutput(_ output: LoginPresenterOutput) {
-        switch output {
-        case .setLoginLoading(let isLoading):
-            print(isLoading)
-        case .setError(let error):
-            showErrorAlert(with: "Login Error",
-                           message: error.localizedDescription,
-                           buttonTitle: "OK")
-        }
+    func displayLoadingIndicator() {
+        actionButton.isEnabled = false
+        showLoadingView()
+    }
+    
+    func dismissLoadingIndicator() {
+        actionButton.isEnabled = true
+        dismissLoadingView()
+    }
+    
+    func showError(error: Error) {
+        showErrorAlert(with: "Login Error", message: error.localizedDescription, buttonTitle: "OK")
     }
 }
