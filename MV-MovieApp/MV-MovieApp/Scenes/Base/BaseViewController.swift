@@ -10,10 +10,10 @@ import MV_Components
 
 class BaseViewController: UIViewController {
     
-    var loadingIndicatorView: MVLoadingIndicator!
+    private var loadingIndicatorView: MVLoadingIndicator!
 
     func showLoadingView() {
-        loadingIndicatorView = MVLoadingIndicator(backgroundColor: K.Auth.backgroundColor)
+        loadingIndicatorView = MVLoadingIndicator(backgroundColor: K.Styles.backgroundColor)
         view.addSubview(loadingIndicatorView)
         
         NSLayoutConstraint.activate([

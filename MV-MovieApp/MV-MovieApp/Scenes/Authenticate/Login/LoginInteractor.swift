@@ -6,45 +6,29 @@
 //
 
 import Foundation
-import UIKit.UIViewController
 
-final class LoginInteractor: LoginInteractorProtocol {
+final class LoginInteractor: BaseAuthenticateInteractor {
     
-    var service: LoginService
-    weak var delegate: LoginInteractorOutput?
+    var loginService: LoginService
     var user: UserPresentation!
     
-    init(service: LoginService) {
-        self.service = service
+    init(loginService: LoginService) {
+        self.loginService = loginService
+        
+        super.init(service: loginService)
     }
 }
 
 // MARK: - Google Services Interactor
-extension LoginInteractor {
-    
-    func loginWithGoogle(presenterController presenter: UIViewController) {
-        delegate?.displayLoadingIndicator()
-        
-        service.login(presenterViewController: presenter) { [weak self] (result) in
-            guard let self = self else { return }
-            self.delegate?.dismissLoadingIndicator()
-            
-            switch result {
-            case .success(_):
-                self.delegate?.showHome()
-            case .failure(let error):
-                self.delegate?.showError(error: error)
-            }
-        }
-    }
+extension LoginInteractor: LoginInteractorProtocol {
     
     func login(with email: String, password: String) {
         do {
             try Validation.validate(email: email, password: password)
             delegate?.displayLoadingIndicator()
-
-            service.login(with: email,
-                          password: password) { [weak self] (result) in
+            
+            loginService.login(with: email,
+                           password: password) { [weak self] (result) in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
                 

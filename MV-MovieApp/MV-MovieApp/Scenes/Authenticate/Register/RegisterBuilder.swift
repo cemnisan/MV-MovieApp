@@ -11,13 +11,13 @@ final class RegisterBuilder {
     
     static func make() -> RegisterViewController {
         let viewController = RegisterViewController()
-        let interactor     = RegisterInteractor(service: GoogleAuthenticatorAdapter())
+        let interactor     = RegisterInteractor(registerService: GoogleAuthenticatorAdapter())
         let router         = RegisterRouter(view: viewController)
         let presenter      = RegisterPresenter(view: viewController,
                                              interactor: interactor,
                                              router: router)
         viewController.registerPresenter = presenter
-        
+
         return viewController
     }
 }

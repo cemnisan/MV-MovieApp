@@ -9,8 +9,6 @@ import Foundation
 
 // MARK: - Register Interactor
 protocol RegisterInteractorProtocol: BaseAuthenticateInteractorProtocol {
-    var delegate: RegisterInteractorOutput? { get set }
-    
     func register(with username: String, email: String, password: String)
 }
 

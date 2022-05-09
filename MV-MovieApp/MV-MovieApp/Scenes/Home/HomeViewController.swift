@@ -33,10 +33,10 @@ extension HomeViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = K.Auth.backgroundColor
+        view.backgroundColor = K.Styles.backgroundColor
         title                = "Home"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
+        navigationController?.navigationBar.largeTitleTextAttributes = K.Styles.navTitleColor
     }
     
     private func configureUsernameLabel() {

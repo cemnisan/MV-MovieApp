@@ -10,20 +10,20 @@ import MV_Components
 
 class BaseAuthViewController: BaseViewController {
     
-    let descriptionLabel         = MVSecondaryLabel(textAlignment: .left,fontSize: 16,textColor: K.Auth.globalColor,text: nil)
+    let viewTitle                = MVSecondaryLabel(textAlignment: .left,fontSize: 16,textColor: K.Styles.globalColor,text: nil)
     
-    let appleView                = MVContainerView(backgroundColor: K.Auth.childViewsColor)
-    let googleView               = MVContainerView(backgroundColor: K.Auth.childViewsColor)
+    let appleView                = MVContainerView(backgroundColor: K.Styles.childViewsColor)
+    let googleView               = MVContainerView(backgroundColor: K.Styles.childViewsColor)
     
-    let emailLabel               = MVSecondaryLabel(textAlignment: .left,fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.emailLabel)
-    let emailTextField           = MVSignUpTextFields(placeHolder: K.Auth.emailTextField)
+    let emailLabel               = MVSecondaryLabel(textAlignment: .left,fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.emailLabel)
+    let emailTextField           = MVAuthenticatesTextField(placeHolder: K.Auth.emailTextField)
     
-    let passwordLabel            = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Auth.labelTextColor, text: K.Auth.passwordLabel)
-    let passwordTextField        = MVSignUpTextFields(placeHolder: K.Auth.passwordTextField)
+    let passwordLabel            = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.passwordLabel)
+    let passwordTextField        = MVAuthenticatesTextField(placeHolder: K.Auth.passwordTextField)
     
     let passwordVisibilityButton = MVButton(frame: .zero)
-    let actionButton             = MVButton(backgroundColor: K.Auth.actionButtonColor, title: nil)
-    let accountLabel             = MVSecondaryLabel(textAlignment: .center, fontSize: 20,textColor: K.Auth.globalColor, text: nil)
+    let actionButton             = MVButton(backgroundColor: K.Styles.actionButtonColor, title: nil)
+    let accountLabel             = MVSecondaryLabel(textAlignment: .center, fontSize: 20,textColor: K.Styles.globalColor, text: nil)
     let accountActionButton      = MVButton(frame: .zero)
 }
 
@@ -31,7 +31,7 @@ class BaseAuthViewController: BaseViewController {
 extension BaseAuthViewController {
     
     func addElements() {
-        addSubviews(views: descriptionLabel,
+        addSubviews(views: viewTitle,
                     passwordLabel,
                     passwordTextField,
                     appleView,
@@ -46,27 +46,27 @@ extension BaseAuthViewController {
     
     // MARK: - Configure ViewController
     func configureViewController(on controller: SelectAuthController) {
-        view.backgroundColor                                             = K.Auth.backgroundColor
+        view.backgroundColor                                             = K.Styles.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles           = true
         
         switch controller {
         case .login:
             title                                                        = K.Auth.loginNavTitle
-            navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
+            navigationController?.navigationBar.largeTitleTextAttributes = K.Styles.navTitleColor
         case .register:
             title                                                        = K.Auth.registerNavTitle
-            navigationController?.navigationBar.largeTitleTextAttributes = K.Auth.navTitleColor
-            navigationController?.navigationBar.tintColor                = K.Auth.labelTextColor
+            navigationController?.navigationBar.largeTitleTextAttributes = K.Styles.navTitleColor
+            navigationController?.navigationBar.tintColor                = K.Styles.labelTextColor
         }
     }
         
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 20)
+            viewTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            viewTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+            viewTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
+            viewTitle.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     
@@ -114,7 +114,7 @@ extension BaseAuthViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 42),
+            stackView.topAnchor.constraint(equalTo: viewTitle.bottomAnchor, constant: 42),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
             stackView.heightAnchor.constraint(equalToConstant: 60)
@@ -123,7 +123,7 @@ extension BaseAuthViewController {
     
     // MARK: - Configure Password Visibility
     func configurePasswordVisibilty() {
-        passwordVisibilityButton.tintColor = K.Auth.globalColor
+        passwordVisibilityButton.tintColor = K.Styles.globalColor
         passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
         passwordVisibilityButton.addTarget(self, action: #selector(changePasswordVisibility), for: .touchUpInside)
         
@@ -178,12 +178,12 @@ extension BaseAuthViewController {
     func setUIElements(for controller: SelectAuthController) {
         switch controller {
         case .login:
-            descriptionLabel.text = K.Auth.loginScreenTitle
+            viewTitle.text        = K.Auth.loginScreenTitle
             accountLabel.text     = K.Auth.loginAccountLabel
             actionButton.setTitle(K.Auth.loginActionButton, for: .normal)
             accountActionButton.setTitle(K.Auth.loginAccountActionButton, for: .normal)
         case .register:
-            descriptionLabel.text = K.Auth.registerScreenTitle
+            viewTitle.text        = K.Auth.registerScreenTitle
             accountLabel.text     = K.Auth.registerAccountLabel
             actionButton.setTitle(K.Auth.registerActionButton, for: .normal)
             accountActionButton.setTitle(K.Auth.registerAccountActionButton, for: .normal)

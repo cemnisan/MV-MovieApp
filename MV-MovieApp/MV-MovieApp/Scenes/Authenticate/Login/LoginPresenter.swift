@@ -8,53 +8,35 @@
 import Foundation
 import UIKit.UIViewController
 
-final class LoginPresenter {
-    
-    private unowned let view: LoginPresenterOutput
-    private let interactor: LoginInteractorProtocol
-    private let router: LoginRoute
+final class LoginPresenter: BaseAuthenticatePresenter {
+ 
+    private unowned let loginView: LoginPresenterOutput
+    private let loginInteractor: LoginInteractorProtocol
+    private let loginRouter: LoginRoute
     
     init(view: LoginPresenterOutput,
          interactor: LoginInteractorProtocol,
          router: LoginRoute) {
-        self.view       = view
-        self.interactor = interactor
-        self.router     = router
-        
-        self.interactor.delegate = self
+        self.loginView       = view
+        self.loginInteractor = interactor
+        self.loginRouter     = router
+
+        super.init(view: view,
+                   interactor: interactor,
+                   router: router)
+        loginInteractor.delegate = self
     }
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
-    
-    func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        interactor.loginWithGoogle(presenterController: presenter)
-    }
-    
+
     func login(with email: String, password: String) {
-        interactor.login(with: email, password: password)
+        loginInteractor.login(with: email, password: password)
     }
 
     func userTappedRegisterButton() {
-        router.toRegister()
+        loginRouter.toRegister()
     }
 }
 
-extension LoginPresenter: LoginInteractorOutput {
-    
-    func displayLoadingIndicator() {
-        view.displayLoadingIndicator()
-    }
-    
-    func dismissLoadingIndicator() {
-        view.dismissLoadingIndicator()
-    }
-    
-    func showError(error: Error) {
-        view.showError(error: error)
-    }
-    
-    func showHome() {
-        router.toHome()
-    }
-}
+extension LoginPresenter: LoginInteractorOutput {}

@@ -8,49 +8,31 @@
 import Foundation
 import UIKit.UIViewController
 
-final class RegisterPresenter {
+final class RegisterPresenter: BaseAuthenticatePresenter {
     
-    private unowned let view: RegisterPresenterOutput
-    private let interactor: RegisterInteractorProtocol
-    private let router: RegisterRoute
+    private unowned let registerView: RegisterPresenterOutput
+    private let registerInteractor: RegisterInteractorProtocol
+    private let registerRouter: RegisterRoute
     
     init(view: RegisterPresenterOutput,
          interactor: RegisterInteractorProtocol,
          router: RegisterRoute) {
-        self.view       = view
-        self.interactor = interactor
-        self.router     = router
+        self.registerView       = view
+        self.registerInteractor = interactor
+        self.registerRouter     = router
         
-        self.interactor.delegate = self
+        super.init(view: view,
+                   interactor: interactor,
+                   router: router)
+        registerInteractor.delegate = self
     }
 }
 
 extension RegisterPresenter: RegisterPresenterProtocol {
     
-    func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        interactor.loginWithGoogle(presenterController: presenter)
-    }
-    
-    func register(username: String,email: String, password: String) {
-        interactor.register(with: username, email: email, password: password)
+    func register(username: String, email: String, password: String) {
+        registerInteractor.register(with: username, email: email, password: password)
     }
 }
 
-extension RegisterPresenter: RegisterInteractorOutput {
-    
-    func showError(error: Error) {
-        view.showError(error: error)
-    }
-    
-    func displayLoadingIndicator() {
-        view.displayLoadingIndicator()
-    }
-    
-    func dismissLoadingIndicator() {
-        view.dismissLoadingIndicator()
-    }
-    
-    func showHome() {
-        router.toHome()
-    }
-}
+extension RegisterPresenter: RegisterInteractorOutput {}

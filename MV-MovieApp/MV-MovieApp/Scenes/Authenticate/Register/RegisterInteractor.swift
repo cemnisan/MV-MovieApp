@@ -6,37 +6,21 @@
 //
 
 import Foundation
-import UIKit.UIViewController
 
-final class RegisterInteractor {
+final class RegisterInteractor: BaseAuthenticateInteractor {
     
-    var service: RegisterService
-    weak var delegate: RegisterInteractorOutput?
+    var registerService: RegisterService
     var user: UserPresentation!
     
-    init(service: RegisterService) {
-        self.service = service
+    init(registerService: RegisterService) {
+        self.registerService = registerService
+        
+        super.init(service: registerService)
     }
 }
 
 // MARK: - Interactor Protocol
 extension RegisterInteractor: RegisterInteractorProtocol {
-    func loginWithGoogle(presenterController presenter: UIViewController) {
-        delegate?.displayLoadingIndicator()
-        
-        service.login(presenterViewController: presenter) { [weak self] (result) in
-            guard let self = self else { return }
-            self.delegate?.dismissLoadingIndicator()
-            
-            switch result {
-            case .success(let user):
-                print(user)
-                self.delegate?.showHome()
-            case .failure(let error):
-                self.delegate?.showError(error: error)
-            }
-        }
-    }
     
     func register(with username: String,
                   email: String,
@@ -47,7 +31,7 @@ extension RegisterInteractor: RegisterInteractorProtocol {
                                     password: password)
             delegate?.displayLoadingIndicator()
             
-            service.register(with: username,
+            registerService.register(with: username,
                              email: email,
                              password: password) { [weak self] (result) in
                 guard let self = self else { return }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class MVSignUpTextFields: UITextField {
+public final class MVAuthenticatesTextField: UITextField {
 
     let padding = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 5)
     
@@ -42,7 +42,7 @@ public final class MVSignUpTextFields: UITextField {
     }
 }
 
-extension MVSignUpTextFields {
+extension MVAuthenticatesTextField {
     
     private func configure() {
         layer.cornerRadius        = 10
@@ -55,6 +55,7 @@ extension MVSignUpTextFields {
                 
         backgroundColor           = #colorLiteral(red: 0.2076013088, green: 0.2020693719, blue: 0.2528569102, alpha: 1)
         autocorrectionType        = .no
+        autocapitalizationType    = .none
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

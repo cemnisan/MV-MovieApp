@@ -17,7 +17,7 @@ final class GoogleAuthenticatorAdapter {
     init() {}
 }
 
-// MARK: - Base Auth Service
+// MARK: - Google Sign In Service
 extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
     
     func login(presenterViewController presenter: UIViewController,

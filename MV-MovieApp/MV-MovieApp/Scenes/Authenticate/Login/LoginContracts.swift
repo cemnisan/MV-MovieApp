@@ -9,8 +9,6 @@ import Foundation
 
 // MARK: - Login Interactor
 protocol LoginInteractorProtocol: BaseAuthenticateInteractorProtocol {
-    var delegate: LoginInteractorOutput? { get set }
-    
     func login(with email: String, password: String) 
 }
 

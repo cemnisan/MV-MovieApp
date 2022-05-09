@@ -10,6 +10,8 @@ import UIKit.UIViewController
 
 // MARK: - Base Interactor
 protocol BaseAuthenticateInteractorProtocol: AnyObject {
+    var delegate: BaseAuthenticateInteractorOutput? { get set }
+    
     func loginWithGoogle(presenterController presenter: UIViewController)
 }
 
