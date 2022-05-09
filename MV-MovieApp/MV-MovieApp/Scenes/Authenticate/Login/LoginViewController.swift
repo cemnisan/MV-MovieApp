@@ -19,6 +19,18 @@ final class LoginViewController: BaseAuthViewController {
         setUIElements(for: .login)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func addChildElements() {
         let loginWithAppleViewController  = AuthAppleViewController(delegate: self)
         let loginWithGoogleViewController = AuthGoogleViewController(delegate: self)

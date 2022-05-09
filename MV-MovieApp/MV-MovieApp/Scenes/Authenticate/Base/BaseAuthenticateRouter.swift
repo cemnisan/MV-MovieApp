@@ -19,8 +19,8 @@ class BaseAuthenticateRouter {
 extension BaseAuthenticateRouter:BaseAuthenticateRoute {
     
     func toHome() {
-        let homeView = HomeBuilder.make()
-        homeView.configureModal()
+        let homeView = TabBar.createTabBar()
+        AppData.enableAutoLogin = true
         view.show(homeView, sender: nil)
     }
 }

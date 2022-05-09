@@ -38,8 +38,7 @@ extension RegisterInteractor: RegisterInteractorProtocol {
                 self.delegate?.dismissLoadingIndicator()
                 
                 switch result {
-                case .success(let user):
-                    print(user)
+                case .success(_):
                     self.delegate?.showHome()
                 case .failure(let error):
                     self.delegate?.showError(error: error)

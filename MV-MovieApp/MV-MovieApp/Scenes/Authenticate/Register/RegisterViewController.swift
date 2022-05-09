@@ -22,6 +22,18 @@ final class RegisterViewController: BaseAuthViewController {
         setUIElements(for: .register)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func addChildElements() {
         let registerWithAppleViewController  = AuthAppleViewController(delegate: self)
         let registerWithGoogleViewController = AuthGoogleViewController(delegate: self)
