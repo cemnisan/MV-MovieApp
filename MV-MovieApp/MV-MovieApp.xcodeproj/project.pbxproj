@@ -58,6 +58,8 @@
 		7E8AA5452826C15700A90ED2 /* SignOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5442826C15700A90ED2 /* SignOutService.swift */; };
 		7E8AA54A2826CADE00A90ED2 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5492826CADE00A90ED2 /* ValidationError.swift */; };
 		7E8AA54C2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */; };
+		7E9373BC2829B529008A7918 /* ProfileEditBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */; };
+		7E9373BE2829B52E008A7918 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */; };
 		7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */; };
 		7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */; };
 		7ECDE3512828175300FE76BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDE3502828175300FE76BC /* BaseViewController.swift */; };
@@ -126,6 +128,8 @@
 		7E8AA5442826C15700A90ED2 /* SignOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutService.swift; sourceTree = "<group>"; };
 		7E8AA5492826CADE00A90ED2 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Ex.swift"; sourceTree = "<group>"; };
+		7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditBuilder.swift; sourceTree = "<group>"; };
+		7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		7EC7E8B3281F4467003155F1 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAuthController.swift; sourceTree = "<group>"; };
 		7ECDE3502828175300FE76BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -243,8 +247,8 @@
 		7E8025332825CE8100D2E0B0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */,
-				7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */,
+				7E9373BA2829B4D3008A7918 /* Edit */,
+				7E9373B92829B4CD008A7918 /* Main */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -339,6 +343,24 @@
 				7E8AA53A2826963E00A90ED2 /* Protocols */,
 			);
 			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		7E9373B92829B4CD008A7918 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */,
+				7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7E9373BA2829B4D3008A7918 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */,
+				7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		7EC7E8B2281F4454003155F1 /* Base */ = {
@@ -583,6 +605,7 @@
 				7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */,
 				7E68505A281F2ADD007C15B0 /* LoginInteractor.swift in Sources */,
 				7E12F83A28271ED500B3C966 /* HomeMovies.swift in Sources */,
+				7E9373BE2829B52E008A7918 /* ProfileEditViewController.swift in Sources */,
 				7E5B9061281FE1BD00D0B278 /* Constant+API.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
@@ -625,6 +648,7 @@
 				7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */,
 				7ECDE35728283B7900FE76BC /* Constant+Styles.swift in Sources */,
 				7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */,
+				7E9373BC2829B529008A7918 /* ProfileEditBuilder.swift in Sources */,
 				7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */,
 				7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,

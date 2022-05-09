@@ -9,10 +9,10 @@ import UIKit.UIViewController
 
 final class ProfileBuilder {
     
-    static func make() -> UIViewController {
+    static func make() -> UINavigationController {
         let rootView        = ProfileViewController()
         rootView.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
         
-        return rootView
+        return UINavigationController(rootViewController: rootView)
     }
 }

@@ -25,7 +25,7 @@ public final class MVTabBar: UITabBarController {
         self.bookMarkVC = bookMarkVC
         self.profileVC  = profileVC
         
-        viewControllers = [homeVC, searchVC, bookMarkVC, profileVC]
+        viewControllers = [profileVC, searchVC, bookMarkVC, homeVC]
     }
     
     required init?(coder: NSCoder) {

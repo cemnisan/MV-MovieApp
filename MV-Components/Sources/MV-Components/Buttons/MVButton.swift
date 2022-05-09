@@ -19,18 +19,25 @@ public final class MVButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(backgroundColor: UIColor, title: String?) {
+    public convenience init(backgroundColor: UIColor,
+                            title: String?, cornerRadius: CGFloat) {
         self.init(frame: .zero)
         
         setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
+        layer.cornerRadius   = cornerRadius
+    }
+    
+    public convenience init(image: UIImage) {
+        self.init(frame: .zero)
+        
+        setBackgroundImage(image, for: .normal)
     }
 }
 
 extension MVButton {
     
     private func configure() {
-        layer.cornerRadius = 10
         titleLabel?.font   = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
     }

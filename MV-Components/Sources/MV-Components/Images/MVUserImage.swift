@@ -2,12 +2,12 @@
 //  File.swift
 //  
 //
-//  Created by Cem Nisan on 1.05.2022.
+//  Created by Cem Nisan on 9.05.2022.
 //
 
 import UIKit
 
-public class MVContainerView: UIView {
+public final class MVUserImage: UIImageView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,19 +19,18 @@ public class MVContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(backgroundColor: UIColor) {
+    public convenience init(cornerRadius: CGFloat) {
         self.init(frame: .zero)
         
-        self.backgroundColor = backgroundColor
+        layer.cornerRadius = cornerRadius
     }
 }
 
-extension MVContainerView {
+extension MVUserImage {
     
     private func configure() {
-        layer.cornerRadius = 10
-        layer.borderWidth  = 0.15
-        layer.borderColor  = UIColor.white.cgColor
+        clipsToBounds      = true
+        contentMode        = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

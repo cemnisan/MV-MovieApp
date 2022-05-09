@@ -1,15 +1,15 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Cem Nisan on 1.05.2022.
 //
 
 import UIKit
 
-final class MVTitleLabel: UILabel {
+public final class MVTitleLabel: UILabel {
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         configure()
@@ -19,7 +19,7 @@ final class MVTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(textAlignment: NSTextAlignment,
+    public convenience init(textAlignment: NSTextAlignment,
                      fontSize: CGFloat,
                      textColor: UIColor) {
         self.init(frame: .zero)

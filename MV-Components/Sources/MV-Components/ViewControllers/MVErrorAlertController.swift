@@ -12,7 +12,7 @@ public final class MVErrorAlertController: UIViewController {
     private let containerView     = MVAlertContainerView(frame: .zero)
     private let alertTitleLabel   = MVTitleLabel(textAlignment: .center, fontSize: 20, textColor: .label)
     private let alertMessageLabel = MVSecondaryLabel(textAlignment: .center, fontSize: 17, textColor: .label, text: nil)
-    private let alertDoneButton   = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: nil)
+    private let alertDoneButton   = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: nil, cornerRadius: 10)
     
     private var alertTitle: String?
     private var alertMessage: String?

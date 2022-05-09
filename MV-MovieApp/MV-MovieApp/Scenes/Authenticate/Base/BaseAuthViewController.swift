@@ -22,7 +22,7 @@ class BaseAuthViewController: BaseViewController {
     let passwordTextField        = MVAuthenticatesTextField(placeHolder: K.Auth.passwordTextField)
     
     let passwordVisibilityButton = MVButton(frame: .zero)
-    let actionButton             = MVButton(backgroundColor: K.Styles.actionButtonColor, title: nil)
+    let actionButton             = MVButton(backgroundColor: K.Styles.actionButtonColor, title: nil, cornerRadius: 10)
     let accountLabel             = MVSecondaryLabel(textAlignment: .center, fontSize: 20,textColor: K.Styles.globalColor, text: nil)
     let accountActionButton      = MVButton(frame: .zero)
 }

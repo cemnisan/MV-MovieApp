@@ -8,7 +8,6 @@
 import Foundation
 
 struct AppData {
-    
     @Storage(key: "enable_auto_login", defaultValue: false)
     static var enableAutoLogin: Bool
 }
