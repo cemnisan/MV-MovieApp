@@ -26,6 +26,7 @@ class BaseAuthenticatePresenter {
 }
 
 extension BaseAuthenticatePresenter: BaseAuthenticatePresenterProtocol {
+    
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
         self.interactor.loginWithGoogle(presenterController: presenter)
     }

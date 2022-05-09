@@ -25,12 +25,10 @@ extension AuthContainerViewController {
     private func configure() {
         view.addSubview(actionButton)
         
-        NSLayoutConstraint.activate([
-            actionButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            actionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            actionButton.widthAnchor.constraint(equalToConstant: 24),
-            actionButton.heightAnchor.constraint(equalToConstant: 24)
-        ])
+        actionButton.configureConstraints(centerX: (view.centerXAnchor, 0),
+                                          centerY: (view.centerYAnchor, 0))
+        actionButton.configureHeight(height: 24)
+        actionButton.configureWidth(width: 24)
     }
 }
 

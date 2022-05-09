@@ -11,7 +11,7 @@ import MV_Components
 final class LoginViewController: BaseAuthViewController {
     
     var loginPresenter: LoginPresenterProtocol!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,24 +28,18 @@ final class LoginViewController: BaseAuthViewController {
     }
     
     override func configureEmailElements() {
-        [emailLabel, emailTextField].forEach {
+        [emailLabel,
+         emailTextField
+        ].forEach {
             view.addSubview($0)
-            
-            NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22)
-            ])
+            $0.configureConstraints(leading: (view.leadingAnchor, 22),
+                                    trailing: (view.trailingAnchor, -22))
         }
+        emailLabel.configureConstraints(top: (appleView.bottomAnchor, 45))
+        emailLabel.configureHeight(height: 25)
         
-        emailTextField.text = "cnisan2132@gmail.com"
-        
-        NSLayoutConstraint.activate([
-            emailLabel.topAnchor.constraint(equalTo: appleView.bottomAnchor, constant: 30),
-            emailLabel.heightAnchor.constraint(equalToConstant: 25),
-            
-            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
-            emailTextField.heightAnchor.constraint(equalToConstant: 55)
-        ])
+        emailTextField.configureConstraints(top: (emailLabel.bottomAnchor, 10))
+        emailTextField.configureHeight(height: 55)
     }
     
     override func userDidTappedActionButton() {

@@ -19,6 +19,7 @@
 		7E528FF728293EEA00D22E08 /* BaseAuthenticateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FF628293EEA00D22E08 /* BaseAuthenticateInteractor.swift */; };
 		7E528FF9282943ED00D22E08 /* BaseAuthenticatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FF8282943ED00D22E08 /* BaseAuthenticatePresenter.swift */; };
 		7E528FFB2829474900D22E08 /* BaseAuthenticateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FFA2829474900D22E08 /* BaseAuthenticateRouter.swift */; };
+		7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FFC282952C600D22E08 /* UIView+Ex.swift */; };
 		7E5A3F94282571BE00D70F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A3F93282571BE00D70F69 /* GoogleService-Info.plist */; };
 		7E5A3F9A282578CD00D70F69 /* MovieDB-Wrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3F99282578CD00D70F69 /* MovieDB-Wrapper */; };
 		7E5A3F9D28257BA700D70F69 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3F9C28257BA700D70F69 /* FirebaseAnalytics */; };
@@ -91,6 +92,7 @@
 		7E528FF628293EEA00D22E08 /* BaseAuthenticateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateInteractor.swift; sourceTree = "<group>"; };
 		7E528FF8282943ED00D22E08 /* BaseAuthenticatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticatePresenter.swift; sourceTree = "<group>"; };
 		7E528FFA2829474900D22E08 /* BaseAuthenticateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateRouter.swift; sourceTree = "<group>"; };
+		7E528FFC282952C600D22E08 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		7E5A3F922825331400D70F69 /* SigninWithApple.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SigninWithApple.entitlements; sourceTree = "<group>"; };
 		7E5A3F93282571BE00D70F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E5B9060281FE1BD00D0B278 /* Constant+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+API.swift"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */,
 				7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */,
 				7ECDE354282839F900FE76BC /* UINavigationController+Ex.swift */,
+				7E528FFC282952C600D22E08 /* UIView+Ex.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				7E685051281F1C00007C15B0 /* LoginBuilder.swift in Sources */,
 				7ECDE355282839F900FE76BC /* UINavigationController+Ex.swift in Sources */,
 				7E528FF728293EEA00D22E08 /* BaseAuthenticateInteractor.swift in Sources */,
+				7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */,
 				7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */,
 				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
 				7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */,

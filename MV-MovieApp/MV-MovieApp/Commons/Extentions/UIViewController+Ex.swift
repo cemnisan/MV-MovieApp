@@ -9,11 +9,7 @@ import UIKit
 import MV_Components
 
 extension UIViewController {
-    
-    func addSubviews(views: UIView...) {
-        views.forEach { view.addSubview($0) }
-    }
-    
+
     func showErrorAlert(with title: String,
                                    message: String,
                                    buttonTitle: String) {

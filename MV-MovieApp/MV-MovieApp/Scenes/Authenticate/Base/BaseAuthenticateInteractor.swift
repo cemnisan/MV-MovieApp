@@ -10,7 +10,7 @@ import UIKit.UIViewController
 
 class BaseAuthenticateInteractor {
     
-    private let service: BaseAuthenticateService
+    let service: BaseAuthenticateService
     weak var delegate: BaseAuthenticateInteractorOutput?
     
     init(service: BaseAuthenticateService) {

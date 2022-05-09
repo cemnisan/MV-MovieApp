@@ -31,22 +31,18 @@ final class RegisterViewController: BaseAuthViewController {
     }
     
     override func configureEmailElements() {
-        [emailLabel, emailTextField].forEach {
+        [emailLabel,
+         emailTextField
+        ].forEach {
             view.addSubview($0)
-            
-            NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22)
-            ])
+            $0.configureConstraints(leading: (view.leadingAnchor, 22),
+                                    trailing: (view.trailingAnchor, -22))
         }
+        emailLabel.configureConstraints(top: (nameTextField.bottomAnchor, 30))
+        emailLabel.configureHeight(height: 25)
         
-        NSLayoutConstraint.activate([
-            emailLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 30),
-            emailLabel.heightAnchor.constraint(equalToConstant: 25),
-            
-            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
-            emailTextField.heightAnchor.constraint(equalToConstant: 55)
-        ])
+        emailTextField.configureConstraints(top: (emailLabel.bottomAnchor, 10))
+        emailTextField.configureHeight(height: 55)
     }
     
     override func userDidTappedActionButton() {
@@ -79,22 +75,18 @@ extension RegisterViewController {
     
     // MARK: - Configure Name Elements
     private func configureNameElements() {
-        [nameLabel, nameTextField].forEach {
+        [nameLabel,
+         nameTextField
+        ].forEach {
             view.addSubview($0)
-            
-            NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22)
-            ])
+            $0.configureConstraints(leading: (view.leadingAnchor, 22),
+                                    trailing: (view.trailingAnchor, -22))
         }
+        nameLabel.configureConstraints(top: (appleView.bottomAnchor, 45))
+        nameLabel.configureHeight(height: 25)
         
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: appleView.bottomAnchor, constant: 48),
-            nameLabel.heightAnchor.constraint(equalToConstant: 25),
-            
-            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            nameTextField.heightAnchor.constraint(equalToConstant: 55)
-        ])
+        nameTextField.configureConstraints(top: (nameLabel.bottomAnchor, 10))
+        nameTextField.configureHeight(height: 55)
     }
 }
 

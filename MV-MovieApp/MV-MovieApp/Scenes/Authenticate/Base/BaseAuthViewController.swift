@@ -31,13 +31,13 @@ class BaseAuthViewController: BaseViewController {
 extension BaseAuthViewController {
     
     func addElements() {
-        addSubviews(views: viewTitle,
-                    passwordLabel,
-                    passwordTextField,
-                    appleView,
-                    googleView,
-                    passwordVisibilityButton,
-                    actionButton)
+        view.addSubviews(views: viewTitle,
+                         passwordLabel,
+                         passwordTextField,
+                         appleView,
+                         googleView,
+                         passwordVisibilityButton,
+                         actionButton)
     }
 }
 
@@ -59,46 +59,23 @@ extension BaseAuthViewController {
             navigationController?.navigationBar.tintColor                = K.Styles.labelTextColor
         }
     }
-        
+    
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
-        NSLayoutConstraint.activate([
-            viewTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            viewTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            viewTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            viewTitle.heightAnchor.constraint(equalToConstant: 20)
-        ])
-    }
-    
-    // MARK: - Configure Password Elements
-    func configurePasswordElements() {
-        passwordTextField.isSecureTextEntry = true
-        
-        [passwordLabel, passwordTextField].forEach {
-            NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22)
-            ])
-        }
-        
-        NSLayoutConstraint.activate([
-            passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 30),
-            passwordLabel.heightAnchor.constraint(equalToConstant: 25),
-            
-            passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 55)
-        ])
+        viewTitle.configureConstraints(top: (view.safeAreaLayoutGuide.topAnchor, 32),
+                                       leading: (view.leadingAnchor, 22),
+                                       trailing: (view.trailingAnchor, -22))
+        viewTitle.configureHeight(height: 20)
     }
     
     // MARK: - Configure Apple/Google View
     func configureChildViews() {
-        [appleView, googleView].forEach {
-            NSLayoutConstraint.activate([
-                $0.heightAnchor.constraint(equalToConstant: 60),
-                $0.widthAnchor.constraint(equalToConstant: 160)
-            ])
+        [appleView,
+         googleView
+        ].forEach {
+            $0.configureHeight(height: 60)
+            $0.configureWidth(width: 160)
         }
-        
         layoutChildViews()
         addChildElements()
     }
@@ -109,42 +86,55 @@ extension BaseAuthViewController {
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        [appleView, googleView].forEach { stackView.addArrangedSubview($0) }
-        
+        [appleView,
+         googleView
+        ].forEach { stackView.addArrangedSubview($0) }
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: viewTitle.bottomAnchor, constant: 42),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            stackView.heightAnchor.constraint(equalToConstant: 60)
-        ])
+        stackView.configureConstraints(top: (viewTitle.bottomAnchor, 42),
+                                       leading: (view.leadingAnchor, 22),
+                                       trailing: (view.trailingAnchor, -22))
+        stackView.configureHeight(height: 60)
+    }
+    
+    // MARK: - Configure Password Elements
+    func configurePasswordElements() {
+        passwordTextField.isSecureTextEntry = true
+        
+        [passwordLabel,
+         passwordTextField
+        ].forEach {
+            $0.configureConstraints(leading: (view.leadingAnchor, 22),
+                                    trailing: (view.trailingAnchor, -22))
+        }
+        passwordLabel.configureConstraints(top: (emailTextField.bottomAnchor, 30))
+        passwordLabel.configureHeight(height: 25)
+        passwordTextField.configureConstraints(top: (passwordLabel.bottomAnchor, 10))
+        passwordTextField.configureHeight(height: 55)
     }
     
     // MARK: - Configure Password Visibility
     func configurePasswordVisibilty() {
         passwordVisibilityButton.tintColor = K.Styles.globalColor
         passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
-        passwordVisibilityButton.addTarget(self, action: #selector(changePasswordVisibility), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            passwordVisibilityButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
-            passwordVisibilityButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -16),
-            passwordVisibilityButton.widthAnchor.constraint(equalToConstant: 30),
-            passwordVisibilityButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
+        passwordVisibilityButton.addTarget(self,
+                                           action: #selector(changePasswordVisibility),
+                                           for: .touchUpInside)
+        passwordVisibilityButton.configureConstraints(trailing: (passwordTextField.trailingAnchor, -16),
+                                                      centerY: (passwordTextField.centerYAnchor, 0))
+        passwordVisibilityButton.configureWidth(width: 30)
+        passwordVisibilityButton.configureHeight(height: 30)
     }
     
     // MARK: - Configure Login or Register Button
     func configureActionButton() {
-        actionButton.addTarget(self, action: #selector(userDidTappedActionButton), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            actionButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 53),
-            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
-            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            actionButton.heightAnchor.constraint(equalToConstant: 55)
-        ])
+        actionButton.addTarget(self,
+                               action: #selector(userDidTappedActionButton),
+                               for: .touchUpInside)
+        actionButton.configureConstraints(top: (passwordTextField.bottomAnchor, 53),
+                                          leading: (view.leadingAnchor, 22),
+                                          trailing: (view.trailingAnchor, -22))
+        actionButton.configureHeight(height: 55)
     }
     
     // MARK: - Layout Already or don't account.
@@ -154,22 +144,19 @@ extension BaseAuthViewController {
         stackView.distribution   = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        accountActionButton.addTarget(self, action: #selector(userDidTappedAccountButton), for: .touchUpInside)
-        
+        accountActionButton.addTarget(self,
+                                      action: #selector(userDidTappedAccountButton),
+                                      for: .touchUpInside)
         [accountLabel,
          accountActionButton
         ].forEach { stackView.addArrangedSubview($0) }
-        
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.bottomAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 72),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 53),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
-            stackView.heightAnchor.constraint(equalToConstant: 30)
-        ])
+        stackView.configureConstraints(leading: (view.leadingAnchor, 53),
+                                       trailing: (view.trailingAnchor, -68),
+                                       bottom: (actionButton.bottomAnchor, 72))
+        stackView.configureHeight(height: 30)
     }
-    
 }
 
 // MARK: - Set UI

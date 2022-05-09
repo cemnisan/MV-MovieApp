@@ -15,14 +15,12 @@ class BaseViewController: UIViewController {
     func showLoadingView() {
         loadingIndicatorView = MVLoadingIndicator(backgroundColor: K.Styles.backgroundColor)
         view.addSubview(loadingIndicatorView)
-        
-        NSLayoutConstraint.activate([
-            loadingIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingIndicatorView.widthAnchor.constraint(equalToConstant: 170),
-            loadingIndicatorView.heightAnchor.constraint(equalToConstant: 170)
-        ])
-        
+    
+        loadingIndicatorView.configureConstraints(centerX: (view.centerXAnchor, 0),
+                                                  centerY: (view.centerYAnchor, 0))
+        loadingIndicatorView.configureWidth(width: 170)
+        loadingIndicatorView.configureHeight(height: 170)
+  
         loadingIndicatorView.startIndicatorView()
     }
     
