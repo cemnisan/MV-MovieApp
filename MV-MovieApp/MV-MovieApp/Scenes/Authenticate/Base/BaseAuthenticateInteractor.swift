@@ -23,16 +23,13 @@ extension BaseAuthenticateInteractor: BaseAuthenticateInteractorProtocol {
     func loginWithGoogle(presenterController presenter: UIViewController) {
         delegate?.displayLoadingIndicator()
         
-        service.login(presenterViewController: presenter) { [weak self] (result) in
+        service.login(presenterViewController: presenter) { [weak self] in
             guard let self = self else { return }
             self.delegate?.dismissLoadingIndicator()
-            
-            switch result {
-            case .success(_):
-                self.delegate?.showHome()
-            case .failure(let error):
-                self.delegate?.showError(error: error)
-            }
+            self.delegate?.showHome()
+        } failure: { [weak self] error in
+            guard let self = self else { return }
+            self.delegate?.showError(error: error)
         }
     }
 }

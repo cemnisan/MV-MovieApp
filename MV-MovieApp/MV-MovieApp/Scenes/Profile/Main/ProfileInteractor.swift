@@ -9,22 +9,29 @@ import Foundation
 
 final class ProfileInteractor {
     
-    private let service: SignOutService
+    private let userService: UserService
     var delegate: ProfileInteractorOutput?
     
-    init(service: SignOutService) {
-        self.service = service
+    init(userService: UserService) {
+        self.userService = userService
     }
 }
 
 extension ProfileInteractor: ProfileInteractorProtocol {
     
+    func loadCurrentUser() {
+        guard let user = userService.getCurrentUser() else { return }
+        
+        delegate?.showCurrentUser(currentUser: user)
+    }
+
     func tappedLogoutButton() {
-        service.signOut { [weak self] error in
+        userService.signOut { [weak self] in
             guard let self = self else { return }
-            guard error == nil else { return }
-            
             self.delegate?.showLogin()
+        } failure: { [weak self] error in
+            guard let self = self else { return }
+            self.delegate?.showError(error: error)
         }
     }
 }

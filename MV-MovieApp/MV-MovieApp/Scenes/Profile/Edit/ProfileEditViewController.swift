@@ -13,6 +13,7 @@ final class ProfileEditViewController: UIViewController {
     private let currentImageView       = MVUserImage(cornerRadius: 60)
     private let editImageContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editImageButton        = MVButton(frame: .zero)
+    
     private let currentNameLabel       = MVTitleLabel(textAlignment: .center, fontSize: 24, textColor: .white)
     private let currentEmailLabel      = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: .systemGray, text: nil)
      

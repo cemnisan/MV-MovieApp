@@ -28,17 +28,14 @@ extension LoginInteractor: LoginInteractorProtocol {
             delegate?.displayLoadingIndicator()
             
             loginService.login(with: email,
-                           password: password) { [weak self] (result) in
+                               password: password) { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
-                
-                switch result {
-                case .success(let user):
-                    print(user)
-                    self.delegate?.showHome()
-                case .failure(let error):
-                    self.delegate?.showError(error: error)
-                }
+                self.delegate?.showHome()
+            } failure: { [weak self] error in
+                guard let self = self else { return }
+                self.delegate?.dismissLoadingIndicator()
+                self.delegate?.showError(error: error)
             }
         } catch {
             delegate?.showError(error: error)

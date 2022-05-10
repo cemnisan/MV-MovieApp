@@ -8,12 +8,15 @@
 import Foundation
 
 struct UserPresentation {
-    var username: String
+    var username: String?
     var email: String
+    var imageURL: URL
     
-    init(username: String,
-         email: String) {
+    init(username: String?,
+         email: String,
+         imageURL: URL) {
         self.username = username
         self.email    = email
+        self.imageURL = imageURL
     }
 }

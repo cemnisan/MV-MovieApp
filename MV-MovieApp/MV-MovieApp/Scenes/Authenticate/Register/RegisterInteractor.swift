@@ -32,17 +32,15 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             delegate?.displayLoadingIndicator()
             
             registerService.register(with: username,
-                             email: email,
-                             password: password) { [weak self] (result) in
+                                     email: email,
+                                     password: password) { [weak self] in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
-                
-                switch result {
-                case .success(_):
-                    self.delegate?.showHome()
-                case .failure(let error):
-                    self.delegate?.showError(error: error)
-                }
+                self.delegate?.showHome()
+            } failure: { [weak self] error in
+                guard let self = self else { return }
+                self.delegate?.dismissLoadingIndicator()
+                self.delegate?.showHome()
             }
         } catch {
             delegate?.showError(error: error)

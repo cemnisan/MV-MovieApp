@@ -27,6 +27,10 @@ final class ProfilePresenter {
 // MARK: - Presenter Protocol
 extension ProfilePresenter: ProfilePresenterProtocol {
     
+    func loadCurrentUser() {
+        interactor.loadCurrentUser()
+    }
+
     func tappedLogoutButton() {
         interactor.tappedLogoutButton()
     }
@@ -43,6 +47,15 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 
 // MARK: - Interactor Output
 extension ProfilePresenter: ProfileInteractorOutput {
+    
+    func showError(error: Error) {
+        view.showError(error: error)
+    }
+    
+    func showCurrentUser(currentUser: UserPresentation) {
+        view.showCurrentUser(currentUser: currentUser)
+    }
+    
     func showLogin() {
         router.toLogin()
     }

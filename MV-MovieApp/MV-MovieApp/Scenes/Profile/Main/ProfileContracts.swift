@@ -10,14 +10,21 @@ import Foundation
 protocol ProfileInteractorProtocol: AnyObject {
     var delegate: ProfileInteractorOutput? { get set }
     
+    func loadCurrentUser()
+    
     func tappedLogoutButton()
 }
 
 protocol ProfileInteractorOutput: AnyObject {
+    func showCurrentUser(currentUser: UserPresentation)
+    
     func showLogin()
+    func showError(error: Error)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
+    func loadCurrentUser()
+    
     func tappedLogoutButton()
     func tappedEditButton()
     
@@ -25,6 +32,8 @@ protocol ProfilePresenterProtocol: AnyObject {
 }
 
 protocol ProfilePresenterOutput: AnyObject {
+    func showCurrentUser(currentUser: UserPresentation)
+    func showError(error: Error)
 }
 
 protocol ProfileRoute: AnyObject {

@@ -38,6 +38,9 @@
 		7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FFC282952C600D22E08 /* UIView+Ex.swift */; };
 		7E528FFF2829602400D22E08 /* Wrapper+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E528FFE2829602400D22E08 /* Wrapper+UserDefaults.swift */; };
 		7E529002282967A000D22E08 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E529001282967A000D22E08 /* AppData.swift */; };
+		7E533ED5282B09B3003E335B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E533ED4282B09B3003E335B /* UserService.swift */; };
+		7E533ED9282B100B003E335B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7E533ED8282B100B003E335B /* Kingfisher */; };
+		7E533EDB282B101A003E335B /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E533EDA282B101A003E335B /* UIImageView+Ex.swift */; };
 		7E5A3F94282571BE00D70F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A3F93282571BE00D70F69 /* GoogleService-Info.plist */; };
 		7E5A3F9A282578CD00D70F69 /* MovieDB-Wrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3F99282578CD00D70F69 /* MovieDB-Wrapper */; };
 		7E5A3F9D28257BA700D70F69 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5A3F9C28257BA700D70F69 /* FirebaseAnalytics */; };
@@ -77,7 +80,6 @@
 		7E8AA53F282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA53E282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift */; };
 		7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */; };
 		7E8AA5432826C14B00A90ED2 /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5422826C14B00A90ED2 /* RegisterService.swift */; };
-		7E8AA5452826C15700A90ED2 /* SignOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5442826C15700A90ED2 /* SignOutService.swift */; };
 		7E8AA54A2826CADE00A90ED2 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA5492826CADE00A90ED2 /* ValidationError.swift */; };
 		7E8AA54C2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */; };
 		7E9373BC2829B529008A7918 /* ProfileEditBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */; };
@@ -102,7 +104,7 @@
 		7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF731BA281D918F00A1CFE9 /* AppRouter.swift */; };
 		7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF731BE281D9B3100A1CFE9 /* PopularMoviesPresentation.swift */; };
 		7EF731C1281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF731C0281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift */; };
-		7EFBB98A2829726800276C3E /* CreateTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBB9892829726800276C3E /* CreateTabBar.swift */; };
+		7EFBB98A2829726800276C3E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBB9892829726800276C3E /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +139,8 @@
 		7E528FFC282952C600D22E08 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		7E528FFE2829602400D22E08 /* Wrapper+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wrapper+UserDefaults.swift"; sourceTree = "<group>"; };
 		7E529001282967A000D22E08 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		7E533ED4282B09B3003E335B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		7E533EDA282B101A003E335B /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		7E5A3F922825331400D70F69 /* SigninWithApple.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SigninWithApple.entitlements; sourceTree = "<group>"; };
 		7E5A3F93282571BE00D70F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E5B9060281FE1BD00D0B278 /* Constant+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+API.swift"; sourceTree = "<group>"; };
@@ -169,7 +173,6 @@
 		7E8AA53E282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticatorAdapter.swift; sourceTree = "<group>"; };
 		7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateService.swift; sourceTree = "<group>"; };
 		7E8AA5422826C14B00A90ED2 /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
-		7E8AA5442826C15700A90ED2 /* SignOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutService.swift; sourceTree = "<group>"; };
 		7E8AA5492826CADE00A90ED2 /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Ex.swift"; sourceTree = "<group>"; };
 		7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditBuilder.swift; sourceTree = "<group>"; };
@@ -195,7 +198,7 @@
 		7EF731BA281D918F00A1CFE9 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		7EF731BE281D9B3100A1CFE9 /* PopularMoviesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesPresentation.swift; sourceTree = "<group>"; };
 		7EF731C0281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMoviesPresentation.swift; sourceTree = "<group>"; };
-		7EFBB9892829726800276C3E /* CreateTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTabBar.swift; sourceTree = "<group>"; };
+		7EFBB9892829726800276C3E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +210,7 @@
 				7E5A3FA128257BA700D70F69 /* FirebaseAuth in Frameworks */,
 				7E5A3F9A282578CD00D70F69 /* MovieDB-Wrapper in Frameworks */,
 				7E5A3FA528257BA700D70F69 /* FirebaseDynamicLinks in Frameworks */,
+				7E533ED9282B100B003E335B /* Kingfisher in Frameworks */,
 				7E5A3FA328257BA700D70F69 /* FirebaseCrashlytics in Frameworks */,
 				7E5A3F9D28257BA700D70F69 /* FirebaseAnalytics in Frameworks */,
 				7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */,
@@ -328,6 +332,7 @@
 				7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */,
 				7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */,
 				7E528FFC282952C600D22E08 /* UIView+Ex.swift */,
+				7E533EDA282B101A003E335B /* UIImageView+Ex.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -456,7 +461,7 @@
 				7E8AA5402826C0EE00A90ED2 /* BaseAuthenticateService.swift */,
 				7E8AA53B2826965900A90ED2 /* LoginService.swift */,
 				7E8AA5422826C14B00A90ED2 /* RegisterService.swift */,
-				7E8AA5442826C15700A90ED2 /* SignOutService.swift */,
+				7E533ED4282B09B3003E335B /* UserService.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -637,7 +642,7 @@
 				7E41D4C2281EE64F004E198E /* ButtonTypes.swift */,
 				7E12F83928271ED500B3C966 /* HomeMovies.swift */,
 				7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */,
-				7EFBB9892829726800276C3E /* CreateTabBar.swift */,
+				7EFBB9892829726800276C3E /* TabBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -668,6 +673,7 @@
 				7E5A3FA228257BA700D70F69 /* FirebaseCrashlytics */,
 				7E5A3FA428257BA700D70F69 /* FirebaseDynamicLinks */,
 				7E5A3FA72825852500D70F69 /* GoogleSignIn */,
+				7E533ED8282B100B003E335B /* Kingfisher */,
 			);
 			productName = "MV-MovieApp";
 			productReference = 7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */;
@@ -702,6 +708,7 @@
 				7E5A3F98282578CD00D70F69 /* XCRemoteSwiftPackageReference "MovieDB-Wrapper" */,
 				7E5A3F9B28257BA700D70F69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7E5A3FA62825852500D70F69 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				7E533ED7282B100B003E335B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 7EF7318B281D906600A1CFE9 /* Products */;
 			projectDirPath = "";
@@ -736,6 +743,7 @@
 				7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */,
 				7E528FFB2829474900D22E08 /* BaseAuthenticateRouter.swift in Sources */,
 				7E68505E281F2AED007C15B0 /* LoginRouter.swift in Sources */,
+				7E533ED5282B09B3003E335B /* UserService.swift in Sources */,
 				7E528FF9282943ED00D22E08 /* BaseAuthenticatePresenter.swift in Sources */,
 				7E3E6B57282AB55B00140E65 /* NotificationBuilder.swift in Sources */,
 				7E8AA54A2826CADE00A90ED2 /* ValidationError.swift in Sources */,
@@ -764,7 +772,6 @@
 				7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */,
 				7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */,
 				7E5B9064281FE86A00D0B278 /* UIViewController+Ex.swift in Sources */,
-				7E8AA5452826C15700A90ED2 /* SignOutService.swift in Sources */,
 				7E3E6B63282AB63300140E65 /* CountryViewController.swift in Sources */,
 				7E8AA5432826C14B00A90ED2 /* RegisterService.swift in Sources */,
 				7E3E6B5C282AB5D200140E65 /* LanguageBuilder.swift in Sources */,
@@ -782,7 +789,7 @@
 				7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */,
 				7E685051281F1C00007C15B0 /* LoginBuilder.swift in Sources */,
 				7E528FF728293EEA00D22E08 /* BaseAuthenticateInteractor.swift in Sources */,
-				7EFBB98A2829726800276C3E /* CreateTabBar.swift in Sources */,
+				7EFBB98A2829726800276C3E /* TabBar.swift in Sources */,
 				7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */,
 				7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */,
 				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
@@ -800,6 +807,7 @@
 				7E528FFF2829602400D22E08 /* Wrapper+UserDefaults.swift in Sources */,
 				7E685058281F2AD1007C15B0 /* LoginContracts.swift in Sources */,
 				7E3E6B71282AB73200140E65 /* FeedbacksBuilder.swift in Sources */,
+				7E533EDB282B101A003E335B /* UIImageView+Ex.swift in Sources */,
 				7E68BB27282AAE150099DC65 /* ProfileRouter.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
 				7E68BB29282AAE1A0099DC65 /* ProfilePresenter.swift in Sources */,
@@ -1030,6 +1038,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7E533ED7282B100B003E335B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		7E5A3F98282578CD00D70F69 /* XCRemoteSwiftPackageReference "MovieDB-Wrapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cemnisan/MovieDB-Wrapper.git";
@@ -1057,6 +1073,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E533ED8282B100B003E335B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E533ED7282B100B003E335B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		7E5A3F99282578CD00D70F69 /* MovieDB-Wrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7E5A3F98282578CD00D70F69 /* XCRemoteSwiftPackageReference "MovieDB-Wrapper" */;

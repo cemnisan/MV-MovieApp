@@ -24,6 +24,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        profilePresenter.loadCurrentUser()
     }
 }
 
@@ -61,7 +62,6 @@ extension ProfileViewController {
     
     private func configureUserImage() {
         userContainerView.addSubview(userImageView)
-        userImageView.image = UIImage(named: "profilePic")
         
         userImageView.configureConstraints(leading: (userContainerView.leadingAnchor, 16),
                                            centerY: (userContainerView.centerYAnchor, 0))
@@ -71,7 +71,6 @@ extension ProfileViewController {
     
     private func configureUserNameLabel() {
         userContainerView.addSubview(userNameLabel)
-        userNameLabel.text = "Cem Nisan"
         
         userNameLabel.configureConstraints(top: (userImageView.topAnchor, 0),
                                            leading: (userImageView.trailingAnchor, 8),
@@ -81,7 +80,6 @@ extension ProfileViewController {
     
     private func configureUserEmailLabel() {
         userContainerView.addSubview(userEmailLabel)
-        userEmailLabel.text = "cnisanbusiness@gmail.com"
         
         userEmailLabel.configureConstraints(top: (userNameLabel.bottomAnchor, 12),
                                             leading: (userImageView.trailingAnchor, 8),
@@ -174,18 +172,29 @@ extension ProfileViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 extension ProfileViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         profilePresenter.selectSetting(at: indexPath.section, index: indexPath.row)
     }
 }
 
-extension ProfileViewController: ProfilePresenterOutput {}
+extension ProfileViewController: ProfilePresenterOutput {
+    
+    func showError(error: Error) {
+        showErrorAlert(with: "Error",
+                       message: error.localizedDescription,
+                       buttonTitle: "OK")
+    }
+    
+    func showCurrentUser(currentUser: UserPresentation) {
+        userNameLabel.text  = currentUser.username ?? AppData.userName
+        userEmailLabel.text = currentUser.email
+        userImageView.setImage(with: currentUser.imageURL)
+    }
+}
 
 // MARK: - Action Alert Delegate
 extension ProfileViewController: MVActionAlertDelegate {
-    
     func actionButtonTapped() {
         profilePresenter.tappedLogoutButton()
     }

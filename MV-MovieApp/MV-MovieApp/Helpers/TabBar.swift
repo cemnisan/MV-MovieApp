@@ -15,10 +15,10 @@ struct TabBar {
         let favoritesViewController = FavoritesBuilder.make()
         let profileViewController   = ProfileBuilder.make()
         
-        let tabBar                  = MVTabBar(homeVC: homeViewController,
-                                               searchVC: searchViewController,
-                                               bookMarkVC: favoritesViewController,
-                                               profileVC: profileViewController)
+        let tabBar = MVTabBar(homeVC: homeViewController,
+                              searchVC: searchViewController,
+                              bookMarkVC: favoritesViewController,
+                              profileVC: profileViewController)
         return tabBar
     }
 }

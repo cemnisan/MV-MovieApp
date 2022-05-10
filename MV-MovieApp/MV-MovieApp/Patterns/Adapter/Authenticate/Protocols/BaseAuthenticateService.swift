@@ -8,7 +8,9 @@
 import Foundation
 import UIKit.UIViewController
 
+
 protocol BaseAuthenticateService {
     func login(presenterViewController presenter: UIViewController,
-               completed: @escaping (Result<UserPresentation, Error>) -> Void)
+               completed: @escaping () -> Void,
+               failure: @escaping (Error) -> Void)
 }
