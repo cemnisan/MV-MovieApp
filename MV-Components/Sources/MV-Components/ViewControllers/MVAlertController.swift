@@ -7,16 +7,16 @@
 
 import UIKit
 
-public final class MVErrorAlertController: UIViewController {
+public class MVAlertController: UIViewController {
     
-    private let containerView     = MVAlertContainerView(frame: .zero)
-    private let alertTitleLabel   = MVTitleLabel(textAlignment: .center, fontSize: 20, textColor: .label)
-    private let alertMessageLabel = MVSecondaryLabel(textAlignment: .center, fontSize: 17, textColor: .label, text: nil)
-    private let alertDoneButton   = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: nil, cornerRadius: 10)
+    let containerView     = MVAlertContainerView(frame: .zero)
+    let alertTitleLabel   = MVTitleLabel(textAlignment: .center, fontSize: 20, textColor: .label)
+    let alertMessageLabel = MVSecondaryLabel(textAlignment: .center, fontSize: 17, textColor: .label, text: nil)
+    let alertDoneButton   = MVButton(backgroundColor: #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1), title: nil, cornerRadius: 10)
     
     private var alertTitle: String?
     private var alertMessage: String?
-    private var alertButtonTitle: String?
+    var alertButtonTitle: String?
     
     public init(alertTitle: String,
                 alertMessage: String,
@@ -34,26 +34,19 @@ public final class MVErrorAlertController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configure()
     }
 }
 
-extension MVErrorAlertController {
+extension MVAlertController {
+
+    @objc
+    func configure() { }
     
-    private func configure() {
-        configureViewController()
-        configureContainerView()
-        configureAlertTitleLabel()
-        configureAlertDoneButton()
-        configureAlertMessageLabel()
-    }
-    
-    private func configureViewController() {
+    func configureViewController() {
         view.backgroundColor?.withAlphaComponent(0.75)
     }
     
-    private func configureContainerView() {
+    func configureContainerView() {
         view.addSubview(containerView)
         
         NSLayoutConstraint.activate([
@@ -64,7 +57,7 @@ extension MVErrorAlertController {
         ])
     }
     
-    private func configureAlertTitleLabel() {
+    func configureAlertTitleLabel() {
         containerView.addSubview(alertTitleLabel)
         alertTitleLabel.text = alertTitle
         
@@ -76,7 +69,7 @@ extension MVErrorAlertController {
         ])
     }
     
-    private func configureAlertMessageLabel() {
+    func configureAlertMessageLabel() {
         containerView.addSubview(alertMessageLabel)
         alertMessageLabel.text          = alertMessage
         alertMessageLabel.numberOfLines = 3
@@ -89,25 +82,15 @@ extension MVErrorAlertController {
         ])
     }
     
-    private func configureAlertDoneButton() {
-        containerView.addSubview(alertDoneButton)
-        alertDoneButton.setTitle(alertButtonTitle, for: .normal)
-        alertDoneButton.addTarget(self,
-                                  action: #selector(dismissAlertViewController),
-                                  for: .touchUpInside)
-        NSLayoutConstraint.activate([
-            alertDoneButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
-            alertDoneButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            alertDoneButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-            alertDoneButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
-    }
+    @objc
+    // Override
+    func configureAlertButton() {}
 }
 
-extension MVErrorAlertController {
+extension MVAlertController {
     
     @objc
-    private func dismissAlertViewController() {
+    func dismissAlertViewController() {
         dismiss(animated: true)
     }
 }

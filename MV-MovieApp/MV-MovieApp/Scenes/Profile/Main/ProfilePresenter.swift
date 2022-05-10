@@ -9,23 +9,39 @@ import Foundation
 
 final class ProfilePresenter {
     
+    private let interactor: ProfileInteractorProtocol
     private let router: ProfileRoute
     private let view: ProfilePresenterOutput
     
-    init(router: ProfileRoute, view: ProfilePresenterOutput) {
-        self.router = router
-        self.view   = view
+    init(interactor: ProfileInteractorProtocol,
+         router: ProfileRoute,
+         view: ProfilePresenterOutput) {
+        self.interactor     = interactor
+        self.router         = router
+        self.view           = view
+        
+        interactor.delegate = self
     }
 }
 
 extension ProfilePresenter: ProfilePresenterProtocol {
     
-    func selectEditButton() {
+    func tappedLogoutButton() {
+        interactor.tappedLogoutButton()
+    }
+    
+    func tappedEditButton() {
         router.toEdit()
     }
 
     func selectSetting(at section: Int, index: Int) {
         let setting = Section.settings[section].option[index]
-        router.toSelectedSetting(at: setting)
+        router.toSelectedSetting(setting)
+    }
+}
+
+extension ProfilePresenter: ProfileInteractorOutput {
+    func showLogin() {
+        router.toLogin()
     }
 }

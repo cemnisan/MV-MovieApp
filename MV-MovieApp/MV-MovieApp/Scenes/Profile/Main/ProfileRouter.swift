@@ -19,12 +19,20 @@ final class ProfileRouter {
 
 extension ProfileRouter: ProfileRoute {
     
+    func toLogin() {
+        let targetView = LoginBuilder.make()
+        targetView.modalTransitionStyle   = .coverVertical
+        targetView.modalPresentationStyle = .fullScreen
+        AppData.enableAutoLogin           = false
+        view.show(targetView, sender: nil)
+    }
+    
     func toEdit() {
         let targetView = ProfileEditBuilder.make()
         view.navigationController?.pushViewController(targetView, animated: true)
     }
     
-    func toSelectedSetting(at setting: SettingsOption) {
+    func toSelectedSetting(_ setting: SettingsOption) {
         let targetView: UIViewController
         
         switch setting.title {

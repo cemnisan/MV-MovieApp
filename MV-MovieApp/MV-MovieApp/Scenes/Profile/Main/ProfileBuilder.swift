@@ -11,8 +11,11 @@ final class ProfileBuilder {
     
     static func make() -> UINavigationController {
         let rootView        = ProfileViewController()
+        let interactor      = ProfileInteractor(service: GoogleAuthenticatorAdapter())
         let router          = ProfileRouter(view: rootView)
-        let presenter       = ProfilePresenter(router: router, view: rootView)
+        let presenter       = ProfilePresenter(interactor: interactor,
+                                               router: router,
+                                               view: rootView)
         rootView.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
         rootView.profilePresenter = presenter
 

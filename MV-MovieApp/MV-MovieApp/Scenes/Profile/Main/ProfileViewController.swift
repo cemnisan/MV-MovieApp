@@ -16,6 +16,7 @@ final class ProfileViewController: UIViewController {
     private let userEmailLabel    = MVTitleLabel(textAlignment: .left, fontSize: 17, textColor: .systemGray2)
     private let userEditButton    = MVButton(image: UIImage(named: "edit")!)
     private let settingsTableView = UITableView(frame: .zero, style: .grouped)
+    private let logOutButton      = MVButton(frame: .zero)
     
     var profilePresenter: ProfilePresenterProtocol!
     
@@ -42,6 +43,11 @@ extension ProfileViewController {
         title = "Profile"
         view.backgroundColor = K.Styles.backgroundColor
         navigationController?.navigationBar.titleTextAttributes = K.Styles.navTitleColor
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(logOutButtonDidTapped))
     }
     
     private func configureUserContainerView() {
@@ -114,7 +120,15 @@ extension ProfileViewController {
     
     @objc
     private func userDidTappedEditButton() {
-        profilePresenter.selectEditButton()
+        profilePresenter.tappedEditButton()
+    }
+    
+    @objc
+    private func logOutButtonDidTapped() {
+        showActionAlert(with: "Log out",
+                        message: "When you did tapped on log out button, you are going to login page.\nAre you sure?",
+                        buttonTitle: "Log out",
+                        delegate: self)
     }
 }
 
@@ -168,3 +182,11 @@ extension ProfileViewController: UITableViewDelegate {
 }
 
 extension ProfileViewController: ProfilePresenterOutput {}
+
+// MARK: - Action Alert Delegate
+extension ProfileViewController: MVActionAlertDelegate {
+    
+    func actionButtonTapped() {
+        profilePresenter.tappedLogoutButton()
+    }
+}
