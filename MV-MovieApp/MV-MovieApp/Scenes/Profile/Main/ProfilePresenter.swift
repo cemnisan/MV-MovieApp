@@ -11,7 +11,7 @@ final class ProfilePresenter {
     
     private let interactor: ProfileInteractorProtocol
     private let router: ProfileRoute
-    private let view: ProfilePresenterOutput
+    private unowned let view: ProfilePresenterOutput
     
     init(interactor: ProfileInteractorProtocol,
          router: ProfileRoute,
@@ -24,6 +24,7 @@ final class ProfilePresenter {
     }
 }
 
+// MARK: - Presenter Protocol
 extension ProfilePresenter: ProfilePresenterProtocol {
     
     func tappedLogoutButton() {
@@ -40,6 +41,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     }
 }
 
+// MARK: - Interactor Output
 extension ProfilePresenter: ProfileInteractorOutput {
     func showLogin() {
         router.toLogin()

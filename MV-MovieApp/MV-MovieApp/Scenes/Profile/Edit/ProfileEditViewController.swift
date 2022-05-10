@@ -10,20 +10,22 @@ import MV_Components
 
 final class ProfileEditViewController: UIViewController {
     
-    private let currentImageView      = MVUserImage(cornerRadius: 60)
-    private let currentNameLabel      = MVTitleLabel(textAlignment: .center, fontSize: 24, textColor: .white)
-    private let currentEmailLabel     = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: .systemGray, text: nil)
-    
-    private let editUsernameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Username")
-    private let editUsernameTextField = MVAuthenticatesTextField(frame: .zero)
-    
-    private let editNameLabel         = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Full Name")
-    private let editNameTextField     = MVAuthenticatesTextField(frame: .zero)
+    private let currentImageView       = MVUserImage(cornerRadius: 60)
+    private let editImageContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
+    private let editImageButton        = MVButton(frame: .zero)
+    private let currentNameLabel       = MVTitleLabel(textAlignment: .center, fontSize: 24, textColor: .white)
+    private let currentEmailLabel      = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: .systemGray, text: nil)
      
-    private let editEmailLabel        = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Email")
-    private let editEmailTextField    = MVAuthenticatesTextField(frame: .zero)
-         
-    private let saveChangesButton     = MVButton(backgroundColor: K.Styles.actionButtonColor, title: "Save Changes", cornerRadius: 20)
+    private let editUsernameLabel      = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Username")
+    private let editUsernameTextField  = MVAuthenticatesTextField(frame: .zero)
+     
+    private let editNameLabel          = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Full Name")
+    private let editNameTextField      = MVAuthenticatesTextField(frame: .zero)
+      
+    private let editEmailLabel         = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Email")
+    private let editEmailTextField     = MVAuthenticatesTextField(frame: .zero)
+          
+    private let saveChangesButton      = MVButton(backgroundColor: K.Styles.actionButtonColor, title: "Save Changes", cornerRadius: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +34,14 @@ final class ProfileEditViewController: UIViewController {
     }
 }
 
+// MARK: - Configure
 extension ProfileEditViewController {
     
     private func configure() {
         configureViewController()
         configureUserImage()
+        configureEditImageContainerView()
+        configureEditImageButton()
         configureUserNameLabel()
         configureUserEmailLabel()
         configureEditUsernameElements()
@@ -59,6 +64,29 @@ extension ProfileEditViewController {
                                            centerX: (view.centerXAnchor, 0))
         currentImageView.configureHeight(height: 120)
         currentImageView.configureWidth(width: 120)
+    }
+    
+    private func configureEditImageContainerView() {
+        view.addSubview(editImageContainerView)
+        editImageContainerView.layer.cornerRadius = 16
+        
+        editImageContainerView.configureConstraints(trailing: (currentImageView.trailingAnchor, 4),
+                                                    bottom: (currentImageView.bottomAnchor, -8))
+        editImageContainerView.configureHeight(height: 32)
+        editImageContainerView.configureWidth(width: 32)
+    }
+    
+    private func configureEditImageButton() {
+        editImageContainerView.addSubview(editImageButton)
+        editImageButton.setImage(UIImage(named: "edit2"),
+                                 for: .normal)
+        editImageButton.addTarget(self,
+                                  action: #selector(editImageViewButtonTapped),
+                                  for: .touchUpInside)
+        editImageButton.configureConstraints(centerX: (editImageContainerView.centerXAnchor, 0),
+                                             centerY: (editImageContainerView.centerYAnchor, 0))
+        editImageButton.configureHeight(height: 16)
+        editImageButton.configureWidth(width: 16)
     }
     
     private func configureUserNameLabel() {
@@ -136,4 +164,10 @@ extension ProfileEditViewController {
                                                trailing: (view.trailingAnchor, -24))
         saveChangesButton.configureHeight(height: 55)
     }
+}
+
+extension ProfileEditViewController {
+    
+    @objc
+    private func editImageViewButtonTapped() {}
 }
