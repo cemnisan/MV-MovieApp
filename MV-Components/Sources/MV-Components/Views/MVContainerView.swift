@@ -30,8 +30,8 @@ extension MVContainerView {
     
     private func configure() {
         layer.cornerRadius = 10
-        layer.borderWidth  = 0.15
-        layer.borderColor  = UIColor.white.cgColor
+        layer.borderWidth  = 0.3
+        layer.borderColor  = UIColor.darkGray.cgColor
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
