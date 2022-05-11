@@ -10,7 +10,7 @@ import UIKit.UIViewController
 
 class BaseAuthenticateInteractor {
     
-    let service: BaseAuthenticateService
+    private let service: BaseAuthenticateService
     weak var delegate: BaseAuthenticateInteractorOutput?
     
     init(service: BaseAuthenticateService) {
@@ -26,6 +26,7 @@ extension BaseAuthenticateInteractor: BaseAuthenticateInteractorProtocol {
         service.login(presenterViewController: presenter) { [weak self] in
             guard let self = self else { return }
             self.delegate?.dismissLoadingIndicator()
+            AppData.enableAutoLogin = true
             self.delegate?.showHome()
         } failure: { [weak self] error in
             guard let self = self else { return }

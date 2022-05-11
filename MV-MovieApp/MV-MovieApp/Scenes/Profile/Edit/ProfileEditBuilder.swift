@@ -9,9 +9,12 @@ import UIKit
 
 final class ProfileEditBuilder {
     
-    static func make() -> UIViewController {
+    static func make(with currentUser: UserPresentation) -> UIViewController {
         let view = ProfileEditViewController()
-        
+        let interactor = ProfileEditInteractor(currentUser: currentUser)
+        let presenter = ProfileEditPresenter(interactor: interactor,
+                                             view: view)
+        view.profileEditPresenter = presenter
         return view
     }
 }

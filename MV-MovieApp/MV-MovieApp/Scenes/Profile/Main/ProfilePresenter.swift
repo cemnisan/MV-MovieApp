@@ -27,18 +27,19 @@ final class ProfilePresenter {
 // MARK: - Presenter Protocol
 extension ProfilePresenter: ProfilePresenterProtocol {
     
+    func userEditTapped() {
+        interactor.editUserTapped()
+    }
+    
+    
     func loadCurrentUser() {
         interactor.loadCurrentUser()
     }
 
-    func tappedLogoutButton() {
-        interactor.tappedLogoutButton()
+    func logoutTapped() {
+        interactor.logoutTapped()
     }
     
-    func tappedEditButton() {
-        router.toEdit()
-    }
-
     func selectSetting(at section: Int, index: Int) {
         let setting = Section.settings[section].option[index]
         router.toSelectedSetting(setting)
@@ -47,6 +48,10 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 
 // MARK: - Interactor Output
 extension ProfilePresenter: ProfileInteractorOutput {
+    
+    func showEditUser(with currentUser: UserPresentation) {
+        router.toEdit(with: currentUser)
+    }
     
     func showError(error: Error) {
         view.showError(error: error)

@@ -18,7 +18,7 @@ final class AppRouter {
 extension AppRouter {
     
     func start(with windowScene: UIWindowScene) {
-        var rootNavigationController: UIViewController!
+        let rootNavigationController: UIViewController
         
         switch AppData.enableAutoLogin {
         case true:

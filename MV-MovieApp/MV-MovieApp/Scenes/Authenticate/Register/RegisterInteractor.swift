@@ -33,9 +33,10 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             
             registerService.register(with: username,
                                      email: email,
-                                     password: password) { [weak self] in
+                                     password: password) { [weak self] username in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
+                AppData.userName = username
                 self.delegate?.showHome()
             } failure: { [weak self] error in
                 guard let self = self else { return }

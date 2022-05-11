@@ -15,6 +15,10 @@
 		7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9B281F34960073A591 /* RegisterInteractor.swift */; };
 		7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9D281F34A00073A591 /* RegisterPresenter.swift */; };
 		7E39EAA0281F34A80073A591 /* RegisterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA9F281F34A80073A591 /* RegisterRouter.swift */; };
+		7E3D0960282BD6CC00F45293 /* ProfileEditContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D095F282BD6CC00F45293 /* ProfileEditContracts.swift */; };
+		7E3D0962282BD6FB00F45293 /* ProfileEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D0961282BD6FB00F45293 /* ProfileEditPresenter.swift */; };
+		7E3D0964282BD73100F45293 /* ProfileEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D0963282BD73100F45293 /* ProfileEditInteractor.swift */; };
+		7E3D0966282BD73B00F45293 /* ProfileEditRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D0965282BD73B00F45293 /* ProfileEditRouter.swift */; };
 		7E3E6B52282AB4A000140E65 /* ChangePasswordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E6B51282AB4A000140E65 /* ChangePasswordBuilder.swift */; };
 		7E3E6B54282AB4A800140E65 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E6B53282AB4A800140E65 /* ChangePasswordViewController.swift */; };
 		7E3E6B57282AB55B00140E65 /* NotificationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3E6B56282AB55B00140E65 /* NotificationBuilder.swift */; };
@@ -116,6 +120,10 @@
 		7E39EA9B281F34960073A591 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
 		7E39EA9D281F34A00073A591 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		7E39EA9F281F34A80073A591 /* RegisterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRouter.swift; sourceTree = "<group>"; };
+		7E3D095F282BD6CC00F45293 /* ProfileEditContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditContracts.swift; sourceTree = "<group>"; };
+		7E3D0961282BD6FB00F45293 /* ProfileEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPresenter.swift; sourceTree = "<group>"; };
+		7E3D0963282BD73100F45293 /* ProfileEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditInteractor.swift; sourceTree = "<group>"; };
+		7E3D0965282BD73B00F45293 /* ProfileEditRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditRouter.swift; sourceTree = "<group>"; };
 		7E3E6B51282AB4A000140E65 /* ChangePasswordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordBuilder.swift; sourceTree = "<group>"; };
 		7E3E6B53282AB4A800140E65 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		7E3E6B56282AB55B00140E65 /* NotificationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBuilder.swift; sourceTree = "<group>"; };
@@ -502,6 +510,10 @@
 			children = (
 				7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */,
 				7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */,
+				7E3D095F282BD6CC00F45293 /* ProfileEditContracts.swift */,
+				7E3D0961282BD6FB00F45293 /* ProfileEditPresenter.swift */,
+				7E3D0963282BD73100F45293 /* ProfileEditInteractor.swift */,
+				7E3D0965282BD73B00F45293 /* ProfileEditRouter.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -750,6 +762,7 @@
 				7E3E6B76282AB79000140E65 /* AboutBuilder.swift in Sources */,
 				7E39EA9A281F348E0073A591 /* RegisterContracts.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
+				7E3D0966282BD73B00F45293 /* ProfileEditRouter.swift in Sources */,
 				7E3E6B52282AB4A000140E65 /* ChangePasswordBuilder.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
 				7E8AA54C2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift in Sources */,
@@ -770,12 +783,14 @@
 				7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */,
 				7E8AA53C2826965900A90ED2 /* LoginService.swift in Sources */,
 				7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */,
+				7E3D0960282BD6CC00F45293 /* ProfileEditContracts.swift in Sources */,
 				7EC7E8B8281F481D003155F1 /* SelectAuthController.swift in Sources */,
 				7E5B9064281FE86A00D0B278 /* UIViewController+Ex.swift in Sources */,
 				7E3E6B63282AB63300140E65 /* CountryViewController.swift in Sources */,
 				7E8AA5432826C14B00A90ED2 /* RegisterService.swift in Sources */,
 				7E3E6B5C282AB5D200140E65 /* LanguageBuilder.swift in Sources */,
 				7E1240DF2826D93500FCB848 /* Validation.swift in Sources */,
+				7E3D0962282BD6FB00F45293 /* ProfileEditPresenter.swift in Sources */,
 				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E68BB21282A86660099DC65 /* SettingTableViewCell.swift in Sources */,
@@ -799,6 +814,7 @@
 				7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */,
 				7E3E6B6B282AB6C700140E65 /* LegalPoliciesBuilder.swift in Sources */,
 				7E41D4C3281EE64F004E198E /* ButtonTypes.swift in Sources */,
+				7E3D0964282BD73100F45293 /* ProfileEditInteractor.swift in Sources */,
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7E68504F281F1BFA007C15B0 /* LoginViewController.swift in Sources */,
 				7ECDE3512828175300FE76BC /* BaseViewController.swift in Sources */,

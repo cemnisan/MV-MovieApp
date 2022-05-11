@@ -65,13 +65,12 @@ extension GoogleAuthenticatorAdapter: RegisterService {
     func register(with username: String,
                   email: String,
                   password: String,
-                  completed: @escaping () -> Void,
+                  completed: @escaping (String) -> Void,
                   failure: @escaping (Error) -> Void) {
         firebaseAuth.createUser(withEmail: email,
                                 password: password) { (result, error) in
             guard error == nil else { failure(error!); return }
-            AppData.userName = username
-            completed()
+            completed(username)
         }
     }
 }

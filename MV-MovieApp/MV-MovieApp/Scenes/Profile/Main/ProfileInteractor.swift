@@ -12,26 +12,33 @@ final class ProfileInteractor {
     private let userService: UserService
     var delegate: ProfileInteractorOutput?
     
+    private(set) var currentUser: UserPresentation!
+    
     init(userService: UserService) {
         self.userService = userService
     }
 }
 
 extension ProfileInteractor: ProfileInteractorProtocol {
-    
+
     func loadCurrentUser() {
         guard let user = userService.getCurrentUser() else { return }
-        
-        delegate?.showCurrentUser(currentUser: user)
+        currentUser    = user
+        delegate?.showCurrentUser(currentUser: currentUser)
     }
 
-    func tappedLogoutButton() {
+    func logoutTapped() {
         userService.signOut { [weak self] in
             guard let self = self else { return }
+            AppData.enableAutoLogin = false
             self.delegate?.showLogin()
         } failure: { [weak self] error in
             guard let self = self else { return }
             self.delegate?.showError(error: error)
         }
+    }
+    
+    func editUserTapped() {
+        delegate?.showEditUser(with: currentUser)
     }
 }

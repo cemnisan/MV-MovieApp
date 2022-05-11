@@ -118,7 +118,7 @@ extension ProfileViewController {
     
     @objc
     private func userDidTappedEditButton() {
-        profilePresenter.tappedEditButton()
+        profilePresenter.userEditTapped()
     }
     
     @objc
@@ -196,6 +196,6 @@ extension ProfileViewController: ProfilePresenterOutput {
 // MARK: - Action Alert Delegate
 extension ProfileViewController: MVActionAlertDelegate {
     func actionButtonTapped() {
-        profilePresenter.tappedLogoutButton()
+        profilePresenter.logoutTapped()
     }
 }

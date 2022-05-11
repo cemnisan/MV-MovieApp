@@ -20,7 +20,6 @@ extension BaseAuthenticateRouter:BaseAuthenticateRoute {
     
     func toHome() {
         let homeView            = TabBar.createTabBar()
-        AppData.enableAutoLogin = true
         view.show(homeView, sender: nil)
     }
 }

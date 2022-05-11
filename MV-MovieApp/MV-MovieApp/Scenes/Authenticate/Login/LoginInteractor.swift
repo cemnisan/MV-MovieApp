@@ -9,8 +9,7 @@ import Foundation
 
 final class LoginInteractor: BaseAuthenticateInteractor {
     
-    var loginService: LoginService
-    var user: UserPresentation!
+    private let loginService: LoginService
     
     init(loginService: LoginService) {
         self.loginService = loginService

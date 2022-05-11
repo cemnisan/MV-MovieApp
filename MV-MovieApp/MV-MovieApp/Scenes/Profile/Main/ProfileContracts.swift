@@ -12,22 +12,22 @@ protocol ProfileInteractorProtocol: AnyObject {
     
     func loadCurrentUser()
     
-    func tappedLogoutButton()
+    func editUserTapped()
+    func logoutTapped()
 }
 
 protocol ProfileInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
-    
+    func showEditUser(with currentUser: UserPresentation)
     func showLogin()
     func showError(error: Error)
 }
 
 protocol ProfilePresenterProtocol: AnyObject {
     func loadCurrentUser()
-    
-    func tappedLogoutButton()
-    func tappedEditButton()
-    
+    func userEditTapped()
+
+    func logoutTapped()
     func selectSetting(at section: Int, index: Int)
 }
 
@@ -38,6 +38,6 @@ protocol ProfilePresenterOutput: AnyObject {
 
 protocol ProfileRoute: AnyObject {
     func toLogin()
-    func toEdit()
+    func toEdit(with currentUser: UserPresentation)
     func toSelectedSetting(_ setting: SettingsOption)
 }
