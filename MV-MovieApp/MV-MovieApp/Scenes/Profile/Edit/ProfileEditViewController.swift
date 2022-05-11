@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import PhotosUI
 import MV_Components
 
-final class ProfileEditViewController: UIViewController {
+final class ProfileEditViewController: BaseViewController {
     
     private let currentImageView       = MVUserImage(cornerRadius: 60)
     private let editImageContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
@@ -171,13 +172,55 @@ extension ProfileEditViewController {
 extension ProfileEditViewController {
     
     @objc
-    private func editImageViewButtonTapped() {}
+    private func editImageViewButtonTapped() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = PHPickerFilter.images
+        
+        let pickerViewController = PHPickerViewController(configuration: config)
+        pickerViewController.delegate = self
+        self.present(pickerViewController, animated: true)
+    }
     
     @objc
-    private func saveChangesButtonTapped() {}
+    private func saveChangesButtonTapped() {
+        guard let imageData = currentImageView.image?.pngData() else { return }
+        print(imageData)
+        profileEditPresenter.updateUser(with: imageData, fullName: "Cem Nisan", username: "cameronhowe")
+    }
 }
 
+extension ProfileEditViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController,
+                didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { (object, error) in
+                if let image = object as? UIImage {
+                    guard let data = image.jpegData(compressionQuality: 1) else { return }
+                    self.profileEditPresenter.uploadImage(image: data)
+                }
+            }
+        }
+    }
+ }
+
+// MARK: - Profile Edit Presenter Output
 extension ProfileEditViewController: ProfileEditPresenterOutput {
+    
+    func showUpdatedImage(with url: URL) {
+        currentImageView.setImage(with: url)
+    }
+    
+    func displayLoading() {
+        showLoadingView()
+    }
+    
+    func dismissLoading() {
+        dismissLoadingView()
+    }
+    
     func showCurrentUser(currentUser: UserPresentation) {
         currentNameLabel.text   = currentUser.username
         currentEmailLabel.text  = currentUser.email

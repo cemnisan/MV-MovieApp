@@ -8,7 +8,7 @@
 import Foundation
 
 @propertyWrapper
-struct Storage<T> {
+struct UserStorage<T> {
     
     private let key: String
     private let defaultValue: T

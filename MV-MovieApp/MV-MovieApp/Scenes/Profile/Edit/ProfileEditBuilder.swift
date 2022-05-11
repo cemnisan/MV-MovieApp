@@ -11,7 +11,8 @@ final class ProfileEditBuilder {
     
     static func make(with currentUser: UserPresentation) -> UIViewController {
         let view = ProfileEditViewController()
-        let interactor = ProfileEditInteractor(currentUser: currentUser)
+        let interactor = ProfileEditInteractor(currentUser: currentUser,
+                                               storageService: GoogleStorageAdapter())
         let presenter = ProfileEditPresenter(interactor: interactor,
                                              view: view)
         view.profileEditPresenter = presenter
