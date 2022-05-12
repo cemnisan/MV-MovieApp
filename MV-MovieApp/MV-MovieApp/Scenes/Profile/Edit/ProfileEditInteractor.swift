@@ -60,7 +60,7 @@ extension ProfileEditInteractor: ProfileEditInteractorProtocol {
                 self.currentUser = user
                 self.delegate?.showCurrentUser(currentUser: self.currentUser)
             case .failure(let error):
-                print(error)
+                self.delegate?.showError(error: error)
             }
         }
     }

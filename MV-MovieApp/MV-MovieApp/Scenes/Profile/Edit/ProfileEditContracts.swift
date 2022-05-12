@@ -23,6 +23,7 @@ protocol ProfileEditInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func initializeProgress(progress: Float?)
     func showUpdatedImage(with url: String)
+    func showError(error: Error)
     
     func displayLoading()
     func dismissLoading()
@@ -42,7 +43,8 @@ protocol ProfileEditPresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func initializeProgress(progress: Float?)
     func showUpdatedImage(with url: String)
-    
+    func showError(error: Error)
+
     func displayLoading()
     func dismissLoading()
 }

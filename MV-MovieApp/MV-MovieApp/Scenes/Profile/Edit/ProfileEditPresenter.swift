@@ -54,6 +54,10 @@ extension ProfileEditPresenter: ProfileEditInteractorOutput {
         view.showUpdatedImage(with: url)
     }
     
+    func showError(error: Error) {
+        view.showError(error: error)
+    }
+    
     func displayLoading() {
         view.displayLoading()
     }

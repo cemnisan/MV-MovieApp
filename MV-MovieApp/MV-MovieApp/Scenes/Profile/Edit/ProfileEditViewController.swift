@@ -194,6 +194,10 @@ extension ProfileEditViewController {
         
         let pickerViewController = PHPickerViewController(configuration: config)
         pickerViewController.delegate = self
+        
+        progressView.isHidden    = true
+        progressView.setProgress(0, animated: true)
+        
         self.present(pickerViewController, animated: true)
     }
     
@@ -218,7 +222,7 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
                 guard let self = self else { return }
                 if let image = object as? UIImage {
                     guard let imageData    = image.jpegData(compressionQuality: 0.3) else { return }
-                    DispatchQueue.main.async { self.currentImageView.image = nil }
+                    DispatchQueue.main.async { self.currentImageView.image = image }
                     self.profileEditPresenter.uploadImage(image: imageData)
                 }
             }
@@ -248,6 +252,12 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     
     func showUpdatedImage(with url: String) {
         currentImageView.setImage(with: url)
+    }
+    
+    func showError(error: Error) {
+        showErrorAlert(with: "Something went wrong",
+                       message: error.localizedDescription,
+                       buttonTitle: "OK")
     }
     
     func displayLoading() {
