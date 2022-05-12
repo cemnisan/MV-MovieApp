@@ -67,7 +67,7 @@ extension ProfileEditViewController {
     private func configureProgressView() {
         view.addSubviews(views: progressView)
         progressView.trackTintColor    = .gray
-        progressView.progressTintColor = .systemBlue
+        progressView.progressTintColor = .darkGray
         progressView.frame             = CGRect(x: 10,
                                                 y: 100,
                                                 width: view.frame.size.width - 20,
@@ -166,6 +166,8 @@ extension ProfileEditViewController {
         editEmailLabel.configureConstraints(top: (editNameTextField.bottomAnchor, 24))
         editEmailLabel.configureHeight(height: 25)
         
+        editEmailTextField.isEnabled       = false
+        editEmailTextField.backgroundColor = .darkGray
         editEmailTextField.configureConstraints(top: (editEmailLabel.bottomAnchor, 8))
         editEmailTextField.configureHeight(height: 40)
     }
@@ -180,6 +182,16 @@ extension ProfileEditViewController {
                                                leading: (view.leadingAnchor, 24),
                                                trailing: (view.trailingAnchor, -24))
         saveChangesButton.configureHeight(height: 55)
+    }
+    
+    private func configureSaveChangesButton(for isEnabled: Bool) {
+        saveChangesButton.isEnabled = isEnabled
+        
+        if isEnabled {
+            saveChangesButton.backgroundColor = K.Styles.actionButtonColor
+        } else {
+            saveChangesButton.backgroundColor = .darkGray
+        }
     }
 }
 
@@ -219,10 +231,13 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
         
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
-                guard let self = self else { return }
-                if let image = object as? UIImage {
-                    guard let imageData    = image.jpegData(compressionQuality: 0.3) else { return }
-                    DispatchQueue.main.async { self.currentImageView.image = image }
+                guard let self          = self else { return }
+                if let image            = object as? UIImage {
+                    guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
+                    DispatchQueue.main.async {
+                        self.currentImageView.image = image
+                        self.configureSaveChangesButton(for: false)
+                    }
                     self.profileEditPresenter.uploadImage(image: imageData)
                 }
             }
@@ -237,7 +252,7 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         currentImageView.setImage(with: currentUser.imageURL ?? "")
         currentNameLabel.text      = currentUser.fullName
         currentEmailLabel.text     = currentUser.email
-           
+     
         editEmailTextField.text    = currentUser.email
         editNameTextField.text     = currentUser.fullName
         editUsernameTextField.text = currentUser.username
@@ -252,6 +267,9 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     
     func showUpdatedImage(with url: String) {
         currentImageView.setImage(with: url)
+        configureSaveChangesButton(for: true)
+        progressView.isHidden = true
+        progressView.setProgress(0, animated: true)
     }
     
     func showError(error: Error) {
@@ -261,10 +279,12 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     }
     
     func displayLoading() {
+        configureSaveChangesButton(for: false)
         showLoadingView()
     }
     
     func dismissLoading() {
+        configureSaveChangesButton(for: true)
         dismissLoadingView()
     }
 }

@@ -13,9 +13,7 @@ extension UIImageView {
     func setImage(with url: String) {
         guard let url = URL(string: url) else { return }
         
-        self.kf.indicatorType = .activity
-        self
-            .kf
+        self.kf
             .setImage(with: url,
                       placeholder: self.image,
                       options: [
@@ -26,7 +24,7 @@ extension UIImageView {
             guard let self = self else { return }
             switch result {
             case .success(let retrieveResult): self.image = retrieveResult.image
-            case .failure(let error): print("error: \(error)")
+            case .failure(_): break
             }
         }
     }
