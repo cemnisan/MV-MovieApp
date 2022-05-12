@@ -11,6 +11,8 @@ import MV_Components
 
 final class ProfileEditViewController: BaseViewController {
     
+    private let progressView           = UIProgressView(progressViewStyle: .bar)
+    
     private let currentImageView       = MVUserImage(cornerRadius: 60)
     private let editImageContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editImageButton        = MVButton(frame: .zero)
@@ -30,14 +32,12 @@ final class ProfileEditViewController: BaseViewController {
     private let saveChangesButton      = MVButton(backgroundColor: K.Styles.actionButtonColor, title: "Save Changes", cornerRadius: 20)
     
     var profileEditPresenter: ProfileEditPresenterProtocol!
-    private var imageURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
         profileEditPresenter.loadCurrentUser()
-        profileEditPresenter.getCurrentProfilePicture()
     }
 }
 
@@ -46,6 +46,7 @@ extension ProfileEditViewController {
     
     private func configure() {
         configureViewController()
+        configureProgressView()
         configureUserImage()
         configureEditImageContainerView()
         configureEditImageButton()
@@ -63,10 +64,22 @@ extension ProfileEditViewController {
         navigationController?.navigationBar.tintColor = K.Styles.labelTextColor
     }
     
+    private func configureProgressView() {
+        view.addSubviews(views: progressView)
+        progressView.trackTintColor    = .gray
+        progressView.progressTintColor = .systemBlue
+        progressView.frame             = CGRect(x: 10,
+                                                y: 100,
+                                                width: view.frame.size.width - 20,
+                                                height: 20)
+        progressView.isHidden          = true
+        progressView.setProgress(0, animated: true)
+    }
+    
     private func configureUserImage() {
         view.addSubview(currentImageView)
         
-        currentImageView.configureConstraints(top: (view.safeAreaLayoutGuide.topAnchor, 8),
+        currentImageView.configureConstraints(top: (progressView.bottomAnchor, 8),
                                            centerX: (view.centerXAnchor, 0))
         currentImageView.configureHeight(height: 120)
         currentImageView.configureWidth(width: 120)
@@ -189,7 +202,6 @@ extension ProfileEditViewController {
         guard let fullName       = editNameTextField.text,
               let username       = editUsernameTextField.text,
               let currentEmail   = currentEmailLabel.text else { return }
-        
         profileEditPresenter.updateUser(with: fullName,
                                         username: username,
                                         email: currentEmail)
@@ -205,7 +217,8 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
                 guard let self = self else { return }
                 if let image = object as? UIImage {
-                    guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+                    guard let imageData    = image.jpegData(compressionQuality: 0.3) else { return }
+                    DispatchQueue.main.async { self.currentImageView.image = nil }
                     self.profileEditPresenter.uploadImage(image: imageData)
                 }
             }
@@ -216,12 +229,25 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
 // MARK: - Profile Edit Presenter Output
 extension ProfileEditViewController: ProfileEditPresenterOutput {
     
-    func currentProfilePicture(imageURL: String) {
-        self.imageURL = imageURL
+    func showCurrentUser(currentUser: UserPresentation) {
+        currentImageView.setImage(with: currentUser.imageURL ?? "")
+        currentNameLabel.text      = currentUser.fullName
+        currentEmailLabel.text     = currentUser.email
+           
+        editEmailTextField.text    = currentUser.email
+        editNameTextField.text     = currentUser.fullName
+        editUsernameTextField.text = currentUser.username
     }
-
-    func showUpdatedImage(with url: URL) {
-        currentImageView.setImage(with: url.absoluteString)
+    
+    func initializeProgress(progress: Float?) {
+        if let progress = progress {
+            progressView.isHidden = false
+            progressView.setProgress(progress / 100, animated: true)
+        }
+    }
+    
+    func showUpdatedImage(with url: String) {
+        currentImageView.setImage(with: url)
     }
     
     func displayLoading() {
@@ -230,13 +256,5 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     
     func dismissLoading() {
         dismissLoadingView()
-    }
-    
-    func showCurrentUser(currentUser: UserPresentation) {
-        currentNameLabel.text   = currentUser.fullName
-        currentEmailLabel.text  = currentUser.email
-        editEmailTextField.text = currentUser.email
-        editNameTextField.text  = currentUser.fullName
-        currentImageView.setImage(with: currentUser.imageURL ?? "")
     }
 }

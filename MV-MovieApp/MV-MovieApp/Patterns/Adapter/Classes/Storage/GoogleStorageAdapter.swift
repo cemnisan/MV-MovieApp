@@ -16,6 +16,7 @@ final class GoogleStorageAdapter {
 extension GoogleStorageAdapter: UploadMediaService {
     
     func uploadMedia(with imageData: Data,
+                     progress: @escaping (_ progress: Float?) -> Void,
                      completion: @escaping (_ url: URL?) -> Void) {
         let imageName = String("\(Auth.auth().currentUser!.uid).png")
         
@@ -39,9 +40,11 @@ extension GoogleStorageAdapter: UploadMediaService {
         }
         
         uploadTask.observe(.progress) { snapshot in
-            print((snapshot.progress?.fractionCompleted ?? 0) * 100.0)
+            progress(Float(snapshot.progress?.fractionCompleted ?? 0) * 100)
+            
             if snapshot.status == .success || snapshot.status == .failure {
                 uploadTask.removeAllObservers(for: .progress)
+                progress(nil)
             }
         }
     }

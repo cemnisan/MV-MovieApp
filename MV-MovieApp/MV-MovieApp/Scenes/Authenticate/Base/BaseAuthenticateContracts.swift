@@ -17,9 +17,9 @@ protocol BaseAuthenticateInteractorProtocol: AnyObject {
 
 // MARK: - Base Interactor Output
 protocol BaseAuthenticateInteractorOutput: AnyObject {
-    func showError(error: Error)
     func displayLoadingIndicator()
     func dismissLoadingIndicator()
+    func showError(error: Error)
     func showHome()
 }
 
@@ -30,9 +30,9 @@ protocol BaseAuthenticatePresenterProtocol: AnyObject {
 
 // MARK: - Base Presenter Output
 protocol BaseAuthenticatePresenterOutput: AnyObject {
-    func showError(error: Error)
     func displayLoadingIndicator()
     func dismissLoadingIndicator()
+    func showError(error: Error)
 }
 
 // MARK: - Base Route

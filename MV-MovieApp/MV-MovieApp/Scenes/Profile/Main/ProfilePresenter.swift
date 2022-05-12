@@ -27,8 +27,8 @@ final class ProfilePresenter {
 // MARK: - Presenter Protocol
 extension ProfilePresenter: ProfilePresenterProtocol {
     
-    func userEditTapped() {
-        interactor.editUserTapped()
+    func editButtonTapped() {
+        interactor.editButtonTapped()
     }
     
     
@@ -37,7 +37,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     }
 
     func logoutTapped() {
-        interactor.logoutTapped()
+        interactor.logoutButtonTapped()
     }
     
     func selectSetting(at section: Int, index: Int) {
@@ -49,7 +49,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 // MARK: - Interactor Output
 extension ProfilePresenter: ProfileInteractorOutput {
     
-    func showEditUser(with currentUser: UserPresentation) {
+    func showEditableUser(currentUser: UserPresentation) {
         router.toEdit(with: currentUser)
     }
     

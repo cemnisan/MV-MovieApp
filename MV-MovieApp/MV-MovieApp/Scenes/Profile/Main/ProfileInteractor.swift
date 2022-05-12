@@ -37,7 +37,7 @@ extension ProfileInteractor: ProfileInteractorProtocol {
         }
     }
 
-    func logoutTapped() {
+    func logoutButtonTapped() {
         userService.signOut { [weak self] in
             guard let self = self else { return }
             AppData.enableAutoLogin = false
@@ -48,7 +48,7 @@ extension ProfileInteractor: ProfileInteractorProtocol {
         }
     }
     
-    func editUserTapped() {
-        delegate?.showEditUser(with: currentUser)
+    func editButtonTapped() {
+        delegate?.showEditableUser(currentUser: currentUser)
     }
 }

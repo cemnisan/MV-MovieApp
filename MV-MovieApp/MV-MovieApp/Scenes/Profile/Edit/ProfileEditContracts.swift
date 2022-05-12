@@ -12,7 +12,6 @@ protocol ProfileEditInteractorProtocol: AnyObject {
     var delegate: ProfileEditInteractorOutput? { get set }
     
     func loadCurrentUser()
-    func getCurrentProfilePicture()
     func uploadImage(image: Data)
     func updateUser(with fullName: String,
                     username: String,
@@ -22,8 +21,8 @@ protocol ProfileEditInteractorProtocol: AnyObject {
 // MARK: - Interactor Output
 protocol ProfileEditInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
-    func showUpdatedImage(with url: URL)
-    func currentProfilePicture(imageURL: String)
+    func initializeProgress(progress: Float?)
+    func showUpdatedImage(with url: String)
     
     func displayLoading()
     func dismissLoading()
@@ -32,7 +31,6 @@ protocol ProfileEditInteractorOutput: AnyObject {
 // MARK: - Presenter Protocol
 protocol ProfileEditPresenterProtocol: AnyObject {
     func loadCurrentUser()
-    func getCurrentProfilePicture()
     func uploadImage(image: Data)
     func updateUser(with fullName: String,
                     username: String,
@@ -42,8 +40,8 @@ protocol ProfileEditPresenterProtocol: AnyObject {
 // MARK: - Presenter Output
 protocol ProfileEditPresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
-    func showUpdatedImage(with url: URL)
-    func currentProfilePicture(imageURL: String)
+    func initializeProgress(progress: Float?)
+    func showUpdatedImage(with url: String)
     
     func displayLoading()
     func dismissLoading()

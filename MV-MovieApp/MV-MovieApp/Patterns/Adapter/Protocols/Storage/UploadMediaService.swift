@@ -9,5 +9,6 @@ import Foundation
 
 protocol UploadMediaService {
     func uploadMedia(with imageData: Data,
+                     progress: @escaping (_ progress: Float?) -> Void,
                      completion: @escaping (_ url: URL?) -> Void)
 }

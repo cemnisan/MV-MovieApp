@@ -124,7 +124,7 @@ extension ProfileViewController {
     
     @objc
     private func userDidTappedEditButton() {
-        profilePresenter.userEditTapped()
+        profilePresenter.editButtonTapped()
     }
     
     @objc

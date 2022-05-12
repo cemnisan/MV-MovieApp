@@ -30,14 +30,13 @@ extension ProfileEditInteractor: ProfileEditInteractorProtocol {
         delegate?.showCurrentUser(currentUser: currentUser)
     }
     
-    func getCurrentProfilePicture() {
-       delegate?.currentProfilePicture(imageURL: currentUser.imageURL ?? "")
-    }
-    
     func uploadImage(image: Data) {
-        storageService.uploadMedia(with: image) { [weak self] url in
+        storageService.uploadMedia(with: image) { [weak self] progress in
+            guard let self = self else { return }
+            self.delegate?.initializeProgress(progress: progress)
+        } completion: { [weak self] url in
             guard let self = self,
-                  let url  = url else { return }
+                  let url  = url?.absoluteString else { return }
             self.delegate?.showUpdatedImage(with: url)
         }
     }
