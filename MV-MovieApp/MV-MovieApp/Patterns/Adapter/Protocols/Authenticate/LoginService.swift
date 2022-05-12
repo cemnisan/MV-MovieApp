@@ -11,6 +11,5 @@ import UIKit.UIViewController
 protocol LoginService: BaseAuthenticateService {
     func login(with email: String,
                password: String,
-               completed: @escaping () -> Void,
-               failure: @escaping (Error) -> Void)
+               completion: @escaping (Result<UserPresentation, Error>) -> Void)
 }

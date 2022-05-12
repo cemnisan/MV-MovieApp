@@ -10,11 +10,14 @@ import Foundation
 final class LoginInteractor: BaseAuthenticateInteractor {
     
     private let loginService: LoginService
+    private let fireStoreService: GoogleFireStoreService
     
-    init(loginService: LoginService) {
-        self.loginService = loginService
-        
-        super.init(service: loginService)
+    init(loginService: LoginService,
+         fireStoreService: GoogleFireStoreService) {
+        self.loginService     = loginService
+        self.fireStoreService = fireStoreService
+    
+        super.init(authService: loginService, fireStoreService: fireStoreService)
     }
 }
 
@@ -27,14 +30,17 @@ extension LoginInteractor: LoginInteractorProtocol {
             delegate?.displayLoadingIndicator()
             
             loginService.login(with: email,
-                               password: password) { [weak self] in
+                               password: password) { [weak self] (result) in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
-                self.delegate?.showHome()
-            } failure: { [weak self] error in
-                guard let self = self else { return }
-                self.delegate?.dismissLoadingIndicator()
-                self.delegate?.showError(error: error)
+                
+                switch result {
+                case .success(_):
+                    AppData.enableAutoLogin = true
+                    self.delegate?.showHome()
+                case .failure(let error):
+                    self.delegate?.showError(error: error)
+                }
             }
         } catch {
             delegate?.showError(error: error)

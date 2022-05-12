@@ -12,7 +12,8 @@ final class LoginBuilder {
     static func make() -> UINavigationController {
         let viewController              = LoginViewController()
         let router                      = LoginRouter(view: viewController)
-        let interactor                  = LoginInteractor(loginService: GoogleAuthenticatorAdapter())
+        let interactor                  = LoginInteractor(loginService: GoogleAuthenticatorAdapter(),
+                                                          fireStoreService: GoogleFireStoreAdapter())
         let presenter                   = LoginPresenter(view: viewController,
                                                          interactor: interactor,
                                                          router: router)

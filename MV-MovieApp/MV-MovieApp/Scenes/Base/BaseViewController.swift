@@ -27,9 +27,11 @@ class BaseViewController: UIViewController {
     
     func dismissLoadingView() {
         DispatchQueue.main.async {
-            self.loadingIndicatorView.stopIndicatorView()
-            self.loadingIndicatorView.removeFromSuperview()
-            self.loadingIndicatorView = nil
+            if self.loadingIndicatorView != nil {
+                self.loadingIndicatorView.stopIndicatorView()
+                self.loadingIndicatorView.removeFromSuperview()
+                self.loadingIndicatorView = nil
+            }
         }
     }
 }

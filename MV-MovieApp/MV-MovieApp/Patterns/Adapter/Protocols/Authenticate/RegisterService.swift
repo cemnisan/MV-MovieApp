@@ -11,6 +11,5 @@ protocol RegisterService: BaseAuthenticateService {
     func register(with username: String,
                   email: String,
                   password: String,
-                  completed: @escaping (String) -> Void,
-                  failure: @escaping (Error) -> Void)
+                  completion: @escaping (Result<UserPresentation, Error>) -> Void)
 }

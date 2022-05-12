@@ -11,7 +11,8 @@ final class RegisterBuilder {
     
     static func make() -> RegisterViewController {
         let viewController = RegisterViewController()
-        let interactor     = RegisterInteractor(registerService: GoogleAuthenticatorAdapter())
+        let interactor     = RegisterInteractor(registerService: GoogleAuthenticatorAdapter(),
+                                                fireStoreService: GoogleFireStoreAdapter())
         let router         = RegisterRouter(view: viewController)
         let presenter      = RegisterPresenter(view: viewController,
                                              interactor: interactor,

@@ -10,21 +10,31 @@ import Foundation
 final class ProfileInteractor {
     
     private let userService: UserService
+    private let fireStoreService: GoogleFireStoreService
     var delegate: ProfileInteractorOutput?
     
     private(set) var currentUser: UserPresentation!
     
-    init(userService: UserService) {
-        self.userService = userService
+    init(userService: UserService,
+         fireStoreService: GoogleFireStoreService) {
+        self.userService      = userService
+        self.fireStoreService = fireStoreService
     }
 }
 
 extension ProfileInteractor: ProfileInteractorProtocol {
 
     func loadCurrentUser() {
-        guard let user = userService.getCurrentUser() else { return }
-        currentUser    = user
-        delegate?.showCurrentUser(currentUser: currentUser)
+        fireStoreService.readCurrentUser { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let user):
+                self.currentUser = user
+                self.delegate?.showCurrentUser(currentUser: self.currentUser)
+            case .failure(let error):
+                self.delegate?.showError(error: error)
+            }
+        }
     }
 
     func logoutTapped() {

@@ -10,11 +10,15 @@ import UIKit.UIViewController
 
 class BaseAuthenticateInteractor {
     
-    private let service: BaseAuthenticateService
+    private let authService: BaseAuthenticateService
+    private let fireStoreService: GoogleFireStoreService
+    
     weak var delegate: BaseAuthenticateInteractorOutput?
     
-    init(service: BaseAuthenticateService) {
-        self.service = service
+    init(authService: BaseAuthenticateService,
+         fireStoreService: GoogleFireStoreService) {
+        self.authService      = authService
+        self.fireStoreService = fireStoreService
     }
 }
 
@@ -23,14 +27,20 @@ extension BaseAuthenticateInteractor: BaseAuthenticateInteractorProtocol {
     func loginWithGoogle(presenterController presenter: UIViewController) {
         delegate?.displayLoadingIndicator()
         
-        service.login(presenterViewController: presenter) { [weak self] in
+        authService.login(presenterViewController: presenter) { [weak self] (result) in
             guard let self = self else { return }
             self.delegate?.dismissLoadingIndicator()
-            AppData.enableAutoLogin = true
-            self.delegate?.showHome()
-        } failure: { [weak self] error in
-            guard let self = self else { return }
-            self.delegate?.showError(error: error)
+            
+            switch result {
+            case .success(let user):
+                self.fireStoreService.isUserAlreadyExist(registeredUser: user) { isExist in
+                    if !isExist { self.fireStoreService.createUser(user: user) }
+                }
+                AppData.enableAutoLogin = true
+                self.delegate?.showHome()
+            case .failure(let error):
+                self.delegate?.showError(error: error)
+            }
         }
     }
 }

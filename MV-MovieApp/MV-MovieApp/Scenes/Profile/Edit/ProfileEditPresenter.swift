@@ -22,12 +22,20 @@ final class ProfileEditPresenter {
 }
 
 extension ProfileEditPresenter: ProfileEditPresenterProtocol {
-    func updateUser(with image: Data, fullName: String, username: String) {
-        interactor.updateUser(with: image, fullName: fullName, username: username)
+    func getCurrentProfilePicture() {
+        interactor.getCurrentProfilePicture()
     }
     
     func uploadImage(image: Data) {
         interactor.uploadImage(image: image)
+    }
+    
+    func updateUser(with fullName: String,
+                    username: String,
+                    email: String) {
+        interactor.updateUser(with: fullName,
+                              username: username,
+                              email: email)
     }
     
     func loadCurrentUser() {
@@ -37,6 +45,10 @@ extension ProfileEditPresenter: ProfileEditPresenterProtocol {
 
 extension ProfileEditPresenter: ProfileEditInteractorOutput {
     
+    func currentProfilePicture(imageURL: String) {
+        view.currentProfilePicture(imageURL: imageURL)
+    }
+
     func showUpdatedImage(with url: URL) {
         view.showUpdatedImage(with: url)
     }

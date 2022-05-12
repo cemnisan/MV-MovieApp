@@ -11,7 +11,8 @@ final class ProfileBuilder {
     
     static func make() -> UINavigationController {
         let rootView        = ProfileViewController()
-        let interactor      = ProfileInteractor(userService: GoogleAuthenticatorAdapter())
+        let interactor      = ProfileInteractor(userService: GoogleAuthenticatorAdapter(),
+                                                fireStoreService: GoogleFireStoreAdapter())
         let router          = ProfileRouter(view: rootView)
         let presenter       = ProfilePresenter(interactor: interactor,
                                                router: router,

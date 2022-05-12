@@ -30,12 +30,14 @@ final class ProfileEditViewController: BaseViewController {
     private let saveChangesButton      = MVButton(backgroundColor: K.Styles.actionButtonColor, title: "Save Changes", cornerRadius: 20)
     
     var profileEditPresenter: ProfileEditPresenterProtocol!
+    private var imageURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
         profileEditPresenter.loadCurrentUser()
+        profileEditPresenter.getCurrentProfilePicture()
     }
 }
 
@@ -184,9 +186,13 @@ extension ProfileEditViewController {
     
     @objc
     private func saveChangesButtonTapped() {
-        guard let imageData = currentImageView.image?.pngData() else { return }
-        print(imageData)
-        profileEditPresenter.updateUser(with: imageData, fullName: "Cem Nisan", username: "cameronhowe")
+        guard let fullName       = editNameTextField.text,
+              let username       = editUsernameTextField.text,
+              let currentEmail   = currentEmailLabel.text else { return }
+        
+        profileEditPresenter.updateUser(with: fullName,
+                                        username: username,
+                                        email: currentEmail)
     }
 }
 
@@ -196,10 +202,11 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { (object, error) in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
+                guard let self = self else { return }
                 if let image = object as? UIImage {
-                    guard let data = image.jpegData(compressionQuality: 1) else { return }
-                    self.profileEditPresenter.uploadImage(image: data)
+                    guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+                    self.profileEditPresenter.uploadImage(image: imageData)
                 }
             }
         }
@@ -209,8 +216,12 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
 // MARK: - Profile Edit Presenter Output
 extension ProfileEditViewController: ProfileEditPresenterOutput {
     
+    func currentProfilePicture(imageURL: String) {
+        self.imageURL = imageURL
+    }
+
     func showUpdatedImage(with url: URL) {
-        currentImageView.setImage(with: url)
+        currentImageView.setImage(with: url.absoluteString)
     }
     
     func displayLoading() {
@@ -222,10 +233,10 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     }
     
     func showCurrentUser(currentUser: UserPresentation) {
-        currentNameLabel.text   = currentUser.username
+        currentNameLabel.text   = currentUser.fullName
         currentEmailLabel.text  = currentUser.email
         editEmailTextField.text = currentUser.email
-        editNameTextField.text  = currentUser.username
-        currentImageView.setImage(with: currentUser.imageURL)
+        editNameTextField.text  = currentUser.fullName
+        currentImageView.setImage(with: currentUser.imageURL ?? "")
     }
 }

@@ -9,13 +9,15 @@ import Foundation
 
 final class RegisterInteractor: BaseAuthenticateInteractor {
     
-    var registerService: RegisterService
-    var user: UserPresentation!
+    private let fireStoreService: GoogleFireStoreService
+    private let registerService: RegisterService
     
-    init(registerService: RegisterService) {
-        self.registerService = registerService
+    init(registerService: RegisterService,
+         fireStoreService: GoogleFireStoreService) {
+        self.registerService    = registerService
+        self.fireStoreService   = fireStoreService
         
-        super.init(service: registerService)
+        super.init(authService: registerService, fireStoreService: fireStoreService)
     }
 }
 
@@ -33,15 +35,18 @@ extension RegisterInteractor: RegisterInteractorProtocol {
             
             registerService.register(with: username,
                                      email: email,
-                                     password: password) { [weak self] username in
+                                     password: password) { [weak self] result in
                 guard let self = self else { return }
                 self.delegate?.dismissLoadingIndicator()
-                AppData.userName = username
-                self.delegate?.showHome()
-            } failure: { [weak self] error in
-                guard let self = self else { return }
-                self.delegate?.dismissLoadingIndicator()
-                self.delegate?.showHome()
+                
+                switch result {
+                case .success(let user):
+                    self.fireStoreService.createUser(user: user)
+                    AppData.enableAutoLogin = true
+                    self.delegate?.showHome()
+                case .failure(let error):
+                    self.delegate?.showError(error: error)
+                }
             }
         } catch {
             delegate?.showError(error: error)

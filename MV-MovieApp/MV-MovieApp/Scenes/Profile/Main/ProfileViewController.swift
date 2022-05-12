@@ -26,6 +26,12 @@ final class ProfileViewController: UIViewController {
         configure()
         profilePresenter.loadCurrentUser()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        profilePresenter.loadCurrentUser()
+    }
 }
 
 extension ProfileViewController {
@@ -187,9 +193,9 @@ extension ProfileViewController: ProfilePresenterOutput {
     }
     
     func showCurrentUser(currentUser: UserPresentation) {
-        userNameLabel.text  = currentUser.username ?? AppData.userName
+        userNameLabel.text  = currentUser.fullName
         userEmailLabel.text = currentUser.email
-        userImageView.setImage(with: currentUser.imageURL)
+        userImageView.setImage(with: currentUser.imageURL ?? "")
     }
 }
 
