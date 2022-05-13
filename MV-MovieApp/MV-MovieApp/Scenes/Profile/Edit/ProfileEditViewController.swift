@@ -17,21 +17,46 @@ final class ProfileEditViewController: BaseViewController {
     private let editImageContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editImageButton        = MVButton(frame: .zero)
     
-    private let currentNameLabel       = MVTitleLabel(textAlignment: .center, fontSize: 24, textColor: .white)
-    private let currentEmailLabel      = MVSecondaryLabel(textAlignment: .center, fontSize: 20, textColor: .systemGray, text: nil)
-     
-    private let editUsernameLabel      = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Username")
-    private let editUsernameTextField  = MVAuthenticatesTextField(placeHolder: "Select a username")
-     
-    private let editNameLabel          = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Full Name")
-    private let editNameTextField      = MVAuthenticatesTextField(frame: .zero)
-      
-    private let editEmailLabel         = MVSecondaryLabel(textAlignment: .left, fontSize: 17, textColor: .white, text: "Email")
-    private let editEmailTextField     = MVAuthenticatesTextField(frame: .zero)
-          
-    private let saveChangesButton      = MVButton(backgroundColor: K.Styles.actionButtonColor, title: "Save Changes", cornerRadius: 20)
+    private let currentNameLabel = MVTitleLabel(
+        textAlignment: .center,
+        fontSize: 24,
+        textColor: .white)
+    private let currentEmailLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: .systemGray,
+        text: nil)
+    
+    private let editUsernameLabel = MVSecondaryLabel(
+        textAlignment: .left,
+        fontSize: 17,
+        textColor: .white,
+        text: "Username")
+    private let editUsernameTextField = MVAuthenticatesTextField(placeHolder: "Select a username")
+    
+    private let editFullNameLabel = MVSecondaryLabel(
+        textAlignment: .left,
+        fontSize: 17,
+        textColor: .white,
+        text: "Full Name")
+    private let editFullNameTextField = MVAuthenticatesTextField(frame: .zero)
+    
+    private let editEmailLabel = MVSecondaryLabel(
+        textAlignment: .left,
+        fontSize: 17,
+        textColor: .white,
+        text: "Email")
+    private let editEmailTextField = MVAuthenticatesTextField(frame: .zero)
+    
+    private let saveChangesButton = MVButton(
+        backgroundColor: K.Styles.actionButtonColor,
+        title: "Save Changes",
+        cornerRadius: 20)
     
     var profileEditPresenter: ProfileEditPresenterProtocol!
+    
+    var currentUsername: String!
+    var currentFullName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +78,7 @@ extension ProfileEditViewController {
         configureUserNameLabel()
         configureUserEmailLabel()
         configureEditUsernameElements()
-        configureEditNameElements()
+        configureEditFullNameElements()
         configureEditEmailElements()
         configureSaveChangesButton()
     }
@@ -80,7 +105,7 @@ extension ProfileEditViewController {
         view.addSubview(currentImageView)
         
         currentImageView.configureConstraints(top: (progressView.bottomAnchor, 8),
-                                           centerX: (view.centerXAnchor, 0))
+                                              centerX: (view.centerXAnchor, 0))
         currentImageView.configureHeight(height: 120)
         currentImageView.configureWidth(width: 120)
     }
@@ -111,8 +136,8 @@ extension ProfileEditViewController {
     private func configureUserNameLabel() {
         view.addSubview(currentNameLabel)
         currentNameLabel.configureConstraints(top: (currentImageView.bottomAnchor, 16),
-                                           leading: (view.leadingAnchor, 24),
-                                           trailing: (view.trailingAnchor, -24))
+                                              leading: (view.leadingAnchor, 24),
+                                              trailing: (view.trailingAnchor, -24))
         currentNameLabel.configureHeight(height: 25)
     }
     
@@ -120,8 +145,8 @@ extension ProfileEditViewController {
         view.addSubview(currentEmailLabel)
         
         currentEmailLabel.configureConstraints(top: (currentNameLabel.bottomAnchor, 8),
-                                           leading: (view.leadingAnchor, 24),
-                                           trailing: (view.trailingAnchor, -24))
+                                               leading: (view.leadingAnchor, 24),
+                                               trailing: (view.trailingAnchor, -24))
         currentEmailLabel.configureHeight(height: 20)
     }
     
@@ -136,23 +161,25 @@ extension ProfileEditViewController {
         editUsernameLabel.configureConstraints(top: (currentEmailLabel.bottomAnchor, 40))
         editUsernameLabel.configureHeight(height: 25)
         
+        editUsernameTextField.delegate = self
         editUsernameTextField.configureConstraints(top: (editUsernameLabel.bottomAnchor, 8))
         editUsernameTextField.configureHeight(height: 40)
     }
     
-    private func configureEditNameElements() {
-        [editNameLabel,
-         editNameTextField
+    private func configureEditFullNameElements() {
+        [editFullNameLabel,
+         editFullNameTextField
         ].forEach {
             view.addSubview($0)
             $0.configureConstraints(leading: (view.leadingAnchor, 24),
                                     trailing: (view.trailingAnchor, -24))
         }
-        editNameLabel.configureConstraints(top: (editUsernameTextField.bottomAnchor, 24))
-        editNameLabel.configureHeight(height: 25)
+        editFullNameLabel.configureConstraints(top: (editUsernameTextField.bottomAnchor, 24))
+        editFullNameLabel.configureHeight(height: 25)
         
-        editNameTextField.configureConstraints(top: (editNameLabel.bottomAnchor, 8))
-        editNameTextField.configureHeight(height: 40)
+        editFullNameTextField.delegate = self
+        editFullNameTextField.configureConstraints(top: (editFullNameLabel.bottomAnchor, 8))
+        editFullNameTextField.configureHeight(height: 40)
     }
     
     private func configureEditEmailElements() {
@@ -163,7 +190,7 @@ extension ProfileEditViewController {
             $0.configureConstraints(leading: (view.leadingAnchor, 24),
                                     trailing: (view.trailingAnchor, -24))
         }
-        editEmailLabel.configureConstraints(top: (editNameTextField.bottomAnchor, 24))
+        editEmailLabel.configureConstraints(top: (editFullNameTextField.bottomAnchor, 24))
         editEmailLabel.configureHeight(height: 25)
         
         editEmailTextField.isEnabled       = false
@@ -175,6 +202,7 @@ extension ProfileEditViewController {
     private func configureSaveChangesButton() {
         view.addSubview(saveChangesButton)
         
+        configureSaveChangesButton(for: false)
         saveChangesButton.addTarget(self,
                                     action: #selector(saveChangesButtonTapped),
                                     for: .touchUpInside)
@@ -215,10 +243,31 @@ extension ProfileEditViewController {
     
     @objc
     private func saveChangesButtonTapped() {
-        guard let fullName       = editNameTextField.text,
+        guard let fullName       = editFullNameTextField.text,
               let username       = editUsernameTextField.text else { return }
         profileEditPresenter.updateUser(with: fullName,
                                         username: username)
+    }
+}
+
+// MARK: UITextField Delegate
+extension ProfileEditViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if currentUsername != editUsernameTextField.text ||
+           currentFullName != editFullNameTextField.text
+        {
+            configureSaveChangesButton(for: true)
+        } else {
+            configureSaveChangesButton(for: false)
+        }
     }
 }
 
@@ -229,20 +278,20 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
-                guard let self          = self else { return }
-                if let image            = object as? UIImage {
-                    guard let imageData = image.jpegData(compressionQuality: 0.3) else { return }
+            result.itemProvider
+                .loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
+                    guard let self  = self,
+                          let image = object as? UIImage,
+                          let imageData = image.jpegData(compressionQuality: 0.3) else { return }
                     DispatchQueue.main.async {
                         self.currentImageView.image = image
                         self.configureSaveChangesButton(for: false)
                     }
                     self.profileEditPresenter.uploadImage(image: imageData)
-                }
             }
         }
     }
- }
+}
 
 // MARK: - Profile Edit Presenter Output
 extension ProfileEditViewController: ProfileEditPresenterOutput {
@@ -251,10 +300,13 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         currentImageView.setImage(with: currentUser.profilePic ?? "")
         currentNameLabel.text      = currentUser.fullName
         currentEmailLabel.text     = currentUser.email
-     
+        
         editEmailTextField.text    = currentUser.email
-        editNameTextField.text     = currentUser.fullName
+        editFullNameTextField.text     = currentUser.fullName
         editUsernameTextField.text = currentUser.username
+        
+        currentUsername            = currentUser.username
+        currentFullName            = currentUser.fullName
     }
     
     func initializeProgress(progress: Float?) {
@@ -283,7 +335,7 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     }
     
     func dismissLoading() {
-        configureSaveChangesButton(for: true)
         dismissLoadingView()
+        configureSaveChangesButton(for: true)
     }
 }
