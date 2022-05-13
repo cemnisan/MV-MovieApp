@@ -47,7 +47,7 @@ extension ProfileEditInteractor: ProfileEditInteractorProtocol {
         let user = UserPresentation(fullName: fullName,
                                     username: username,
                                     email: email,
-                                    imageURL: currentUser.imageURL,
+                                    profilePic: currentUser.profilePic,
                                     id: currentUser.id)
         self.delegate?.displayLoading()
         

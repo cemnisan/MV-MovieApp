@@ -7,6 +7,7 @@
 
 import Firebase
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import FirebaseStorage
 
 final class GoogleFireStoreAdapter {
@@ -22,38 +23,24 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     
     func createUser(user: UserPresentation) {
         let userID  = Auth.auth().currentUser!.uid
-        
-        let userObject = [
-            "fullName": user.fullName ?? "",
-            "username": user.username ?? "Anonymous",
-            "email": user.email,
-            "profilePic": user.imageURL ?? "",
-            "id": userID
-        ]
-        
-        db.collection("users")
-            .document(userID)
-            .setData(userObject) { error in
-                guard error == nil else { return }
-            }
+    
+        do {
+            try db.collection("users").document(userID).setData(from: user)
+        } catch {
+            print("error")
+        }
     }
     
     func readCurrentUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         let userID  = Auth.auth().currentUser!.uid
         let docRef  = db.collection("users").document(userID)
         
-        docRef.getDocument { document, error in
-            if let document = document, document.exists {
-                let dataDescription = document.data()
-                let user  = UserPresentation(
-                    fullName: dataDescription?["fullName"] as? String ?? "",
-                    username: dataDescription?["username"] as? String ?? "",
-                    email: dataDescription?["email"] as? String ?? "",
-                    imageURL: dataDescription?["profilePic"] as? String ?? "",
-                    id: dataDescription?["id"] as? String ?? "")
+        docRef.getDocument(as: UserPresentation.self) { result in
+            switch result {
+            case .success(let user):
                 completion(.success(user))
-            } else {
-                completion(.failure(error!))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
@@ -68,7 +55,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
                 "fullName": user.fullName ?? "",
                 "username": user.username ?? "Anonymous",
                 "email": user.email,
-                "profilePic": url ?? user.imageURL,
+                "profilePic": url ?? user.profilePic,
                 "id": userID
             ] as! [AnyHashable : Any]
             

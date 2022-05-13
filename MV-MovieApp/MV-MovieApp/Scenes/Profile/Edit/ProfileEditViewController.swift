@@ -250,7 +250,7 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
 extension ProfileEditViewController: ProfileEditPresenterOutput {
     
     func showCurrentUser(currentUser: UserPresentation) {
-        currentImageView.setImage(with: currentUser.imageURL ?? "")
+        currentImageView.setImage(with: currentUser.profilePic ?? "")
         currentNameLabel.text      = currentUser.fullName
         currentEmailLabel.text     = currentUser.email
      

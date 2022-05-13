@@ -199,7 +199,7 @@ extension ProfileViewController: ProfilePresenterOutput {
     func showCurrentUser(currentUser: UserPresentation) {
         userNameLabel.text  = currentUser.fullName
         userEmailLabel.text = currentUser.email
-        userImageView.setImage(with: currentUser.imageURL ?? "")
+        userImageView.setImage(with: currentUser.profilePic ?? "")
     }
 }
 

@@ -41,7 +41,7 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
                     fullName: result?.user.displayName ?? "Anonymous",
                     username: "",
                     email: result?.user.email ?? "Unavailable Email",
-                    imageURL: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
+                    profilePic: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
                     id: result?.user.uid ?? "")
                 completion(.success(user))
             }
@@ -63,7 +63,7 @@ extension GoogleAuthenticatorAdapter: LoginService {
                 fullName: result?.user.displayName ?? "Anonymous",
                 username: "",
                 email: result?.user.email ?? "Unavailable Email",
-                imageURL: (result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png"),
+                profilePic: (result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png"),
                 id: result?.user.uid ?? "")
             completion(.success(user))
         }
@@ -85,7 +85,7 @@ extension GoogleAuthenticatorAdapter: RegisterService {
                 fullName: result?.user.displayName ?? "Anonymous",
                 username: username,
                 email: result?.user.email ?? "Unavailable Email",
-                imageURL: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
+                profilePic: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
                 id: result?.user.uid ?? "")
             completion(.success(user))
         }

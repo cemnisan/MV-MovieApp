@@ -11,18 +11,18 @@ struct UserPresentation: Codable {
     var fullName: String?
     var username: String?
     var email: String
-    var imageURL: String?
+    var profilePic: String?
     var id: String
     
     init(fullName: String?,
          username: String?,
          email: String,
-         imageURL: String?,
+         profilePic: String?,
          id: String) {
-        self.fullName = fullName
-        self.username = username
-        self.email    = email
-        self.imageURL = imageURL
-        self.id       = id
+        self.fullName   = fullName
+        self.username   = username
+        self.email      = email
+        self.profilePic = profilePic
+        self.id         = id
     }
 }
