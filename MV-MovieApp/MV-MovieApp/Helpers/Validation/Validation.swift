@@ -18,17 +18,21 @@ enum Validation {
     ///   - email: Validate email
     ///   - password: Validate Password
     static func validate(username: String? = nil,
-                         email: String,
-                         password: String) throws {
+                         email: String?    = nil,
+                         password: String? = nil) throws {
         if let username = username {
             guard !username.isEmpty else { throw ValidationError.emptyUsername }
             guard usernameRegex.matches(username) else { throw ValidationError.invalidUsername(username: username) }
         }
         
-        guard !email.isEmpty else { throw ValidationError.emptyEmail }
-        guard emailRegex.matches(email) else { throw ValidationError.invalidEmail}
+        if let email = email {
+            guard !email.isEmpty else { throw ValidationError.emptyEmail }
+            guard emailRegex.matches(email) else { throw ValidationError.invalidEmail}
+        }
         
-        guard !password.isEmpty else { throw ValidationError.emptyPassword }
-        guard passwordRegex.matches(password) else { throw ValidationError.invalidPassword }
+        if let password = password {
+            guard !password.isEmpty else { throw ValidationError.emptyPassword }
+            guard passwordRegex.matches(password) else { throw ValidationError.invalidPassword }
+        }
     }
 }

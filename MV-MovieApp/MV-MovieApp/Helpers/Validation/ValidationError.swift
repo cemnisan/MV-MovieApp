@@ -10,8 +10,10 @@ import Foundation
 enum ValidationError: Error {
     case emptyUsername
     case invalidUsername(username: String)
+    case alreadyExistUsername(username: String)
     case emptyEmail
     case invalidEmail
+    
     case emptyPassword
     case invalidPassword
 }

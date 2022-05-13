@@ -25,7 +25,7 @@ final class ProfileInteractor {
 extension ProfileInteractor: ProfileInteractorProtocol {
 
     func loadCurrentUser() {
-        fireStoreService.readCurrentUser { [weak self] (result) in
+        fireStoreService.readUser { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let user):

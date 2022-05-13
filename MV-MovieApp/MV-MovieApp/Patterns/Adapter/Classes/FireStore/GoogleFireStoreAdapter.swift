@@ -23,7 +23,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     
     func createUser(user: UserPresentation) {
         let userID  = Auth.auth().currentUser!.uid
-    
+        
         do {
             try db.collection("users").document(userID).setData(from: user)
         } catch {
@@ -31,7 +31,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         }
     }
     
-    func readCurrentUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+    func readUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         let userID  = Auth.auth().currentUser!.uid
         let docRef  = db.collection("users").document(userID)
         
@@ -45,25 +45,25 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         }
     }
     
-    func updateUser(user: UserPresentation,
+    func updateUser(with fullName: String?,
+                    username: String?,
+                    profilePic: String?,
                     completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         let userID  = Auth.auth().currentUser!.uid
         let docRef  = db.collection("users").document(userID)
         
         getUserProfilePicture { url in
-            let userObject = [
-                "fullName": user.fullName ?? "",
-                "username": user.username ?? "Anonymous",
-                "email": user.email,
-                "profilePic": url ?? user.profilePic,
-                "id": userID
-            ] as! [AnyHashable : Any]
-            
+            let userObject: [AnyHashable: Any] = [
+                "fullName": fullName,
+                "username": username,
+                "profilePic": url ?? profilePic,
+            ].compactMapValues { $0 }
+ 
             docRef.updateData(userObject) { [weak self] error in
                 guard let self = self else { return }
-                guard error == nil else { completion(.failure(error!)); return }
+                guard error == nil else { return }
                 
-                self.readCurrentUser { result in
+                self.readUser { result in
                     switch result {
                     case .success(let user):
                         completion(.success(user))
@@ -77,12 +77,26 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     
     func isUserAlreadyExist(registeredUser: UserPresentation,
                             completion: @escaping (Bool) -> Void) {
-        readCurrentUser { result in
+        readUser { result in
             switch result {
             case .success(let currentUser):
                 registeredUser.id == currentUser.id ? completion(true) : completion(false)
             case .failure(_): break
             }
+        }
+    }
+    
+    func isUsernameAlreadyExist(username: String?,
+                                completion: @escaping (Bool) -> Void) {
+        guard let username = username else { completion(false); return }
+
+        let docRef = db.collection("users").whereField("username",
+                                                       isEqualTo: username)
+        docRef.getDocuments { (snapshot, error) in
+            guard error == nil else { return }
+            
+            if snapshot!.documents.count > 0 { completion(true) }
+            else { completion(false) }
         }
     }
     

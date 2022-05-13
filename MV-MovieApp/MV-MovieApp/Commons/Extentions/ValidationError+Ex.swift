@@ -14,6 +14,8 @@ extension ValidationError: LocalizedError {
             return "Empty username"
         case .invalidUsername(let username):
             return "Invalid \(username), please change it."
+        case .alreadyExistUsername(username: let username):
+            return "This \(username) is already exist. Please change it."
         case .emptyEmail:
             return "Empty Email"
         case .invalidEmail:

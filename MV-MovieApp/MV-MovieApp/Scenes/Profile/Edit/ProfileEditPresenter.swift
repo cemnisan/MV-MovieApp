@@ -28,11 +28,9 @@ extension ProfileEditPresenter: ProfileEditPresenterProtocol {
     }
     
     func updateUser(with fullName: String,
-                    username: String,
-                    email: String) {
+                    username: String) {
         interactor.updateUser(with: fullName,
-                              username: username,
-                              email: email)
+                              username: username)
     }
     
     func loadCurrentUser() {
@@ -42,7 +40,7 @@ extension ProfileEditPresenter: ProfileEditPresenterProtocol {
 
 extension ProfileEditPresenter: ProfileEditInteractorOutput {
     
-    func showCurrentUser(currentUser: UserPresentation) {
+    func showUpdatedUser(currentUser: UserPresentation) {
         view.showCurrentUser(currentUser: currentUser)
     }
     

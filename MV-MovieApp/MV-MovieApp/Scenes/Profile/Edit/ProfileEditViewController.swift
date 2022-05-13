@@ -216,11 +216,9 @@ extension ProfileEditViewController {
     @objc
     private func saveChangesButtonTapped() {
         guard let fullName       = editNameTextField.text,
-              let username       = editUsernameTextField.text,
-              let currentEmail   = currentEmailLabel.text else { return }
+              let username       = editUsernameTextField.text else { return }
         profileEditPresenter.updateUser(with: fullName,
-                                        username: username,
-                                        email: currentEmail)
+                                        username: username)
     }
 }
 

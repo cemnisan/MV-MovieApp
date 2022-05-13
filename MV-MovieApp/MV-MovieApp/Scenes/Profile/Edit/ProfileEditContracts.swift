@@ -14,13 +14,12 @@ protocol ProfileEditInteractorProtocol: AnyObject {
     func loadCurrentUser()
     func uploadImage(image: Data)
     func updateUser(with fullName: String,
-                    username: String,
-                    email: String)
+                    username: String)
 }
 
 // MARK: - Interactor Output
 protocol ProfileEditInteractorOutput: AnyObject {
-    func showCurrentUser(currentUser: UserPresentation)
+    func showUpdatedUser(currentUser: UserPresentation)
     func initializeProgress(progress: Float?)
     func showUpdatedImage(with url: String)
     func showError(error: Error)
@@ -34,8 +33,7 @@ protocol ProfileEditPresenterProtocol: AnyObject {
     func loadCurrentUser()
     func uploadImage(image: Data)
     func updateUser(with fullName: String,
-                    username: String,
-                    email: String)
+                    username: String)
 }
 
 // MARK: - Presenter Output
