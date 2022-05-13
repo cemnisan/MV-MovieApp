@@ -224,6 +224,7 @@ extension ProfileEditViewController {
     }
 }
 
+// MARK: - PHPicker Delegate
 extension ProfileEditViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController,
                 didFinishPicking results: [PHPickerResult]) {

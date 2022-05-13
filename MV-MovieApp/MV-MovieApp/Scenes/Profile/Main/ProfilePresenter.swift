@@ -31,7 +31,6 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         interactor.editButtonTapped()
     }
     
-    
     func loadCurrentUser() {
         interactor.loadCurrentUser()
     }

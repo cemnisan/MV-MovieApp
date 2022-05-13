@@ -36,7 +36,7 @@ extension ProfileInteractor: ProfileInteractorProtocol {
             }
         }
     }
-
+    
     func logoutButtonTapped() {
         userService.signOut { [weak self] in
             guard let self = self else { return }

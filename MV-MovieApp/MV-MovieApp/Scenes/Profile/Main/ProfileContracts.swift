@@ -11,7 +11,7 @@ protocol ProfileInteractorProtocol: AnyObject {
     var delegate: ProfileInteractorOutput? { get set }
     
     func loadCurrentUser()
-    
+
     func editButtonTapped()
     func logoutButtonTapped()
 }
@@ -25,7 +25,7 @@ protocol ProfileInteractorOutput: AnyObject {
 
 protocol ProfilePresenterProtocol: AnyObject {
     func loadCurrentUser()
-    
+
     func editButtonTapped()
     func logoutTapped()
     func selectSetting(at section: Int, index: Int)
