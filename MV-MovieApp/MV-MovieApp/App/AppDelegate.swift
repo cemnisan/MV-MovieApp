@@ -9,6 +9,7 @@ import UIKit
 import struct MovieDB_Wrapper.Config
 import Firebase
 import GoogleSignIn
+import Kingfisher
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Config.accessToken = K.API.apiKey
         FirebaseApp.configure()
+        
+        let cache = ImageCache.default
+        
+        cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
+        cache.diskStorage.config.sizeLimit        = 1024 * 1024 * 100
         
         return true
     }

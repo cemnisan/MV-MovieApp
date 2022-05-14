@@ -15,10 +15,13 @@ final class GoogleStorageAdapter {
 // MARK: - Upload Service
 extension GoogleStorageAdapter: UploadMediaService {
     
-    func uploadMedia(with imageData: Data,
-                     progress: @escaping (_ progress: Float?) -> Void,
-                     completion: @escaping (_ url: URL?) -> Void) {
-        let imageName = String("\(Auth.auth().currentUser!.uid).png")
+    func uploadMedia(
+        with imageData: Data,
+        selectedPicker: SelectPickerView,
+        progress: @escaping (_ progress: Float?) -> Void,
+        completion: @escaping (_ url: URL?) -> Void)
+    {
+        let imageName = String("\(selectedPicker.rawValue)-\(Auth.auth().currentUser!.uid).png")
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
@@ -27,7 +30,6 @@ extension GoogleStorageAdapter: UploadMediaService {
             .storage()
             .reference()
             .child("User")
-            .child("profilePic")
             .child(imageName)
         
         let uploadTask = storageRef.putData(imageData, metadata: metaData) { (_, error) in

@@ -12,16 +12,15 @@ protocol ProfileEditInteractorProtocol: AnyObject {
     var delegate: ProfileEditInteractorOutput? { get set }
     
     func loadCurrentUser()
-    func uploadImage(image: Data)
-    func updateUser(with fullName: String,
-                    username: String)
+    func uploadImage(selectedPicker: SelectPickerView, image: Data)
+    func updateUser(with fullName: String, username: String)
 }
 
 // MARK: - Interactor Output
 protocol ProfileEditInteractorOutput: AnyObject {
     func showUpdatedUser(currentUser: UserPresentation)
     func initializeProgress(progress: Float?)
-    func showUpdatedImage(with url: String)
+    func showUpdatedImage(with url: String, selectedPicker: SelectPickerView)
     func showError(error: Error)
     
     func displayLoading()
@@ -31,16 +30,15 @@ protocol ProfileEditInteractorOutput: AnyObject {
 // MARK: - Presenter Protocol
 protocol ProfileEditPresenterProtocol: AnyObject {
     func loadCurrentUser()
-    func uploadImage(image: Data)
-    func updateUser(with fullName: String,
-                    username: String)
+    func uploadImage(selectedPicker:SelectPickerView, image: Data)
+    func updateUser(with fullName: String, username: String)
 }
 
 // MARK: - Presenter Output
 protocol ProfileEditPresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func initializeProgress(progress: Float?)
-    func showUpdatedImage(with url: String)
+    func showUpdatedImage(with url: String, selectedPicker: SelectPickerView)
     func showError(error: Error)
 
     func displayLoading()

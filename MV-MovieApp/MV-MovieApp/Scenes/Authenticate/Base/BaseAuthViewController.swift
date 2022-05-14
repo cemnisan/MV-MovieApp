@@ -16,10 +16,10 @@ class BaseAuthViewController: BaseViewController {
     let googleView               = MVContainerView(backgroundColor: K.Styles.childViewsColor)
     
     let emailLabel               = MVSecondaryLabel(textAlignment: .left,fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.emailLabel)
-    let emailTextField           = MVAuthenticatesTextField(placeHolder: K.Auth.emailTextField)
+    let emailTextField           = MVAuthTextField(placeHolder: K.Auth.emailTextField)
     
     let passwordLabel            = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.passwordLabel)
-    let passwordTextField        = MVAuthenticatesTextField(placeHolder: K.Auth.passwordTextField)
+    let passwordTextField        = MVAuthTextField(placeHolder: K.Auth.passwordTextField)
     
     let passwordVisibilityButton = MVButton(frame: .zero)
     let actionButton             = MVButton(backgroundColor: K.Styles.actionButtonColor, title: nil, cornerRadius: 10)

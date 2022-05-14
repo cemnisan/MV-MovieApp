@@ -10,40 +10,40 @@ import UIKit.UIImage
 
 struct Section {
     let title: String
-    let option: [SettingsOption]
+    let option: [SettingOption]
     
     static var settings: [Section] = [
         Section(title: "Account",
                 option: [
-                    SettingsOption(title: "Member",
+                    SettingOption(title: "Profile",
                                    icon: UIImage(named: "profile")),
-                    SettingsOption(title: "Change Password",
+                    SettingOption(title: "Change Password",
                                    icon: UIImage(named: "padlock")),
                 ]),
         Section(title: "General",
                 option: [
-                    SettingsOption(title: "Notification",
+                    SettingOption(title: "Notification",
                                    icon: UIImage(named: "notification")),
-                    SettingsOption(title: "Language",
+                    SettingOption(title: "Language",
                                    icon:UIImage(named: "language")),
-                    SettingsOption(title: "Country",
+                    SettingOption(title: "Country",
                                    icon: UIImage(named: "country")),
-                    SettingsOption(title: "Clear Cache",
+                    SettingOption(title: "Clear Cache",
                                    icon: UIImage(named: "trash")),
                 ]),
         Section(title: "More",
                 option: [
-                    SettingsOption(title: "Legal And Policies",
+                    SettingOption(title: "Legal And Policies",
                                    icon: UIImage(named: "policies")),
-                    SettingsOption(title: "Help & Feedbacks",
+                    SettingOption(title: "Help & Feedbacks",
                                    icon: UIImage(named: "help")),
-                    SettingsOption(title: "About Us",
+                    SettingOption(title: "About Us",
                                    icon: UIImage(named: "info")),
                 ])
     ]
 }
 
-struct SettingsOption {
+struct SettingOption {
     let title: String
     let icon: UIImage?
 }

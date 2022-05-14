@@ -1,5 +1,5 @@
 //
-//  ProfilePresenter.swift
+//  SettingsPresenter.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 10.05.2022.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-final class ProfilePresenter {
+final class SettingsPresenter {
     
-    private let interactor: ProfileInteractorProtocol
-    private let router: ProfileRoute
-    private unowned let view: ProfilePresenterOutput
+    private let interactor: SettingsInteractorProtocol
+    private let router: SettingsRoute
+    private unowned let view: SettingsPresenterOutput
     
-    init(interactor: ProfileInteractorProtocol,
-         router: ProfileRoute,
-         view: ProfilePresenterOutput) {
+    init(interactor: SettingsInteractorProtocol,
+         router: SettingsRoute,
+         view: SettingsPresenterOutput) {
         self.interactor     = interactor
         self.router         = router
         self.view           = view
@@ -25,7 +25,7 @@ final class ProfilePresenter {
 }
 
 // MARK: - Presenter Protocol
-extension ProfilePresenter: ProfilePresenterProtocol {
+extension SettingsPresenter: SettingsPresenterProtocol {
     
     func editButtonTapped() {
         interactor.editButtonTapped()
@@ -46,7 +46,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 }
 
 // MARK: - Interactor Output
-extension ProfilePresenter: ProfileInteractorOutput {
+extension SettingsPresenter: SettingsInteractorOutput {
     
     func showEditableUser(currentUser: UserPresentation) {
         router.toEdit(with: currentUser)

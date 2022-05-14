@@ -23,8 +23,8 @@ final class ProfileEditPresenter {
 
 extension ProfileEditPresenter: ProfileEditPresenterProtocol {
  
-    func uploadImage(image: Data) {
-        interactor.uploadImage(image: image)
+    func uploadImage(selectedPicker:SelectPickerView, image: Data) {
+        interactor.uploadImage(selectedPicker: selectedPicker, image: image)
     }
     
     func updateUser(with fullName: String,
@@ -48,8 +48,8 @@ extension ProfileEditPresenter: ProfileEditInteractorOutput {
         view.initializeProgress(progress: progress)
     }
 
-    func showUpdatedImage(with url: String) {
-        view.showUpdatedImage(with: url)
+    func showUpdatedImage(with url: String, selectedPicker: SelectPickerView) {
+        view.showUpdatedImage(with: url, selectedPicker: selectedPicker)
     }
     
     func showError(error: Error) {

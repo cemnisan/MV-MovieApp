@@ -1,5 +1,5 @@
 //
-//  ProfileRouter.swift
+//  SettingsRouter.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 10.05.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class ProfileRouter {
+final class SettingsRouter {
     
     unowned let view: UIViewController
     
@@ -17,7 +17,7 @@ final class ProfileRouter {
     }
 }
 
-extension ProfileRouter: ProfileRoute {
+extension SettingsRouter: SettingsRoute {
     
     func toLogin() {
         let targetView = LoginBuilder.make()
@@ -31,7 +31,7 @@ extension ProfileRouter: ProfileRoute {
         view.navigationController?.pushViewController(targetView, animated: true)
     }
     
-    func toSelectedSetting(_ setting: SettingsOption) {
+    func toSelectedSetting(_ setting: SettingOption) {
         let targetView: UIViewController
         
         switch setting.title {

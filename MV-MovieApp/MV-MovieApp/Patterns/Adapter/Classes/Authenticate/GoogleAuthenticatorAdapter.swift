@@ -39,9 +39,10 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
                 
                 let user = UserPresentation(
                     fullName: result?.user.displayName ?? "Anonymous",
-                    username: "",
+                    username: "Anonymous",
                     email: result?.user.email ?? "Unavailable Email",
                     profilePic: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
+                    backgroundPic: "",
                     id: result?.user.uid ?? "")
                 completion(.success(user))
             }
@@ -61,9 +62,10 @@ extension GoogleAuthenticatorAdapter: LoginService {
             
             let user = UserPresentation(
                 fullName: result?.user.displayName ?? "Anonymous",
-                username: "",
+                username: "Anonymous",
                 email: result?.user.email ?? "Unavailable Email",
                 profilePic: (result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png"),
+                backgroundPic: "",
                 id: result?.user.uid ?? "")
             completion(.success(user))
         }
@@ -86,6 +88,7 @@ extension GoogleAuthenticatorAdapter: RegisterService {
                 username: username,
                 email: result?.user.email ?? "Unavailable Email",
                 profilePic: result?.user.photoURL?.absoluteString ?? "https://dummyimage.com/120x120/000/0011ff.png",
+                backgroundPic: "",
                 id: result?.user.uid ?? "")
             completion(.success(user))
         }

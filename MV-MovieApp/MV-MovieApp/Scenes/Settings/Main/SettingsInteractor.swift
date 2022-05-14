@@ -1,5 +1,5 @@
 //
-//  ProfileInteractor.swift
+//  SettingsInteractor.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 10.05.2022.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class ProfileInteractor {
+final class SettingsInteractor {
     
     private let userService: UserService
     private let fireStoreService: GoogleFireStoreService
-    var delegate: ProfileInteractorOutput?
+    var delegate: SettingsInteractorOutput?
     
     private(set) var currentUser: UserPresentation!
     
@@ -22,7 +22,7 @@ final class ProfileInteractor {
     }
 }
 
-extension ProfileInteractor: ProfileInteractorProtocol {
+extension SettingsInteractor: SettingsInteractorProtocol {
 
     func loadCurrentUser() {
         fireStoreService.readUser { [weak self] (result) in

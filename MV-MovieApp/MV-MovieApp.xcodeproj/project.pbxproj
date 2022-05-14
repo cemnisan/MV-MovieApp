@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0C7971282EA17D00E21F4D /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C7970282EA17D00E21F4D /* ProfileBuilder.swift */; };
+		7E0C7973282EA19800E21F4D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C7972282EA19800E21F4D /* ProfileViewController.swift */; };
+		7E0C7975282EAA6D00E21F4D /* ProfileContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C7974282EAA6D00E21F4D /* ProfileContracts.swift */; };
+		7E0C7977282EAA7600E21F4D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C7976282EAA7600E21F4D /* ProfilePresenter.swift */; };
+		7E0C7979282EAA8700E21F4D /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C7978282EAA8700E21F4D /* ProfileInteractor.swift */; };
+		7E0C797B282EAA9100E21F4D /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C797A282EAA9100E21F4D /* ProfileRouter.swift */; };
 		7E1240DF2826D93500FCB848 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240DE2826D93500FCB848 /* Validation.swift */; };
 		7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */; };
 		7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12F83728271EA600B3C966 /* Constant+Auth.swift */; };
 		7E12F83A28271ED500B3C966 /* HomeMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12F83928271ED500B3C966 /* HomeMovies.swift */; };
+		7E3366CD282EEEA000DBDB7F /* SelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */; };
 		7E37D4F2282D33DF003F16A4 /* GoogleFireStoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E37D4F1282D33DE003F16A4 /* GoogleFireStoreAdapter.swift */; };
 		7E37D4F5282D33ED003F16A4 /* GoogleFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E37D4F4282D33ED003F16A4 /* GoogleFireStoreService.swift */; };
 		7E39EA9A281F348E0073A591 /* RegisterContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E39EA99281F348E0073A591 /* RegisterContracts.swift */; };
@@ -65,18 +72,18 @@
 		7E68505C281F2AE3007C15B0 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */; };
 		7E68505E281F2AED007C15B0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68505D281F2AED007C15B0 /* LoginRouter.swift */; };
 		7E68BB21282A86660099DC65 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB20282A86660099DC65 /* SettingTableViewCell.swift */; };
-		7E68BB23282AAA1A0099DC65 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB22282AAA1A0099DC65 /* SettingsViewModel.swift */; };
-		7E68BB25282AAE0F0099DC65 /* ProfileContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB24282AAE0F0099DC65 /* ProfileContracts.swift */; };
-		7E68BB27282AAE150099DC65 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB26282AAE150099DC65 /* ProfileRouter.swift */; };
-		7E68BB29282AAE1A0099DC65 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB28282AAE1A0099DC65 /* ProfilePresenter.swift */; };
-		7E68BB2B282AAE1F0099DC65 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB2A282AAE1F0099DC65 /* ProfileInteractor.swift */; };
+		7E68BB23282AAA1A0099DC65 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB22282AAA1A0099DC65 /* SettingViewModel.swift */; };
+		7E68BB25282AAE0F0099DC65 /* SettingsContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB24282AAE0F0099DC65 /* SettingsContracts.swift */; };
+		7E68BB27282AAE150099DC65 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB26282AAE150099DC65 /* SettingsRouter.swift */; };
+		7E68BB29282AAE1A0099DC65 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB28282AAE1A0099DC65 /* SettingsPresenter.swift */; };
+		7E68BB2B282AAE1F0099DC65 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB2A282AAE1F0099DC65 /* SettingsInteractor.swift */; };
 		7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */; };
 		7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */; };
 		7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */; };
 		7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025392825CEB000D2E0B0 /* SearchViewController.swift */; };
 		7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */; };
-		7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */; };
-		7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */; };
+		7E80253E2825CEBD00D2E0B0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */; };
+		7E8025402825CEC500D2E0B0 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253F2825CEC500D2E0B0 /* SettingsBuilder.swift */; };
 		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */; };
 		7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */; };
@@ -115,10 +122,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0C7970282EA17D00E21F4D /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		7E0C7972282EA19800E21F4D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7E0C7974282EAA6D00E21F4D /* ProfileContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContracts.swift; sourceTree = "<group>"; };
+		7E0C7976282EAA7600E21F4D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		7E0C7978282EAA8700E21F4D /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		7E0C797A282EAA9100E21F4D /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		7E1240DE2826D93500FCB848 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValidationError+Ex.swift"; sourceTree = "<group>"; };
 		7E12F83728271EA600B3C966 /* Constant+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Auth.swift"; sourceTree = "<group>"; };
 		7E12F83928271ED500B3C966 /* HomeMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovies.swift; sourceTree = "<group>"; };
+		7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicker.swift; sourceTree = "<group>"; };
 		7E37D4F1282D33DE003F16A4 /* GoogleFireStoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFireStoreAdapter.swift; sourceTree = "<group>"; };
 		7E37D4F4282D33ED003F16A4 /* GoogleFireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFireStoreService.swift; sourceTree = "<group>"; };
 		7E39EA99281F348E0073A591 /* RegisterContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterContracts.swift; sourceTree = "<group>"; };
@@ -167,18 +181,18 @@
 		7E68505B281F2AE3007C15B0 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		7E68505D281F2AED007C15B0 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		7E68BB20282A86660099DC65 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		7E68BB22282AAA1A0099DC65 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		7E68BB24282AAE0F0099DC65 /* ProfileContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContracts.swift; sourceTree = "<group>"; };
-		7E68BB26282AAE150099DC65 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
-		7E68BB28282AAE1A0099DC65 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		7E68BB2A282AAE1F0099DC65 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		7E68BB22282AAA1A0099DC65 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		7E68BB24282AAE0F0099DC65 /* SettingsContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContracts.swift; sourceTree = "<group>"; };
+		7E68BB26282AAE150099DC65 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		7E68BB28282AAE1A0099DC65 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		7E68BB2A282AAE1F0099DC65 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresentation.swift; sourceTree = "<group>"; };
 		7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
 		7E8025392825CEB000D2E0B0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
-		7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7E80253F2825CEC500D2E0B0 /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
 		7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppleViewController.swift; sourceTree = "<group>"; };
 		7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGoogleViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +250,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E0C796D282EA16600E21F4D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7E0C7970282EA17D00E21F4D /* ProfileBuilder.swift */,
+				7E0C7972282EA19800E21F4D /* ProfileViewController.swift */,
+				7E0C7974282EAA6D00E21F4D /* ProfileContracts.swift */,
+				7E0C7976282EAA7600E21F4D /* ProfilePresenter.swift */,
+				7E0C7978282EAA8700E21F4D /* ProfileInteractor.swift */,
+				7E0C797A282EAA9100E21F4D /* ProfileRouter.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		7E12F83628271E3100B3C966 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,7 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				7E68BB20282A86660099DC65 /* SettingTableViewCell.swift */,
-				7E68BB22282AAA1A0099DC65 /* SettingsViewModel.swift */,
+				7E68BB22282AAA1A0099DC65 /* SettingViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -439,7 +466,7 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
-		7E8025332825CE8100D2E0B0 /* Profile */ = {
+		7E8025332825CE8100D2E0B0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				7E9373B92829B4CD008A7918 /* Main */,
@@ -453,7 +480,7 @@
 				7E3E6B69282AB6BD00140E65 /* Legal And Policies */,
 				7E3E6B55282AB55200140E65 /* Notification */,
 			);
-			path = Profile;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		7E8025342825CE8F00D2E0B0 /* Favorites */ = {
@@ -545,12 +572,12 @@
 			isa = PBXGroup;
 			children = (
 				7E68BB1C282A86380099DC65 /* Cells */,
-				7E80253F2825CEC500D2E0B0 /* ProfileBuilder.swift */,
-				7E68BB24282AAE0F0099DC65 /* ProfileContracts.swift */,
-				7E68BB2A282AAE1F0099DC65 /* ProfileInteractor.swift */,
-				7E68BB28282AAE1A0099DC65 /* ProfilePresenter.swift */,
-				7E68BB26282AAE150099DC65 /* ProfileRouter.swift */,
-				7E80253D2825CEBD00D2E0B0 /* ProfileViewController.swift */,
+				7E80253F2825CEC500D2E0B0 /* SettingsBuilder.swift */,
+				7E68BB24282AAE0F0099DC65 /* SettingsContracts.swift */,
+				7E68BB2A282AAE1F0099DC65 /* SettingsInteractor.swift */,
+				7E68BB28282AAE1A0099DC65 /* SettingsPresenter.swift */,
+				7E68BB26282AAE150099DC65 /* SettingsRouter.swift */,
+				7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -652,12 +679,13 @@
 		7EF731A6281D90CC00A1CFE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				7ECDE34F2828174D00FE76BC /* Base */,
 				7E685056281F289E007C15B0 /* Authenticate */,
+				7ECDE34F2828174D00FE76BC /* Base */,
 				7E8025342825CE8F00D2E0B0 /* Favorites */,
 				7EF731A7281D90D300A1CFE9 /* Home */,
-				7E8025332825CE8100D2E0B0 /* Profile */,
+				7E0C796D282EA16600E21F4D /* Profile */,
 				7E8025312825CE6600D2E0B0 /* Search */,
+				7E8025332825CE8100D2E0B0 /* Settings */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -705,6 +733,7 @@
 				7E12F83928271ED500B3C966 /* HomeMovies.swift */,
 				7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */,
 				7EFBB9892829726800276C3E /* TabBar.swift */,
+				7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -800,7 +829,7 @@
 			files = (
 				7E39EAA0281F34A80073A591 /* RegisterRouter.swift in Sources */,
 				7EF731AB281D90F500A1CFE9 /* HomeContracts.swift in Sources */,
-				7E68BB2B282AAE1F0099DC65 /* ProfileInteractor.swift in Sources */,
+				7E68BB2B282AAE1F0099DC65 /* SettingsInteractor.swift in Sources */,
 				7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */,
 				7E528FFB2829474900D22E08 /* BaseAuthenticateRouter.swift in Sources */,
 				7E68505E281F2AED007C15B0 /* LoginRouter.swift in Sources */,
@@ -818,10 +847,11 @@
 				7E3E6B54282AB4A800140E65 /* ChangePasswordViewController.swift in Sources */,
 				7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */,
 				7E68505A281F2ADD007C15B0 /* LoginInteractor.swift in Sources */,
-				7E68BB25282AAE0F0099DC65 /* ProfileContracts.swift in Sources */,
+				7E68BB25282AAE0F0099DC65 /* SettingsContracts.swift in Sources */,
+				7E0C797B282EAA9100E21F4D /* ProfileRouter.swift in Sources */,
 				7E12F83A28271ED500B3C966 /* HomeMovies.swift in Sources */,
 				7E9373BE2829B52E008A7918 /* ProfileEditViewController.swift in Sources */,
-				7E68BB23282AAA1A0099DC65 /* SettingsViewModel.swift in Sources */,
+				7E68BB23282AAA1A0099DC65 /* SettingViewModel.swift in Sources */,
 				7E5B9061281FE1BD00D0B278 /* Constant+API.swift in Sources */,
 				7E3E6B5E282AB5DD00140E65 /* LanguageViewController.swift in Sources */,
 				7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */,
@@ -845,6 +875,7 @@
 				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E68BB21282A86660099DC65 /* SettingTableViewCell.swift in Sources */,
+				7E0C7973282EA19800E21F4D /* ProfileViewController.swift in Sources */,
 				7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */,
 				7E8A7BA3281EC88A000676EC /* RegisterViewController.swift in Sources */,
 				7EF731BF281D9B3100A1CFE9 /* PopularMoviesPresentation.swift in Sources */,
@@ -857,6 +888,7 @@
 				7E528FF728293EEA00D22E08 /* BaseAuthenticateInteractor.swift in Sources */,
 				7E3D096F282BE5A400F45293 /* UploadMediaService.swift in Sources */,
 				7EFBB98A2829726800276C3E /* TabBar.swift in Sources */,
+				7E0C7977282EAA7600E21F4D /* ProfilePresenter.swift in Sources */,
 				7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */,
 				7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */,
 				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
@@ -870,16 +902,18 @@
 				7EF731B3281D911000A1CFE9 /* HomeRouter.swift in Sources */,
 				7E68504F281F1BFA007C15B0 /* LoginViewController.swift in Sources */,
 				7ECDE3512828175300FE76BC /* BaseViewController.swift in Sources */,
-				7E8025402825CEC500D2E0B0 /* ProfileBuilder.swift in Sources */,
+				7E8025402825CEC500D2E0B0 /* SettingsBuilder.swift in Sources */,
 				7E3D0971282BE5B300F45293 /* GoogleStorageAdapter.swift in Sources */,
+				7E0C7979282EAA8700E21F4D /* ProfileInteractor.swift in Sources */,
 				7E3E6B78282AB79F00140E65 /* AboutViewController.swift in Sources */,
 				7E528FFF2829602400D22E08 /* Wrapper+UserDefaults.swift in Sources */,
 				7E685058281F2AD1007C15B0 /* LoginContracts.swift in Sources */,
 				7E3E6B71282AB73200140E65 /* FeedbacksBuilder.swift in Sources */,
 				7E533EDB282B101A003E335B /* UIImageView+Ex.swift in Sources */,
-				7E68BB27282AAE150099DC65 /* ProfileRouter.swift in Sources */,
+				7E68BB27282AAE150099DC65 /* SettingsRouter.swift in Sources */,
 				7EF731A9281D90DA00A1CFE9 /* HomeViewController.swift in Sources */,
-				7E68BB29282AAE1A0099DC65 /* ProfilePresenter.swift in Sources */,
+				7E68BB29282AAE1A0099DC65 /* SettingsPresenter.swift in Sources */,
+				7E0C7975282EAA6D00E21F4D /* ProfileContracts.swift in Sources */,
 				7ECDE35328282F0700FE76BC /* BaseAuthenticateContracts.swift in Sources */,
 				7EF731BB281D918F00A1CFE9 /* AppRouter.swift in Sources */,
 				7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */,
@@ -887,7 +921,9 @@
 				7E39EA9C281F34960073A591 /* RegisterInteractor.swift in Sources */,
 				7E9373BC2829B529008A7918 /* ProfileEditBuilder.swift in Sources */,
 				7E3E6B68282AB68100140E65 /* ClearCacheViewController.swift in Sources */,
-				7E80253E2825CEBD00D2E0B0 /* ProfileViewController.swift in Sources */,
+				7E0C7971282EA17D00E21F4D /* ProfileBuilder.swift in Sources */,
+				7E3366CD282EEEA000DBDB7F /* SelectPicker.swift in Sources */,
+				7E80253E2825CEBD00D2E0B0 /* SettingsViewController.swift in Sources */,
 				7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,
 				7E529002282967A000D22E08 /* AppData.swift in Sources */,

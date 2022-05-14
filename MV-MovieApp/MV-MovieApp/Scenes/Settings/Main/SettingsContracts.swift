@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol ProfileInteractorProtocol: AnyObject {
-    var delegate: ProfileInteractorOutput? { get set }
+protocol SettingsInteractorProtocol: AnyObject {
+    var delegate: SettingsInteractorOutput? { get set }
     
     func loadCurrentUser()
 
@@ -16,14 +16,14 @@ protocol ProfileInteractorProtocol: AnyObject {
     func logoutButtonTapped()
 }
 
-protocol ProfileInteractorOutput: AnyObject {
+protocol SettingsInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func showEditableUser(currentUser: UserPresentation)
     func showLogin()
     func showError(error: Error)
 }
 
-protocol ProfilePresenterProtocol: AnyObject {
+protocol SettingsPresenterProtocol: AnyObject {
     func loadCurrentUser()
 
     func editButtonTapped()
@@ -31,13 +31,13 @@ protocol ProfilePresenterProtocol: AnyObject {
     func selectSetting(at section: Int, index: Int)
 }
 
-protocol ProfilePresenterOutput: AnyObject {
+protocol SettingsPresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func showError(error: Error)
 }
 
-protocol ProfileRoute: AnyObject {
+protocol SettingsRoute: AnyObject {
     func toLogin()
     func toEdit(with currentUser: UserPresentation)
-    func toSelectedSetting(_ setting: SettingsOption)
+    func toSelectedSetting(_ setting: SettingOption)
 }

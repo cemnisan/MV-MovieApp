@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 7.05.2022.
@@ -8,7 +8,7 @@
 import UIKit
 import MV_Components
 
-final class ProfileViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
     private let userContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let userImageView     = MVUserImage(cornerRadius: 30)
@@ -18,7 +18,7 @@ final class ProfileViewController: UIViewController {
     private let settingsTableView = UITableView(frame: .zero, style: .grouped)
     private let logOutButton      = MVButton(frame: .zero)
     
-    var profilePresenter: ProfilePresenterProtocol!
+    var settingsPresenter: SettingsPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,19 +26,14 @@ final class ProfileViewController: UIViewController {
         configure()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        profilePresenter.loadCurrentUser()
+        settingsPresenter.loadCurrentUser()
     }
 }
 
-extension ProfileViewController {
+extension SettingsViewController {
     
     private func configure() {
         configureViewController()
@@ -51,30 +46,33 @@ extension ProfileViewController {
     }
     
     private func configureViewController() {
-        title = "Profile"
+        title = "Settings"
         view.backgroundColor = K.Styles.backgroundColor
         navigationController?.navigationBar.titleTextAttributes = K.Styles.navTitleColor
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(logOutButtonDidTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Log out",
+            style: .done,
+            target: self,
+            action: #selector(logOutButtonDidTapped))
     }
     
     private func configureUserContainerView() {
         view.addSubview(userContainerView)
         
-        userContainerView.configureConstraints(top: (view.safeAreaLayoutGuide.topAnchor, 24),
-                                               leading: (view.leadingAnchor, 24),
-                                               trailing: (view.trailingAnchor, -24))
+        userContainerView.configureConstraints(
+            top: (view.safeAreaLayoutGuide.topAnchor, 24),
+            leading: (view.leadingAnchor, 24),
+            trailing: (view.trailingAnchor, -24))
         userContainerView.configureHeight(height: 120)
     }
     
     private func configureUserImage() {
         userContainerView.addSubview(userImageView)
         
-        userImageView.configureConstraints(leading: (userContainerView.leadingAnchor, 16),
-                                           centerY: (userContainerView.centerYAnchor, 0))
+        userImageView.configureConstraints(
+            leading: (userContainerView.leadingAnchor, 16),
+            centerY: (userContainerView.centerYAnchor, 0))
         userImageView.configureWidth(width: 60)
         userImageView.configureHeight(height: 60)
     }
@@ -82,18 +80,20 @@ extension ProfileViewController {
     private func configureUserNameLabel() {
         userContainerView.addSubview(userNameLabel)
         
-        userNameLabel.configureConstraints(top: (userImageView.topAnchor, 0),
-                                           leading: (userImageView.trailingAnchor, 8),
-                                           trailing: (userContainerView.trailingAnchor, 8))
+        userNameLabel.configureConstraints(
+            top: (userImageView.topAnchor, 0),
+            leading: (userImageView.trailingAnchor, 8),
+            trailing: (userContainerView.trailingAnchor, 8))
         userNameLabel.configureHeight(height: 25)
     }
     
     private func configureUserEmailLabel() {
         userContainerView.addSubview(userEmailLabel)
         
-        userEmailLabel.configureConstraints(top: (userNameLabel.bottomAnchor, 12),
-                                            leading: (userImageView.trailingAnchor, 8),
-                                            trailing: (userEditButton.leadingAnchor, -8))
+        userEmailLabel.configureConstraints(
+            top: (userNameLabel.bottomAnchor, 12),
+            leading: (userImageView.trailingAnchor, 8),
+            trailing: (userEditButton.leadingAnchor, -8))
         userEmailLabel.configureHeight(height: 20)
     }
     
@@ -102,46 +102,50 @@ extension ProfileViewController {
         userEditButton.addTarget(self,
                                  action: #selector(userDidTappedEditButton),
                                  for: .touchUpInside)
-        userEditButton.configureConstraints(trailing: (userContainerView.trailingAnchor, -20),
-                                            centerY: (userContainerView.centerYAnchor, 0))
+        userEditButton.configureConstraints(
+            trailing: (userContainerView.trailingAnchor, -20),
+            centerY: (userContainerView.centerYAnchor, 0))
         userEditButton.configureWidth(width: 24)
         userEditButton.configureHeight(height: 24)
     }
     
     private func configureSettingsTableView() {
         view.addSubview(settingsTableView)
-        settingsTableView.register(SettingTableViewCell.self,
-                                   forCellReuseIdentifier: SettingTableViewCell.identifier)
+        settingsTableView.register(
+            SettingTableViewCell.self,
+            forCellReuseIdentifier: SettingTableViewCell.identifier)
         settingsTableView.backgroundColor = K.Styles.backgroundColor
         settingsTableView.dataSource = self
         settingsTableView.delegate   = self
         settingsTableView.translatesAutoresizingMaskIntoConstraints = false
-        settingsTableView.configureConstraints(top: (userContainerView.bottomAnchor, 8),
-                                               leading: (view.leadingAnchor, 24),
-                                               trailing: (view.trailingAnchor, -24),
-                                               bottom: (view.bottomAnchor, -16))
+        settingsTableView.configureConstraints(
+            top: (userContainerView.bottomAnchor, 8),
+            leading: (view.leadingAnchor, 24),
+            trailing: (view.trailingAnchor, -24),
+            bottom: (view.bottomAnchor, -16))
     }
 }
 
 // MARK: - Button Tapped
-extension ProfileViewController {
+extension SettingsViewController {
     
     @objc
     private func userDidTappedEditButton() {
-        profilePresenter.editButtonTapped()
+        settingsPresenter.editButtonTapped()
     }
     
     @objc
     private func logOutButtonDidTapped() {
-        showActionAlert(with: "Log out",
-                        message: "When you did tapped on log out button, you are going to login page.\nAre you sure?",
-                        buttonTitle: "Log out",
-                        delegate: self)
+        showActionAlert(
+            with: "Log out",
+            message: "When you did tapped on log out button, you are going to login page.\nAre you sure?",
+            buttonTitle: "Log out",
+            delegate: self)
     }
 }
 
 // MARK: - TableView Data Source
-extension ProfileViewController: UITableViewDataSource {
+extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.settings.count
@@ -181,19 +185,20 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: - TableView Delegate
-extension ProfileViewController: UITableViewDelegate {
+extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        profilePresenter.selectSetting(at: indexPath.section, index: indexPath.row)
+        settingsPresenter.selectSetting(at: indexPath.section, index: indexPath.row)
     }
 }
 
-extension ProfileViewController: ProfilePresenterOutput {
+extension SettingsViewController: SettingsPresenterOutput {
     
     func showError(error: Error) {
-        showErrorAlert(with: "Error",
-                       message: error.localizedDescription,
-                       buttonTitle: "OK")
+        showErrorAlert(
+            with: "Error",
+            message: error.localizedDescription,
+            buttonTitle: "OK")
     }
     
     func showCurrentUser(currentUser: UserPresentation) {
@@ -204,8 +209,8 @@ extension ProfileViewController: ProfilePresenterOutput {
 }
 
 // MARK: - Action Alert Delegate
-extension ProfileViewController: MVActionAlertDelegate {
+extension SettingsViewController: MVActionAlertDelegate {
     func actionButtonTapped() {
-        profilePresenter.logoutTapped()
+        settingsPresenter.logoutTapped()
     }
 }

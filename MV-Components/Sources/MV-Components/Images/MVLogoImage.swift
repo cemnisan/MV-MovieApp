@@ -19,10 +19,11 @@ public final class MVLogoImage: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(image: UIImage) {
+    public convenience init(image: UIImage, tintColor: UIColor) {
         self.init(frame: .zero)
         
-        self.image = image
+        self.image     = image
+        self.tintColor = tintColor
     }
 }
 

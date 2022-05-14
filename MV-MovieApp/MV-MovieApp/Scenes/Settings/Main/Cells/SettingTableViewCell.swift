@@ -98,7 +98,7 @@ extension SettingTableViewCell {
 
 // MARK: - Set Cell
 extension SettingTableViewCell {
-    public func set(with model: SettingsOption) {
+    public func set(with model: SettingOption) {
         label.text = model.title
         iconImageView.image = model.icon
     }

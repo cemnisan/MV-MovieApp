@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class MVAuthenticatesTextField: UITextField {
+public final class MVAuthTextField: UITextField {
 
     let padding = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 5)
     
@@ -42,7 +42,7 @@ public final class MVAuthenticatesTextField: UITextField {
     }
 }
 
-extension MVAuthenticatesTextField {
+extension MVAuthTextField {
     
     private func configure() {
         layer.cornerRadius        = 10
