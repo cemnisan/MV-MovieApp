@@ -30,7 +30,7 @@ final class ProfileEditInteractor {
 extension ProfileEditInteractor: ProfileEditInteractorProtocol {
     
     func loadCurrentUser() {
-        delegate?.showUpdatedUser(currentUser: currentUser)
+        delegate?.showCurrentUser(currentUser: currentUser)
     }
     
     func uploadImage(selectedPicker:SelectPickerView, image: Data) {
@@ -84,7 +84,7 @@ extension ProfileEditInteractor: ProfileEditInteractorProtocol {
                                 case .success(let user):
                                     self.currentUser      = user
                                     self.isImageUploading = false
-                                    self.delegate?.showUpdatedUser(currentUser: self.currentUser)
+                                    self.delegate?.showCurrentUser(currentUser: self.currentUser)
                                 case .failure(let error):
                                     self.delegate?.showError(error: error)
                             }

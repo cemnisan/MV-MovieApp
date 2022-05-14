@@ -14,8 +14,10 @@ final class ProfileEditBuilder {
         let interactor = ProfileEditInteractor(currentUser: currentUser,
                                                storageService: GoogleStorageAdapter(),
                                                fireStoreService: GoogleFireStoreAdapter())
+        let router    = ProfileEditRouter(view: view)
         let presenter = ProfileEditPresenter(interactor: interactor,
-                                             view: view)
+                                             view: view,
+                                             router: router)
         view.profileEditPresenter = presenter
         return view
     }
