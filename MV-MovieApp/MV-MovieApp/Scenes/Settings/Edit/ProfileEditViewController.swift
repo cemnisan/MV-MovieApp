@@ -9,6 +9,7 @@ import UIKit
 import PhotosUI
 import MV_Components
 
+
 final class ProfileEditViewController: BaseViewController {
     
     private let progressView              = UIProgressView(progressViewStyle: .bar)
@@ -124,7 +125,7 @@ extension ProfileEditViewController {
             for: .normal)
         editBackgroundImageButton.addTarget(
             self,
-            action: #selector(editBackgroundImageButtonTapped),
+            action: #selector(editBackgroundPictureButtonTapped),
             for: .touchUpInside)
         editBackgroundImageButton.tintColor = .systemBackground
         editBackgroundImageButton.configureConstraints(
@@ -161,7 +162,7 @@ extension ProfileEditViewController {
             for: .normal)
         editProfileImageButton.addTarget(
             self,
-            action: #selector(editImageViewButtonTapped),
+            action: #selector(editProfilePictureButtonTapped),
             for: .touchUpInside)
         editProfileImageButton.configureConstraints(
             centerX: (editProfileImageView.centerXAnchor, 0),
@@ -248,13 +249,13 @@ extension ProfileEditViewController {
 extension ProfileEditViewController {
     
     @objc
-    private func editImageViewButtonTapped() {
+    private func editProfilePictureButtonTapped() {
         profileEditPresenter.choosePictureButtonTapped(on: .profilePic,
                                                        delegate: self)
     }
     
     @objc
-    private func editBackgroundImageButtonTapped() {
+    private func editBackgroundPictureButtonTapped() {
         profileEditPresenter.choosePictureButtonTapped(on: .backgroundPic,
                                                        delegate: self)
     }
@@ -290,12 +291,12 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
             result.itemProvider
                 .loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
                     guard let self  = self,
-                          let image = object as? UIImage,
-                          let imageData = image.jpegData(compressionQuality: 0.3) else { return }
+                          let picture = object as? UIImage,
+                          let pictureData = picture.jpegData(compressionQuality: 0.3) else { return }
                     self.profileEditPresenter.chosenPicture(
                         on: picker,
-                        image: image,
-                        imageData: imageData)
+                        picture: picture,
+                        pictureData: pictureData)
                 }
         }
     }
@@ -305,7 +306,6 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
 extension ProfileEditViewController: ProfileEditPresenterOutput {
     
     func showCurrentUser(currentUser: UserPresentation) {
-        
         currentBackgroundImage.setImage(with: currentUser.backgroundPic ?? "")
         currentProfileImage.setImage(with: currentUser.profilePic ?? "")
         
@@ -317,27 +317,28 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         editUsernameTextField.text = currentUser.username
     }
     
-    func showChosenProfilePic(chosenImage image: UIImage) {
-        currentProfileImage.image           = image
+    func showChosenPictures(chosenProfilePic: UIImage? = nil,
+                            chosenBackgroundPic: UIImage? = nil) {
+        if let chosenProfilePic = chosenProfilePic {
+            currentProfileImage.image = chosenProfilePic
+        }
+        
+        if let chosenBackgroundPic = chosenBackgroundPic {
+            currentBackgroundImage.image = chosenBackgroundPic
+        }
+        
         editProfileImageButton.isEnabled    = false
         editBackgroundImageButton.isEnabled = false
         configureSaveChangesButton(isEnabled: false)
     }
-    
-    func showChosenBackgroundPic(chosenImage image: UIImage) {
-        currentBackgroundImage.image        = image
-        editBackgroundImageButton.isEnabled = false
-        editProfileImageButton.isEnabled    = false
-        configureSaveChangesButton(isEnabled: false)
-    }
-    
+ 
     func showStartedProgress(progress: Float) {
         progressView.isHidden = false
         progressView.setProgress(progress / 100, animated: true)
     }
     
-    func showUpdatedImage(profileUrl: String?    = nil,
-                          backgroundUrl: String? = nil) {
+    func showUpdatedPictures(profileUrl: String?    = nil,
+                             backgroundUrl: String? = nil) {
         if let profileUrl = profileUrl {
             currentProfileImage.setImage(with: profileUrl)
         }
@@ -355,8 +356,9 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     }
     
     func showError(error: Error) {
-        showErrorAlert(
-            with: "Something went wrong",
+        showAlert(
+            type: .info,
+            title: "Something Went Wrong",
             message: error.localizedDescription,
             buttonTitle: "OK")
     }

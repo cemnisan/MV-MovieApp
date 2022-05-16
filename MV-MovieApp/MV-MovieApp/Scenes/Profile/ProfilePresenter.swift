@@ -31,7 +31,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     }
     
     func editProfileTapped() {
-        interactor.editProfileTapped()
+        router.toEditProfile()
     }
 }
 
@@ -39,9 +39,5 @@ extension ProfilePresenter: ProfileInteractorOutput {
     
     func showCurrentUser(currentUser: UserPresentation) {
         view.showCurrentUser(currentUser: currentUser)
-    }
-    
-    func showEditableUser(currenUser: UserPresentation) {
-        router.toEditProfile()
     }
 }

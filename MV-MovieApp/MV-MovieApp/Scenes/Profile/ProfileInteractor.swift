@@ -34,8 +34,4 @@ extension ProfileInteractor: ProfileInteractorProtocol {
             }
         }
     }
-    
-    func editProfileTapped() {
-        delegate?.showEditableUser(currenUser: currentUser)
-    }
 }

@@ -109,6 +109,10 @@ extension LoginViewController: LoginPresenterOutput {
     }
     
     func showError(error: Error) {
-        showErrorAlert(with: "Login Error", message: error.localizedDescription, buttonTitle: "OK")
+        showAlert(
+            type: .info,
+            title: "Login Error",
+            message: error.localizedDescription,
+            buttonTitle: "OK")
     }
 }

@@ -114,7 +114,11 @@ extension RegisterViewController: RegisterPresenterOutput {
     }
     
     func showError(error: Error) {
-        showErrorAlert(with: "Register Error", message: error.localizedDescription, buttonTitle: "OK")
+        showAlert(
+            type: .info,
+            title: "Register Error",
+            message: error.localizedDescription,
+            buttonTitle: "OK")
     }
 }
 

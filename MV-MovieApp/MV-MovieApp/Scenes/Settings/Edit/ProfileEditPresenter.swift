@@ -38,36 +38,29 @@ extension ProfileEditPresenter: ProfileEditPresenterProtocol {
     
     func chosenPicture(
         on picker: PHPickerViewController,
-        image: UIImage,
-        imageData: Data)
+        picture: UIImage,
+        pictureData: Data)
     {
         DispatchQueue.main.async {
             if picker.title == "profilePic" {
-                self.view.showChosenProfilePic(chosenImage: image)
-                self.uploadImage(selectedPicker: .profilePic, image: imageData)
+                self.view.showChosenPictures(chosenProfilePic: picture, chosenBackgroundPic: nil)
+                self.interactor.uploadPicture(selectedPicker: .profilePic, image: pictureData)
             } else {
-                self.view.showChosenBackgroundPic(chosenImage: image)
-                self.uploadImage(selectedPicker: .backgroundPic, image: imageData)
+                self.view.showChosenPictures(chosenProfilePic: nil, chosenBackgroundPic: picture)
+                self.interactor.uploadPicture(selectedPicker: .backgroundPic, image: pictureData)
             }
         }
     }
-    
-    func uploadImage(selectedPicker:SelectPickerView,
-                     image: Data) {
-        interactor.uploadImage(selectedPicker: selectedPicker, image: image)
-    }
-    
+ 
     func isTextFieldsChanged(
         for usernameText: String,
         fullNameText: String) -> Bool
     {
-        if
-            currentUsername != usernameText ||
-            currentFullName != fullNameText
-        {
+        if currentUsername != usernameText || currentFullName != fullNameText {
             return true
+        } else {
+            return false
         }
-        else { return false }
     }
     
     func updateUser(with fullName: String,
@@ -99,14 +92,13 @@ extension ProfileEditPresenter: ProfileEditInteractorOutput {
         }
     }
 
-    func showUpdatedImage(with url: String,
+    func showUpdatedPicture(with url: String,
                           selectedPicker: SelectPickerView) {
-        
         switch selectedPicker {
         case .profilePic:
-            view.showUpdatedImage(profileUrl: url, backgroundUrl: nil)
+            view.showUpdatedPictures(profileUrl: url, backgroundUrl: nil)
         case .backgroundPic:
-            view.showUpdatedImage(profileUrl: nil, backgroundUrl: url)
+            view.showUpdatedPictures(profileUrl: nil, backgroundUrl: url)
         }
     }
     

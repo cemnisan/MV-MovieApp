@@ -84,7 +84,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
             switch result {
             case .success(let currentUser):
                 registeredUser.id == currentUser.id ? completion(true) : completion(false)
-            case .failure(_): completion(false)
+            case .failure(_): break
             }
         }
     }

@@ -15,13 +15,8 @@ protocol ProfileEditInteractorProtocol: AnyObject {
     
     func loadCurrentUser()
     
-    func uploadImage(
-        selectedPicker: SelectPickerView,
-        image: Data)
-    
-    func updateUser(
-        with fullName: String,
-        username: String)
+    func uploadPicture(selectedPicker: SelectPickerView, image: Data)
+    func updateUser(with fullName: String, username: String)
 }
 
 // MARK: - Interactor Output
@@ -29,10 +24,7 @@ protocol ProfileEditInteractorOutput: AnyObject {
     
     func initializeProgress(progress: Float?)
     
-    func showUpdatedImage(
-        with url: String,
-        selectedPicker: SelectPickerView)
-    
+    func showUpdatedPicture(with url: String, selectedPicker: SelectPickerView)
     func showCurrentUser(currentUser: UserPresentation)
     func showError(error: Error)
     
@@ -53,12 +45,8 @@ protocol ProfileEditPresenterProtocol: AnyObject {
     
     func chosenPicture(
         on picker: PHPickerViewController,
-        image: UIImage,
-        imageData: Data)
-    
-    func uploadImage(
-        selectedPicker:SelectPickerView,
-        image: Data)
+        picture: UIImage,
+        pictureData: Data)
     
     func isTextFieldsChanged(
         for usernameText: String,
@@ -74,9 +62,8 @@ protocol ProfileEditPresenterOutput: AnyObject {
     
     func showCurrentUser(currentUser: UserPresentation)
     func showStartedProgress(progress: Float)
-    func showChosenProfilePic(chosenImage image: UIImage)
-    func showChosenBackgroundPic(chosenImage image: UIImage)
-    func showUpdatedImage(profileUrl: String?, backgroundUrl: String?)
+    func showChosenPictures(chosenProfilePic: UIImage?, chosenBackgroundPic: UIImage?)
+    func showUpdatedPictures(profileUrl: String?, backgroundUrl: String?)
     func showError(error: Error)
     
     func displayLoading()
@@ -85,7 +72,6 @@ protocol ProfileEditPresenterOutput: AnyObject {
 
 // MARK: - Router
 protocol ProfileEditRoute {
-    func toPickerView(
-        pickerView selectedPickerView: SelectPickerView,
-        delegate: ProfileEditViewController)
+    func toPickerView(pickerView selectedPickerView: SelectPickerView,
+                      delegate: ProfileEditViewController)
 }

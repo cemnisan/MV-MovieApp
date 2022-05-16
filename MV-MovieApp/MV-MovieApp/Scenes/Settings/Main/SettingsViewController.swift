@@ -12,8 +12,14 @@ final class SettingsViewController: UIViewController {
     
     private let userContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let userImageView     = MVUserImage(cornerRadius: 30)
-    private let userNameLabel     = MVTitleLabel(textAlignment: .left, fontSize: 20, textColor: .white)
-    private let userEmailLabel    = MVTitleLabel(textAlignment: .left, fontSize: 17, textColor: .systemGray2)
+    private let userNameLabel = MVTitleLabel(
+        textAlignment: .left,
+        fontSize: 20,
+        textColor: .white)
+    private let userEmailLabel = MVTitleLabel(
+        textAlignment: .left,
+        fontSize: 17,
+        textColor: .systemGray2)
     private let userEditButton    = MVButton(image: UIImage(named: "edit")!)
     private let settingsTableView = UITableView(frame: .zero, style: .grouped)
     private let logOutButton      = MVButton(frame: .zero)
@@ -49,7 +55,6 @@ extension SettingsViewController {
         title = "Settings"
         view.backgroundColor = K.Styles.backgroundColor
         navigationController?.navigationBar.titleTextAttributes = K.Styles.navTitleColor
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Log out",
             style: .done,
@@ -59,7 +64,6 @@ extension SettingsViewController {
     
     private func configureUserContainerView() {
         view.addSubview(userContainerView)
-        
         userContainerView.configureConstraints(
             top: (view.safeAreaLayoutGuide.topAnchor, 24),
             leading: (view.leadingAnchor, 24),
@@ -69,7 +73,6 @@ extension SettingsViewController {
     
     private func configureUserImage() {
         userContainerView.addSubview(userImageView)
-        
         userImageView.configureConstraints(
             leading: (userContainerView.leadingAnchor, 16),
             centerY: (userContainerView.centerYAnchor, 0))
@@ -79,7 +82,6 @@ extension SettingsViewController {
     
     private func configureUserNameLabel() {
         userContainerView.addSubview(userNameLabel)
-        
         userNameLabel.configureConstraints(
             top: (userImageView.topAnchor, 0),
             leading: (userImageView.trailingAnchor, 8),
@@ -89,7 +91,6 @@ extension SettingsViewController {
     
     private func configureUserEmailLabel() {
         userContainerView.addSubview(userEmailLabel)
-        
         userEmailLabel.configureConstraints(
             top: (userNameLabel.bottomAnchor, 12),
             leading: (userImageView.trailingAnchor, 8),
@@ -99,9 +100,10 @@ extension SettingsViewController {
     
     private func configureUserEditButton() {
         userContainerView.addSubview(userEditButton)
-        userEditButton.addTarget(self,
-                                 action: #selector(userDidTappedEditButton),
-                                 for: .touchUpInside)
+        userEditButton.addTarget(
+            self,
+            action: #selector(userDidTappedEditButton),
+            for: .touchUpInside)
         userEditButton.configureConstraints(
             trailing: (userContainerView.trailingAnchor, -20),
             centerY: (userContainerView.centerYAnchor, 0))
@@ -136,10 +138,11 @@ extension SettingsViewController {
     
     @objc
     private func logOutButtonDidTapped() {
-        showActionAlert(
-            with: "Log out",
+        showAlert(
+            type: .action,
+            title: "Log out",
             message: "When you did tapped on log out button, you are going to login page.\nAre you sure?",
-            buttonTitle: "Log out",
+            buttonTitle: "Log Out",
             delegate: self)
     }
 }
@@ -195,8 +198,9 @@ extension SettingsViewController: UITableViewDelegate {
 extension SettingsViewController: SettingsPresenterOutput {
     
     func showError(error: Error) {
-        showErrorAlert(
-            with: "Error",
+        showAlert(
+            type: .info,
+            title: "Error",
             message: error.localizedDescription,
             buttonTitle: "OK")
     }

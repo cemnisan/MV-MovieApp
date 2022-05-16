@@ -39,6 +39,48 @@ final class ProfileViewController: UIViewController {
         fontSize: 15,
         textColor: .systemGray,
         text: nil)
+    private let totalWatchedFlimsLabel = MVTitleLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: .white)
+    private let watchedFlimsLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 17,
+        textColor: .systemGray,
+        text: nil)
+    private let totalWatchListLabel = MVTitleLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: .white)
+    private let watchListLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 17,
+        textColor: .systemGray,
+        text: nil)
+    private let totalFollowersLabel = MVTitleLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: .white)
+    private let followersLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 17,
+        textColor: .systemGray,
+        text: nil)
+    private let totalFollowingLabel = MVTitleLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: .white)
+    private let followingLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 17,
+        textColor: .systemGray,
+        text: nil)
+    private let simpleLine = MVSimpleLine(frame: .zero)
+    private let favoriteFlimsLabel = MVTitleLabel(
+        textAlignment: .left,
+        fontSize: 22,
+        textColor: .systemBackground)
+    private var favoriteCollectionView: UICollectionView!
     
     var profilePresenter: ProfilePresenterProtocol!
     
@@ -46,8 +88,6 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        profilePresenter.loadCurrentUser()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +97,7 @@ final class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: - Configure UI
 extension ProfileViewController {
     
     private func configure() {
@@ -68,6 +109,10 @@ extension ProfileViewController {
         configureUsernameLabel()
         configureUserBio()
         configureJoinedDateElements()
+        configureUserWatchInfo()
+        configureSimpleLine()
+        configureFavoriteFlimsLabel()
+        configureFavoriteCollectionView()
     }
     
     private func configureViewController() {
@@ -159,6 +204,138 @@ extension ProfileViewController {
             centerY: (calendarImage.centerYAnchor, 0))
         userJoinedLabel.configureHeight(height: 20)
     }
+    
+    private func configureWatchedFlimsElements() -> UIStackView {
+        totalWatchedFlimsLabel.text = "3,812"
+        watchedFlimsLabel.text      = "Flims"
+        
+        let stackView = UIStackView(arrangedSubviews: [totalWatchedFlimsLabel, watchedFlimsLabel])
+        stackView.distribution = .fillEqually
+        stackView.spacing      = 4
+        stackView.axis         = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubviews(views: stackView)
+        
+        stackView.configureHeight(height: 45)
+        
+        return stackView
+    }
+    
+    private func configureWatchListElements() -> UIStackView {
+        totalWatchListLabel.text = "102"
+        watchListLabel.text      = "List"
+        
+        let stackView = UIStackView(arrangedSubviews: [totalWatchListLabel, watchListLabel])
+        stackView.distribution = .fillEqually
+        stackView.spacing      = 4
+        stackView.axis         = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        stackView.configureHeight(height: 45)
+        
+        return stackView
+    }
+    
+    private func configureFollowersElements() -> UIStackView {
+        totalFollowersLabel.text = "102"
+        followersLabel.text      = "Followers"
+        
+        let stackView = UIStackView(arrangedSubviews: [totalFollowersLabel, followersLabel])
+        stackView.distribution = .fillEqually
+        stackView.spacing      = 4
+        stackView.axis         = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        stackView.configureHeight(height: 45)
+        
+        return stackView
+    }
+    
+    private func configureFollowingElements() -> UIStackView {
+        totalFollowingLabel.text = "102"
+        followingLabel.text      = "Following"
+        
+        let stackView = UIStackView(arrangedSubviews: [totalFollowingLabel, followingLabel])
+        stackView.distribution = .fillEqually
+        stackView.spacing      = 4
+        stackView.axis         = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        stackView.configureHeight(height: 45)
+        
+        return stackView
+    }
+    
+    private func configureUserWatchInfo() {
+        let stackView = UIStackView(arrangedSubviews: [
+            configureWatchedFlimsElements(),
+            configureWatchListElements(),
+            configureFollowersElements(),
+            configureFollowingElements()])
+        stackView.distribution = .equalSpacing
+        stackView.axis         = .horizontal
+        stackView.spacing      = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        stackView.configureConstraints(
+            top: (userJoinedLabel.bottomAnchor, 16),
+            leading: (view.leadingAnchor, 16),
+            trailing: (view.trailingAnchor, -16))
+        stackView.configureHeight(height: 45)
+    }
+    
+    private func configureSimpleLine() {
+        view.addSubview(simpleLine)
+        simpleLine.configureConstraints(
+            top: (followingLabel.bottomAnchor, 4),
+            leading: (view.leadingAnchor, 16),
+            trailing: (view.trailingAnchor, -16))
+        simpleLine.configureHeight(height: 0.5)
+    }
+    
+    private func configureFavoriteFlimsLabel() {
+        view.addSubview(favoriteFlimsLabel)
+        favoriteFlimsLabel.text = "Favorite Flims"
+        favoriteFlimsLabel.configureConstraints(
+            top: (simpleLine.bottomAnchor, 16),
+            leading: (view.leadingAnchor, 16),
+            trailing: (view.trailingAnchor, -16))
+        favoriteFlimsLabel.configureHeight(height: 25)
+    }
+    
+    private func configureFavoriteCollectionView() {
+        favoriteCollectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createFlowLayout())
+        view.addSubview(favoriteCollectionView)
+        favoriteCollectionView.configureConstraints(
+            top: (favoriteFlimsLabel.bottomAnchor, 8),
+            leading: (view.leadingAnchor, 16),
+            trailing: (view.trailingAnchor, -16),
+            bottom: (view.bottomAnchor, -8))
+        favoriteCollectionView.register(
+            FavoriteCollectionViewCell.self,
+            forCellWithReuseIdentifier: "favoriteCell")
+        favoriteCollectionView.backgroundColor = K.Styles.backgroundColor
+        favoriteCollectionView.delegate   = self
+        favoriteCollectionView.dataSource = self
+        favoriteCollectionView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func createFlowLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let width = UIScreen.main.bounds.width
+        layout.itemSize = CGSize(width: width / 2.5, height: 320)
+        layout.minimumLineSpacing = 8
+        
+        return layout
+    }
 }
 
 // MARK: - Button Tapped
@@ -168,6 +345,9 @@ extension ProfileViewController {
     private func userDidTappedEditProfile() {
         profilePresenter.editProfileTapped()
     }
+    
+    @objc
+    private func segmentValueChanged() {}
 }
 
 // MARK: - Presenter Output
@@ -180,3 +360,22 @@ extension ProfileViewController: ProfilePresenterOutput {
         userBackgroundImage.setImage(with: currentUser.backgroundPic!)
     }
 }
+
+extension ProfileViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "favoriteCell",
+            for: indexPath) as! FavoriteCollectionViewCell
+        cell.set()
+        return cell
+    }
+}
+
+extension ProfileViewController: UICollectionViewDelegate {}

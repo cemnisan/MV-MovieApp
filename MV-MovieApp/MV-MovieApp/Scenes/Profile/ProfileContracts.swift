@@ -12,18 +12,16 @@ protocol ProfileInteractorProtocol: AnyObject {
     var delegate: ProfileInteractorOutput? { get set }
     
     func loadCurrentUser()
-    
-    func editProfileTapped()
 }
 
 // MARK: - Interactor Output
 protocol ProfileInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
-    func showEditableUser(currenUser: UserPresentation)
 }
 
 // MARK: - Presenter Protocol
 protocol ProfilePresenterProtocol: AnyObject {
+    
     func loadCurrentUser()
     
     func editProfileTapped()

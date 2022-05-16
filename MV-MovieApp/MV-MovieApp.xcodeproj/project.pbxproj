@@ -77,6 +77,9 @@
 		7E68BB27282AAE150099DC65 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB26282AAE150099DC65 /* SettingsRouter.swift */; };
 		7E68BB29282AAE1A0099DC65 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB28282AAE1A0099DC65 /* SettingsPresenter.swift */; };
 		7E68BB2B282AAE1F0099DC65 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68BB2A282AAE1F0099DC65 /* SettingsInteractor.swift */; };
+		7E7B6D7328327BC90034BB22 /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7B6D7228327BC90034BB22 /* MV-Components */; };
+		7E7B6D7528327E010034BB22 /* AlertTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B6D7428327E010034BB22 /* AlertTypes.swift */; };
+		7E7B6D7828329BBD0034BB22 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B6D7728329BBD0034BB22 /* FavoriteCollectionViewCell.swift */; };
 		7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */; };
 		7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */; };
 		7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */; };
@@ -84,7 +87,6 @@
 		7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */; };
 		7E80253E2825CEBD00D2E0B0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */; };
 		7E8025402825CEC500D2E0B0 /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253F2825CEC500D2E0B0 /* SettingsBuilder.swift */; };
-		7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8A7B93281EACF6000676EC /* MV-Components */; };
 		7E8A7B9A281EBB0E000676EC /* AuthContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B99281EBB0E000676EC /* AuthContainerViewController.swift */; };
 		7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9B281EBC4F000676EC /* AuthAppleViewController.swift */; };
 		7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A7B9D281EBCA6000676EC /* AuthGoogleViewController.swift */; };
@@ -186,6 +188,8 @@
 		7E68BB26282AAE150099DC65 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		7E68BB28282AAE1A0099DC65 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		7E68BB2A282AAE1F0099DC65 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		7E7B6D7428327E010034BB22 /* AlertTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTypes.swift; sourceTree = "<group>"; };
+		7E7B6D7728329BBD0034BB22 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresentation.swift; sourceTree = "<group>"; };
 		7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
@@ -240,10 +244,10 @@
 				7E4D6938282E6697007B5DCF /* FirebaseStorage in Frameworks */,
 				7E5A3F9A282578CD00D70F69 /* MovieDB-Wrapper in Frameworks */,
 				7E533ED9282B100B003E335B /* Kingfisher in Frameworks */,
-				7E8A7B94281EACF6000676EC /* MV-Components in Frameworks */,
 				7E5A3FA82825852500D70F69 /* GoogleSignIn in Frameworks */,
 				7E4D6934282E6697007B5DCF /* FirebaseFirestore in Frameworks */,
 				7E4D6936282E6697007B5DCF /* FirebaseFirestoreSwift in Frameworks */,
+				7E7B6D7328327BC90034BB22 /* MV-Components in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +257,7 @@
 		7E0C796D282EA16600E21F4D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7E7B6D7628329BAC0034BB22 /* Cells */,
 				7E0C7970282EA17D00E21F4D /* ProfileBuilder.swift */,
 				7E0C7972282EA19800E21F4D /* ProfileViewController.swift */,
 				7E0C7974282EAA6D00E21F4D /* ProfileContracts.swift */,
@@ -455,6 +460,14 @@
 				7E3E6B53282AB4A800140E65 /* ChangePasswordViewController.swift */,
 			);
 			path = "Change Password";
+			sourceTree = "<group>";
+		};
+		7E7B6D7628329BAC0034BB22 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B6D7728329BBD0034BB22 /* FavoriteCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7E8025312825CE6600D2E0B0 /* Search */ = {
@@ -734,6 +747,7 @@
 				7EC7E8B7281F481D003155F1 /* SelectAuthController.swift */,
 				7EFBB9892829726800276C3E /* TabBar.swift */,
 				7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */,
+				7E7B6D7428327E010034BB22 /* AlertTypes.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -756,7 +770,6 @@
 			name = "MV-MovieApp";
 			packageProductDependencies = (
 				7EF731A2281D907300A1CFE9 /* MovieDB-Wrapper */,
-				7E8A7B93281EACF6000676EC /* MV-Components */,
 				7E5A3F99282578CD00D70F69 /* MovieDB-Wrapper */,
 				7E5A3FA72825852500D70F69 /* GoogleSignIn */,
 				7E533ED8282B100B003E335B /* Kingfisher */,
@@ -764,6 +777,7 @@
 				7E4D6933282E6697007B5DCF /* FirebaseFirestore */,
 				7E4D6935282E6697007B5DCF /* FirebaseFirestoreSwift */,
 				7E4D6937282E6697007B5DCF /* FirebaseStorage */,
+				7E7B6D7228327BC90034BB22 /* MV-Components */,
 			);
 			productName = "MV-MovieApp";
 			productReference = 7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */;
@@ -829,6 +843,7 @@
 			files = (
 				7E39EAA0281F34A80073A591 /* RegisterRouter.swift in Sources */,
 				7EF731AB281D90F500A1CFE9 /* HomeContracts.swift in Sources */,
+				7E7B6D7528327E010034BB22 /* AlertTypes.swift in Sources */,
 				7E68BB2B282AAE1F0099DC65 /* SettingsInteractor.swift in Sources */,
 				7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */,
 				7E528FFB2829474900D22E08 /* BaseAuthenticateRouter.swift in Sources */,
@@ -884,6 +899,7 @@
 				7EF731C1281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift in Sources */,
 				7E3E6B66282AB67A00140E65 /* ClearCacheBuilder.swift in Sources */,
 				7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */,
+				7E7B6D7828329BBD0034BB22 /* FavoriteCollectionViewCell.swift in Sources */,
 				7E685051281F1C00007C15B0 /* LoginBuilder.swift in Sources */,
 				7E528FF728293EEA00D22E08 /* BaseAuthenticateInteractor.swift in Sources */,
 				7E3D096F282BE5A400F45293 /* UploadMediaService.swift in Sources */,
@@ -1213,7 +1229,7 @@
 			package = 7E5A3FA62825852500D70F69 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		7E8A7B93281EACF6000676EC /* MV-Components */ = {
+		7E7B6D7228327BC90034BB22 /* MV-Components */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "MV-Components";
 		};

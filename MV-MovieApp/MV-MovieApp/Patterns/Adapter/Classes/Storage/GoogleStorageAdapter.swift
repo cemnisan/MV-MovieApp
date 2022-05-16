@@ -16,7 +16,7 @@ final class GoogleStorageAdapter {
 extension GoogleStorageAdapter: UploadMediaService {
     
     func uploadMedia(
-        with imageData: Data,
+        with pictureData: Data,
         selectedPicker: SelectPickerView,
         progress: @escaping (_ progress: Float?) -> Void,
         completion: @escaping (_ url: URL?) -> Void)
@@ -32,7 +32,8 @@ extension GoogleStorageAdapter: UploadMediaService {
             .child("User")
             .child(imageName)
         
-        let uploadTask = storageRef.putData(imageData, metadata: metaData) { (_, error) in
+        let uploadTask = storageRef.putData(pictureData,
+                                            metadata: metaData) { (_, error) in
             guard error == nil else { completion(nil); return }
             
             storageRef.downloadURL { url, error in
