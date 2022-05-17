@@ -19,6 +19,7 @@ final class ProfileEditViewController: BaseViewController {
     private let currentProfileImage       = MVUserImage(cornerRadius: 60)
     private let editProfileImageView      = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editProfileImageButton    = MVButton(frame: .zero)
+    
     private let currentNameLabel = MVTitleLabel(
         textAlignment: .left,
         fontSize: 24,
@@ -31,40 +32,27 @@ final class ProfileEditViewController: BaseViewController {
     private let usernameForm = MVForm(
         frame: .zero,
         label: "Username",
-        placeHolder: "Select a Username")
+        placeHolder: "Select a Username",
+        height: 40)
     private let fullNameForm = MVForm(
         frame: .zero,
         label: "Full Name",
-        placeHolder: "Select a Full name")
+        placeHolder: "Select a Full name",
+        height: 40)
     private let emailForm = MVForm(
         frame: .zero,
         label: "Email",
-        placeHolder: "Select a E-mail")
-    private let editUsernameLabel = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 17,
-        textColor: .white,
-        text: "Username")
-    private let editUsernameTextField = MVFormTextField(placeHolder: "Select a username")
-    private let editFullNameLabel = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 17,
-        textColor: .white,
-        text: "Full Name")
-    private let editFullNameTextField = MVFormTextField(frame: .zero)
-    private let editEmailLabel = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 17,
-        textColor: .white,
-        text: "Email")
-    private let editEmailTextField = MVFormTextField(frame: .zero)
+        placeHolder: "Select a E-mail",
+        height: 40)
     private let saveChangesButton = MVButton(
         backgroundColor: K.Styles.actionButtonColor,
         title: "Save Changes",
         cornerRadius: 20)
     
+    private let formStackView = MVFormStackView(stackSpacing: 24)
+    
     var profileEditPresenter: ProfileEditPresenterProtocol!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -182,18 +170,22 @@ extension ProfileEditViewController {
     }
     
     private func configureFormElements() {
-        let stackView          = UIStackView(arrangedSubviews: [usernameForm, fullNameForm, emailForm])
-        stackView.distribution = .fillEqually
-        stackView.axis         = .vertical
-        stackView.spacing      = 24
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
+        emailForm.formTextField.isEnabled       = false
+        emailForm.formTextField.backgroundColor = .darkGray
+        usernameForm.formTextField.delegate     = self
+        fullNameForm.formTextField.delegate     = self
         
-        stackView.configureConstraints(
+        [usernameForm,
+         fullNameForm,
+         emailForm
+        ].forEach { formStackView.addArrangedSubview($0) }
+        view.addSubview(formStackView)
+        
+        formStackView.configureConstraints(
             top: (currentProfileImage.bottomAnchor, 16),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24))
-        stackView.configureHeight(height: 245)
+        formStackView.configureHeight(height: 245)
     }
     
     private func configureSaveChangesButton() {
@@ -204,7 +196,7 @@ extension ProfileEditViewController {
             action: #selector(saveChangesButtonTapped),
             for: .touchUpInside)
         saveChangesButton.configureConstraints(
-            top: (emailForm.bottomAnchor, 40),
+            top: (formStackView.bottomAnchor, 40),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24))
         saveChangesButton.configureHeight(height: 55)
@@ -235,8 +227,8 @@ extension ProfileEditViewController {
     
     @objc
     private func saveChangesButtonTapped() {
-        guard let fullName = editFullNameTextField.text,
-              let username = editUsernameTextField.text else { return }
+        guard let fullName = fullNameForm.formTextField.text,
+              let username = usernameForm.formTextField.text else { return }
         profileEditPresenter.updateUser(with: fullName,
                                         username: username)
     }
@@ -247,8 +239,8 @@ extension ProfileEditViewController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let isTextFieldsChanged = profileEditPresenter.isTextFieldsChanged(
-            for: editUsernameTextField.text!,
-            fullNameText: editFullNameTextField.text!)
+            for: usernameForm.formTextField.text!,
+            fullNameText: fullNameForm.formTextField.text!)
         configureSaveChangesButton(isEnabled: isTextFieldsChanged)
     }
 }
@@ -304,7 +296,7 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         editBackgroundImageButton.isEnabled = false
         configureSaveChangesButton(isEnabled: false)
     }
- 
+    
     func showStartedProgress(progress: Float) {
         progressView.isHidden = false
         progressView.setProgress(progress / 100, animated: true)

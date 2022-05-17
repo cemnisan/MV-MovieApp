@@ -14,16 +14,19 @@ public final class MVForm: UIView {
         fontSize: 17,
         textColor: .white,
         text: nil)
-    public let formTextField = MVFormTextField(placeHolder: nil)
+    public let formTextField = MVFormTextField(placeHolder: "Enter your info")
     
     var label: String!
     var placeHolder: String!
+    var textFieldHeight: CGFloat!
     
     public init(frame: CGRect,
                 label: String,
-                placeHolder: String) {
-        self.label = label
-        self.placeHolder = placeHolder
+                placeHolder: String,
+                height: CGFloat) {
+        formLabel.text = label
+        formTextField.placeholder = placeHolder
+        textFieldHeight = height
         
         super.init(frame: frame)
         configureForm()
@@ -41,7 +44,6 @@ extension MVForm {
          formTextField
         ].forEach { addSubview($0) }
         
-        formLabel.text = label
         NSLayoutConstraint.activate([
             formLabel.topAnchor.constraint(equalTo: topAnchor),
             formLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -49,13 +51,12 @@ extension MVForm {
             formLabel.heightAnchor.constraint(equalToConstant: 25)
         ])
         
-        formTextField.placeholder = placeHolder
         NSLayoutConstraint.activate([
             formTextField.topAnchor.constraint(equalTo: formLabel.bottomAnchor,
                                                constant: 8),
             formTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
             formTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            formTextField.heightAnchor.constraint(equalToConstant: 40)
+            formTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
         ])
     }
 }

@@ -10,8 +10,11 @@ import MV_Components
 
 final class RegisterViewController: BaseAuthViewController {
     
-    private let nameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: K.Styles.labelTextColor, text: K.Auth.nameLabel)
-    private let nameTextField = MVFormTextField(placeHolder: K.Auth.nameTextField)
+    private let usernameForm = MVForm(
+        frame: .zero,
+        label: "Username",
+        placeHolder: "Select a Username",
+        height: 55)
     
     var registerPresenter: RegisterPresenterProtocol!
     
@@ -42,25 +45,25 @@ final class RegisterViewController: BaseAuthViewController {
         add(childVC: registerWithGoogleViewController, to: googleView)
     }
     
-    override func configureEmailElements() {
-        [emailLabel,
-         emailTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(leading: (view.leadingAnchor, 22),
-                                    trailing: (view.trailingAnchor, -22))
-        }
-        emailLabel.configureConstraints(top: (nameTextField.bottomAnchor, 30))
-        emailLabel.configureHeight(height: 25)
+    override func configureFormElemnts() {
+        [usernameForm,
+         emailForm,
+         passwordForm
+        ].forEach { formStackView.addArrangedSubview($0) }
+        view.addSubview(formStackView)
         
-        emailTextField.configureConstraints(top: (emailLabel.bottomAnchor, 10))
-        emailTextField.configureHeight(height: 55)
+        formStackView.configureConstraints(
+            top: (appleView.bottomAnchor, 45),
+            leading: (view.leadingAnchor, 22),
+            trailing: (view.trailingAnchor, -22))
+        formStackView.configureHeight(height: 270)
     }
     
     override func userDidTappedActionButton() {
-        registerPresenter.register(username: nameTextField.text!,
-                                   email: emailTextField.text!,
-                                   password: passwordTextField.text!)
+        registerPresenter.register(
+            username: usernameForm.formTextField.text!,
+            email: emailForm.formTextField.text!,
+            password: passwordForm.formTextField.text!)
     }
     
     override func userDidTappedAccountButton() {
@@ -77,32 +80,14 @@ extension RegisterViewController {
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
-        configureNameElements()
-        configureEmailElements()
-        configurePasswordElements()
+        configureFormElemnts()
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()
     }
-    
-    // MARK: - Configure Name Elements
-    private func configureNameElements() {
-        [nameLabel,
-         nameTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(leading: (view.leadingAnchor, 22),
-                                    trailing: (view.trailingAnchor, -22))
-        }
-        nameLabel.configureConstraints(top: (appleView.bottomAnchor, 45))
-        nameLabel.configureHeight(height: 25)
-        
-        nameTextField.configureConstraints(top: (nameLabel.bottomAnchor, 10))
-        nameTextField.configureHeight(height: 55)
-    }
 }
 
-// MARK: - Register View Protocol
+// MARK: - Register Presenter Output
 extension RegisterViewController: RegisterPresenterOutput {
     
     func displayLoadingIndicator() {

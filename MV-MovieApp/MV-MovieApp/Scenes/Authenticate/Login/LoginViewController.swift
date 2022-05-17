@@ -39,24 +39,20 @@ final class LoginViewController: BaseAuthViewController {
         add(childVC: loginWithGoogleViewController, to: googleView)
     }
     
-    override func configureEmailElements() {
-        [emailLabel,
-         emailTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(leading: (view.leadingAnchor, 22),
-                                    trailing: (view.trailingAnchor, -22))
-        }
-        emailLabel.configureConstraints(top: (appleView.bottomAnchor, 45))
-        emailLabel.configureHeight(height: 25)
+    override func configureFormElemnts() {
+        [emailForm, passwordForm].forEach { formStackView.addArrangedSubview($0) }
+        view.addSubview(formStackView)
         
-        emailTextField.configureConstraints(top: (emailLabel.bottomAnchor, 10))
-        emailTextField.configureHeight(height: 55)
+        formStackView.configureConstraints(
+            top: (appleView.bottomAnchor, 45),
+            leading: (view.leadingAnchor,22),
+            trailing: (view.trailingAnchor, -22))
+        formStackView.configureHeight(height: 170)
     }
-    
+        
     override func userDidTappedActionButton() {
-        guard let email    = emailTextField.text,
-              let password = passwordTextField.text else { return }
+        guard let email    = emailForm.formTextField.text,
+              let password = passwordForm.formTextField.text else { return }
         loginPresenter.login(with: email, password: password)
     }
     
@@ -74,8 +70,7 @@ extension LoginViewController {
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
-        configureEmailElements()
-        configurePasswordElements()
+        configureFormElemnts()
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()

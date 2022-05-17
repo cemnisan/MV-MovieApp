@@ -10,34 +10,52 @@ import MV_Components
 
 class BaseAuthViewController: BaseViewController {
     
-    let viewTitle                = MVSecondaryLabel(textAlignment: .left,fontSize: 16,textColor: K.Styles.globalColor,text: nil)
+    let viewTitle = MVSecondaryLabel(
+        textAlignment: .left,
+        fontSize: 16,
+        textColor: K.Styles.globalColor,
+        text: nil)
     
-    let appleView                = MVContainerView(backgroundColor: K.Styles.childViewsColor)
-    let googleView               = MVContainerView(backgroundColor: K.Styles.childViewsColor)
+    let appleView  = MVContainerView(backgroundColor: K.Styles.childViewsColor)
+    let googleView = MVContainerView(backgroundColor: K.Styles.childViewsColor)
     
-    let emailLabel               = MVSecondaryLabel(textAlignment: .left,fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.emailLabel)
-    let emailTextField           = MVFormTextField(placeHolder: K.Auth.emailTextField)
+    let emailForm = MVForm(
+        frame: .zero,
+        label: "Email",
+        placeHolder: "Select a Email",
+        height: 55)
+    let passwordForm = MVForm(
+        frame: .zero,
+        label: "Password",
+        placeHolder: "Select a Password",
+        height: 55)
     
-    let passwordLabel            = MVSecondaryLabel(textAlignment: .left, fontSize: 24, textColor: K.Styles.labelTextColor, text: K.Auth.passwordLabel)
-    let passwordTextField        = MVFormTextField(placeHolder: K.Auth.passwordTextField)
-    
+    let formStackView = MVFormStackView(stackSpacing: 30)
     let passwordVisibilityButton = MVButton(frame: .zero)
-    let actionButton             = MVButton(backgroundColor: K.Styles.actionButtonColor, title: nil, cornerRadius: 10)
-    let accountLabel             = MVSecondaryLabel(textAlignment: .center, fontSize: 20,textColor: K.Styles.globalColor, text: nil)
-    let accountActionButton      = MVButton(frame: .zero)
+    
+    let actionButton = MVButton(
+        backgroundColor: K.Styles.actionButtonColor,
+        title: nil,
+        cornerRadius: 10)
+    let accountLabel = MVSecondaryLabel(
+        textAlignment: .center,
+        fontSize: 20,
+        textColor: K.Styles.globalColor,
+        text: nil)
+    
+    let accountActionButton = MVButton(frame: .zero)
 }
 
 // MARK: - Add Elements
 extension BaseAuthViewController {
     
     func addElements() {
-        view.addSubviews(views: viewTitle,
-                         passwordLabel,
-                         passwordTextField,
-                         appleView,
-                         googleView,
-                         passwordVisibilityButton,
-                         actionButton)
+        view.addSubviews(
+            views: viewTitle,
+            appleView,
+            googleView,
+            passwordVisibilityButton,
+            actionButton)
     }
 }
 
@@ -62,9 +80,10 @@ extension BaseAuthViewController {
     
     // MARK: - Configure Screen Desc.
     func configureScreenDescriptionLabel() {
-        viewTitle.configureConstraints(top: (view.safeAreaLayoutGuide.topAnchor, 32),
-                                       leading: (view.leadingAnchor, 22),
-                                       trailing: (view.trailingAnchor, -22))
+        viewTitle.configureConstraints(
+            top: (view.safeAreaLayoutGuide.topAnchor, 32),
+            leading: (view.leadingAnchor, 22),
+            trailing: (view.trailingAnchor, -22))
         viewTitle.configureHeight(height: 20)
     }
     
@@ -81,59 +100,48 @@ extension BaseAuthViewController {
     }
     
     func layoutChildViews() {
-        let stackView          = UIStackView()
+        let stackView          = UIStackView(arrangedSubviews: [appleView, googleView])
         stackView.axis         = .horizontal
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        [appleView,
-         googleView
-        ].forEach { stackView.addArrangedSubview($0) }
         view.addSubview(stackView)
         
-        stackView.configureConstraints(top: (viewTitle.bottomAnchor, 42),
-                                       leading: (view.leadingAnchor, 22),
-                                       trailing: (view.trailingAnchor, -22))
+        stackView.configureConstraints(
+            top: (viewTitle.bottomAnchor, 42),
+            leading: (view.leadingAnchor, 22),
+            trailing: (view.trailingAnchor, -22))
         stackView.configureHeight(height: 60)
     }
     
-    // MARK: - Configure Password Elements
-    func configurePasswordElements() {
-        passwordTextField.isSecureTextEntry = true
-        
-        [passwordLabel,
-         passwordTextField
-        ].forEach {
-            $0.configureConstraints(leading: (view.leadingAnchor, 22),
-                                    trailing: (view.trailingAnchor, -22))
-        }
-        passwordLabel.configureConstraints(top: (emailTextField.bottomAnchor, 30))
-        passwordLabel.configureHeight(height: 25)
-        passwordTextField.configureConstraints(top: (passwordLabel.bottomAnchor, 10))
-        passwordTextField.configureHeight(height: 55)
-    }
+    @objc
+    func configureFormElemnts() {}
     
     // MARK: - Configure Password Visibility
     func configurePasswordVisibilty() {
         passwordVisibilityButton.tintColor = K.Styles.globalColor
         passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
-        passwordVisibilityButton.addTarget(self,
-                                           action: #selector(changePasswordVisibility),
-                                           for: .touchUpInside)
-        passwordVisibilityButton.configureConstraints(trailing: (passwordTextField.trailingAnchor, -16),
-                                                      centerY: (passwordTextField.centerYAnchor, 0))
+        passwordVisibilityButton.addTarget(
+            self,
+            action: #selector(changePasswordVisibility),
+            for: .touchUpInside)
+        passwordVisibilityButton.configureConstraints(
+            trailing: (passwordForm.formTextField.trailingAnchor, -8),
+            centerY: (passwordForm.formTextField.centerYAnchor, 0))
+        view.bringSubviewToFront(passwordVisibilityButton)
         passwordVisibilityButton.configureWidth(width: 30)
         passwordVisibilityButton.configureHeight(height: 30)
     }
     
     // MARK: - Configure Login or Register Button
     func configureActionButton() {
-        actionButton.addTarget(self,
-                               action: #selector(userDidTappedActionButton),
-                               for: .touchUpInside)
-        actionButton.configureConstraints(top: (passwordTextField.bottomAnchor, 53),
-                                          leading: (view.leadingAnchor, 22),
-                                          trailing: (view.trailingAnchor, -22))
+        actionButton.addTarget(
+            self,
+            action: #selector(userDidTappedActionButton),
+            for: .touchUpInside)
+        actionButton.configureConstraints(
+            top: (passwordForm.formTextField.bottomAnchor, 53),
+            leading: (view.leadingAnchor, 22),
+            trailing: (view.trailingAnchor, -22))
         actionButton.configureHeight(height: 55)
     }
     
@@ -144,17 +152,19 @@ extension BaseAuthViewController {
         stackView.distribution   = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        accountActionButton.addTarget(self,
-                                      action: #selector(userDidTappedAccountButton),
-                                      for: .touchUpInside)
+        accountActionButton.addTarget(
+            self,
+            action: #selector(userDidTappedAccountButton),
+            for: .touchUpInside)
         [accountLabel,
          accountActionButton
         ].forEach { stackView.addArrangedSubview($0) }
         view.addSubview(stackView)
         
-        stackView.configureConstraints(leading: (view.leadingAnchor, 53),
-                                       trailing: (view.trailingAnchor, -68),
-                                       bottom: (actionButton.bottomAnchor, 72))
+        stackView.configureConstraints(
+            leading: (view.leadingAnchor, 53),
+            trailing: (view.trailingAnchor, -68),
+            bottom: (actionButton.bottomAnchor, 72))
         stackView.configureHeight(height: 30)
     }
 }
@@ -195,9 +205,9 @@ extension BaseAuthViewController {
     
     @objc
     func changePasswordVisibility() {
-        passwordTextField.isSecureTextEntry.toggle()
+        passwordForm.formTextField.isSecureTextEntry.toggle()
         
-        switch passwordTextField.isSecureTextEntry {
+        switch passwordForm.formTextField.isSecureTextEntry {
         case true:
             passwordVisibilityButton.setImage(K.Auth.passwordInvisible, for: .normal)
         case false:
