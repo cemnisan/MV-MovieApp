@@ -17,6 +17,9 @@ protocol ProfileInteractorProtocol: AnyObject {
 // MARK: - Interactor Output
 protocol ProfileInteractorOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
+    
+    func displayLoading()
+    func dismissLoading()
 }
 
 // MARK: - Presenter Protocol
@@ -30,6 +33,9 @@ protocol ProfilePresenterProtocol: AnyObject {
 // MARK: - Presenter Output
 protocol ProfilePresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
+    
+    func displayLoading()
+    func dismissLoading()
 }
 
 // MARK: - Router

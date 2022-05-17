@@ -11,7 +11,7 @@ import MV_Components
 final class RegisterViewController: BaseAuthViewController {
     
     private let nameLabel     = MVSecondaryLabel(textAlignment: .left, fontSize: 21, textColor: K.Styles.labelTextColor, text: K.Auth.nameLabel)
-    private let nameTextField = MVAuthTextField(placeHolder: K.Auth.nameTextField)
+    private let nameTextField = MVFormTextField(placeHolder: K.Auth.nameTextField)
     
     var registerPresenter: RegisterPresenterProtocol!
     

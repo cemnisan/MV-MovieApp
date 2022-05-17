@@ -21,6 +21,9 @@ protocol SettingsInteractorOutput: AnyObject {
     func showEditableUser(currentUser: UserPresentation)
     func showLogin()
     func showError(error: Error)
+    
+    func displayLoading()
+    func dismissLoading()
 }
 
 protocol SettingsPresenterProtocol: AnyObject {
@@ -34,6 +37,9 @@ protocol SettingsPresenterProtocol: AnyObject {
 protocol SettingsPresenterOutput: AnyObject {
     func showCurrentUser(currentUser: UserPresentation)
     func showError(error: Error)
+    
+    func displayLoading()
+    func dismissLoading()
 }
 
 protocol SettingsRoute: AnyObject {

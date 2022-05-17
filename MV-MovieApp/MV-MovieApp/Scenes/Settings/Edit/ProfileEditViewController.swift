@@ -28,24 +28,36 @@ final class ProfileEditViewController: BaseViewController {
         fontSize: 20,
         textColor: .systemGray,
         text: nil)
+    private let usernameForm = MVForm(
+        frame: .zero,
+        label: "Username",
+        placeHolder: "Select a Username")
+    private let fullNameForm = MVForm(
+        frame: .zero,
+        label: "Full Name",
+        placeHolder: "Select a Full name")
+    private let emailForm = MVForm(
+        frame: .zero,
+        label: "Email",
+        placeHolder: "Select a E-mail")
     private let editUsernameLabel = MVSecondaryLabel(
         textAlignment: .left,
         fontSize: 17,
         textColor: .white,
         text: "Username")
-    private let editUsernameTextField = MVAuthTextField(placeHolder: "Select a username")
+    private let editUsernameTextField = MVFormTextField(placeHolder: "Select a username")
     private let editFullNameLabel = MVSecondaryLabel(
         textAlignment: .left,
         fontSize: 17,
         textColor: .white,
         text: "Full Name")
-    private let editFullNameTextField = MVAuthTextField(frame: .zero)
+    private let editFullNameTextField = MVFormTextField(frame: .zero)
     private let editEmailLabel = MVSecondaryLabel(
         textAlignment: .left,
         fontSize: 17,
         textColor: .white,
         text: "Email")
-    private let editEmailTextField = MVAuthTextField(frame: .zero)
+    private let editEmailTextField = MVFormTextField(frame: .zero)
     private let saveChangesButton = MVButton(
         backgroundColor: K.Styles.actionButtonColor,
         title: "Save Changes",
@@ -73,9 +85,7 @@ extension ProfileEditViewController {
         configureUserImage()
         configureEditImageContainerView()
         configureEditImageButton()
-        configureEditUsernameElements()
-        configureEditFullNameElements()
-        configureEditEmailElements()
+        configureFormElements()
         configureSaveChangesButton()
     }
     
@@ -171,56 +181,19 @@ extension ProfileEditViewController {
         editProfileImageButton.configureWidth(width: 16)
     }
     
-    private func configureEditUsernameElements() {
-        [editUsernameLabel,
-         editUsernameTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(
-                leading: (view.leadingAnchor, 24),
-                trailing: (view.trailingAnchor, -24))
-        }
-        editUsernameLabel.configureConstraints(top: (currentProfileImage.bottomAnchor, 16))
-        editUsernameLabel.configureHeight(height: 25)
+    private func configureFormElements() {
+        let stackView          = UIStackView(arrangedSubviews: [usernameForm, fullNameForm, emailForm])
+        stackView.distribution = .fillEqually
+        stackView.axis         = .vertical
+        stackView.spacing      = 24
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
         
-        editUsernameTextField.delegate = self
-        editUsernameTextField.configureConstraints(top: (editUsernameLabel.bottomAnchor, 8))
-        editUsernameTextField.configureHeight(height: 40)
-    }
-    
-    private func configureEditFullNameElements() {
-        [editFullNameLabel,
-         editFullNameTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(
-                leading: (view.leadingAnchor, 24),
-                trailing: (view.trailingAnchor, -24))
-        }
-        editFullNameLabel.configureConstraints(top: (editUsernameTextField.bottomAnchor, 24))
-        editFullNameLabel.configureHeight(height: 25)
-        
-        editFullNameTextField.delegate = self
-        editFullNameTextField.configureConstraints(top: (editFullNameLabel.bottomAnchor, 8))
-        editFullNameTextField.configureHeight(height: 40)
-    }
-    
-    private func configureEditEmailElements() {
-        [editEmailLabel,
-         editEmailTextField
-        ].forEach {
-            view.addSubview($0)
-            $0.configureConstraints(
-                leading: (view.leadingAnchor, 24),
-                trailing: (view.trailingAnchor, -24))
-        }
-        editEmailLabel.configureConstraints(top: (editFullNameTextField.bottomAnchor, 24))
-        editEmailLabel.configureHeight(height: 25)
-        
-        editEmailTextField.isEnabled       = false
-        editEmailTextField.backgroundColor = .darkGray
-        editEmailTextField.configureConstraints(top: (editEmailLabel.bottomAnchor, 8))
-        editEmailTextField.configureHeight(height: 40)
+        stackView.configureConstraints(
+            top: (currentProfileImage.bottomAnchor, 16),
+            leading: (view.leadingAnchor, 24),
+            trailing: (view.trailingAnchor, -24))
+        stackView.configureHeight(height: 245)
     }
     
     private func configureSaveChangesButton() {
@@ -231,7 +204,7 @@ extension ProfileEditViewController {
             action: #selector(saveChangesButtonTapped),
             for: .touchUpInside)
         saveChangesButton.configureConstraints(
-            top: (editEmailTextField.bottomAnchor, 40),
+            top: (emailForm.bottomAnchor, 40),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24))
         saveChangesButton.configureHeight(height: 55)
@@ -312,9 +285,9 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         currentNameLabel.text      = currentUser.fullName
         currentEmailLabel.text     = currentUser.email
         
-        editEmailTextField.text    = currentUser.email
-        editFullNameTextField.text = currentUser.fullName
-        editUsernameTextField.text = currentUser.username
+        usernameForm.formTextField.text = currentUser.username
+        fullNameForm.formTextField.text = currentUser.fullName
+        emailForm.formTextField.text    = currentUser.email
     }
     
     func showChosenPictures(chosenProfilePic: UIImage? = nil,

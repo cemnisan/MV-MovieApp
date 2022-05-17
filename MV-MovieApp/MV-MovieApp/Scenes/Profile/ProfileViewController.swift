@@ -147,6 +147,7 @@ extension ProfileViewController {
     
     private func configureEditProfileButton() {
         view.addSubview(editProfileButton)
+        editProfileButton.isEnabled = false
         editProfileButton.addTarget(
             self,
             action: #selector(userDidTappedEditProfile),
@@ -352,6 +353,14 @@ extension ProfileViewController {
 
 // MARK: - Presenter Output
 extension ProfileViewController: ProfilePresenterOutput {
+    
+    func displayLoading() {
+        editProfileButton.isEnabled = false
+    }
+    
+    func dismissLoading() {
+        editProfileButton.isEnabled = true
+    }
     
     func showCurrentUser(currentUser: UserPresentation) {
         userProfileImage.setImage(with: currentUser.profilePic!)

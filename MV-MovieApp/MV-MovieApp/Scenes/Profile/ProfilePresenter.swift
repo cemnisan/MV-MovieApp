@@ -37,6 +37,14 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 
 extension ProfilePresenter: ProfileInteractorOutput {
     
+    func displayLoading() {
+        view.displayLoading()
+    }
+    
+    func dismissLoading() {
+        view.dismissLoading()
+    }
+
     func showCurrentUser(currentUser: UserPresentation) {
         view.showCurrentUser(currentUser: currentUser)
     }

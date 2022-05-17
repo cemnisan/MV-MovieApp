@@ -47,6 +47,14 @@ extension SettingsPresenter: SettingsPresenterProtocol {
 
 // MARK: - Interactor Output
 extension SettingsPresenter: SettingsInteractorOutput {
+   
+    func displayLoading() {
+        view.displayLoading()
+    }
+    
+    func dismissLoading() {
+        view.dismissLoading()
+    }
     
     func showEditableUser(currentUser: UserPresentation) {
         router.toEdit(with: currentUser)

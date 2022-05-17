@@ -100,6 +100,7 @@ extension SettingsViewController {
     
     private func configureUserEditButton() {
         userContainerView.addSubview(userEditButton)
+        userEditButton.isEnabled = false
         userEditButton.addTarget(
             self,
             action: #selector(userDidTappedEditButton),
@@ -197,18 +198,26 @@ extension SettingsViewController: UITableViewDelegate {
 
 extension SettingsViewController: SettingsPresenterOutput {
     
-    func showError(error: Error) {
-        showAlert(
-            type: .info,
-            title: "Error",
-            message: error.localizedDescription,
-            buttonTitle: "OK")
+    func displayLoading() {
+        userEditButton.isEnabled = false
+    }
+    
+    func dismissLoading() {
+        userEditButton.isEnabled = true
     }
     
     func showCurrentUser(currentUser: UserPresentation) {
         userNameLabel.text  = currentUser.fullName
         userEmailLabel.text = currentUser.email
         userImageView.setImage(with: currentUser.profilePic ?? "")
+    }
+    
+    func showError(error: Error) {
+        showAlert(
+            type: .info,
+            title: "Error",
+            message: error.localizedDescription,
+            buttonTitle: "OK")
     }
 }
 
