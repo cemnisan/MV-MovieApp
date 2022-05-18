@@ -25,6 +25,13 @@ struct PopularCarouselData: Hashable {
         PopularCarouselData(image: #imageLiteral(resourceName: "apple"), text: "Lorem ipsum6"),
         PopularCarouselData(image: #imageLiteral(resourceName: "google"), text: "Lorem ipsum7"),
     ]
+    
+    static let data2 = [
+        PopularCarouselData(image: #imageLiteral(resourceName: "movie2"), text: "Lorem ipsum8"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "movie"), text: "Lorem ipsum9"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "movie2"), text: "Lorem ipsum10"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "movie"), text: "Lorem ipsum12"),
+    ]
 }
 
 final class HomeViewController: UIViewController {
@@ -149,6 +156,7 @@ extension HomeViewController {
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.backgroundColor  = K.Styles.backgroundColor
         collectionView.delegate         = self
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
             PopularCell.self,
@@ -157,11 +165,14 @@ extension HomeViewController {
             CategoryCell.self,
             forCellWithReuseIdentifier: CategoryCell.cellID)
         collectionView.register(
+            DiscoverCell.self,
+            forCellWithReuseIdentifier: DiscoverCell.cellID)
+        collectionView.register(
             MVHeaderView.self,
             forSupplementaryViewOfKind: HomeViewController.sectionHeader,
             withReuseIdentifier: MVHeaderView.identifier)
         collectionView.configureConstraints(
-            top: (searchTextField.bottomAnchor, 24),
+            top: (searchTextField.bottomAnchor, 0),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24),
             bottom: (view.bottomAnchor, 0))
@@ -181,13 +192,20 @@ extension HomeViewController {
                 cell.set(image: PopularCarouselData.data[indexPath.row].image,
                          text: "")
                 return cell
+                
             case .category:
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: CategoryCell.cellID,
                     for: indexPath) as! CategoryCell
                 cell.set(with: PopularCarouselData.data1[indexPath.row])
                 return cell
-            case .discover: return UICollectionViewCell()
+                
+            case .discover:
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: DiscoverCell.cellID,
+                    for: indexPath) as! DiscoverCell
+                cell.set(image:PopularCarouselData.data2[indexPath.row].image, text: "")
+                return cell
             }
         }
         
@@ -216,6 +234,9 @@ extension HomeViewController {
         snapshot.appendSections([Section.category])
         snapshot.appendItems(PopularCarouselData.data1)
         
+        snapshot.appendSections([Section.discover])
+        snapshot.appendItems(PopularCarouselData.data2)
+        
         return snapshot
     }
     
@@ -230,7 +251,7 @@ extension HomeViewController {
             switch sectionLayoutKind {
             case .popular: return self.generatePopularMoviesLayout(isWide: isWideView)
             case .category: return self.generateCategoryLayout()
-            case .discover: return nil
+            case .discover: return self.generateDiscoverMovies(isWide: isWideView)
             }
         }
         return layout
@@ -253,7 +274,7 @@ extension HomeViewController {
             count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
-            leading: 5,
+            leading: 0,
             bottom: 5,
             trailing: 5)
         let headerSize = NSCollectionLayoutSize(
@@ -285,7 +306,7 @@ extension HomeViewController {
             count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 2,
-            leading: 2,
+            leading: 0,
             bottom: 2,
             trailing: 2)
         let headerSize = NSCollectionLayoutSize(
@@ -299,6 +320,37 @@ extension HomeViewController {
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .groupPaging
         
+        return section
+    }
+    
+    func generateDiscoverMovies(isWide: Bool) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalWidth(1/3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupFractionalWidth = isWide ? 0.210 : 0.420
+        let groupFractionalHeight: Float = isWide ? 1/3 : 2/3
+        let groupSize = NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 5,
+            bottom: 5,
+            trailing: 5)
+
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+          layoutSize: headerSize,
+          elementKind: HomeViewController.sectionHeader, alignment: .top)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPaging
+
         return section
     }
 }

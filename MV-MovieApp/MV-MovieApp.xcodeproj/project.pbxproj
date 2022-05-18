@@ -108,6 +108,7 @@
 		7ECDE35328282F0700FE76BC /* BaseAuthenticateContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDE35228282F0700FE76BC /* BaseAuthenticateContracts.swift */; };
 		7ECDE35728283B7900FE76BC /* Constant+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDE35628283B7900FE76BC /* Constant+Styles.swift */; };
 		7EEC5BB528359FA6008BB6CD /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEC5BB428359FA6008BB6CD /* CategoryCell.swift */; };
+		7EEC5BB72835A790008BB6CD /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEC5BB62835A790008BB6CD /* DiscoverCell.swift */; };
 		7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318D281D906600A1CFE9 /* AppDelegate.swift */; };
 		7EF73190281D906600A1CFE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */; };
 		7EF73197281D906700A1CFE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EF73196281D906700A1CFE9 /* Assets.xcassets */; };
@@ -235,6 +236,7 @@
 		7ECDE35228282F0700FE76BC /* BaseAuthenticateContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthenticateContracts.swift; sourceTree = "<group>"; };
 		7ECDE35628283B7900FE76BC /* Constant+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Styles.swift"; sourceTree = "<group>"; };
 		7EEC5BB428359FA6008BB6CD /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		7EEC5BB62835A790008BB6CD /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		7EF7318A281D906600A1CFE9 /* MV-MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MV-MovieApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EF7318D281D906600A1CFE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EF7318F281D906600A1CFE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 			children = (
 				7EBC502428340B2B005FBB50 /* PopularCell.swift */,
 				7EEC5BB428359FA6008BB6CD /* CategoryCell.swift */,
+				7EEC5BB62835A790008BB6CD /* DiscoverCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -957,6 +960,7 @@
 				7E3E6B5C282AB5D200140E65 /* LanguageBuilder.swift in Sources */,
 				7E1240DF2826D93500FCB848 /* Validation.swift in Sources */,
 				7E3D0962282BD6FB00F45293 /* ProfileEditPresenter.swift in Sources */,
+				7EEC5BB72835A790008BB6CD /* DiscoverCell.swift in Sources */,
 				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E68BB21282A86660099DC65 /* SettingTableViewCell.swift in Sources */,

@@ -36,7 +36,7 @@ extension MVHeaderView {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)

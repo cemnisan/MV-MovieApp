@@ -45,6 +45,6 @@ extension MVTabBar {
         UITabBar.appearance().tintColor               = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0.897328198, green: 0.8975278139, blue: 0.901071012, alpha: 0.8470095199)
         
-        tabBar.backgroundColor = #colorLiteral(red: 0.1887327433, green: 0.178624779, blue: 0.2303351164, alpha: 1)
+        tabBar.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
     }
 }
