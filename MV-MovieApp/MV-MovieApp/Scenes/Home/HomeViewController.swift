@@ -18,6 +18,13 @@ struct PopularCarouselData: Hashable {
         PopularCarouselData(image: #imageLiteral(resourceName: "movie23"), text: "Lorem ipsum2"),
         PopularCarouselData(image: #imageLiteral(resourceName: "movie3"), text: "Lorem ipsum3"),
     ]
+    
+    static let data1 = [
+        PopularCarouselData(image: #imageLiteral(resourceName: "apple"), text: "Lorem ipsum4"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "google"), text: "Lorem ipsum5"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "apple"), text: "Lorem ipsum6"),
+        PopularCarouselData(image: #imageLiteral(resourceName: "google"), text: "Lorem ipsum7"),
+    ]
 }
 
 final class HomeViewController: UIViewController {
@@ -147,13 +154,16 @@ extension HomeViewController {
             PopularCell.self,
             forCellWithReuseIdentifier: PopularCell.cellID)
         collectionView.register(
+            CategoryCell.self,
+            forCellWithReuseIdentifier: CategoryCell.cellID)
+        collectionView.register(
             MVHeaderView.self,
             forSupplementaryViewOfKind: HomeViewController.sectionHeader,
             withReuseIdentifier: MVHeaderView.identifier)
         collectionView.configureConstraints(
             top: (searchTextField.bottomAnchor, 24),
-            leading: (view.leadingAnchor, 0),
-            trailing: (view.trailingAnchor, 0),
+            leading: (view.leadingAnchor, 24),
+            trailing: (view.trailingAnchor, -24),
             bottom: (view.bottomAnchor, 0))
         moviesCollectionView = collectionView
     }
@@ -171,7 +181,12 @@ extension HomeViewController {
                 cell.set(image: PopularCarouselData.data[indexPath.row].image,
                          text: "")
                 return cell
-            case .category: return UICollectionViewCell()
+            case .category:
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CategoryCell.cellID,
+                    for: indexPath) as! CategoryCell
+                cell.set(with: PopularCarouselData.data1[indexPath.row])
+                return cell
             case .discover: return UICollectionViewCell()
             }
         }
@@ -198,6 +213,9 @@ extension HomeViewController {
         snapshot.appendSections([Section.popular])
         snapshot.appendItems(PopularCarouselData.data)
         
+        snapshot.appendSections([Section.category])
+        snapshot.appendItems(PopularCarouselData.data1)
+        
         return snapshot
     }
     
@@ -211,7 +229,7 @@ extension HomeViewController {
             let sectionLayoutKind = Section.allCases[sectionIndex]
             switch sectionLayoutKind {
             case .popular: return self.generatePopularMoviesLayout(isWide: isWideView)
-            case .category: return nil
+            case .category: return self.generateCategoryLayout()
             case .discover: return nil
             }
         }
@@ -235,9 +253,41 @@ extension HomeViewController {
             count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
-            leading: 24,
+            leading: 5,
             bottom: 5,
             trailing: 5)
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: HomeViewController.sectionHeader,
+            alignment: .top)
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPaging
+        
+        return section
+    }
+    
+    private func generateCategoryLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(120),
+            heightDimension: .absolute(100))
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(
+            top: 2,
+            leading: 2,
+            bottom: 2,
+            trailing: 2)
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(44))
