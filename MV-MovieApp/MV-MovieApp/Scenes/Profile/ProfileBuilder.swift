@@ -16,7 +16,7 @@ final class ProfileBuilder {
             view: view,
             interactor: interactor,
             router: router)
-        view.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
+        view.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 3)
         view.profilePresenter = presenter
         
         return UINavigationController(rootViewController: view)

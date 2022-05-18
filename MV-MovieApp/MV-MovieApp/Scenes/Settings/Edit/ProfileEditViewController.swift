@@ -262,7 +262,7 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
                         on: picker,
                         picture: picture,
                         pictureData: pictureData)
-                }
+            }
         }
     }
 }

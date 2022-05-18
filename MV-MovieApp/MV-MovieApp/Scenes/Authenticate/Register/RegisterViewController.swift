@@ -45,7 +45,7 @@ final class RegisterViewController: BaseAuthViewController {
         add(childVC: registerWithGoogleViewController, to: googleView)
     }
     
-    override func configureFormElemnts() {
+    override func configureFormElements() {
         [usernameForm,
          emailForm,
          passwordForm
@@ -60,10 +60,13 @@ final class RegisterViewController: BaseAuthViewController {
     }
     
     override func userDidTappedActionButton() {
+        guard let username = usernameForm.formTextField.text,
+              let email    = emailForm.formTextField.text,
+              let password = passwordForm.formTextField.text else { return }
         registerPresenter.register(
-            username: usernameForm.formTextField.text!,
-            email: emailForm.formTextField.text!,
-            password: passwordForm.formTextField.text!)
+            username: username,
+            email: email,
+            password: password)
     }
     
     override func userDidTappedAccountButton() {
@@ -80,7 +83,7 @@ extension RegisterViewController {
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
-        configureFormElemnts()
+        configureFormElements()
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()

@@ -113,9 +113,6 @@ extension BaseAuthViewController {
         stackView.configureHeight(height: 60)
     }
     
-    @objc
-    func configureFormElemnts() {}
-    
     // MARK: - Configure Password Visibility
     func configurePasswordVisibilty() {
         passwordVisibilityButton.tintColor = K.Styles.globalColor
@@ -220,8 +217,8 @@ extension BaseAuthViewController {
 extension BaseAuthViewController {
     
     @objc
-    /// Override to set constraints of Email Label and Email Text Field
-    func configureEmailElements() {}
+    // Override it according to Login or Register screen
+    func configureFormElements() {}
     
     @objc
     /// Override to show apple/google views on the screen and set their delegates.

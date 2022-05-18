@@ -39,7 +39,7 @@ final class LoginViewController: BaseAuthViewController {
         add(childVC: loginWithGoogleViewController, to: googleView)
     }
     
-    override func configureFormElemnts() {
+    override func configureFormElements() {
         [emailForm, passwordForm].forEach { formStackView.addArrangedSubview($0) }
         view.addSubview(formStackView)
         
@@ -70,7 +70,7 @@ extension LoginViewController {
         addElements()
         configureScreenDescriptionLabel()
         configureChildViews()
-        configureFormElemnts()
+        configureFormElements()
         configurePasswordVisibilty()
         configureActionButton()
         layoutAccount()

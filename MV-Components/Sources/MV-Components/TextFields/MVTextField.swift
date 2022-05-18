@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class MVFormTextField: UITextField {
+public final class MVTextField: UITextField {
     
     let padding = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 5)
     
@@ -27,7 +27,7 @@ public final class MVFormTextField: UITextField {
         
         attributedPlaceholder = NSAttributedString(
             string: placeHolder,
-            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.5725490196, green: 0.5725490196, blue: 0.6156862745, alpha: 1)])
     }
     
     public override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -43,7 +43,7 @@ public final class MVFormTextField: UITextField {
     }
 }
 
-extension MVFormTextField {
+extension MVTextField {
     
     private func configure() {
         layer.cornerRadius        = 10

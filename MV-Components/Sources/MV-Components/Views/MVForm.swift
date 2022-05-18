@@ -14,7 +14,7 @@ public final class MVForm: UIView {
         fontSize: 17,
         textColor: .white,
         text: nil)
-    public let formTextField = MVFormTextField(placeHolder: "Enter your info")
+    public let formTextField = MVTextField(placeHolder: "Enter your info")
     
     var label: String!
     var placeHolder: String!
