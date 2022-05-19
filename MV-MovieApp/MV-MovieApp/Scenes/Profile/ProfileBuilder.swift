@@ -16,7 +16,15 @@ final class ProfileBuilder {
             view: view,
             interactor: interactor,
             router: router)
-        view.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 3)
+        view.tabBarItem = UITabBarItem(
+            title: "Profile",
+            image: UIImage(named: "profile"),
+            selectedImage: nil)
+        view.tabBarItem.imageInsets = UIEdgeInsets(
+            top: 0,
+            left: -10,
+            bottom: -6,
+            right: -10)
         view.profilePresenter = presenter
         
         return UINavigationController(rootViewController: view)

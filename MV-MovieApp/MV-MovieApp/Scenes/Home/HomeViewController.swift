@@ -40,8 +40,13 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        homePresenter.loadCurrentUser()
         homePresenter.loadHomeServicesWithTaskGroup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        homePresenter.loadCurrentUser()
     }
 }
 

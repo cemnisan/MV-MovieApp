@@ -11,19 +11,28 @@ import MovieDB_Wrapper
 final class HomeBuilder {
     
     static func make() -> UINavigationController {
-        let router                   = HomeRouter()
-        let interactor               = HomeInteractor(
+        let router     = HomeRouter()
+        let interactor = HomeInteractor(
             moviesService: MovieService(),
             genresService: GenresService(),
             fireStoreService: GoogleFireStoreAdapter())
-        let viewController           = HomeViewController()
-        let presenter                = HomePresenter(
-            view: viewController,
+        let view      = HomeViewController()
+        let presenter = HomePresenter(
+            view: view,
             interactor: interactor,
             router: router)
-        viewController.tabBarItem    = UITabBarItem(tabBarSystemItem: .history, tag: 0)
-        viewController.homePresenter = presenter
         
-        return UINavigationController(rootViewController: viewController)
+        view.tabBarItem = UITabBarItem(
+            title: "Home",
+            image: UIImage(named: "home"),
+            selectedImage: nil)
+        view.tabBarItem.imageInsets = UIEdgeInsets(
+            top: 0,
+            left: -10,
+            bottom: -6,
+            right: -10)
+        view.homePresenter = presenter
+        
+        return UINavigationController(rootViewController: view)
     }
 }
