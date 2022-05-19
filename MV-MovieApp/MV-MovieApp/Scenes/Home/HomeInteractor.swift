@@ -13,6 +13,7 @@ final class HomeInteractor {
     weak var delegate: HomeInteractorOutput?
     private let moviesService: MoviesServiceable
     private let genresService: GenresServiceable
+    private let fireStoreService: GoogleFireStoreService
     
     private var popularMoviesPageNumber  = 1
     private var topRatedMoviesPageNumber = 1
@@ -22,14 +23,27 @@ final class HomeInteractor {
     private var genres                   = [Genre]()
     
     init(moviesService: MoviesServiceable,
-         genresService: GenresServiceable) {
-        self.moviesService = moviesService
-        self.genresService = genresService
+         genresService: GenresServiceable,
+         fireStoreService: GoogleFireStoreService) {
+        self.moviesService    = moviesService
+        self.genresService    = genresService
+        self.fireStoreService = fireStoreService
     }
 }
 
 // MARK: - Home Interactor Protocol
 extension HomeInteractor: HomeInteractorProtocol {
+    
+    func loadCurrentUser() {
+        fireStoreService.readUser { (result) in
+            switch result {
+            case .success(let user):
+                self.delegate?.showCurrentUser(user: user)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     private func loadPopularMovies() async {
         let result = await moviesService.getPopularMovies(
@@ -41,7 +55,6 @@ extension HomeInteractor: HomeInteractorProtocol {
     
     private func loadGenres() async {
         let result = await genresService.getMovieGenres(language: nil)
-        
         await genresResult(result: result)
     }
     
@@ -80,7 +93,6 @@ extension HomeInteractor {
         case .success(let popularMovies):
             self.popularMovies.append(contentsOf: popularMovies.results)
             delegate?.showPopularMovies(movies: self.popularMovies.lazy.map { $0 })
-            
         case .failure(let error):
             print(error)
         }
@@ -91,7 +103,6 @@ extension HomeInteractor {
         case .success(let topRatedMovies):
             self.topRatedMovies.append(contentsOf: topRatedMovies.results)
             delegate?.showTopRatedMovies(movies: self.topRatedMovies.lazy.map { $0 })
-            
         case .failure(let error):
             print(error)
         }

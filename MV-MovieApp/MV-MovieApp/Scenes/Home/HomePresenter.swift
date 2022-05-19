@@ -29,6 +29,10 @@ final class HomePresenter {
 // MARK: - Presenter Protocol
 extension HomePresenter: HomePresenterProtocol {
     
+    func loadCurrentUser() {
+        interactor.loadCurrentUser()
+    }
+    
     func loadHomeServicesWithTaskGroup() {
         interactor.loadHomeServicesWithTaskGroup()
     }
@@ -36,6 +40,10 @@ extension HomePresenter: HomePresenterProtocol {
 
 // MARK: - Presenter Output
 extension HomePresenter: HomeInteractorOutput {
+    
+    func showCurrentUser(user: UserPresentation) {
+        view.showCurrentUser(user: user)
+    }
     
     func showPopularMovies(movies popularMovies: [Movies]) {
         let popularMoviesPresentation = popularMovies.map { PopularMoviesPresentation(movies: $0) }

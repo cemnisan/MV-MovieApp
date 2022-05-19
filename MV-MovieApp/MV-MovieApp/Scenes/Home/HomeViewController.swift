@@ -9,38 +9,38 @@ import UIKit
 import MV_Components
 
 final class HomeViewController: UIViewController {
-    static let sectionHeader = "section-header"
-
+    
     private let userPicture  = MVUserImage(cornerRadius: 25)
-    private let userUsername = MVTitleLabel(
+    private let userFullname = MVTitleLabel(
         textAlignment: .left,
         fontSize: 18,
         textColor: .white)
     private let homeDescription = MVSecondaryLabel(
         textAlignment: .left,
         fontSize: 16,
-        textColor: #colorLiteral(red: 0.5725490196, green: 0.5725490196, blue: 0.6156862745, alpha: 1),
-        text: "Let’s stream your favorite movie")
+        textColor: K.Styles.globalColor,
+        text: K.Home.screenDescription)
     private let popularMoviesLabel = MVTitleLabel(
         textAlignment: .left,
         fontSize: 20,
         textColor: .white)
-    private let searchTextField = MVTextField(placeHolder: "🔍 Search a title...")
-    private let searchFilterButton = MVButton(image: UIImage(named: "filter")!)
+    private let searchTextField = MVTextField(placeHolder: K.Home.searchPlaceHolder)
+    private let searchFilterButton = MVButton(image: K.Home.searchFilterButton)
     private var moviesCollectionView: UICollectionView! = nil
     private var moviesDataSource: UICollectionViewDiffableDataSource<HomeSection, AnyHashable>! = nil
     
     // MARK: - Properties
     var homePresenter: HomePresenter!
 
-    private var popularMovies: [PopularMoviesPresentation] = []
+    private var popularMovies: [PopularMoviesPresentation]   = []
     private var topRatedMovies: [TopRatedMoviesPresentation] = []
-    private var genres: [GenresPresentation] = []
+    private var genres: [GenresPresentation]                 = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+        homePresenter.loadCurrentUser()
         homePresenter.loadHomeServicesWithTaskGroup()
     }
 }
@@ -65,7 +65,6 @@ extension HomeViewController {
     
     private func configureUserPicture() {
         view.addSubview(userPicture)
-        userPicture.image = #imageLiteral(resourceName: "profilePic")
         userPicture.configureConstraints(
             top: (view.safeAreaLayoutGuide.topAnchor, 16),
             leading: (view.leadingAnchor, 24))
@@ -74,13 +73,12 @@ extension HomeViewController {
     }
     
     private func configureUserUsername() {
-        view.addSubview(userUsername)
-        userUsername.text = "Hello, Cem Nisan"
-        userUsername.configureConstraints(
+        view.addSubview(userFullname)
+        userFullname.configureConstraints(
             top: (userPicture.topAnchor, 4),
             leading: (userPicture.trailingAnchor, 16),
             trailing: (view.trailingAnchor, -16))
-        userUsername.configureHeight(height: 20)
+        userFullname.configureHeight(height: 20)
     }
     
     private func configureHomeDescription() {
@@ -95,7 +93,7 @@ extension HomeViewController {
     private func configureSearchTextField() {
         view.addSubview(searchTextField)
         searchTextField.layer.cornerRadius = 22
-        searchTextField.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1568627451, blue: 0.2117647059, alpha: 1)
+        searchTextField.backgroundColor = K.Styles.childViewsColor
         searchTextField.configureConstraints(
             top: (userPicture.bottomAnchor, 32),
             leading: (view.leadingAnchor, 24),
@@ -122,11 +120,12 @@ extension HomeViewController {
             collectionViewLayout: GenerateLayout.generateLayout())
         view.addSubview(collectionView)
         
-        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        collectionView.backgroundColor  = K.Styles.backgroundColor
-        collectionView.delegate         = self
+        collectionView.autoresizingMask             = [.flexibleHeight, .flexibleWidth]
+        collectionView.backgroundColor              = K.Styles.backgroundColor
+        collectionView.delegate                     = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         collectionView.register(
             PopularCell.self,
             forCellWithReuseIdentifier: PopularCell.cellID)
@@ -138,53 +137,51 @@ extension HomeViewController {
             forCellWithReuseIdentifier: TopRatedCell.cellID)
         collectionView.register(
             MVHeaderView.self,
-            forSupplementaryViewOfKind: HomeViewController.sectionHeader,
+            forSupplementaryViewOfKind: K.Home.sectionHeader,
             withReuseIdentifier: MVHeaderView.identifier)
+        
         collectionView.configureConstraints(
             top: (searchTextField.bottomAnchor, 0),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24),
             bottom: (view.bottomAnchor, 0))
+        
         moviesCollectionView = collectionView
     }
     
     private func configureDataSource() {
-        moviesDataSource = UICollectionViewDiffableDataSource<HomeSection,
-                                                              AnyHashable>(collectionView: moviesCollectionView)
-        {
-            (collectionView: UICollectionView,
-             indexPath: IndexPath,
-             item: AnyHashable) -> UICollectionViewCell? in
+        moviesDataSource = UICollectionViewDiffableDataSource<
+            HomeSection,
+            AnyHashable>(collectionView: moviesCollectionView) { (collectionView: UICollectionView,
+                                                                  indexPath: IndexPath,
+                                                                  item: AnyHashable) -> UICollectionViewCell? in
             let sectionType = HomeSection.allCases[indexPath.section]
-            
+        
             switch sectionType {
             case .popular:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: PopularCell.cellID,
-                    for: indexPath) as! PopularCell
-                let item = self.popularMovies[indexPath.row]
-                cell.set(with: item)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.cellID,
+                                                              for: indexPath) as! PopularCell
+                let popularMovie = self.popularMovies[indexPath.row]
+                cell.set(with: popularMovie)
                 return cell
             case .category:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: CategoryCell.cellID,
-                    for: indexPath) as! CategoryCell
-                cell.set(with: self.genres[indexPath.row])
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.cellID,
+                                                              for: indexPath) as! CategoryCell
+                let genre = self.genres[indexPath.row]
+                cell.set(with: genre)
                 return cell
             case .topRated:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: TopRatedCell.cellID,
-                    for: indexPath) as! TopRatedCell
-                let item = self.topRatedMovies[indexPath.row]
-                cell.set(with: item)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedCell.cellID,
+                                                              for: indexPath) as! TopRatedCell
+                let topRatedMovie = self.topRatedMovies[indexPath.row]
+                cell.set(with: topRatedMovie)
                 return cell
             }
         }
         
-        moviesDataSource.supplementaryViewProvider = {
-            (collectionView: UICollectionView,
-             kind: String,
-             indexPath: IndexPath) -> UICollectionReusableView? in
+        moviesDataSource.supplementaryViewProvider = { (collectionView: UICollectionView,
+                                                        kind: String,
+                                                        indexPath: IndexPath) -> UICollectionReusableView? in
             guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: MVHeaderView.identifier,
@@ -193,13 +190,11 @@ extension HomeViewController {
             
             return supplementaryView
         }
-        
         let snapshot = snapshotCurrentState()
         moviesDataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<HomeSection,
-                                                                        AnyHashable> {
+    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<HomeSection, AnyHashable> {
         var snapshot = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>()
         snapshot.appendSections([HomeSection.popular])
         snapshot.appendItems(popularMovies)
@@ -216,7 +211,6 @@ extension HomeViewController {
 
 // MARK: - Button Tapped
 extension HomeViewController {
-    
     @objc
     private func searchFilterButtonTapped() {}
 }
@@ -226,6 +220,11 @@ extension HomeViewController: UICollectionViewDelegate {}
 
 // MARK: - Home Presenter Output
 extension HomeViewController: HomePresenterOutput {
+    
+    func showCurrentUser(user: UserPresentation) {
+        userPicture.setImage(with: user.profilePic ?? "")
+        userFullname.text = "Hello, \(user.fullName ?? "Anonymous")"
+    }
     
     func showPopularMovies(movies popularMovies: [PopularMoviesPresentation]) {
         self.popularMovies.append(contentsOf: popularMovies)

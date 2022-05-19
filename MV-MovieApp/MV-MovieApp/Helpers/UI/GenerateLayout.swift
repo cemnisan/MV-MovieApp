@@ -51,7 +51,7 @@ struct GenerateLayout {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
-            elementKind: HomeViewController.sectionHeader,
+            elementKind: K.Home.sectionHeader,
             alignment: .top)
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -83,7 +83,7 @@ struct GenerateLayout {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
-            elementKind: HomeViewController.sectionHeader,
+            elementKind: K.Home.sectionHeader,
             alignment: .top)
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -93,16 +93,20 @@ struct GenerateLayout {
     }
     
     fileprivate static func generateDiscoverMovies(isWide: Bool) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalWidth(1/3))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1/3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupFractionalWidth = isWide ? 0.210 : 0.420
+        let groupFractionalWidth = isWide ? 0.220 : 0.440
         let groupFractionalHeight: Float = isWide ? 1/3 : 1.0
         let groupSize = NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
           heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
             leading: 5,
@@ -114,7 +118,8 @@ struct GenerateLayout {
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
           layoutSize: headerSize,
-          elementKind: HomeViewController.sectionHeader, alignment: .top)
+          elementKind: K.Home.sectionHeader,
+          alignment: .top)
 
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]

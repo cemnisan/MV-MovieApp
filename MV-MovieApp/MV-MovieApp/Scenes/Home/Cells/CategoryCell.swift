@@ -39,7 +39,7 @@ extension CategoryCell {
     
     private func configure() {
         contentView.addSubview(containerView)
-        containerView.backgroundColor = #colorLiteral(red: 0.1927446425, green: 0.2102275491, blue: 0.2745400369, alpha: 1)
+        containerView.backgroundColor = K.Styles.childViewsColor
         containerView.layer.cornerRadius = 12
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(categoryName)

@@ -9,13 +9,14 @@ import UIKit
 import MV_Components
 
 final class TopRatedCell: UICollectionViewCell {
+    
     static let cellID = "discover"
     
     private let containerView = UIView()
     private let imageView = UIImageView()
     private let rateView = UIView()
     private let rateLogo = MVLogoImage(
-        image: UIImage(named: "star")!,
+        image: K.Home.rateLogo,
         tintColor: .systemOrange)
     private let rateLabel = MVSecondaryLabel(
         textAlignment: .left,
@@ -87,7 +88,7 @@ extension TopRatedCell {
     private func configureRateElements() {
         containerView.addSubview(rateView)
         rateView.layer.cornerRadius = 10
-        rateView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1568627451, blue: 0.2117647059, alpha: 0.8974027318)
+        rateView.backgroundColor = K.Styles.containerViewColor
         rateView.translatesAutoresizingMaskIntoConstraints = false
         rateView.configureConstraints(
             top: (containerView.topAnchor, 8),

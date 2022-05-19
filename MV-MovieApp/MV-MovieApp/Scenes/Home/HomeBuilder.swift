@@ -13,8 +13,9 @@ final class HomeBuilder {
     static func make() -> UINavigationController {
         let router                   = HomeRouter()
         let interactor               = HomeInteractor(
-            moviesService: MovieService()w,
-            genresService: GenresService())
+            moviesService: MovieService(),
+            genresService: GenresService(),
+            fireStoreService: GoogleFireStoreAdapter())
         let viewController           = HomeViewController()
         let presenter                = HomePresenter(
             view: viewController,

@@ -32,6 +32,7 @@ final class PopularCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imageView.image = nil
+        movieTitle.text = nil
     }
 }
 
@@ -70,12 +71,12 @@ extension PopularCell {
     
     private func configureTitleView() {
         containerView.addSubview(titleView)
-        titleView.backgroundColor = #colorLiteral(red: 0.1927446425, green: 0.2102275491, blue: 0.2745400369, alpha: 0.6970198675)
+        titleView.backgroundColor = K.Styles.containerViewColor
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.configureConstraints(
             leading: (containerView.leadingAnchor, 0),
             trailing: (containerView.trailingAnchor, 0),
-            bottom: (containerView.bottomAnchor, -4))
+            bottom: (containerView.bottomAnchor, 0))
         titleView.configureHeight(height: 50)
     }
     
