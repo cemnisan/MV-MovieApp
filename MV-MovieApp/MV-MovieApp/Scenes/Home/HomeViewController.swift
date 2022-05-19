@@ -150,8 +150,12 @@ extension HomeViewController {
     }
     
     private func configureDataSource() {
-        moviesDataSource = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>(collectionView: moviesCollectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? in
+        moviesDataSource = UICollectionViewDiffableDataSource<HomeSection,
+                                                              AnyHashable>(collectionView: moviesCollectionView)
+        {
+            (collectionView: UICollectionView,
+             indexPath: IndexPath,
+             item: AnyHashable) -> UICollectionViewCell? in
             let sectionType = HomeSection.allCases[indexPath.section]
             
             switch sectionType {
@@ -195,7 +199,8 @@ extension HomeViewController {
         moviesDataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<HomeSection, AnyHashable> {
+    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<HomeSection,
+                                                                        AnyHashable> {
         var snapshot = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>()
         snapshot.appendSections([HomeSection.popular])
         snapshot.appendItems(popularMovies)
@@ -217,9 +222,10 @@ extension HomeViewController {
     private func searchFilterButtonTapped() {}
 }
 
+// MARK: - UICollectionView Delegate
 extension HomeViewController: UICollectionViewDelegate {}
 
-// MARK: - HomeView Protocol
+// MARK: - Home Presenter Output
 extension HomeViewController: HomePresenterOutput {
     
     func showPopularMovies(movies popularMovies: [PopularMoviesPresentation]) {
