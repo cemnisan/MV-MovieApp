@@ -9,7 +9,6 @@ import UIKit
 import MV_Components
 
 final class HomeViewController: UIViewController {
-    
     static let sectionHeader = "section-header"
 
     private let userPicture  = MVUserImage(cornerRadius: 25)

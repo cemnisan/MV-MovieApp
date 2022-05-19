@@ -13,7 +13,7 @@ final class HomeBuilder {
     static func make() -> UINavigationController {
         let router                   = HomeRouter()
         let interactor               = HomeInteractor(
-            moviesService: app.service,
+            moviesService: MovieService()w,
             genresService: GenresService())
         let viewController           = HomeViewController()
         let presenter                = HomePresenter(

@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import MovieDB_Wrapper
 
 let app = AppContainer()
 
 final class AppContainer {
     let router  = AppRouter()
-    let service = MovieService()
 }

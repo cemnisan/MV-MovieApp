@@ -75,7 +75,7 @@ extension PopularCell {
         titleView.configureConstraints(
             leading: (containerView.leadingAnchor, 0),
             trailing: (containerView.trailingAnchor, 0),
-            bottom: (containerView.bottomAnchor, 0))
+            bottom: (containerView.bottomAnchor, -4))
         titleView.configureHeight(height: 50)
     }
     

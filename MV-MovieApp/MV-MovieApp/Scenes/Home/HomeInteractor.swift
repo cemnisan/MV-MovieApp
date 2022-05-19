@@ -13,7 +13,7 @@ final class HomeInteractor {
     weak var delegate: HomeInteractorOutput?
     private let moviesService: MoviesServiceable
     private let genresService: GenresServiceable
- 
+    
     private var popularMoviesPageNumber  = 1
     private var topRatedMoviesPageNumber = 1
     
@@ -30,24 +30,26 @@ final class HomeInteractor {
 
 // MARK: - Home Interactor Protocol
 extension HomeInteractor: HomeInteractorProtocol {
-
-    fileprivate func loadPopularMovies() async {
-        let result = await moviesService.getPopularMovies(language: nil,
-                                                          pageNumber: popularMoviesPageNumber,
-                                                          region: nil)
+    
+    private func loadPopularMovies() async {
+        let result = await moviesService.getPopularMovies(
+            language: nil,
+            pageNumber: popularMoviesPageNumber,
+            region: nil)
         await popularMoviesResult(result: result)
     }
     
-    fileprivate func loadGenres() async {
+    private func loadGenres() async {
         let result = await genresService.getMovieGenres(language: nil)
         
         await genresResult(result: result)
     }
     
-    fileprivate func loadTopRatedMovies() async {
-        let result = await moviesService.getTopRatedMovies(language: nil,
-                                                           pageNumber: topRatedMoviesPageNumber,
-                                                           region: nil)
+    private func loadTopRatedMovies() async {
+        let result = await moviesService.getTopRatedMovies(
+            language: nil,
+            pageNumber: topRatedMoviesPageNumber,
+            region: nil)
         await topRatedMoviesResult(result: result)
     }
     

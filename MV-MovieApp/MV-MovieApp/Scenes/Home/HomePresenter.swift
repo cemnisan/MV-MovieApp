@@ -10,14 +10,14 @@ import MovieDB_Wrapper
 
 // MARK: - Initialize
 final class HomePresenter {
+    
     private unowned let view: HomePresenterOutput
     private let interactor: HomeInteractorProtocol
     private let router: HomeRouterProtocol
         
     init(view: HomePresenterOutput,
          interactor: HomeInteractorProtocol,
-         router: HomeRouterProtocol)
-    {
+         router: HomeRouterProtocol) {
         self.view                = view
         self.interactor          = interactor
         self.router              = router
