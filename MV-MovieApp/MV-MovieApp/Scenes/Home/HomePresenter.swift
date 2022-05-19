@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import MovieDB_Wrapper
 
+// MARK: - Initialize
 final class HomePresenter {
-    
-    private unowned let view: HomeViewProtocol
+    private unowned let view: HomePresenterOutput
     private let interactor: HomeInteractorProtocol
     private let router: HomeRouterProtocol
         
-    init(view: HomeViewProtocol,
+    init(view: HomePresenterOutput,
          interactor: HomeInteractorProtocol,
          router: HomeRouterProtocol)
     {
@@ -25,38 +26,29 @@ final class HomePresenter {
     }
 }
 
+// MARK: - Presenter Protocol
 extension HomePresenter: HomePresenterProtocol {
     
-    func loadPopularMovies() async {
-        await interactor.loadPopularMovies()
-    }
-    
-    func loadTopRatedMovies() async {
-        await interactor.loadTopRatedMovies()
-    }
-    
-    func increasePageNumber(from movies: HomeMovies) {
-        interactor.increasePageNumber(from: movies)
+    func loadHomeServicesWithTaskGroup() {
+        interactor.loadHomeServicesWithTaskGroup()
     }
 }
 
-extension HomePresenter: HomeInteractorDelegate {
+// MARK: - Presenter Output
+extension HomePresenter: HomeInteractorOutput {
     
-    func handleOutput(_ output: HomeInteractorOutput) {
-        switch output {
-        case .setPopularMoviesLoading(let isLoading):
-            view.handleOutput(.setPopularMoviesLoading(isLoading))
-            
-        case .showPopularMovies(let popularMovies):
-            let popularMoviesPresentation = popularMovies.map { PopularMoviesPresentation(movies: $0) }
-            view.handleOutput(.showPopularMovies(popularMoviesPresentation))
-            
-        case .setTopRatedMoviesLoading(let isLoading):
-            view.handleOutput(.setTopRatedMoviesLoading(isLoading))
-            
-        case .showTopRatedMovies(let topRatedMovies):
-            let topRatedMoviesPresentation = topRatedMovies.map { TopRatedMoviesPresentation(movies: $0) }
-            view.handleOutput(.showTopRatedMovies(topRatedMoviesPresentation))
-        }
+    func showPopularMovies(movies popularMovies: [Movies]) {
+        let popularMoviesPresentation = popularMovies.map { PopularMoviesPresentation(movies: $0) }
+        view.showPopularMovies(movies: popularMoviesPresentation)
+    }
+    
+    func showGenres(genres: [Genre]) {
+        let genresPresentation = genres.map { GenresPresentation(genre: $0) }
+        view.showGenres(genres: genresPresentation)
+    }
+    
+    func showTopRatedMovies(movies topRatedMovies: [Movies]) {
+        let topRatedPresentation = topRatedMovies.map { TopRatedMoviesPresentation(movies: $0) }
+        view.showTopRatedMovies(movies: topRatedPresentation)
     }
 }

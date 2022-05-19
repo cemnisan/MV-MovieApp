@@ -10,49 +10,62 @@ import MovieDB_Wrapper
 
 final class HomeInteractor {
     
-    weak var delegate: HomeInteractorDelegate?
+    weak var delegate: HomeInteractorOutput?
     private let moviesService: MoviesServiceable
+    private let genresService: GenresServiceable
  
     private var popularMoviesPageNumber  = 1
     private var topRatedMoviesPageNumber = 1
     
     private var popularMovies            = [Movies]()
     private var topRatedMovies           = [Movies]()
+    private var genres                   = [Genre]()
     
-    init(moviesService: MoviesServiceable) {
+    init(moviesService: MoviesServiceable,
+         genresService: GenresServiceable) {
         self.moviesService = moviesService
+        self.genresService = genresService
     }
 }
 
 // MARK: - Home Interactor Protocol
 extension HomeInteractor: HomeInteractorProtocol {
-    
-    func loadPopularMovies() async {
-        delegate?.handleOutput(.setPopularMoviesLoading(true))
+
+    fileprivate func loadPopularMovies() async {
         let result = await moviesService.getPopularMovies(language: nil,
                                                           pageNumber: popularMoviesPageNumber,
                                                           region: nil)
-        delegate?.handleOutput(.setPopularMoviesLoading(false))
-        
         await popularMoviesResult(result: result)
     }
     
-    func loadTopRatedMovies() async {
-        delegate?.handleOutput(.setTopRatedMoviesLoading(true))
+    fileprivate func loadGenres() async {
+        let result = await genresService.getMovieGenres(language: nil)
+        
+        await genresResult(result: result)
+    }
+    
+    fileprivate func loadTopRatedMovies() async {
         let result = await moviesService.getTopRatedMovies(language: nil,
                                                            pageNumber: topRatedMoviesPageNumber,
                                                            region: nil)
-        delegate?.handleOutput(.setTopRatedMoviesLoading(false))
-        
         await topRatedMoviesResult(result: result)
     }
     
-    func increasePageNumber(from movies: HomeMovies) {
-        switch movies {
-        case .popular:
-            popularMoviesPageNumber  += 1
-        case .topRated:
-            topRatedMoviesPageNumber += 1
+    func loadHomeServicesWithTaskGroup() {
+        Task {
+            await withTaskGroup(of: Void.self, body: { group in
+                group.addTask(priority: .background) {
+                    await self.loadPopularMovies()
+                }
+                
+                group.addTask(priority: .background) {
+                    await self.loadGenres()
+                }
+                
+                group.addTask(priority: .background) {
+                    await self.loadTopRatedMovies()
+                }
+            })
         }
     }
 }
@@ -64,7 +77,7 @@ extension HomeInteractor {
         switch result {
         case .success(let popularMovies):
             self.popularMovies.append(contentsOf: popularMovies.results)
-            delegate?.handleOutput(.showPopularMovies(self.popularMovies.lazy.map { $0 }))
+            delegate?.showPopularMovies(movies: self.popularMovies.lazy.map { $0 })
             
         case .failure(let error):
             print(error)
@@ -75,8 +88,18 @@ extension HomeInteractor {
         switch result {
         case .success(let topRatedMovies):
             self.topRatedMovies.append(contentsOf: topRatedMovies.results)
-            delegate?.handleOutput(.showTopRatedMovies(self.topRatedMovies.lazy.map { $0 }))
+            delegate?.showTopRatedMovies(movies: self.topRatedMovies.lazy.map { $0 })
             
+        case .failure(let error):
+            print(error)
+        }
+    }
+    
+    @MainActor private func genresResult(result: Result<GenresResult>) {
+        switch result {
+        case .success(let genres):
+            self.genres.append(contentsOf: genres.genres)
+            delegate?.showGenres(genres: self.genres)
         case .failure(let error):
             print(error)
         }

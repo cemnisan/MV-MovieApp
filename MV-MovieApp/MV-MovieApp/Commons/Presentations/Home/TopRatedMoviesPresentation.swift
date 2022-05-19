@@ -8,7 +8,7 @@
 import Foundation
 import struct MovieDB_Wrapper.Movies
 
-struct TopRatedMoviesPresentation {
+struct TopRatedMoviesPresentation: Hashable {
     let title: String
     let image: String?
     let rating: Double

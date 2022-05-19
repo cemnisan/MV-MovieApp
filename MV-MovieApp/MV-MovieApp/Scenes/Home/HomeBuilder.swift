@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import MovieDB_Wrapper
 
 final class HomeBuilder {
     
     static func make() -> UINavigationController {
         let router                   = HomeRouter()
-        let interactor               = HomeInteractor(moviesService: app.service)
+        let interactor               = HomeInteractor(
+            moviesService: app.service,
+            genresService: GenresService())
         let viewController           = HomeViewController()
-        let presenter                = HomePresenter(view: viewController,
-                                                     interactor: interactor,
-                                                     router: router)
+        let presenter                = HomePresenter(
+            view: viewController,
+            interactor: interactor,
+            router: router)
         viewController.tabBarItem    = UITabBarItem(tabBarSystemItem: .history, tag: 0)
         viewController.homePresenter = presenter
         

@@ -8,12 +8,12 @@
 import Foundation
 import struct MovieDB_Wrapper.Movies
 
-struct PopularMoviesPresentation {
+struct PopularMoviesPresentation: Hashable {
     let image: String?
     let title: String
     
     init(movies: Movies) {
-        self.image = movies.posterPath
+        self.image = movies.backdropPath
         self.title = movies.title
     }
 }

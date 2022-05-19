@@ -1,5 +1,5 @@
 //
-//  DiscoverCell.swift
+//  TopRatedCell.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 19.05.2022.
@@ -8,17 +8,12 @@
 import UIKit
 import MV_Components
 
-final class DiscoverCell: UICollectionViewCell {
+final class TopRatedCell: UICollectionViewCell {
     
     static let cellID = "discover"
     
     private let imageView = UIImageView()
     private let containerView = UIView()
-    
-    private let movieText = MVTitleLabel(
-        textAlignment: .center,
-        fontSize: 18,
-        textColor: .white)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,18 +27,13 @@ final class DiscoverCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imageView.image = nil
-        movieText.text  = nil
     }
 }
 
 // MARK: - Configure
-extension DiscoverCell {
-    
+extension TopRatedCell {
+
     private func configure() {
-        configureImageView()
-    }
-    
-    private func configureImageView() {
         contentView.addSubviews(views: containerView, imageView)
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
@@ -62,18 +52,12 @@ extension DiscoverCell {
             trailing: (containerView.trailingAnchor, 0),
             bottom: (containerView.bottomAnchor, 0))
     }
-    
-    private func configureMovieText() {
-       
-    }
-}
+ }
 
 // MARK: - Set
-extension DiscoverCell {
+extension TopRatedCell {
     
-    func set(image: UIImage?,
-             text: String) {
-        imageView.image = image
-        movieText.text  = text
+    func set(with topRatedMovies: TopRatedMoviesPresentation) {
+        imageView.setImage(with: "\(K.API.w220Image)\(topRatedMovies.image ?? "")")
     }
 }

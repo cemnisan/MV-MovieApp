@@ -8,42 +8,10 @@
 import UIKit
 import MV_Components
 
-struct PopularCarouselData: Hashable {
-    let image: UIImage?
-    let text: String
-    
-    static let data = [
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie23"), text: "Lorem ipsum"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie3"), text: "Lorem ipsum1"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie23"), text: "Lorem ipsum2"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie3"), text: "Lorem ipsum3"),
-    ]
-    
-    static let data1 = [
-        PopularCarouselData(image: #imageLiteral(resourceName: "apple"), text: "Lorem ipsum4"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "google"), text: "Lorem ipsum5"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "apple"), text: "Lorem ipsum6"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "google"), text: "Lorem ipsum7"),
-    ]
-    
-    static let data2 = [
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie2"), text: "Lorem ipsum8"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie"), text: "Lorem ipsum9"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie2"), text: "Lorem ipsum10"),
-        PopularCarouselData(image: #imageLiteral(resourceName: "movie"), text: "Lorem ipsum12"),
-    ]
-}
-
 final class HomeViewController: UIViewController {
     
     static let sectionHeader = "section-header"
-    
-    private enum Section: String, CaseIterable {
-        case popular  = "Popular"
-        case category = "Category"
-        case discover = "Discover Movie"
-    }
-    
+
     private let userPicture  = MVUserImage(cornerRadius: 25)
     private let userUsername = MVTitleLabel(
         textAlignment: .left,
@@ -61,17 +29,20 @@ final class HomeViewController: UIViewController {
     private let searchTextField = MVTextField(placeHolder: "🔍 Search a title...")
     private let searchFilterButton = MVButton(image: UIImage(named: "filter")!)
     private var moviesCollectionView: UICollectionView! = nil
-    private var moviesDataSource: UICollectionViewDiffableDataSource<Section, PopularCarouselData>! = nil
+    private var moviesDataSource: UICollectionViewDiffableDataSource<HomeSection, AnyHashable>! = nil
     
     // MARK: - Properties
     var homePresenter: HomePresenter!
-    
-    private var carouselData = [PopularCarouselData]()
-    
+
+    private var popularMovies: [PopularMoviesPresentation] = []
+    private var topRatedMovies: [TopRatedMoviesPresentation] = []
+    private var genres: [GenresPresentation] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+        homePresenter.loadHomeServicesWithTaskGroup()
     }
 }
 
@@ -86,7 +57,6 @@ extension HomeViewController {
         configureSearchTextField()
         configureSearchFilterButton()
         configureMoviesCollectionView()
-        configureDataSource()
     }
     
     private func configureViewController() {
@@ -150,7 +120,7 @@ extension HomeViewController {
     private func configureMoviesCollectionView() {
         let collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: generateLayout())
+            collectionViewLayout: GenerateLayout.generateLayout())
         view.addSubview(collectionView)
         
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -165,8 +135,8 @@ extension HomeViewController {
             CategoryCell.self,
             forCellWithReuseIdentifier: CategoryCell.cellID)
         collectionView.register(
-            DiscoverCell.self,
-            forCellWithReuseIdentifier: DiscoverCell.cellID)
+            TopRatedCell.self,
+            forCellWithReuseIdentifier: TopRatedCell.cellID)
         collectionView.register(
             MVHeaderView.self,
             forSupplementaryViewOfKind: HomeViewController.sectionHeader,
@@ -180,31 +150,30 @@ extension HomeViewController {
     }
     
     private func configureDataSource() {
-        moviesDataSource = UICollectionViewDiffableDataSource<Section, PopularCarouselData>(collectionView: moviesCollectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: PopularCarouselData) -> UICollectionViewCell? in
-            let sectionType = Section.allCases[indexPath.section]
+        moviesDataSource = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>(collectionView: moviesCollectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? in
+            let sectionType = HomeSection.allCases[indexPath.section]
             
             switch sectionType {
             case .popular:
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: PopularCell.cellID,
                     for: indexPath) as! PopularCell
-                cell.set(image: PopularCarouselData.data[indexPath.row].image,
-                         text: "")
+                let item = self.popularMovies[indexPath.row]
+                cell.set(with: item)
                 return cell
-                
             case .category:
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: CategoryCell.cellID,
                     for: indexPath) as! CategoryCell
-                cell.set(with: PopularCarouselData.data1[indexPath.row])
+                cell.set(with: self.genres[indexPath.row])
                 return cell
-                
-            case .discover:
+            case .topRated:
                 let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: DiscoverCell.cellID,
-                    for: indexPath) as! DiscoverCell
-                cell.set(image:PopularCarouselData.data2[indexPath.row].image, text: "")
+                    withReuseIdentifier: TopRatedCell.cellID,
+                    for: indexPath) as! TopRatedCell
+                let item = self.topRatedMovies[indexPath.row]
+                cell.set(with: item)
                 return cell
             }
         }
@@ -217,7 +186,7 @@ extension HomeViewController {
                 ofKind: kind,
                 withReuseIdentifier: MVHeaderView.identifier,
                 for: indexPath) as? MVHeaderView else { fatalError() }
-            supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
+            supplementaryView.label.text = HomeSection.allCases[indexPath.section].rawValue
             
             return supplementaryView
         }
@@ -226,132 +195,18 @@ extension HomeViewController {
         moviesDataSource.apply(snapshot, animatingDifferences: false)
     }
     
-    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<Section, PopularCarouselData> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, PopularCarouselData>()
-        snapshot.appendSections([Section.popular])
-        snapshot.appendItems(PopularCarouselData.data)
+    private func snapshotCurrentState() -> NSDiffableDataSourceSnapshot<HomeSection, AnyHashable> {
+        var snapshot = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>()
+        snapshot.appendSections([HomeSection.popular])
+        snapshot.appendItems(popularMovies)
+   
+        snapshot.appendSections([HomeSection.category])
+        snapshot.appendItems(genres)
         
-        snapshot.appendSections([Section.category])
-        snapshot.appendItems(PopularCarouselData.data1)
-        
-        snapshot.appendSections([Section.discover])
-        snapshot.appendItems(PopularCarouselData.data2)
+        snapshot.appendSections([HomeSection.topRated])
+        snapshot.appendItems(topRatedMovies)
         
         return snapshot
-    }
-    
-    private func generateLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout
-        { (sectionIndex: Int,
-           layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let isWideView = layoutEnvironment
-                .container
-                .effectiveContentSize.width > 500
-            let sectionLayoutKind = Section.allCases[sectionIndex]
-            switch sectionLayoutKind {
-            case .popular: return self.generatePopularMoviesLayout(isWide: isWideView)
-            case .category: return self.generateCategoryLayout()
-            case .discover: return self.generateDiscoverMovies(isWide: isWideView)
-            }
-        }
-        return layout
-    }
-    
-    private func generatePopularMoviesLayout(isWide: Bool) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.7/3))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupFractionalWidth  = isWide ? 0.475 : 0.85
-        let groupFractionalHeight: CGFloat = isWide ? 1/3 : 1.5/3
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitem: item,
-            count: 1)
-        group.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
-            leading: 0,
-            bottom: 5,
-            trailing: 5)
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: HomeViewController.sectionHeader,
-            alignment: .top)
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .groupPaging
-        
-        return section
-    }
-    
-    private func generateCategoryLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(120),
-            heightDimension: .absolute(100))
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: groupSize,
-            subitem: item,
-            count: 1)
-        group.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 0,
-            bottom: 2,
-            trailing: 2)
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: HomeViewController.sectionHeader,
-            alignment: .top)
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .groupPaging
-        
-        return section
-    }
-    
-    func generateDiscoverMovies(isWide: Bool) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalWidth(1/3))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupFractionalWidth = isWide ? 0.210 : 0.420
-        let groupFractionalHeight: Float = isWide ? 1/3 : 2/3
-        let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
-        group.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
-            leading: 5,
-            bottom: 5,
-            trailing: 5)
-
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-          layoutSize: headerSize,
-          elementKind: HomeViewController.sectionHeader, alignment: .top)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .groupPaging
-
-        return section
     }
 }
 
@@ -365,7 +220,20 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {}
 
 // MARK: - HomeView Protocol
-extension HomeViewController: HomeViewProtocol {
-    func handleOutput(_ output: HomePresenterOutput) {}
+extension HomeViewController: HomePresenterOutput {
+    
+    func showPopularMovies(movies popularMovies: [PopularMoviesPresentation]) {
+        self.popularMovies.append(contentsOf: popularMovies)
+        configureDataSource()
+    }
+    
+    func showGenres(genres: [GenresPresentation]) {
+        self.genres.append(contentsOf: genres)
+        configureDataSource()
+    }
+    
+    func showTopRatedMovies(movies topRatedMovies: [TopRatedMoviesPresentation]) {
+        self.topRatedMovies.append(contentsOf: topRatedMovies)
+        configureDataSource()
+    }
 }
-

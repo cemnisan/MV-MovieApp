@@ -6,46 +6,30 @@
 //
 
 import Foundation
-import struct MovieDB_Wrapper.Movies
+import MovieDB_Wrapper
 
 // MARK: - Interactor Contracts
 protocol HomeInteractorProtocol: AnyObject {
-    var delegate: HomeInteractorDelegate? { get set }
+    var delegate: HomeInteractorOutput? { get set }
     
-    func loadPopularMovies() async
-    func loadTopRatedMovies() async
-    
-    func increasePageNumber(from movies: HomeMovies)
+    func loadHomeServicesWithTaskGroup()
 }
 
-protocol HomeInteractorDelegate: AnyObject {
-    func handleOutput(_ output: HomeInteractorOutput)
-}
-
-enum HomeInteractorOutput {
-    case setPopularMoviesLoading(Bool)
-    case setTopRatedMoviesLoading(Bool)
-    case showPopularMovies([Movies])
-    case showTopRatedMovies([Movies])
+protocol HomeInteractorOutput: AnyObject {
+    func showPopularMovies(movies popularMovies: [Movies])
+    func showTopRatedMovies(movies topRatedMovies: [Movies])
+    func showGenres(genres: [Genre])
 }
 
 // MARK: - Presenter Contracts
 protocol HomePresenterProtocol: AnyObject {
-    func loadPopularMovies() async
-    func loadTopRatedMovies() async
-    
-    func increasePageNumber(from movies: HomeMovies)
+    func loadHomeServicesWithTaskGroup()
 }
 
-protocol HomeViewProtocol: AnyObject {
-    func handleOutput(_ output: HomePresenterOutput)
-}
-
-enum HomePresenterOutput {
-    case setPopularMoviesLoading(Bool)
-    case setTopRatedMoviesLoading(Bool)
-    case showPopularMovies([PopularMoviesPresentation])
-    case showTopRatedMovies([TopRatedMoviesPresentation])
+protocol HomePresenterOutput: AnyObject {
+    func showPopularMovies(movies popularMovies: [PopularMoviesPresentation])
+    func showTopRatedMovies(movies topRatedMovies: [TopRatedMoviesPresentation])
+    func showGenres(genres: [GenresPresentation])
 }
 
 // MARK: - Router Contracts

@@ -14,12 +14,7 @@ final class PopularCell: UICollectionViewCell {
     
     private let imageView = UIImageView()
     private let containerView = UIView()
-    
-    private let movieText = MVTitleLabel(
-        textAlignment: .center,
-        fontSize: 18,
-        textColor: .white)
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,19 +27,15 @@ final class PopularCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imageView.image = nil
-        movieText.text  = nil
     }
 }
 
 // MARK: - Configure
 extension PopularCell {
-    
+
     private func configure() {
-        configureImageView()
-    }
-    
-    private func configureImageView() {
         contentView.addSubviews(views: containerView, imageView)
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,18 +53,12 @@ extension PopularCell {
             trailing: (containerView.trailingAnchor, 0),
             bottom: (containerView.bottomAnchor, 0))
     }
-    
-    private func configureMovieText() {
-       
-    }
 }
 
 // MARK: - Set
 extension PopularCell {
     
-    func set(image: UIImage?,
-             text: String) {
-        imageView.image = image
-        movieText.text  = text
+    func set(with popularMovies: PopularMoviesPresentation) {
+        imageView.setImage(with: "\(K.API.w500Image)\(popularMovies.image ?? "")")
     }
 }
