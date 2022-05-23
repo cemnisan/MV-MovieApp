@@ -16,6 +16,7 @@ final class LoginViewController: BaseAuthViewController {
         super.viewDidLoad()
         
         configureUI()
+        createDismissKeyboardTapGesture()
         setUIElements(for: .login)
     }
     

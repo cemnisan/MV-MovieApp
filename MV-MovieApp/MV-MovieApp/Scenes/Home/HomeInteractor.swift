@@ -83,6 +83,10 @@ extension HomeInteractor: HomeInteractorProtocol {
             })
         }
     }
+    
+    func userDidSelectMovie() {
+        delegate?.showMovieDetail()
+    }
 }
 
 // MARK: - Results Helper

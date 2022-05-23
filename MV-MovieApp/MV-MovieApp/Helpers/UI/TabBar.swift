@@ -12,13 +12,12 @@ struct TabBar {
     static func createTabBar() -> UITabBarController {
         let homeViewController      = HomeBuilder.make()
         let searchViewController    = SearchBuilder.make()
-        let favoritesViewController = FavoritesBuilder.make()
         let profileViewController   = ProfileBuilder.make()
         
-        let tabBar = MVTabBar(homeVC: homeViewController,
-                              searchVC: searchViewController,
-                              bookMarkVC: favoritesViewController,
-                              profileVC: profileViewController)
+        let tabBar = MVTabBar(
+            homeVC: homeViewController,
+            searchVC: searchViewController,
+            profileVC: profileViewController)
         return tabBar
     }
 }

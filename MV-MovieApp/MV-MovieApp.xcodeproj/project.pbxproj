@@ -17,6 +17,10 @@
 		7E1240DF2826D93500FCB848 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240DE2826D93500FCB848 /* Validation.swift */; };
 		7E1240E12826E33A00FCB848 /* ValidationError+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */; };
 		7E12F83828271EA600B3C966 /* Constant+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12F83728271EA600B3C966 /* Constant+Auth.swift */; };
+		7E1397ED283BF4400047DB55 /* UICollectionView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1397EC283BF4400047DB55 /* UICollectionView+Ex.swift */; };
+		7E1397F1283BF91C0047DB55 /* UICollectionReusableView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1397F0283BF91C0047DB55 /* UICollectionReusableView+Ex.swift */; };
+		7E1CEBBF2837E0C50097BB6C /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CEBBE2837E0C50097BB6C /* MovieDetailsViewController.swift */; };
+		7E1CEBC12837E0EE0097BB6C /* MovieDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1CEBC02837E0EE0097BB6C /* MovieDetailsBuilder.swift */; };
 		7E3366CD282EEEA000DBDB7F /* SelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */; };
 		7E37D4F2282D33DF003F16A4 /* GoogleFireStoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E37D4F1282D33DE003F16A4 /* GoogleFireStoreAdapter.swift */; };
 		7E37D4F5282D33ED003F16A4 /* GoogleFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E37D4F4282D33ED003F16A4 /* GoogleFireStoreService.swift */; };
@@ -82,8 +86,6 @@
 		7E7B6D7528327E010034BB22 /* AlertTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B6D7428327E010034BB22 /* AlertTypes.swift */; };
 		7E7B6D7828329BBD0034BB22 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B6D7728329BBD0034BB22 /* FavoriteCollectionViewCell.swift */; };
 		7E80252E2825BECE00D2E0B0 /* UserPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */; };
-		7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */; };
-		7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */; };
 		7E80253A2825CEB000D2E0B0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8025392825CEB000D2E0B0 /* SearchViewController.swift */; };
 		7E80253C2825CEB500D2E0B0 /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */; };
 		7E80253E2825CEBD00D2E0B0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */; };
@@ -154,6 +156,10 @@
 		7E1240DE2826D93500FCB848 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValidationError+Ex.swift"; sourceTree = "<group>"; };
 		7E12F83728271EA600B3C966 /* Constant+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Auth.swift"; sourceTree = "<group>"; };
+		7E1397EC283BF4400047DB55 /* UICollectionView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ex.swift"; sourceTree = "<group>"; };
+		7E1397F0283BF91C0047DB55 /* UICollectionReusableView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Ex.swift"; sourceTree = "<group>"; };
+		7E1CEBBE2837E0C50097BB6C /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		7E1CEBC02837E0EE0097BB6C /* MovieDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsBuilder.swift; sourceTree = "<group>"; };
 		7E3366CC282EEEA000DBDB7F /* SelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPicker.swift; sourceTree = "<group>"; };
 		7E37D4F1282D33DE003F16A4 /* GoogleFireStoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFireStoreAdapter.swift; sourceTree = "<group>"; };
 		7E37D4F4282D33ED003F16A4 /* GoogleFireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFireStoreService.swift; sourceTree = "<group>"; };
@@ -212,8 +218,6 @@
 		7E7B6D7428327E010034BB22 /* AlertTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTypes.swift; sourceTree = "<group>"; };
 		7E7B6D7728329BBD0034BB22 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E80252D2825BECE00D2E0B0 /* UserPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresentation.swift; sourceTree = "<group>"; };
-		7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesBuilder.swift; sourceTree = "<group>"; };
 		7E8025392825CEB000D2E0B0 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7E80253B2825CEB500D2E0B0 /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		7E80253D2825CEBD00D2E0B0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -260,8 +264,6 @@
 		7EF731BE281D9B3100A1CFE9 /* PopularMoviesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesPresentation.swift; sourceTree = "<group>"; };
 		7EF731C0281D9B7C00A1CFE9 /* TopRatedMoviesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMoviesPresentation.swift; sourceTree = "<group>"; };
 		7EFBB9892829726800276C3E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		C67443C551D809F142A2AB10 /* Pods-MV-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MV-MovieApp.debug.xcconfig"; path = "Target Support Files/Pods-MV-MovieApp/Pods-MV-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
-		D6F14B696F2BF24631986C45 /* Pods-MV-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MV-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MV-MovieApp/Pods-MV-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,15 +294,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4E44AF6310C6CF1FF1534AE1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C67443C551D809F142A2AB10 /* Pods-MV-MovieApp.debug.xcconfig */,
-				D6F14B696F2BF24631986C45 /* Pods-MV-MovieApp.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		7E0C796D282EA16600E21F4D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +315,27 @@
 				7E1240DE2826D93500FCB848 /* Validation.swift */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		7E1397F2283BFBA10047DB55 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7E1397F0283BF91C0047DB55 /* UICollectionReusableView+Ex.swift */,
+				7E1397EC283BF4400047DB55 /* UICollectionView+Ex.swift */,
+				7E533EDA282B101A003E335B /* UIImageView+Ex.swift */,
+				7E528FFC282952C600D22E08 /* UIView+Ex.swift */,
+				7E5B9063281FE86A00D0B278 /* UIViewController+Ex.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7E1CEBBD2837E0AC0097BB6C /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				7E1CEBBE2837E0C50097BB6C /* MovieDetailsViewController.swift */,
+				7E1CEBC02837E0EE0097BB6C /* MovieDetailsBuilder.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		7E37D4F0282D33D0003F16A4 /* FireStore */ = {
@@ -473,11 +487,9 @@
 		7E685053281F1E51007C15B0 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				7E5B9063281FE86A00D0B278 /* UIViewController+Ex.swift */,
+				7E1397F2283BFBA10047DB55 /* UI */,
 				7E8AA54B2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift */,
 				7E1240E02826E33A00FCB848 /* ValidationError+Ex.swift */,
-				7E528FFC282952C600D22E08 /* UIView+Ex.swift */,
-				7E533EDA282B101A003E335B /* UIImageView+Ex.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -542,15 +554,6 @@
 				7E3E6B55282AB55200140E65 /* Notification */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		7E8025342825CE8F00D2E0B0 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				7E8025352825CEA200D2E0B0 /* FavoritesViewController.swift */,
-				7E8025372825CEA600D2E0B0 /* FavoritesBuilder.swift */,
-			);
-			path = Favorites;
 			sourceTree = "<group>";
 		};
 		7E8A7B95281EBAC6000676EC /* Components */ = {
@@ -732,7 +735,6 @@
 				7EF7318C281D906600A1CFE9 /* MV-MovieApp */,
 				7EF7318B281D906600A1CFE9 /* Products */,
 				27A0CB73171CB8E7494EF276 /* Frameworks */,
-				4E44AF6310C6CF1FF1534AE1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -785,7 +787,7 @@
 			children = (
 				7E685056281F289E007C15B0 /* Authenticate */,
 				7ECDE34F2828174D00FE76BC /* Base */,
-				7E8025342825CE8F00D2E0B0 /* Favorites */,
+				7E1CEBBD2837E0AC0097BB6C /* Details */,
 				7EF731A7281D90D300A1CFE9 /* Home */,
 				7E0C796D282EA16600E21F4D /* Profile */,
 				7E8025312825CE6600D2E0B0 /* Search */,
@@ -846,7 +848,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7EF7319E281D906700A1CFE9 /* Build configuration list for PBXNativeTarget "MV-MovieApp" */;
 			buildPhases = (
-				E60CA0D1E64043735DC482ED /* [CP] Check Pods Manifest.lock */,
 				7EF73186281D906600A1CFE9 /* Sources */,
 				7EF73187281D906600A1CFE9 /* Frameworks */,
 				7EF73188281D906600A1CFE9 /* Resources */,
@@ -925,31 +926,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		E60CA0D1E64043735DC482ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MV-MovieApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		7EF73186281D906600A1CFE9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -970,6 +946,7 @@
 				7E39EA9A281F348E0073A591 /* RegisterContracts.swift in Sources */,
 				7EF7318E281D906600A1CFE9 /* AppDelegate.swift in Sources */,
 				7E3D0966282BD73B00F45293 /* ProfileEditRouter.swift in Sources */,
+				7E1CEBBF2837E0C50097BB6C /* MovieDetailsViewController.swift in Sources */,
 				7E3E6B52282AB4A000140E65 /* ChangePasswordBuilder.swift in Sources */,
 				7EF731B9281D917E00A1CFE9 /* AppContainer.swift in Sources */,
 				7E8AA54C2826CDDB00A90ED2 /* NSRegularExpression+Ex.swift in Sources */,
@@ -987,6 +964,7 @@
 				7E8A7BA1281EC884000676EC /* RegisterBuilder.swift in Sources */,
 				7E3E6B6D282AB6CD00140E65 /* LegalPoliciesViewController.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
+				7E1CEBC12837E0EE0097BB6C /* MovieDetailsBuilder.swift in Sources */,
 				7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */,
 				7E8AA53F282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift in Sources */,
 				7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */,
@@ -1004,7 +982,6 @@
 				7E1240DF2826D93500FCB848 /* Validation.swift in Sources */,
 				7E3D0962282BD6FB00F45293 /* ProfileEditPresenter.swift in Sources */,
 				7EEC5BB72835A790008BB6CD /* TopRatedCell.swift in Sources */,
-				7E8025382825CEA600D2E0B0 /* FavoritesBuilder.swift in Sources */,
 				7E8A7B9C281EBC4F000676EC /* AuthAppleViewController.swift in Sources */,
 				7E68BB21282A86660099DC65 /* SettingTableViewCell.swift in Sources */,
 				7E0C7973282EA19800E21F4D /* ProfileViewController.swift in Sources */,
@@ -1025,7 +1002,6 @@
 				7EFBB98A2829726800276C3E /* TabBar.swift in Sources */,
 				7E0C7977282EAA7600E21F4D /* ProfilePresenter.swift in Sources */,
 				7E528FFD282952C600D22E08 /* UIView+Ex.swift in Sources */,
-				7E8025362825CEA200D2E0B0 /* FavoritesViewController.swift in Sources */,
 				7E8A7B9E281EBCA6000676EC /* AuthGoogleViewController.swift in Sources */,
 				7E3E6B73282AB73800140E65 /* FeedbacksViewController.swift in Sources */,
 				7E3E6B59282AB56500140E65 /* NotificationViewController.swift in Sources */,
@@ -1039,6 +1015,7 @@
 				7ECDE3512828175300FE76BC /* BaseViewController.swift in Sources */,
 				7E8025402825CEC500D2E0B0 /* SettingsBuilder.swift in Sources */,
 				7E3D0971282BE5B300F45293 /* GoogleStorageAdapter.swift in Sources */,
+				7E1397ED283BF4400047DB55 /* UICollectionView+Ex.swift in Sources */,
 				7E0C7979282EAA8700E21F4D /* ProfileInteractor.swift in Sources */,
 				7E3E6B78282AB79F00140E65 /* AboutViewController.swift in Sources */,
 				7E528FFF2829602400D22E08 /* Wrapper+UserDefaults.swift in Sources */,
@@ -1062,6 +1039,7 @@
 				7E80253E2825CEBD00D2E0B0 /* SettingsViewController.swift in Sources */,
 				7E39EA9E281F34A00073A591 /* RegisterPresenter.swift in Sources */,
 				7EF731B1281D910900A1CFE9 /* HomeInteractor.swift in Sources */,
+				7E1397F1283BF91C0047DB55 /* UICollectionReusableView+Ex.swift in Sources */,
 				7E529002282967A000D22E08 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,7 +1174,6 @@
 		};
 		7EF7319F281D906700A1CFE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C67443C551D809F142A2AB10 /* Pods-MV-MovieApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1204,7 +1181,7 @@
 				CODE_SIGN_ENTITLEMENTS = "MV-MovieApp/MV-MovieApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6RJTF64F9S;
+				DEVELOPMENT_TEAM = T24P8FVRUH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MV-MovieApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1229,7 +1206,6 @@
 		};
 		7EF731A0281D906700A1CFE9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6F14B696F2BF24631986C45 /* Pods-MV-MovieApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1237,7 +1213,7 @@
 				CODE_SIGN_ENTITLEMENTS = "MV-MovieApp/MV-MovieApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6RJTF64F9S;
+				DEVELOPMENT_TEAM = T24P8FVRUH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MV-MovieApp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -11,13 +11,13 @@ import MovieDB_Wrapper
 final class HomeBuilder {
     
     static func make() -> UINavigationController {
-        let router     = HomeRouter()
+        let view       = HomeViewController()
         let interactor = HomeInteractor(
             moviesService: MovieService(),
             genresService: GenresService(),
             fireStoreService: GoogleFireStoreAdapter())
-        let view      = HomeViewController()
-        let presenter = HomePresenter(
+        let router     = HomeRouter(view: view)
+        let presenter  = HomePresenter(
             view: view,
             interactor: interactor,
             router: router)

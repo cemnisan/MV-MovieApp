@@ -22,6 +22,7 @@ final class RegisterViewController: BaseAuthViewController {
         super.viewDidLoad()
         
         configureUI()
+        createDismissKeyboardTapGesture()
         setUIElements(for: .register)
     }
     

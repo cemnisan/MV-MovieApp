@@ -24,7 +24,6 @@ class BaseViewController: UIViewController {
         }
     }
     
-    
     func dismissLoadingView() {
         DispatchQueue.main.async {
             if self.loadingIndicatorView != nil {
@@ -33,5 +32,12 @@ class BaseViewController: UIViewController {
                 self.loadingIndicatorView = nil
             }
         }
+    }
+    
+    func createDismissKeyboardTapGesture() {
+        let tap = UITapGestureRecognizer(
+            target: view,
+            action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
     }
 }

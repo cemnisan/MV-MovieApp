@@ -16,6 +16,15 @@ extension UIView {
         views.forEach { addSubview($0) }
     }
     
+    func pinToEdges(of superView: UIView) {
+        translatesAutoresizingMaskIntoConstraints = false
+          
+        topAnchor.constraint(equalTo: superView.topAnchor).isActive           = true
+        leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive   = true
+        trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive     = true
+    }
+    
     func configureConstraints(top: layoutYAxis?      = nil,
                               leading: layoutXAxis?  = nil,
                               trailing: layoutXAxis? = nil,

@@ -5,8 +5,21 @@
 //  Created by Cem Nisan on 30.04.2022.
 //
 
-import Foundation
+import UIKit
 
-final class HomeRouter: HomeRouterProtocol {
-    func navigate(to route: HomeRoute) {}
+final class HomeRouter: HomeRoute {
+    
+    private unowned var view: UIViewController
+    
+    init(view: UIViewController) {
+        self.view = view
+    }
+}
+
+extension HomeRouter {
+    
+    func toDetail() {
+        let targetView = MovieDetailsBuilder.make()
+        view.navigationController?.pushViewController(targetView, animated: true)
+    }
 }

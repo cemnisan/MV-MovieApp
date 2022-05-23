@@ -9,7 +9,7 @@ import UIKit
 import MV_Components
 
 extension UIViewController {
-
+    
     func showAlert(
         type alertType: AlertTypes,
         title: String,
@@ -22,18 +22,20 @@ extension UIViewController {
             
             switch alertType {
             case .info:
-                alert = MVInfoAlertController(alertTitle: title,
-                                              alertMessage: message,
-                                              alertButtonTitle: buttonTitle)
+                alert = MVInfoAlertController(
+                    alertTitle: title,
+                    alertMessage: message,
+                    alertButtonTitle: buttonTitle)
             case .action:
-                alert = MVActionAlertController(alertTitle: title,
-                                                alertMessage: message,
-                                                alertCancelButton: "Cancel",
-                                                alertDoneButtonTitle: buttonTitle,
-                                                delegate: delegate)
+                alert = MVActionAlertController(
+                    alertTitle: title,
+                    alertMessage: message,
+                    alertCancelButton: "Cancel",
+                    alertDoneButtonTitle: buttonTitle,
+                    delegate: delegate)
             }
             alert.modalPresentationStyle = .overFullScreen
-            alert.modalTransitionStyle = .crossDissolve
+            alert.modalTransitionStyle   = .crossDissolve
             self.present(alert, animated: true)
         }
     }

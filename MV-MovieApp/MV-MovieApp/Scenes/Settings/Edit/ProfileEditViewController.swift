@@ -12,6 +12,9 @@ import MV_Components
 
 final class ProfileEditViewController: BaseViewController {
     
+    private let contentView               = UIView()
+    private let scrollView                = UIScrollView()
+    
     private let progressView              = UIProgressView(progressViewStyle: .bar)
     private let currentBackgroundImage    = MVUserImage(frame: .zero)
     private let editBackgroundImageView   = MVContainerView(backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5952762831))
@@ -66,6 +69,8 @@ extension ProfileEditViewController {
     
     private func configure() {
         configureViewController()
+        createDismissKeyboardTapGesture()
+        configureScrollView()
         configureProgressView()
         configureBackgroundImage()
         configureEditBackgroundImageView()
@@ -83,13 +88,38 @@ extension ProfileEditViewController {
         navigationController?.navigationBar.tintColor = K.Styles.labelTextColor
     }
     
+    private func configureScrollView() {
+        let margins = view.layoutMarginsGuide
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = K.Styles.backgroundColor
+        scrollView.backgroundColor = K.Styles.backgroundColor
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: margins.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 700)
+        ])
+    }
+    
     private func configureProgressView() {
-        view.addSubview(progressView)
+        contentView.addSubview(progressView)
         progressView.trackTintColor    = .gray
         progressView.progressTintColor = .systemBackground
         progressView.frame = CGRect(
             x: 0,
-            y: 100,
+            y: 10,
             width: view.frame.size.width,
             height: 20)
         progressView.isHidden          = true
@@ -97,17 +127,17 @@ extension ProfileEditViewController {
     }
     
     private func configureBackgroundImage() {
-        view.addSubview(currentBackgroundImage)
+        contentView.addSubview(currentBackgroundImage)
         currentBackgroundImage.backgroundColor = .darkGray
         currentBackgroundImage.configureConstraints(
             top: (progressView.bottomAnchor, 4),
-            leading: (view.leadingAnchor, 0),
-            trailing: (view.trailingAnchor, 0))
+            leading: (contentView.leadingAnchor, 0),
+            trailing: (contentView.trailingAnchor, 0))
         currentBackgroundImage.configureHeight(height: 240)
     }
     
     private func configureEditBackgroundImageView() {
-        view.addSubview(editBackgroundImageView)
+        contentView.addSubview(editBackgroundImageView)
         editBackgroundImageView.layer.cornerRadius = 25
         editBackgroundImageView.configureConstraints(
             centerX: (currentBackgroundImage.centerXAnchor, 0),
@@ -117,7 +147,7 @@ extension ProfileEditViewController {
     }
     
     private func configureEditBackgroundImageButton() {
-        view.addSubview(editBackgroundImageButton)
+        contentView.addSubview(editBackgroundImageButton)
         editBackgroundImageButton.setBackgroundImage(
             UIImage(systemName: "camera"),
             for: .normal)
@@ -134,16 +164,16 @@ extension ProfileEditViewController {
     }
     
     private func configureUserImage() {
-        view.addSubview(currentProfileImage)
+        contentView.addSubview(currentProfileImage)
         currentProfileImage.configureConstraints(
-            leading: (view.leadingAnchor, 16),
+            leading: (contentView.leadingAnchor, 16),
             bottom: (currentBackgroundImage.bottomAnchor, 60))
         currentProfileImage.configureHeight(height: 120)
         currentProfileImage.configureWidth(width: 120)
     }
     
     private func configureEditImageContainerView() {
-        view.addSubview(editProfileImageView)
+        contentView.addSubview(editProfileImageView)
         editProfileImageView.layer.cornerRadius = 16
         
         editProfileImageView.configureConstraints(
@@ -179,17 +209,17 @@ extension ProfileEditViewController {
          fullNameForm,
          emailForm
         ].forEach { formStackView.addArrangedSubview($0) }
-        view.addSubview(formStackView)
+        contentView.addSubview(formStackView)
         
         formStackView.configureConstraints(
             top: (currentProfileImage.bottomAnchor, 16),
-            leading: (view.leadingAnchor, 24),
-            trailing: (view.trailingAnchor, -24))
+            leading: (contentView.leadingAnchor, 24),
+            trailing: (contentView.trailingAnchor, -24))
         formStackView.configureHeight(height: 245)
     }
     
     private func configureSaveChangesButton() {
-        view.addSubview(saveChangesButton)
+        contentView.addSubview(saveChangesButton)
         configureSaveChangesButton(isEnabled: false)
         saveChangesButton.addTarget(
             self,
@@ -197,8 +227,8 @@ extension ProfileEditViewController {
             for: .touchUpInside)
         saveChangesButton.configureConstraints(
             top: (formStackView.bottomAnchor, 40),
-            leading: (view.leadingAnchor, 24),
-            trailing: (view.trailingAnchor, -24))
+            leading: (contentView.leadingAnchor, 24),
+            trailing: (contentView.trailingAnchor, -24))
         saveChangesButton.configureHeight(height: 55)
     }
     
@@ -262,7 +292,7 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
                         on: picker,
                         picture: picture,
                         pictureData: pictureData)
-            }
+                }
         }
     }
 }

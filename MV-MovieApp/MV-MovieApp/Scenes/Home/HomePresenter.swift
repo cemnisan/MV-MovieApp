@@ -13,11 +13,11 @@ final class HomePresenter {
     
     private unowned let view: HomePresenterOutput
     private let interactor: HomeInteractorProtocol
-    private let router: HomeRouterProtocol
+    private let router: HomeRoute
         
     init(view: HomePresenterOutput,
          interactor: HomeInteractorProtocol,
-         router: HomeRouterProtocol) {
+         router: HomeRoute) {
         self.view                = view
         self.interactor          = interactor
         self.router              = router
@@ -35,6 +35,10 @@ extension HomePresenter: HomePresenterProtocol {
     
     func loadHomeServicesWithTaskGroup() {
         interactor.loadHomeServicesWithTaskGroup()
+    }
+    
+    func userDidSelectMovie() {
+        interactor.userDidSelectMovie()
     }
 }
 
@@ -58,5 +62,9 @@ extension HomePresenter: HomeInteractorOutput {
     func showTopRatedMovies(movies topRatedMovies: [Movies]) {
         let topRatedPresentation = topRatedMovies.map { TopRatedMoviesPresentation(movies: $0) }
         view.showTopRatedMovies(movies: topRatedPresentation)
+    }
+    
+    func showMovieDetail() {
+        router.toDetail()
     }
 }

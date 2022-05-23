@@ -9,7 +9,7 @@ import UIKit
 
 struct GenerateLayout {
     
-    static func generateLayout() -> UICollectionViewLayout {
+    static func generateHomeLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout
         { (sectionIndex: Int,
            layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -18,7 +18,7 @@ struct GenerateLayout {
                 .effectiveContentSize.width > 500
             let sectionLayoutKind = HomeSection.allCases[sectionIndex]
             switch sectionLayoutKind {
-            case .popular: return self.generatePopularMoviesLayout(isWide: isWideView)
+            case .popular:  return self.generatePopularMoviesLayout(isWide: isWideView)
             case .category: return self.generateCategoryLayout()
             case .topRated: return self.generateDiscoverMovies(isWide: isWideView)
             }
@@ -45,7 +45,7 @@ struct GenerateLayout {
             top: 5,
             leading: 0,
             bottom: 5,
-            trailing: 5)
+            trailing: 20)
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(44))
@@ -111,7 +111,7 @@ struct GenerateLayout {
             top: 5,
             leading: 5,
             bottom: 5,
-            trailing: 5)
+            trailing: 12)
 
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),

@@ -13,20 +13,52 @@ import Kingfisher
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
+        if #available(iOS 15, *) {
+            configureNavBar()
+            configureTabBar()
+        }
+        
         Config.accessToken = K.API.apiKey
         FirebaseApp.configure()
+        configureKingfisherCache()
         
+        return true
+    }
+    
+    private func configureKingfisherCache() {
         let cache = ImageCache.default
         
         cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
         cache.diskStorage.config.sizeLimit        = 1024 * 1024 * 100
-        
-        return true
     }
-
+    
+    private func configureNavBar() {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.white
+        ]
+        navigationBarAppearance.backgroundColor           = K.Styles.backgroundColor
+        UINavigationBar.appearance().standardAppearance   = navigationBarAppearance
+//        UINavigationBar.appearance().compactAppearance    = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+    }
+    
+    private func configureTabBar() {
+        let tabBarApperance = UITabBarAppearance()
+        tabBarApperance.configureWithOpaqueBackground()
+        tabBarApperance.backgroundColor               = K.Styles.backgroundColor
+        UITabBar.appearance().scrollEdgeAppearance    = tabBarApperance
+        UITabBar.appearance().standardAppearance      = tabBarApperance
+        UITabBar.appearance().tintColor               = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0.897328198, green: 0.8975278139, blue: 0.901071012, alpha: 0.8470095199)
+    }
+    
     @available(iOS 9.0, *)
     func application(_ app: UIApplication,
                      open url: URL,
@@ -40,7 +72,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration",
                                     sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication,
                      didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
 }
