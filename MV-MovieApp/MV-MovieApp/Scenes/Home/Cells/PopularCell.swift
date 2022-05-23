@@ -9,9 +9,7 @@ import UIKit
 import MV_Components
 
 final class PopularCell: UICollectionViewCell {
-    
-    static let cellID = "popularCell"
-    
+        
     private let imageView = UIImageView()
     private let containerView = UIView()
     private let titleView = UIView()

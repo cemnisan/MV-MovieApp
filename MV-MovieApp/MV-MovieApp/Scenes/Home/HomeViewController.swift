@@ -68,8 +68,7 @@ extension HomeViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = K.Styles.backgroundColor
-        title                = "Home"
+        title = K.Home.navTitle
     }
     
     private func configureUserPicture() {
@@ -124,6 +123,9 @@ extension HomeViewController {
     }
     
     private func configureMoviesCollectionView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didSelectItem))
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: GenerateLayout.generateHomeLayout())
@@ -131,21 +133,22 @@ extension HomeViewController {
         
         collectionView.autoresizingMask             = [.flexibleHeight, .flexibleWidth]
         collectionView.backgroundColor              = K.Styles.backgroundColor
-        collectionView.delegate                     = self
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isUserInteractionEnabled     = true
+        collectionView.addGestureRecognizer(tapGestureRecognizer)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.register(cellType: PopularCell.self)
         collectionView.register(cellType: CategoryCell.self)
         collectionView.register(cellType: TopRatedCell.self)
-        collectionView.register(cellType: MVHeaderView.self, sectionHeader: K.Home.sectionHeader)
-        
+        collectionView.register(
+            cellType: MVHeaderView.self,
+            sectionHeader: K.Home.sectionHeader)
         collectionView.configureConstraints(
             top: (searchTextField.bottomAnchor, 0),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24),
             bottom: (view.bottomAnchor, 0))
-        
         moviesCollectionView = collectionView
     }
     
@@ -158,17 +161,20 @@ extension HomeViewController {
             
             switch sectionType {
             case .popular:
-                let cell = collectionView.dequeView(cellType: PopularCell.self, indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: PopularCell.self,
+                                                    indexPath: indexPath)
                 let popularMovie = self.popularMovies[indexPath.row]
                 cell.set(with: popularMovie)
                 return cell
             case .category:
-                let cell = collectionView.dequeView(cellType: CategoryCell.self, indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: CategoryCell.self,
+                                                    indexPath: indexPath)
                 let genre = self.genres[indexPath.row]
                 cell.set(with: genre)
                 return cell
             case .topRated:
-                let cell = collectionView.dequeView(cellType: TopRatedCell.self, indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: TopRatedCell.self,
+                                                    indexPath: indexPath)
                 let topRatedMovie = self.topRatedMovies[indexPath.row]
                 cell.set(with: topRatedMovie)
                 return cell
@@ -179,9 +185,10 @@ extension HomeViewController {
             (collectionView: UICollectionView,
              kind: String,
              indexPath: IndexPath) -> UICollectionReusableView? in
-            let supplementaryView = collectionView.dequeView(cellType: MVHeaderView.self,
-                                                             kind: kind,
-                                                             indexPath: indexPath)
+            let supplementaryView = collectionView.dequeView(
+                cellType: MVHeaderView.self,
+                kind: kind,
+                indexPath: indexPath)
             supplementaryView.label.text = HomeSection.allCases[indexPath.section].rawValue
             return supplementaryView
         }
@@ -206,16 +213,15 @@ extension HomeViewController {
 
 // MARK: - Button Tapped
 extension HomeViewController {
+    
     @objc
     private func searchFilterButtonTapped() {}
-}
-
-// MARK: - UICollectionView Delegate
-extension HomeViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
-        homePresenter.userDidSelectMovie()
+    @objc
+    private func didSelectItem(_ sender: UITapGestureRecognizer) {
+        if let _ = moviesCollectionView?.indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
+            homePresenter.userDidSelectMovie()
+        }
     }
 }
 

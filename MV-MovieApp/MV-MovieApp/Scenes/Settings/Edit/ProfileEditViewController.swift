@@ -9,7 +9,6 @@ import UIKit
 import PhotosUI
 import MV_Components
 
-
 final class ProfileEditViewController: BaseViewController {
     
     private let contentView               = UIView()
@@ -83,9 +82,7 @@ extension ProfileEditViewController {
     }
     
     private func configureViewController() {
-        title                = "Edit Profile"
-        view.backgroundColor = K.Styles.backgroundColor
-        navigationController?.navigationBar.tintColor = K.Styles.labelTextColor
+        title = "Edit Profile"
     }
     
     private func configureScrollView() {

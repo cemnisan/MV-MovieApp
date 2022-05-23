@@ -98,7 +98,7 @@ struct GenerateLayout {
             heightDimension: .fractionalWidth(1/3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupFractionalWidth = isWide ? 0.220 : 0.440
+        let groupFractionalWidth = isWide ? 0.240 : 0.480
         let groupFractionalHeight: Float = isWide ? 1/3 : 1.0
         let groupSize = NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),

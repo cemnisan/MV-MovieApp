@@ -8,7 +8,7 @@
 import UIKit
 import MV_Components
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: BaseViewController {
     
     private let userBackgroundImage = MVUserImage(frame: .zero)
     private let profileContainerView = MVContainerView(frame: .zero)
@@ -116,7 +116,6 @@ extension ProfileViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = K.Styles.backgroundColor
     }
     
     private func configureBackgroundImage() {

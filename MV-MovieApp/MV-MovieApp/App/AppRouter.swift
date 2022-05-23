@@ -27,6 +27,7 @@ extension AppRouter {
             rootNavigationController = LoginBuilder.make()
         }
         
+        window.backgroundColor       = K.Styles.backgroundColor
         window.windowScene           = windowScene
         window.rootViewController    = rootNavigationController
         window.makeKeyAndVisible()

@@ -18,7 +18,7 @@ extension UIViewController {
         delegate: MVActionAlertDelegate? = nil)
     {
         DispatchQueue.main.async {
-            var alert: MVAlertController
+            let alert: MVAlertController
             
             switch alertType {
             case .info:

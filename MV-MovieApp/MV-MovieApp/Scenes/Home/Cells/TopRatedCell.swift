@@ -9,9 +9,7 @@ import UIKit
 import MV_Components
 
 final class TopRatedCell: UICollectionViewCell {
-    
-    static let cellID = "discover"
-    
+        
     private let containerView = UIView()
     private let imageView = UIImageView()
     private let rateView = UIView()
@@ -133,7 +131,6 @@ extension TopRatedCell {
 extension TopRatedCell {
     
     func set(with topRatedMovies: TopRatedMoviesPresentation) {
-        print("\(K.API.w220Image)\(topRatedMovies.image ?? "")")
         imageView.setImage(with: "\(K.API.w220Image)\(topRatedMovies.image ?? "")")
         titleLabel.text = topRatedMovies.title
         rateLabel.text  = "\(topRatedMovies.rating)"

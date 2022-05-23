@@ -66,7 +66,7 @@ extension HomeInteractor: HomeInteractorProtocol {
         await topRatedMoviesResult(result: result)
     }
     
-    func loadHomeServicesWithTaskGroup() {
+    func loadMovieServicesWithTaskGroup() {
         Task {
             await withTaskGroup(of: Void.self, body: { group in
                 group.addTask(priority: .background) {

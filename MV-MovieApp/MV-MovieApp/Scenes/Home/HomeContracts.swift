@@ -13,7 +13,7 @@ protocol HomeInteractorProtocol: AnyObject {
     var delegate: HomeInteractorOutput? { get set }
     
     func loadCurrentUser()
-    func loadHomeServicesWithTaskGroup()
+    func loadMovieServicesWithTaskGroup()
     
     func userDidSelectMovie()
 }

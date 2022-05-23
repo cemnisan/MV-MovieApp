@@ -8,7 +8,7 @@
 import UIKit
 import MV_Components
 
-final class SettingsViewController: UIViewController {
+final class SettingsViewController: BaseViewController {
     
     private let userContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let userImageView     = MVUserImage(cornerRadius: 30)
@@ -53,8 +53,6 @@ extension SettingsViewController {
     
     private func configureViewController() {
         title = "Settings"
-        view.backgroundColor = K.Styles.backgroundColor
-        navigationController?.navigationBar.titleTextAttributes = K.Styles.navTitleColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Log out",
             style: .done,

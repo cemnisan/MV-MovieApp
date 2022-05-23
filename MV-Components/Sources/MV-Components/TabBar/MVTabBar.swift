@@ -28,17 +28,4 @@ public final class MVTabBar: UITabBarController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configure()
-    }
-}
-
-extension MVTabBar {
-    
-    private func configure() {
-        tabBar.backgroundColor = #colorLiteral(red: 0.1202597097, green: 0.1102947071, blue: 0.174954325, alpha: 1)
-    }
 }

@@ -64,17 +64,13 @@ extension BaseAuthViewController {
     
     // MARK: - Configure ViewController
     func configureViewController(on controller: SelectAuthController) {
-        view.backgroundColor                                             = K.Styles.backgroundColor
-        navigationController?.navigationBar.prefersLargeTitles           = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         switch controller {
         case .login:
-            title                                                        = K.Auth.loginNavTitle
-            navigationController?.navigationBar.largeTitleTextAttributes = K.Styles.navTitleColor
+            title = K.Auth.loginNavTitle
         case .register:
-            title                                                        = K.Auth.registerNavTitle
-            navigationController?.navigationBar.largeTitleTextAttributes = K.Styles.navTitleColor
-            navigationController?.navigationBar.tintColor                = K.Styles.labelTextColor
+            title = K.Auth.registerNavTitle
         }
     }
     

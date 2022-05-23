@@ -40,19 +40,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureNavBar() {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.white
-        ]
+        navigationBarAppearance.titleTextAttributes       = K.Styles.navTitleColor
+        navigationBarAppearance.largeTitleTextAttributes  = K.Styles.navTitleColor
         navigationBarAppearance.backgroundColor           = K.Styles.backgroundColor
+    
         UINavigationBar.appearance().standardAppearance   = navigationBarAppearance
-//        UINavigationBar.appearance().compactAppearance    = navigationBarAppearance
+        UINavigationBar.appearance().compactAppearance    = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UIBarButtonItem.appearance().tintColor            = .white
     }
     
     private func configureTabBar() {
         let tabBarApperance = UITabBarAppearance()
         tabBarApperance.configureWithOpaqueBackground()
         tabBarApperance.backgroundColor               = K.Styles.backgroundColor
+        
         UITabBar.appearance().scrollEdgeAppearance    = tabBarApperance
         UITabBar.appearance().standardAppearance      = tabBarApperance
         UITabBar.appearance().tintColor               = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

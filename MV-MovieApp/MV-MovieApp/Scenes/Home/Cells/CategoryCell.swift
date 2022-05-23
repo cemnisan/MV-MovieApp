@@ -9,9 +9,7 @@ import UIKit
 import MV_Components
 
 final class CategoryCell: UICollectionViewCell {
-    
-    static let cellID = "category"
-    
+        
     private let containerView = UIView()
     private let categoryName = MVSecondaryLabel(
         textAlignment: .center,

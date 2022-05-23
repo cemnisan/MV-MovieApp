@@ -34,7 +34,7 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func loadHomeServicesWithTaskGroup() {
-        interactor.loadHomeServicesWithTaskGroup()
+        interactor.loadMovieServicesWithTaskGroup()
     }
     
     func userDidSelectMovie() {
