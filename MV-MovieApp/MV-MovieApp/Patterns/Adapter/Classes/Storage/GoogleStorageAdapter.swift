@@ -21,7 +21,7 @@ extension GoogleStorageAdapter: UploadMediaService {
         progress: @escaping (_ progress: Float?) -> Void,
         completion: @escaping (_ url: URL?) -> Void)
     {
-        let imageName = String("\(selectedPicker.rawValue)-\(Auth.auth().currentUser!.uid).png")
+        let imageName = String("\(selectedPicker.rawValue)-\(Auth.auth().currentUser!.uid).jpeg")
         
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
@@ -31,11 +31,9 @@ extension GoogleStorageAdapter: UploadMediaService {
             .reference()
             .child("User")
             .child(imageName)
-        
         let uploadTask = storageRef.putData(pictureData,
                                             metadata: metaData) { (_, error) in
             guard error == nil else { completion(nil); return }
-            
             storageRef.downloadURL { url, error in
                 guard error == nil else { completion(nil); return }
                 completion(url)

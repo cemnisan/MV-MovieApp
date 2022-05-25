@@ -13,8 +13,9 @@ protocol BaseAuthenticateInteractorProtocol: AnyObject {
     var delegate: BaseAuthenticateInteractorOutput? { get set }
     
     func loginWithGoogle(presenterController presenter: UIViewController)
-    func loginWithApple(presenterController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController)
-    func loginWithCredential(credential: ASAuthorizationAppleIDCredential)
+    func getAppleCredential(presenterController presenter: BaseAuthViewController,
+                            selectedAuthController: SelectAuthController)
+    func loginWithAppleCredential(credential: ASAuthorizationAppleIDCredential)
 }
 
 // MARK: - Base Interactor Output
@@ -28,8 +29,9 @@ protocol BaseAuthenticateInteractorOutput: AnyObject {
 // MARK: - Base Presenter
 protocol BaseAuthenticatePresenterProtocol: AnyObject {
     func loginWithGoogle(presenterViewController presenter: UIViewController)
-    func loginWithApple(presenterViewController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController)
-    func loginWithCredential(credential: ASAuthorizationAppleIDCredential)
+    func getAppleCredential(presenterViewController presenter: BaseAuthViewController,
+                            selectedAuthController: SelectAuthController)
+    func loginWithAppleCredential(credential: ASAuthorizationAppleIDCredential)
 }
 
 // MARK: - Base Presenter Output

@@ -97,7 +97,7 @@ extension RegisterViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController,
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
-        registerPresenter.loginWithCredential(credential: credential)
+        registerPresenter.loginWithAppleCredential(credential: credential)
     }
 }
 
@@ -132,7 +132,8 @@ extension RegisterViewController: RegisterPresenterOutput {
 extension RegisterViewController: AuthAppleDelegate {
     
     func userDidTappedAuthWithApple() {
-        registerPresenter.loginWithApple(presenterViewController: self, selectedAuthController: .register)
+        registerPresenter.getAppleCredential(presenterViewController: self,
+                                         selectedAuthController: .register)
     }
 }
 

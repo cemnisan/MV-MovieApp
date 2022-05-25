@@ -16,6 +16,6 @@ protocol GoogleFireStoreService {
         profilePic: String?,
         backgroundPic: String?,
         completion: @escaping (Result<UserPresentation, Error>) -> Void)
-    func isUserAlreadyExist(registeredUser: UserPresentation, completion: @escaping (Bool) -> Void)
+    func saveLoggedInUserIfNeeded(loggedInUser: UserPresentation)
     func isUsernameAlreadyExist(username: String?, completion: @escaping (Bool) -> Void)
 }

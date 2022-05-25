@@ -30,43 +30,38 @@ extension BaseAuthenticateInteractor: BaseAuthenticateInteractorProtocol {
         authService.login(withGooglePresenter: presenter) { [weak self] (result) in
             guard let self = self else { return }
             self.delegate?.dismissLoadingIndicator()
-            
-            switch result {
-            case .success(let user):
-                self.fireStoreService.isUserAlreadyExist(registeredUser: user) { isExist in
-                    if !isExist {
-                        self.fireStoreService.createUser(user: user)
-                    }
-                }
-                AppData.enableAutoLogin = true
-                self.delegate?.showHome()
-            case .failure(let error):
-                self.delegate?.showError(error: error)
-            }
+            self.loginResults(result: result)
         }
     }
     
-    func loginWithApple(presenterController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController) {
-        authService.login(withApplePresenter: presenter, selectedAuthController: selectedAuthController)
+    func getAppleCredential(presenterController presenter: BaseAuthViewController,
+                            selectedAuthController: SelectAuthController) {
+        authService.getAppleCredential(withApplePresenter: presenter,
+                          selectedAuthController: selectedAuthController)
     }
     
-    func loginWithCredential(credential: ASAuthorizationAppleIDCredential) {
+    func loginWithAppleCredential(credential: ASAuthorizationAppleIDCredential) {
         delegate?.displayLoadingIndicator()
+        
         authService.loginWithAppleCredential(credential: credential) { [weak self] (result) in
             guard let self = self else { return }
             self.delegate?.dismissLoadingIndicator()
-            
-            switch result {
-            case .success(let user):
-                self.fireStoreService.isUserAlreadyExist(registeredUser: user) { isExist in
-                    if !isExist { self.fireStoreService.createUser(user: user) }
-                }
-                AppData.enableAutoLogin = true
-                self.delegate?.showHome()
-            case .failure(let error):
-                print(error)
-                self.delegate?.showError(error: error)
-            }
+            self.loginResults(result: result)
+        }
+    }
+}
+
+// MARK: - Login Results
+extension BaseAuthenticateInteractor {
+    private func loginResults(result: Result<UserPresentation, Error>) {
+        switch result {
+        case .success(let user):
+            fireStoreService.saveLoggedInUserIfNeeded(loggedInUser: user)
+            AppData.enableAutoLogin = true
+            self.delegate?.showHome()
+        case .failure(let error):
+            print(error)
+            self.delegate?.showError(error: error)
         }
     }
 }

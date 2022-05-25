@@ -31,12 +31,12 @@ extension BaseAuthenticatePresenter: BaseAuthenticatePresenterProtocol {
         interactor.loginWithGoogle(presenterController: presenter)
     }
     
-    func loginWithApple(presenterViewController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController) {
-        interactor.loginWithApple(presenterController: presenter, selectedAuthController: selectedAuthController)
+    func getAppleCredential(presenterViewController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController) {
+        interactor.getAppleCredential(presenterController: presenter, selectedAuthController: selectedAuthController)
     }
     
-    func loginWithCredential(credential: ASAuthorizationAppleIDCredential) {
-        interactor.loginWithCredential(credential: credential)
+    func loginWithAppleCredential(credential: ASAuthorizationAppleIDCredential) {
+        interactor.loginWithAppleCredential(credential: credential)
     }
 }
 

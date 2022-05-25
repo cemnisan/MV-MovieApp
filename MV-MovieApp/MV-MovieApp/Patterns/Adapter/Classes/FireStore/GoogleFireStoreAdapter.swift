@@ -77,14 +77,15 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         }
     }
     
-    func isUserAlreadyExist(registeredUser: UserPresentation,
-                            completion: @escaping (Bool) -> Void) {
-        readUser { result in
-            switch result {
-            case .success(let currentUser):
-                registeredUser.id == currentUser.id ? completion(true) : completion(false)
-            case .failure(_): completion(false)
-            }
+    func saveLoggedInUserIfNeeded(loggedInUser: UserPresentation) {
+        let docRef = db
+            .collection("users")
+            .whereField("id", isEqualTo: loggedInUser.id)
+        docRef.getDocuments { [weak self] (snapshot, error) in
+            guard let self = self,
+                  error == nil,
+                  snapshot?.documents.count == 0 else { return }
+            self.createUser(user: loggedInUser)
         }
     }
     

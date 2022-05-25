@@ -51,7 +51,8 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
         }
     }
     
-    func login(withApplePresenter presenter: BaseAuthViewController, selectedAuthController: SelectAuthController) {
+    func getAppleCredential(withApplePresenter presenter: BaseAuthViewController,
+                            selectedAuthController: SelectAuthController) {
         let nonce               = randomNonceString()
         currentNonce            = nonce
         let appleIDProvider     = ASAuthorizationAppleIDProvider()
@@ -102,7 +103,6 @@ extension GoogleAuthenticatorAdapter: LoginService {
         firebaseAuth.signIn(withEmail: email,
                             password: password) { (result, error) in
             guard error == nil else { completion(.failure(error!)); return }
-            
             let user = UserPresentation(
                 fullName: result?.user.displayName ?? K.Auth.dummyName,
                 username: K.Auth.dummyName,
@@ -125,7 +125,6 @@ extension GoogleAuthenticatorAdapter: RegisterService {
         firebaseAuth.createUser(withEmail: email,
                                 password: password) { (result, error) in
             guard error == nil else { completion(.failure(error!)); return }
-            
             let user = UserPresentation(
                 fullName: result?.user.displayName ?? K.Auth.dummyName,
                 username: username,
@@ -181,7 +180,6 @@ extension GoogleAuthenticatorAdapter {
                 }
             }
         }
-        
         return result
     }
     

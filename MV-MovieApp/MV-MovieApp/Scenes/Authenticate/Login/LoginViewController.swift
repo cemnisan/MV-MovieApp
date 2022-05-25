@@ -83,7 +83,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController,
                                  didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
-        loginPresenter.loginWithCredential(credential: credential)
+        loginPresenter.loginWithAppleCredential(credential: credential)
     }
 }
 
@@ -98,7 +98,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
 extension LoginViewController: AuthAppleDelegate {
     
     func userDidTappedAuthWithApple() {
-        loginPresenter.loginWithApple(presenterViewController: self, selectedAuthController: .login)
+        loginPresenter.getAppleCredential(presenterViewController: self, selectedAuthController: .login)
     }
 }
 
