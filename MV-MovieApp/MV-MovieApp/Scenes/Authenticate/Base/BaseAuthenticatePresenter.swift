@@ -5,8 +5,8 @@
 //  Created by Cem Nisan on 9.05.2022.
 //
 
-import Foundation
-import UIKit.UIViewController
+import UIKit
+import AuthenticationServices
 
 class BaseAuthenticatePresenter {
     
@@ -28,7 +28,15 @@ class BaseAuthenticatePresenter {
 extension BaseAuthenticatePresenter: BaseAuthenticatePresenterProtocol {
     
     func loginWithGoogle(presenterViewController presenter: UIViewController) {
-        self.interactor.loginWithGoogle(presenterController: presenter)
+        interactor.loginWithGoogle(presenterController: presenter)
+    }
+    
+    func loginWithApple(presenterViewController presenter: BaseAuthViewController, selectedAuthController: SelectAuthController) {
+        interactor.loginWithApple(presenterController: presenter, selectedAuthController: selectedAuthController)
+    }
+    
+    func loginWithCredential(credential: ASAuthorizationAppleIDCredential) {
+        interactor.loginWithCredential(credential: credential)
     }
 }
 

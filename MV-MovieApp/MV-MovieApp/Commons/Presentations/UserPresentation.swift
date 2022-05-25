@@ -8,19 +8,19 @@
 import Foundation
 
 struct UserPresentation: Codable {
-    var fullName: String?
-    var username: String?
-    var email: String?
-    var profilePic: String?
-    var backgroundPic: String?
-    var id: String?
+    var fullName: String
+    var username: String
+    var email: String
+    var profilePic: String
+    var backgroundPic: String
+    var id: String
     
-    init(fullName: String?,
-         username: String?,
-         email: String?,
-         profilePic: String?,
-         backgroundPic: String?,
-         id: String?) {
+    init(fullName: String,
+         username: String,
+         email: String,
+         profilePic: String,
+         backgroundPic: String,
+         id: String) {
         self.fullName      = fullName
         self.username      = username
         self.email         = email

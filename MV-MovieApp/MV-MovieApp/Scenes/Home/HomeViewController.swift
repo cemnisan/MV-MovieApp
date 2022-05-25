@@ -229,8 +229,8 @@ extension HomeViewController {
 extension HomeViewController: HomePresenterOutput {
     
     func showCurrentUser(user: UserPresentation) {
-        userPicture.setImage(with: user.profilePic ?? "")
-        userFullname.text = "Hello, \(user.fullName ?? "Anonymous")"
+        userPicture.setImage(with: user.profilePic)
+        userFullname.text = String(format: K.Home.welcomeLabel, user.fullName)
     }
     
     func showPopularMovies(movies popularMovies: [PopularMoviesPresentation]) {

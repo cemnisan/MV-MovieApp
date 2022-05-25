@@ -7,13 +7,14 @@
 
 import UIKit
 import MV_Components
+import AuthenticationServices
 
 final class RegisterViewController: BaseAuthViewController {
     
     private let usernameForm = MVForm(
         frame: .zero,
-        label: "Username",
-        placeHolder: "Select a Username",
+        label: K.Auth.userNameLabel,
+        placeHolder: K.Auth.userNameTextField,
         height: 55)
     
     var registerPresenter: RegisterPresenterProtocol!
@@ -91,6 +92,22 @@ extension RegisterViewController {
     }
 }
 
+extension RegisterViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        registerPresenter.loginWithCredential(credential: credential)
+    }
+}
+
+extension RegisterViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+}
+
 // MARK: - Register Presenter Output
 extension RegisterViewController: RegisterPresenterOutput {
     
@@ -113,7 +130,10 @@ extension RegisterViewController: RegisterPresenterOutput {
 
 // MARK: - Auth Apple Protocol
 extension RegisterViewController: AuthAppleDelegate {
-    func userDidTappedAuthWithApple() {}
+    
+    func userDidTappedAuthWithApple() {
+        registerPresenter.loginWithApple(presenterViewController: self, selectedAuthController: .register)
+    }
 }
 
 // MARK: - Auth Google Protocol

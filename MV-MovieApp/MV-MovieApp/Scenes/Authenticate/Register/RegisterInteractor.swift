@@ -28,9 +28,10 @@ extension RegisterInteractor: RegisterInteractorProtocol {
                   email: String,
                   password: String) {
         do {
-            try Validation.validate(username: username,
-                                    email: email,
-                                    password: password)
+            try Validation.validate(
+                username: username,
+                email: email,
+                password: password)
             delegate?.displayLoadingIndicator()
             
             registerService.register(with: username,

@@ -10,9 +10,11 @@ import UIKit
 extension K {
     struct Home {
         static let navTitle           = "Home"
-        static let sectionHeader      = "section-header"
+        static let welcomeLabel       = "Hello, %@"
         static let screenDescription  = "Let’s stream your favorite movie"
         static let searchPlaceHolder  = "🔍 Search a title..."
+        
+        static let sectionHeader      = "section-header"
         
         static let searchFilterButton = UIImage(named: "filter")!
         static let rateLogo           = UIImage(named: "star")!

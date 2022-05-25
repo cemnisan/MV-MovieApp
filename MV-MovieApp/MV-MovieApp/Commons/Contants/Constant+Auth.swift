@@ -10,8 +10,13 @@ import UIKit
 
 extension K {
     struct Auth {
-        static let nameLabel                   = "Name"
-        static let nameTextField               = "Enter your name"
+        static let dummyName                   = "Anonymous"
+        static let unavailableEmail            = "Email is unavailable"
+        static let dummyProfilePic             = "https://dummyimage.com/120x120/000/0011ff.png"
+        static let dummyBackgroundPic          = "https://dummyimage.com/600x300/000/fff"
+        
+        static let userNameLabel               = "Username"
+        static let userNameTextField           = "Enter your username"
         static let emailLabel                  = "Email"
         static let emailTextField              = "Enter your email"
         static let passwordLabel               = "Password"

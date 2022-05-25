@@ -362,10 +362,10 @@ extension ProfileViewController: ProfilePresenterOutput {
     }
     
     func showCurrentUser(currentUser: UserPresentation) {
-        userProfileImage.setImage(with: currentUser.profilePic!)
+        userProfileImage.setImage(with: currentUser.profilePic)
         userFullNameLabel.text = currentUser.fullName
-        userNameLabel.text     = "@\(currentUser.username!)"
-        userBackgroundImage.setImage(with: currentUser.backgroundPic!)
+        userNameLabel.text     = "@\(currentUser.username)"
+        userBackgroundImage.setImage(with: currentUser.backgroundPic)
     }
 }
 

@@ -34,7 +34,6 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     func readUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         if let userID  = Auth.auth().currentUser?.uid {
             let docRef = db.collection("users").document(userID)
-            
             docRef.getDocument(as: UserPresentation.self) { result in
                 switch result {
                 case .success(let user):
@@ -84,7 +83,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
             switch result {
             case .success(let currentUser):
                 registeredUser.id == currentUser.id ? completion(true) : completion(false)
-            case .failure(_): break
+            case .failure(_): completion(false)
             }
         }
     }

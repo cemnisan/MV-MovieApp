@@ -207,7 +207,7 @@ extension SettingsViewController: SettingsPresenterOutput {
     func showCurrentUser(currentUser: UserPresentation) {
         userNameLabel.text  = currentUser.fullName
         userEmailLabel.text = currentUser.email
-        userImageView.setImage(with: currentUser.profilePic ?? "")
+        userImageView.setImage(with: currentUser.profilePic)
     }
     
     func showError(error: Error) {

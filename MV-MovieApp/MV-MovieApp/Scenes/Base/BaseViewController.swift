@@ -33,11 +33,9 @@ class BaseViewController: UIViewController {
     
     func dismissLoadingView() {
         DispatchQueue.main.async {
-            if self.loadingIndicatorView != nil {
-                self.loadingIndicatorView.stopIndicatorView()
-                self.loadingIndicatorView.removeFromSuperview()
-                self.loadingIndicatorView = nil
-            }
+            self.loadingIndicatorView.stopIndicatorView()
+            self.loadingIndicatorView.removeFromSuperview()
+            self.loadingIndicatorView = nil
         }
     }
     

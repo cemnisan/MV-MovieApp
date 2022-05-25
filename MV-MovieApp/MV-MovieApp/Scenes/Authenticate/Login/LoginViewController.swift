@@ -7,6 +7,7 @@
 
 import UIKit
 import MV_Components
+import AuthenticationServices
 
 final class LoginViewController: BaseAuthViewController {
     
@@ -46,7 +47,7 @@ final class LoginViewController: BaseAuthViewController {
         
         formStackView.configureConstraints(
             top: (appleView.bottomAnchor, 45),
-            leading: (view.leadingAnchor,22),
+            leading: (view.leadingAnchor, 22),
             trailing: (view.trailingAnchor, -22))
         formStackView.configureHeight(height: 170)
     }
@@ -78,9 +79,27 @@ extension LoginViewController {
     }
 }
 
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController,
+                                 didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        loginPresenter.loginWithCredential(credential: credential)
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
+}
+
 // MARK: - Login With Apple
 extension LoginViewController: AuthAppleDelegate {
-    func userDidTappedAuthWithApple() {}
+    
+    func userDidTappedAuthWithApple() {
+        loginPresenter.loginWithApple(presenterViewController: self, selectedAuthController: .login)
+    }
 }
 
 // MARK: - Login with Google

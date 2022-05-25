@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>744146230966-gat0q44em6q8m95tls6voh0f7elc0kmi.apps.googleusercontent.com</string>
+	<string>612970434114-a7k5um7um4r38dqkc464rdkutighaaq5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.744146230966-gat0q44em6q8m95tls6voh0f7elc0kmi</string>
+	<string>com.googleusercontent.apps.612970434114-a7k5um7um4r38dqkc464rdkutighaaq5</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDgCVAdcFxmU4jqORPYEkBgucATr89GpJg</string>
+	<string>AIzaSyDHa1egzikY_GzhSRCzSu3UKMw9ChSMZbY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>744146230966</string>
+	<string>612970434114</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>demo.MV-MovieApp</string>
+	<string>cemnisan.MV-MovieApp</string>
 	<key>PROJECT_ID</key>
-	<string>mv-movie-app</string>
+	<string>mv-movieapp</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mv-movie-app.appspot.com</string>
+	<string>mv-movieapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:744146230966:ios:cd88ec1e42585ccec41017</string>
+	<string>1:612970434114:ios:5a0c44534d23e5448d67db</string>
 </dict>
 </plist>
