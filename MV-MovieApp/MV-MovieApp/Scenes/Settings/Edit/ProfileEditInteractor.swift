@@ -80,7 +80,7 @@ extension ProfileEditInteractor: ProfileEditInteractorProtocol {
                                 switch result {
                                 case .success(let user):
                                     self.currentUser      = user
-                                    self.isImageUploaded = false
+                                    self.isImageUploaded  = false
                                     self.delegate?.showCurrentUser(currentUser: self.currentUser)
                                 case .failure(let error):
                                     self.delegate?.showError(error: error)

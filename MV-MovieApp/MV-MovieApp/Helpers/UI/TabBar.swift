@@ -13,7 +13,6 @@ struct TabBar {
         let homeViewController      = HomeBuilder.make()
         let searchViewController    = SearchBuilder.make()
         let profileViewController   = ProfileBuilder.make()
-        
         let tabBar = MVTabBar(
             homeVC: homeViewController,
             searchVC: searchViewController,

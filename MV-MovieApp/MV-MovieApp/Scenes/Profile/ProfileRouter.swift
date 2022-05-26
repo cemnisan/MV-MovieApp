@@ -5,7 +5,7 @@
 //  Created by Cem Nisan on 13.05.2022.
 //
 
-import UIKit.UIViewController
+import UIKit
 
 final class ProfileRouter {
     

@@ -5,7 +5,6 @@
 //  Created by Cem Nisan on 19.05.2022.
 //
 
-import Foundation
 import struct MovieDB_Wrapper.Genre
 
 struct GenresPresentation: Hashable {

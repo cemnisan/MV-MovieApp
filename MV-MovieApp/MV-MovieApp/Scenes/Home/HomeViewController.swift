@@ -8,8 +8,8 @@
 import UIKit
 import MV_Components
 
-typealias DataSource = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
-typealias Snapshot   = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
+fileprivate typealias DataSource = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
+fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
 
 final class HomeViewController: BaseViewController {
     

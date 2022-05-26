@@ -5,8 +5,7 @@
 //  Created by Cem Nisan on 1.05.2022.
 //
 
-import Foundation
-import UIKit.UIViewController
+import UIKit
 
 final class LoginPresenter: BaseAuthenticatePresenter {
  

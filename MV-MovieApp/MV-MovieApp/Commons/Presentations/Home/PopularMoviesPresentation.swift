@@ -5,7 +5,6 @@
 //  Created by Cem Nisan on 30.04.2022.
 //
 
-import Foundation
 import struct MovieDB_Wrapper.Movies
 
 struct PopularMoviesPresentation: Hashable {

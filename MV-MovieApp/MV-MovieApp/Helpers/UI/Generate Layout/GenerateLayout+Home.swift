@@ -1,13 +1,14 @@
 //
-//  GenerateLayout.swift
+//  GenerateLayout+Home.swift
 //  MV-MovieApp
 //
-//  Created by Cem Nisan on 19.05.2022.
+//  Created by Cem Nisan on 26.05.2022.
 //
 
 import UIKit
 
-struct GenerateLayout {
+// MARK: - Home Layouts
+extension GenerateLayout {
     
     static func generateHomeLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout
@@ -18,9 +19,9 @@ struct GenerateLayout {
                 .effectiveContentSize.width > 500
             let sectionLayoutKind = HomeSection.allCases[sectionIndex]
             switch sectionLayoutKind {
-            case .popular:  return self.generatePopularMoviesLayout(isWide: isWideView)
-            case .category: return self.generateCategoryLayout()
-            case .topRated: return self.generateDiscoverMovies(isWide: isWideView)
+            case .popular:  return generatePopularMoviesLayout(isWide: isWideView)
+            case .category: return generateCategoryLayout()
+            case .topRated: return generateDiscoverMovies(isWide: isWideView)
             }
         }
         return layout
@@ -97,12 +98,12 @@ struct GenerateLayout {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalWidth(1/3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupFractionalWidth = isWide ? 0.240 : 0.480
         let groupFractionalHeight: Float = isWide ? 1/3 : 1.0
         let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: groupSize,
             subitem: item,
@@ -112,19 +113,19 @@ struct GenerateLayout {
             leading: 5,
             bottom: 5,
             trailing: 12)
-
+        
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-          layoutSize: headerSize,
-          elementKind: K.Home.sectionHeader,
-          alignment: .top)
-
+            layoutSize: headerSize,
+            elementKind: K.Home.sectionHeader,
+            alignment: .top)
+        
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .groupPaging
-
+        
         return section
     }
 }

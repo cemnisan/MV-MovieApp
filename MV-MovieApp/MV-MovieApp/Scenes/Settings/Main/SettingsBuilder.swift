@@ -5,7 +5,7 @@
 //  Created by Cem Nisan on 7.05.2022.
 //
 
-import UIKit.UIViewController
+import UIKit
 
 final class SettingsBuilder {
     

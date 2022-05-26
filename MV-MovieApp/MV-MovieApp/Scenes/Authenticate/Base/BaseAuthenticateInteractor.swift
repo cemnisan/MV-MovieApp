@@ -58,10 +58,10 @@ extension BaseAuthenticateInteractor {
         case .success(let user):
             fireStoreService.saveLoggedInUserIfNeeded(loggedInUser: user)
             AppData.enableAutoLogin = true
-            self.delegate?.showHome()
+            delegate?.showHome()
         case .failure(let error):
             print(error)
-            self.delegate?.showError(error: error)
+            delegate?.showError(error: error)
         }
     }
 }
