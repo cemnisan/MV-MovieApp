@@ -10,9 +10,9 @@ import MV_Components
 
 final class ProfileViewController: BaseViewController {
     
-    private let userBackgroundImage = MVUserImage(frame: .zero)
+    private let userBackgroundImage = MVImageView(frame: .zero)
     private let profileContainerView = MVContainerView(frame: .zero)
-    private let userProfileImage    = MVUserImage(cornerRadius: 60)
+    private let userProfileImage    = MVImageView(cornerRadius: 60)
     private let editProfileButton   = MVButton(
         backgroundColor: K.Styles.backgroundColor,
         title: "Edit Profile",

@@ -13,7 +13,7 @@ fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<HomeSection, Any
 
 final class HomeViewController: BaseViewController {
     
-    private let userPicture  = MVUserImage(cornerRadius: 25)
+    private let userPicture  = MVImageView(cornerRadius: 25)
     private let userFullname = MVTitleLabel(
         textAlignment: .left,
         fontSize: 18,

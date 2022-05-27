@@ -108,6 +108,7 @@
 		7E8C23EE283FCA67000EA1A3 /* DetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C23ED283FCA67000EA1A3 /* DetailsSection.swift */; };
 		7E9373BC2829B529008A7918 /* ProfileEditBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */; };
 		7E9373BE2829B52E008A7918 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */; };
+		7EA562E42841823600DC5807 /* Constant+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA562E32841823600DC5807 /* Constant+Details.swift */; };
 		7EB7807128401420000E52FA /* MoviesDetailsContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7807028401420000E52FA /* MoviesDetailsContracts.swift */; };
 		7EB7807328401422000E52FA /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7807228401422000E52FA /* MovieDetailsInteractor.swift */; };
 		7EB780752840142F000E52FA /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB780742840142F000E52FA /* MovieDetailsPresenter.swift */; };
@@ -251,6 +252,7 @@
 		7E8C23ED283FCA67000EA1A3 /* DetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSection.swift; sourceTree = "<group>"; };
 		7E9373BB2829B529008A7918 /* ProfileEditBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditBuilder.swift; sourceTree = "<group>"; };
 		7E9373BD2829B52E008A7918 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		7EA562E32841823600DC5807 /* Constant+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Details.swift"; sourceTree = "<group>"; };
 		7EB7807028401420000E52FA /* MoviesDetailsContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDetailsContracts.swift; sourceTree = "<group>"; };
 		7EB7807228401422000E52FA /* MovieDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractor.swift; sourceTree = "<group>"; };
 		7EB780742840142F000E52FA /* MovieDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				7E12F83728271EA600B3C966 /* Constant+Auth.swift */,
 				7ECDE35628283B7900FE76BC /* Constant+Styles.swift */,
 				7ED94B1E2836DDE800FFFAD3 /* Constant+Home.swift */,
+				7EA562E32841823600DC5807 /* Constant+Details.swift */,
 			);
 			path = Contants;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				7E3E6B6D282AB6CD00140E65 /* LegalPoliciesViewController.swift in Sources */,
 				7EF731AD281D90FB00A1CFE9 /* HomeBuilder.swift in Sources */,
 				7E1CEBC12837E0EE0097BB6C /* MovieDetailsBuilder.swift in Sources */,
+				7EA562E42841823600DC5807 /* Constant+Details.swift in Sources */,
 				7EC7E8B4281F4467003155F1 /* BaseAuthViewController.swift in Sources */,
 				7E8AA53F282696CE00A90ED2 /* GoogleAuthenticatorAdapter.swift in Sources */,
 				7E8AA5412826C0EE00A90ED2 /* BaseAuthenticateService.swift in Sources */,

@@ -2,35 +2,28 @@
 //  File.swift
 //  
 //
-//  Created by Cem Nisan on 9.05.2022.
+//  Created by Cem Nisan on 28.05.2022.
 //
 
 import UIKit
 
-public final class MVUserImage: UIImageView {
+public final class MVMovieImage: UIImageView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    public convenience init(cornerRadius: CGFloat) {
-        self.init(frame: .zero)
-        
-        layer.cornerRadius = cornerRadius
-    }
 }
 
-extension MVUserImage {
+extension MVMovieImage {
     
     private func configure() {
+        layer.cornerRadius = 10
         clipsToBounds      = true
-        contentMode        = .scaleAspectFill
+        contentMode        = .scaleToFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

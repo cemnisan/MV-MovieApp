@@ -15,10 +15,10 @@ final class ProfileEditViewController: BaseViewController {
     private let scrollView                = UIScrollView()
     
     private let progressView              = UIProgressView(progressViewStyle: .bar)
-    private let currentBackgroundImage    = MVUserImage(frame: .zero)
+    private let currentBackgroundImage    = MVImageView(frame: .zero)
     private let editBackgroundImageView   = MVContainerView(backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5952762831))
     private let editBackgroundImageButton = MVButton(frame: .zero)
-    private let currentProfileImage       = MVUserImage(cornerRadius: 60)
+    private let currentProfileImage       = MVImageView(cornerRadius: 60)
     private let editProfileImageView      = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editProfileImageButton    = MVButton(frame: .zero)
     

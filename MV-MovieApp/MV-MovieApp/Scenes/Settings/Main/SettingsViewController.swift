@@ -11,7 +11,7 @@ import MV_Components
 final class SettingsViewController: BaseViewController {
     
     private let userContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
-    private let userImageView     = MVUserImage(cornerRadius: 30)
+    private let userImageView     = MVImageView(cornerRadius: 30)
     private let userNameLabel = MVTitleLabel(
         textAlignment: .left,
         fontSize: 20,
