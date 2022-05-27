@@ -8,6 +8,6 @@
 import Foundation
 
 enum DetailsSection: String, CaseIterable {
-    case cast          = "Cast"
+    case movieCast     = "Cast"
     case relatedMovies = "Related Movies"
 }

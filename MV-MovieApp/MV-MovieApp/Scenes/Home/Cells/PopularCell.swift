@@ -27,11 +27,11 @@ final class PopularCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    
-//    override func prepareForReuse() {
-//        imageView.image = nil
-//        movieTitle.text = nil
-//    }
+    
+    override func prepareForReuse() {
+        imageView.image = nil
+        movieTitle.text = nil
+    }
 }
 
 // MARK: - Configure
@@ -58,7 +58,6 @@ extension PopularCell {
         containerView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
-        imageView.image = #imageLiteral(resourceName: "banner")
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.configureConstraints(
@@ -95,5 +94,10 @@ extension PopularCell {
     func set(with popularMovies: PopularMoviesPresentation) {
         imageView.setImage(with: "\(K.API.w500Image)\(popularMovies.image ?? "")")
         movieTitle.text = popularMovies.title
+    }
+    
+    func set(with similarMovies: SimilarMoviesPresentation) {
+        imageView.setImage(with: "\(K.API.w500Image)\(similarMovies.movieBackgroundPath ?? "")")
+        movieTitle.text = similarMovies.movieTitle
     }
 }

@@ -37,8 +37,8 @@ extension HomePresenter: HomePresenterProtocol {
         interactor.loadMovieServicesWithTaskGroup()
     }
     
-    func userDidSelectMovie() {
-        interactor.userDidSelectMovie()
+    func userDidSelectMovie(with indexPath: IndexPath) {
+        interactor.userDidSelectMovie(with: indexPath)
     }
 }
 
@@ -64,7 +64,7 @@ extension HomePresenter: HomeInteractorOutput {
         view.showTopRatedMovies(movies: topRatedPresentation)
     }
     
-    func showMovieDetail() {
-        router.toDetail()
+    func showMovieDetail(with movieID: Int) {
+        router.toDetail(with: movieID)
     }
 }

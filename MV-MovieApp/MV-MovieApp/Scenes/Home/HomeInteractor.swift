@@ -84,8 +84,16 @@ extension HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    func userDidSelectMovie() {
-        delegate?.showMovieDetail()
+    func userDidSelectMovie(with indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let movieID = popularMovies[indexPath.row].id
+            delegate?.showMovieDetail(with: movieID)
+        case 2:
+            let movieID = topRatedMovies[indexPath.row].id
+            delegate?.showMovieDetail(with: movieID)
+        default: break
+        }
     }
 }
 

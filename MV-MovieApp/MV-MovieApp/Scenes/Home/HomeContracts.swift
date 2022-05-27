@@ -15,7 +15,7 @@ protocol HomeInteractorProtocol: AnyObject {
     func loadCurrentUser()
     func loadMovieServicesWithTaskGroup()
     
-    func userDidSelectMovie()
+    func userDidSelectMovie(with indexPath: IndexPath)
 }
 
 // MARK: - Interactor Output
@@ -24,14 +24,14 @@ protocol HomeInteractorOutput: AnyObject {
     func showPopularMovies(movies popularMovies: [Movies])
     func showTopRatedMovies(movies topRatedMovies: [Movies])
     func showGenres(genres: [Genre])
-    func showMovieDetail()
+    func showMovieDetail(with movieID: Int)
 }
 
 // MARK: - Presenter Protocol
 protocol HomePresenterProtocol: AnyObject {
     func loadCurrentUser()
     func loadHomeServicesWithTaskGroup()
-    func userDidSelectMovie()
+    func userDidSelectMovie(with indexPath: IndexPath)
 }
 
 // MARK: - Presenter Output
@@ -44,5 +44,5 @@ protocol HomePresenterOutput: AnyObject {
 
 // MARK: - Router Contracts
 protocol HomeRoute: AnyObject {
-    func toDetail()
+    func toDetail(with movieID: Int)
 }

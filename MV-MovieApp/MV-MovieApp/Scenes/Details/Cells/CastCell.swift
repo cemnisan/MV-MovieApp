@@ -21,6 +21,10 @@ final class CastCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        castImageView.image = nil
+    }
 }
 
 extension CastCell {
@@ -34,7 +38,6 @@ extension CastCell {
             trailing: (contentView.trailingAnchor, 0),
             bottom: (contentView.bottomAnchor, 0))
         containerView.addSubview(castImageView)
-        castImageView.image = #imageLiteral(resourceName: "profilePic")
 
         castImageView.layer.cornerRadius = contentView.frame.width / 2
         castImageView.clipsToBounds = true
@@ -44,5 +47,12 @@ extension CastCell {
             leading: (containerView.leadingAnchor, 0),
             trailing: (containerView.trailingAnchor, 0),
             bottom: (containerView.bottomAnchor, 0))
+    }
+}
+
+extension CastCell {
+    
+    func set(with cast: MovieCastPresentation) {
+        castImageView.setImage(with: "\(K.API.w180Image)\(cast.castPosterPath ?? "")")
     }
 }

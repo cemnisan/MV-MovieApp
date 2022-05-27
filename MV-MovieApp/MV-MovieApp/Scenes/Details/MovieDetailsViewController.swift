@@ -8,25 +8,6 @@
 import UIKit
 import MV_Components
 
-struct CastValue: Hashable {
-    let image: UIImage
-    
-    static let currentImage: [CastValue] = [
-        CastValue(image: #imageLiteral(resourceName: "profilePic")),
-        CastValue(image: #imageLiteral(resourceName: "apple")),
-        CastValue(image: #imageLiteral(resourceName: "star")),
-        CastValue(image: #imageLiteral(resourceName: "info")),
-        CastValue(image: #imageLiteral(resourceName: "movie3")),
-        CastValue(image: #imageLiteral(resourceName: "movie"))
-    ]
-    
-    static let currentRelatedMovie: [CastValue] = [
-        CastValue(image: #imageLiteral(resourceName: "background")),
-        CastValue(image: #imageLiteral(resourceName: "banner")),
-        CastValue(image: #imageLiteral(resourceName: "exam"))
-    ]
-}
-
 fileprivate typealias DataSource = UICollectionViewDiffableDataSource<DetailsSection, AnyHashable>
 fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<DetailsSection, AnyHashable>
 
@@ -57,7 +38,7 @@ final class MovieDetailViewController: UIViewController {
         textAlignment: .left,
         fontSize: 15,
         textColor: .white,
-        text: "5.4")
+        text: nil)
     private let releaseDateLabel = MVSecondaryLabel(
         textAlignment: .center,
         fontSize: 15,
@@ -73,17 +54,19 @@ final class MovieDetailViewController: UIViewController {
         fontSize: 22,
         textColor: .white)
     
-    private var detailsCollectionView: UICollectionView! = nil
-    private var detailsDataSource: DataSource! = nil
+    private var detailsCollectionView: UICollectionView!   = nil
+    private var detailsDataSource: DataSource!             = nil
+    
+    private var similarMovies: [SimilarMoviesPresentation] = []
+    private var movieCast: [MovieCastPresentation]         = []
+    
+    var detailsPresenter: MovieDetailPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
-        title = "Love Death + RO3BOTS"
-        
+    
         configure()
+        detailsPresenter.loadMovieServiceWithTaskgroup()
     }
 }
 
@@ -107,7 +90,10 @@ extension MovieDetailViewController {
     }
     
     private func configureViewController() {
+        title = "Love Death + RO3BOTS"
         view.backgroundColor = K.Styles.backgroundColor
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func configureScrollView() {
@@ -136,7 +122,6 @@ extension MovieDetailViewController {
     private func configureBackgroundImage() {
         contentView.addSubview(movieBackgroundImage)
         movieBackgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        movieBackgroundImage.image = UIImage(named: "exam")
         movieBackgroundImage.configureConstraints(
             top: (contentView.topAnchor, 0),
             leading: (contentView.leadingAnchor, 0),
@@ -147,10 +132,9 @@ extension MovieDetailViewController {
     private func configurePosterImage() {
         contentView.addSubview(moviePosterImage)
         moviePosterImage.translatesAutoresizingMaskIntoConstraints = false
-        moviePosterImage.image = UIImage(named: "movie")
         moviePosterImage.layer.cornerRadius = 10
-        moviePosterImage.clipsToBounds = true
-        moviePosterImage.contentMode = .scaleAspectFit
+        moviePosterImage.clipsToBounds      = true
+        moviePosterImage.contentMode        = .scaleAspectFit
         moviePosterImage.configureConstraints(
             leading: (contentView.leadingAnchor, 8),
             bottom: (movieBackgroundImage.bottomAnchor, 88))
@@ -160,7 +144,6 @@ extension MovieDetailViewController {
     
     private func configureMovieNameLabel() {
         contentView.addSubview(movieNameLabel)
-        movieNameLabel.text = "Spider-Man No Way to Home Star Wars: The Last Jedi Star Wars: The Last Jedi"
         movieNameLabel.numberOfLines = 3
         movieNameLabel.configureConstraints(
             top: (movieBackgroundImage.bottomAnchor, 16),
@@ -171,14 +154,15 @@ extension MovieDetailViewController {
     private func configureContainerViews() {
         [imdbContainerView,
          genreContainerView,
-         releasedContainerView].forEach {
+         releasedContainerView
+        ].forEach {
             $0.configureWidth(width: 75)
             $0.configureHeight(height: 30)
             containerStackView.addArrangedSubview($0)
         }
-        containerStackView.axis = .horizontal
+        containerStackView.axis         = .horizontal
         containerStackView.distribution = .equalSpacing
-        containerStackView.spacing = 16
+        containerStackView.spacing      = 16
         containerStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(containerStackView)
         containerStackView.configureConstraints(
@@ -202,9 +186,9 @@ extension MovieDetailViewController {
             $0.tintColor = .white
             buttonsStackView.addArrangedSubview($0)
         }
-        buttonsStackView.axis = .horizontal
+        buttonsStackView.axis         = .horizontal
         buttonsStackView.distribution = .equalSpacing
-        buttonsStackView.spacing = 16
+        buttonsStackView.spacing      = 16
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(buttonsStackView)
         buttonsStackView.configureConstraints(
@@ -221,10 +205,10 @@ extension MovieDetailViewController {
     }
     
     private func configureImdbElements() {
-        let stackView = UIStackView(arrangedSubviews: [imdbLogoView, imdbRateLabel])
-        stackView.axis = .horizontal
+        let stackView          = UIStackView(arrangedSubviews: [imdbLogoView, imdbRateLabel])
+        stackView.axis         = .horizontal
         stackView.distribution = .equalSpacing
-        stackView.spacing = 6
+        stackView.spacing      = 6
         stackView.translatesAutoresizingMaskIntoConstraints = false
         imdbContainerView.addSubview(stackView)
         
@@ -252,23 +236,12 @@ extension MovieDetailViewController {
     
     private func configureSynopsisContent() {
         contentView.addSubviews(views: synopsisContent)
-        synopsisContent.text = "Rey (Daisy Ridley) finally manages to find the legendary Jedi knight, Luke Skywalker (Mark Hamill) on an island with a magical aura. The heroes of The Force Awakens including Leia, Finn"
         synopsisContent.numberOfLines = 6
         synopsisContent.textColor     = #colorLiteral(red: 0.784393847, green: 0.7843937278, blue: 0.7843937278, alpha: 1)
         synopsisContent.configureConstraints(
             top: (synopsisLabel.bottomAnchor, 8),
             leading: (contentView.leadingAnchor, 16),
             trailing: (contentView.trailingAnchor, -16))
-    }
-    
-    private func configureCastLabel() {
-        contentView.addSubviews(views: castLabel)
-        castLabel.text = "Cast"
-        castLabel.configureConstraints(
-            top: (synopsisContent.bottomAnchor, 24),
-            leading: (contentView.leadingAnchor, 16),
-            trailing: (contentView.trailingAnchor, -16))
-        castLabel.configureHeight(height: 20)
     }
     
     private func configureCollectionView() {
@@ -302,11 +275,19 @@ extension MovieDetailViewController {
             let sectionType = DetailsSection.allCases[indexPath.section]
             
             switch sectionType {
-            case .cast:
-                let cell = collectionView.dequeView(cellType: CastCell.self, indexPath: indexPath)
+            case .movieCast:
+                let cell = collectionView.dequeView(
+                    cellType: CastCell.self,
+                    indexPath: indexPath)
+                let cast = self.movieCast[indexPath.row]
+                cell.set(with: cast)
                 return cell
             case .relatedMovies:
-                let cell = collectionView.dequeView(cellType: PopularCell.self, indexPath: indexPath)
+                let cell = collectionView.dequeView(
+                    cellType: PopularCell.self,
+                    indexPath: indexPath)
+                let similarMovie = self.similarMovies[indexPath.row]
+                cell.set(with: similarMovie)
                 return cell
             }
         }
@@ -322,19 +303,38 @@ extension MovieDetailViewController {
             supplementaryView.label.text = DetailsSection.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        
         let snapshot = snapshotCurrentState()
         detailsDataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func snapshotCurrentState() -> Snapshot {
         var snapshot = Snapshot()
-        snapshot.appendSections([DetailsSection.cast])
-        snapshot.appendItems(CastValue.currentImage)
+        snapshot.appendSections([DetailsSection.movieCast])
+        snapshot.appendItems(movieCast)
         
         snapshot.appendSections([DetailsSection.relatedMovies])
-        snapshot.appendItems(CastValue.currentRelatedMovie)
-        
+        snapshot.appendItems(similarMovies)
         return snapshot
+    }
+}
+
+extension MovieDetailViewController: MovieDetailPresenterOutput {
+    
+    func showMovieDetail(movie: MovieDetailPresentation) {
+        movieNameLabel.text  = movie.movieTitle
+        synopsisContent.text = movie.movieOverview
+        imdbRateLabel.text   = String(movie.movieVoteAverage)
+        movieBackgroundImage.setImage(with: "\(K.API.w533Image)\(movie.movieBackgroundPath ?? "")")
+        moviePosterImage.setImage(with: "\(K.API.w180Image)\(movie.moviePosterPath ?? "")")
+    }
+    
+    func showCast(cast: [MovieCastPresentation]) {
+        movieCast.append(contentsOf: cast)
+        configureDataSource()
+    }
+    
+    func showRelatedMovies(movies: [SimilarMoviesPresentation]) {
+        similarMovies.append(contentsOf: movies)
+        configureDataSource()
     }
 }

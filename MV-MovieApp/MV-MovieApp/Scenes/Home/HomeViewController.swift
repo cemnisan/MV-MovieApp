@@ -219,8 +219,8 @@ extension HomeViewController {
     
     @objc
     private func didSelectItem(_ sender: UITapGestureRecognizer) {
-        if let _ = moviesCollectionView?.indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
-            homePresenter.userDidSelectMovie()
+        if let indexPath = moviesCollectionView?.indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
+            homePresenter.userDidSelectMovie(with: indexPath)
         }
     }
 }
