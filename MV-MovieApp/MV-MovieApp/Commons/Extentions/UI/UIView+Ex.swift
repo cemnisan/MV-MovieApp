@@ -18,7 +18,8 @@ extension UIView {
     
     func pinToEdges(of superView: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
-          
+        backgroundColor = K.Styles.backgroundColor
+        
         topAnchor.constraint(equalTo: superView.topAnchor).isActive           = true
         leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive   = true
         trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
@@ -56,8 +57,15 @@ extension UIView {
         }
     }
     
-    func configureWidth(width: CGFloat) {
-        widthAnchor.constraint(equalToConstant: width).isActive = true
+    func configureWidth(width: CGFloat? = nil,
+                        anchor: NSLayoutAnchor<NSLayoutDimension>? = nil) {
+        if let width = width {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if let anchor = anchor {
+            widthAnchor.constraint(equalTo: anchor).isActive = true
+        }
     }
     
     func configureHeight(height: CGFloat) {

@@ -29,6 +29,40 @@ final class MovieDetailInteractor {
 
 extension MovieDetailInteractor: MovieDetailInteractorProtocol {
     
+    func loadMovieServicesWithTaskgroup() {
+        Task {
+            await withTaskGroup(of: Void.self, body: { group in
+                group.addTask(priority: .background) {
+                    await self.loadMovieDetail()
+                }
+                
+                group.addTask(priority: .background) {
+                    await self.loadCast()
+                }
+                
+                group.addTask(priority: .background) {
+                    await self.loadRelatedMovies()
+                }
+            })
+        }
+    }
+    
+    func userDidSelectItem(at indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let selectedCast = movieCast[indexPath.row]
+            print(selectedCast)
+        case 1:
+            let selectedMovie = similarMovies[indexPath.row]
+            delegate?.showMovieDetail(with: selectedMovie.id)
+        default: break
+        }
+    }
+}
+
+// MARK: - Loader
+extension MovieDetailInteractor {
+    
     private func loadMovieDetail() async {
         if let movieID = currentMovieID {
             let result = await movieService.getMovieDetails(
@@ -57,26 +91,9 @@ extension MovieDetailInteractor: MovieDetailInteractorProtocol {
             await similarMoviesResult(result: result)
         }
     }
-    
-    func loadMovieServicesWithTaskgroup() {
-        Task {
-            await withTaskGroup(of: Void.self, body: { group in
-                group.addTask(priority: .background) {
-                    await self.loadMovieDetail()
-                }
-                
-                group.addTask(priority: .background) {
-                    await self.loadCast()
-                }
-                
-                group.addTask(priority: .background) {
-                    await self.loadRelatedMovies()
-                }
-            })
-        }
-    }
 }
 
+// MARK: - Result Helper
 extension MovieDetailInteractor {
     
     @MainActor

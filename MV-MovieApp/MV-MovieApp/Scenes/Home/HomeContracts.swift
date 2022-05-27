@@ -15,7 +15,7 @@ protocol HomeInteractorProtocol: AnyObject {
     func loadCurrentUser()
     func loadMovieServicesWithTaskGroup()
     
-    func userDidSelectMovie(with indexPath: IndexPath)
+    func userDidSelectItem(with indexPath: IndexPath)
 }
 
 // MARK: - Interactor Output
@@ -31,7 +31,7 @@ protocol HomeInteractorOutput: AnyObject {
 protocol HomePresenterProtocol: AnyObject {
     func loadCurrentUser()
     func loadHomeServicesWithTaskGroup()
-    func userDidSelectMovie(with indexPath: IndexPath)
+    func userDidSelectItem(with indexPath: IndexPath)
 }
 
 // MARK: - Presenter Output

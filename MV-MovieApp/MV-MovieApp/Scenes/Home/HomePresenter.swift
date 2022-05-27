@@ -37,8 +37,8 @@ extension HomePresenter: HomePresenterProtocol {
         interactor.loadMovieServicesWithTaskGroup()
     }
     
-    func userDidSelectMovie(with indexPath: IndexPath) {
-        interactor.userDidSelectMovie(with: indexPath)
+    func userDidSelectItem(with indexPath: IndexPath) {
+        interactor.userDidSelectItem(with: indexPath)
     }
 }
 

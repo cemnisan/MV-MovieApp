@@ -29,15 +29,15 @@ final class HomeViewController: BaseViewController {
         textColor: .white)
     private let searchTextField = MVTextField(placeHolder: K.Home.searchPlaceHolder)
     private let searchFilterButton = MVButton(image: K.Home.searchFilterButton)
+    
     private var moviesCollectionView: UICollectionView! = nil
-    private var moviesDataSource: DataSource! = nil
-    
-    // MARK: - Properties
-    var homePresenter: HomePresenter!
-    
+    private var moviesDataSource: DataSource!           = nil
+        
     private var popularMovies: [PopularMoviesPresentation]   = []
     private var topRatedMovies: [TopRatedMoviesPresentation] = []
     private var genres: [GenresPresentation]                 = []
+    
+    var homePresenter: HomePresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +145,7 @@ extension HomeViewController {
             cellType: MVHeaderView.self,
             sectionHeader: K.Home.sectionHeader)
         collectionView.configureConstraints(
-            top: (searchTextField.bottomAnchor, 0),
+            top: (searchTextField.bottomAnchor, 8),
             leading: (view.leadingAnchor, 24),
             trailing: (view.trailingAnchor, -24),
             bottom: (view.bottomAnchor, 0))
@@ -161,20 +161,23 @@ extension HomeViewController {
             
             switch sectionType {
             case .popular:
-                let cell = collectionView.dequeView(cellType: PopularCell.self,
-                                                    indexPath: indexPath)
+                let cell = collectionView.dequeView(
+                    cellType: PopularCell.self,
+                    indexPath: indexPath)
                 let popularMovie = self.popularMovies[indexPath.row]
                 cell.set(with: popularMovie)
                 return cell
             case .category:
-                let cell = collectionView.dequeView(cellType: CategoryCell.self,
-                                                    indexPath: indexPath)
+                let cell = collectionView.dequeView(
+                    cellType: CategoryCell.self,
+                    indexPath: indexPath)
                 let genre = self.genres[indexPath.row]
                 cell.set(with: genre)
                 return cell
             case .topRated:
-                let cell = collectionView.dequeView(cellType: TopRatedCell.self,
-                                                    indexPath: indexPath)
+                let cell = collectionView.dequeView(
+                    cellType: TopRatedCell.self,
+                    indexPath: indexPath)
                 let topRatedMovie = self.topRatedMovies[indexPath.row]
                 cell.set(with: topRatedMovie)
                 return cell
@@ -220,7 +223,7 @@ extension HomeViewController {
     @objc
     private func didSelectItem(_ sender: UITapGestureRecognizer) {
         if let indexPath = moviesCollectionView?.indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
-            homePresenter.userDidSelectMovie(with: indexPath)
+            homePresenter.userDidSelectItem(with: indexPath)
         }
     }
 }

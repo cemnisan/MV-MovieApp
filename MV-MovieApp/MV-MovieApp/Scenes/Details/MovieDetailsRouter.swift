@@ -16,4 +16,10 @@ final class MovieDetailRouter {
     }
 }
 
-extension MovieDetailRouter: MovieDetailRoute {}
+extension MovieDetailRouter: MovieDetailRoute {
+    
+    func toDetail(with movieID: Int) {
+        let targetView = MovieDetailsBuilder.make(with: movieID)
+        view.navigationController?.pushViewController(targetView, animated: true)
+    }
+}

@@ -84,7 +84,7 @@ extension HomeInteractor: HomeInteractorProtocol {
         }
     }
     
-    func userDidSelectMovie(with indexPath: IndexPath) {
+    func userDidSelectItem(with indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             let movieID = popularMovies[indexPath.row].id

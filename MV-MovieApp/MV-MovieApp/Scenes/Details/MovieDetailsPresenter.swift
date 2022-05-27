@@ -30,6 +30,10 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     func loadMovieServiceWithTaskgroup() {
         interactor.loadMovieServicesWithTaskgroup()
     }
+    
+    func userDidSelectItem(at indexPath: IndexPath) {
+        interactor.userDidSelectItem(at: indexPath)
+    }
 }
 
 extension MovieDetailPresenter: MovieDetailInteractorOutput {
@@ -49,5 +53,9 @@ extension MovieDetailPresenter: MovieDetailInteractorOutput {
     func showRelatedMovies(movies: [Movies]) {
         let similarMovies = movies.map { SimilarMoviesPresentation(movies: $0) }
         view.showRelatedMovies(movies: similarMovies)
+    }
+    
+    func showMovieDetail(with movieID: Int) {
+        router.toDetail(with: movieID)
     }
 }

@@ -92,7 +92,7 @@ extension PopularCell {
 extension PopularCell {
     
     func set(with popularMovies: PopularMoviesPresentation) {
-        imageView.setImage(with: "\(K.API.w500Image)\(popularMovies.image ?? "")")
+        imageView.setImage(with: "https://image.tmdb.org/t/p/original\(popularMovies.image ?? "")")
         movieTitle.text = popularMovies.title
     }
     

@@ -13,6 +13,7 @@ fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<DetailsSection, 
 
 final class MovieDetailViewController: UIViewController {
     
+    private let backButton  = MVButton(image: UIImage(systemName: "chevron.backward")!)
     private let contentView = UIView()
     private let scrollView  = UIScrollView()
     private let movieBackgroundImage = UIImageView()
@@ -90,33 +91,18 @@ extension MovieDetailViewController {
     }
     
     private func configureViewController() {
-        title = "Love Death + RO3BOTS"
         view.backgroundColor = K.Styles.backgroundColor
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
     }
-    
+        
     private func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = K.Styles.backgroundColor
-        scrollView.backgroundColor = K.Styles.backgroundColor
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 720)
-        ])
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+
+        contentView.configureWidth(anchor: scrollView.widthAnchor)
+        contentView.configureHeight(height: 970)
     }
     
     private func configureBackgroundImage() {
@@ -134,7 +120,7 @@ extension MovieDetailViewController {
         moviePosterImage.translatesAutoresizingMaskIntoConstraints = false
         moviePosterImage.layer.cornerRadius = 10
         moviePosterImage.clipsToBounds      = true
-        moviePosterImage.contentMode        = .scaleAspectFit
+        moviePosterImage.contentMode        = .scaleToFill
         moviePosterImage.configureConstraints(
             leading: (contentView.leadingAnchor, 8),
             bottom: (movieBackgroundImage.bottomAnchor, 88))
@@ -252,6 +238,7 @@ extension MovieDetailViewController {
         
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.backgroundColor  = K.Styles.backgroundColor
+        collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: CastCell.self)
@@ -318,14 +305,22 @@ extension MovieDetailViewController {
     }
 }
 
+extension MovieDetailViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailsPresenter.userDidSelectItem(at: indexPath)
+    }
+}
+
 extension MovieDetailViewController: MovieDetailPresenterOutput {
     
     func showMovieDetail(movie: MovieDetailPresentation) {
+        title                = movie.movieTitle
         movieNameLabel.text  = movie.movieTitle
         synopsisContent.text = movie.movieOverview
         imdbRateLabel.text   = String(movie.movieVoteAverage)
-        movieBackgroundImage.setImage(with: "\(K.API.w533Image)\(movie.movieBackgroundPath ?? "")")
-        moviePosterImage.setImage(with: "\(K.API.w180Image)\(movie.moviePosterPath ?? "")")
+        movieBackgroundImage.setImage(with: "https://image.tmdb.org/t/p/original\(movie.movieBackgroundPath ?? "")")
+        moviePosterImage.setImage(with: "\(K.API.w500Image)\(movie.moviePosterPath ?? "")")
     }
     
     func showCast(cast: [MovieCastPresentation]) {

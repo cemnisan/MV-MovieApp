@@ -86,28 +86,14 @@ extension ProfileEditViewController {
     }
     
     private func configureScrollView() {
-        let margins = view.layoutMarginsGuide
-        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = K.Styles.backgroundColor
-        scrollView.backgroundColor = K.Styles.backgroundColor
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: margins.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 700)
-        ])
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+        
+        contentView.configureWidth(anchor: scrollView.widthAnchor)
+        contentView.configureHeight(height: 700)
     }
     
     private func configureProgressView() {
@@ -119,7 +105,7 @@ extension ProfileEditViewController {
             y: 10,
             width: view.frame.size.width,
             height: 20)
-        progressView.isHidden          = true
+        progressView.isHidden = true
         progressView.setProgress(0, animated: true)
     }
     
@@ -242,22 +228,19 @@ extension ProfileEditViewController {
     
     @objc
     private func editProfilePictureButtonTapped() {
-        profileEditPresenter.choosePictureButtonTapped(on: .profilePic,
-                                                       delegate: self)
+        profileEditPresenter.choosePictureButtonTapped(on: .profilePic, delegate: self)
     }
     
     @objc
     private func editBackgroundPictureButtonTapped() {
-        profileEditPresenter.choosePictureButtonTapped(on: .backgroundPic,
-                                                       delegate: self)
+        profileEditPresenter.choosePictureButtonTapped(on: .backgroundPic, delegate: self)
     }
     
     @objc
     private func saveChangesButtonTapped() {
         guard let fullName = fullNameForm.formTextField.text,
               let username = usernameForm.formTextField.text else { return }
-        profileEditPresenter.updateUser(with: fullName,
-                                        username: username)
+        profileEditPresenter.updateUser(with: fullName, username: username)
     }
 }
 
