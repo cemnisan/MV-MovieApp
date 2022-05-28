@@ -39,13 +39,7 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
                                                                      accessToken: authentication.accessToken)
             self.firebaseAuth.signIn(with: credential) { (result, error) in
                 guard error == nil else { completion(.failure(error!)); return }
-                let user = UserPresentation(
-                    fullName: result?.user.displayName ?? K.Auth.dummyName,
-                    username: K.Auth.dummyName,
-                    email: result?.user.email ?? K.Auth.unavailableEmail,
-                    profilePic: result?.user.photoURL?.absoluteString ?? K.Auth.dummyProfilePic,
-                    backgroundPic: K.Auth.dummyBackgroundPic,
-                    id: result?.user.uid ?? "")
+                let user = self.authenticateResult(result: result)
                 completion(.success(user))
             }
         }
@@ -80,15 +74,10 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
         let credential          = OAuthProvider.credential(withProviderID: "apple.com",
                                                            idToken: idTokenString,
                                                            rawNonce: nonce)
-        firebaseAuth.signIn(with: credential) { (result, error) in
-            guard error == nil else { completion(.failure(error!)); return }
-            let user = UserPresentation(
-                fullName: result?.user.displayName ?? K.Auth.dummyName,
-                username: K.Auth.dummyName,
-                email: result?.user.email ?? K.Auth.unavailableEmail,
-                profilePic: result?.user.photoURL?.absoluteString ?? K.Auth.dummyProfilePic,
-                backgroundPic: K.Auth.dummyBackgroundPic,
-                id: result?.user.uid ?? "")
+        firebaseAuth.signIn(with: credential) { [weak self] (result, error) in
+            guard let self = self,
+                  error == nil else { completion(.failure(error!)); return }
+            let user = self.authenticateResult(result: result)
             completion(.success(user))
         }
     }
@@ -101,15 +90,10 @@ extension GoogleAuthenticatorAdapter: LoginService {
                password: String,
                completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         firebaseAuth.signIn(withEmail: email,
-                            password: password) { (result, error) in
-            guard error == nil else { completion(.failure(error!)); return }
-            let user = UserPresentation(
-                fullName: result?.user.displayName ?? K.Auth.dummyName,
-                username: K.Auth.dummyName,
-                email: result?.user.email ?? K.Auth.unavailableEmail,
-                profilePic: result?.user.photoURL?.absoluteString ?? K.Auth.dummyProfilePic,
-                backgroundPic: K.Auth.dummyBackgroundPic,
-                id: result?.user.uid ?? "")
+                            password: password) { [weak self] (result, error) in
+            guard let self = self,
+                  error == nil else { completion(.failure(error!)); return }
+            let user = self.authenticateResult(result: result)
             completion(.success(user))
         }
     }
@@ -123,15 +107,10 @@ extension GoogleAuthenticatorAdapter: RegisterService {
                   password: String,
                   completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         firebaseAuth.createUser(withEmail: email,
-                                password: password) { (result, error) in
-            guard error == nil else { completion(.failure(error!)); return }
-            let user = UserPresentation(
-                fullName: result?.user.displayName ?? K.Auth.dummyName,
-                username: username,
-                email: result?.user.email ?? K.Auth.unavailableEmail,
-                profilePic: result?.user.photoURL?.absoluteString ?? K.Auth.dummyProfilePic,
-                backgroundPic: K.Auth.dummyBackgroundPic,
-                id: result?.user.uid ?? "")
+                                password: password) { [weak self] (result, error) in
+            guard let self = self,
+                  error == nil else { completion(.failure(error!)); return }
+            let user = self.authenticateResult(result: result)
             completion(.success(user))
         }
     }
@@ -147,6 +126,20 @@ extension GoogleAuthenticatorAdapter: UserService {
         } catch {
             failure(error)
         }
+    }
+}
+
+// MARK: - Result Helper
+extension GoogleAuthenticatorAdapter {
+    private func authenticateResult(result: AuthDataResult?) -> UserPresentation {
+        let user = UserPresentation(
+            fullName: result?.user.displayName ?? K.Auth.dummyName,
+            username: K.Auth.dummyName,
+            email: result?.user.email ?? K.Auth.unavailableEmail,
+            profilePic: result?.user.photoURL?.absoluteString ?? K.Auth.dummyProfilePic,
+            backgroundPic: K.Auth.dummyBackgroundPic,
+            id: result?.user.uid ?? "")
+        return user
     }
 }
 
