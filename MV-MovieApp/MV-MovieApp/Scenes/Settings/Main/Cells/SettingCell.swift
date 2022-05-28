@@ -8,7 +8,7 @@
 import UIKit
 import MV_Components
 
-final class SettingTableViewCell: UITableViewCell {
+final class SettingCell: UITableViewCell {
     
     static let identifier = "SettingsCell"
     
@@ -18,7 +18,6 @@ final class SettingTableViewCell: UITableViewCell {
                                                  fontSize: 17,
                                                  textColor: .white,
                                                  text: nil)
-    
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,13 +40,13 @@ final class SettingTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         iconImageView.image           = nil
-        label.text                    = ""
+        label.text                    = nil
         iconContainer.backgroundColor = nil
     }
 }
 
 // MARK: - Configure Cell
-extension SettingTableViewCell {
+extension SettingCell {
     
     private func configure() {
         configureContainerView()
@@ -90,16 +89,15 @@ extension SettingTableViewCell {
                                                      y: 0,
                                                      width: 24,
                                                      height: 24))
-        accessoryButton.setImage(UIImage(named: "left-arrow"), for: .normal)
-        
+        accessoryButton.setImage(K.Styles.accesoryButton, for: .normal)
         accessoryView = accessoryButton
     }
 }
 
 // MARK: - Set Cell
-extension SettingTableViewCell {
+extension SettingCell {
     public func set(with model: SettingOption) {
-        label.text = model.title
+        label.text          = model.title
         iconImageView.image = model.icon
     }
 }

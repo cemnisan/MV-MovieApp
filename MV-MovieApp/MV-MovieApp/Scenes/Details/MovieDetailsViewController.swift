@@ -53,7 +53,7 @@ final class MovieDetailViewController: UIViewController {
     private var detailsCollectionView: UICollectionView!   = nil
     private var detailsDataSource: DataSource!             = nil
     
-    private var similarMovies: [SimilarMoviesPresentation] = []
+    private var similarMovies: [MoviePresentation] = []
     private var movieCast: [MovieCastPresentation]         = []
     
     var detailsPresenter: MovieDetailPresenterProtocol!
@@ -223,7 +223,7 @@ extension MovieDetailViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.register(cellType: CastCell.self)
-        collectionView.register(cellType: PopularCell.self)
+        collectionView.register(cellType: MovieCell.self)
         collectionView.register(cellType: MVHeaderView.self,
                                 sectionHeader: K.Home.sectionHeader)
         collectionView.configureConstraints(
@@ -249,7 +249,7 @@ extension MovieDetailViewController {
                 cell.set(with: cast)
                 return cell
             case .relatedMovies:
-                let cell = collectionView.dequeView(cellType: PopularCell.self,
+                let cell = collectionView.dequeView(cellType: MovieCell.self,
                                                     indexPath: indexPath)
                 let similarMovie = self.similarMovies[indexPath.row]
                 cell.set(with: similarMovie)
@@ -311,7 +311,7 @@ extension MovieDetailViewController: MovieDetailPresenterOutput {
         configureDataSource()
     }
     
-    func showRelatedMovies(movies: [SimilarMoviesPresentation]) {
+    func showRelatedMovies(movies: [MoviePresentation]) {
         similarMovies.append(contentsOf: movies)
         configureDataSource()
     }

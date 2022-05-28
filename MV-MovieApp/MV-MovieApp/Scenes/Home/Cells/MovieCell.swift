@@ -1,5 +1,5 @@
 //
-//  PopularCell.swift
+//  MovieCell.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 17.05.2022.
@@ -8,16 +8,14 @@
 import UIKit
 import MV_Components
 
-final class PopularCell: UICollectionViewCell {
-        
-    private let imageView = UIImageView()
-    private let containerView = UIView()
-    private let titleView = UIView()
-    private let movieTitle = MVTitleLabel(
-        textAlignment: .center,
-        fontSize: 25,
-        textColor: .white)
+final class MovieCell: UICollectionViewCell {
     
+    private let movieImageView = MVImageView(cornerRadius: 10)
+    private let containerView  = UIView()
+    private let titleView      = UIView()
+    private let movieTitle     = MVTitleLabel(textAlignment: .center,
+                                              fontSize: 25,
+                                              textColor: .white)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,13 +27,13 @@ final class PopularCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        imageView.image = nil
-        movieTitle.text = nil
+        movieImageView.image = nil
+        movieTitle.text      = nil
     }
 }
 
-// MARK: - Configure
-extension PopularCell {
+// MARK: - Configure Cell
+extension MovieCell {
     
     private func configure() {
         configureContainerView()
@@ -55,12 +53,8 @@ extension PopularCell {
     }
     
     private func configureImageView() {
-        containerView.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.configureConstraints(
+        containerView.addSubview(movieImageView)
+        movieImageView.configureConstraints(
             top: (containerView.topAnchor, 0),
             leading: (containerView.leadingAnchor, 0),
             trailing: (containerView.trailingAnchor, 0),
@@ -88,16 +82,11 @@ extension PopularCell {
     }
 }
 
-// MARK: - Set
-extension PopularCell {
-    
-    func set(with popularMovies: PopularMoviesPresentation) {
-        imageView.setImage(with: "https://image.tmdb.org/t/p/original\(popularMovies.image ?? "")")
-        movieTitle.text = popularMovies.title
-    }
-    
-    func set(with similarMovies: SimilarMoviesPresentation) {
-        imageView.setImage(with: "\(K.API.w500Image)\(similarMovies.movieBackgroundPath ?? "")")
-        movieTitle.text = similarMovies.movieTitle
+// MARK: - Set Cell
+extension MovieCell {
+    func set(with moviePresentation: MoviePresentation) {
+        let similarMoviesImage = "\(K.API.w500Image)\(moviePresentation.movieBackgroundPath ?? "")"
+        movieImageView.setImage(with: similarMoviesImage)
+        movieTitle.text = moviePresentation.movieTitle
     }
 }

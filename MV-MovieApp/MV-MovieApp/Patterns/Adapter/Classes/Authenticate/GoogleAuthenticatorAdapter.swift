@@ -155,7 +155,7 @@ extension GoogleAuthenticatorAdapter {
     // Received from https://github.com/firebase/quickstart-ios/blob/master/authentication/AuthenticationExample/ViewControllers/AuthViewController.swift
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0 )
-        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        let charset: [Character] = Array(K.Firebase.charset)
         var result = ""
         var remainingLength = length
         
@@ -171,7 +171,6 @@ extension GoogleAuthenticatorAdapter {
                 }
                 return random
             }
-            
             randoms.forEach { random in
                 if remainingLength == 0 { return }
                 if random < charset.count {

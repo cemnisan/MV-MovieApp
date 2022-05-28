@@ -37,9 +37,9 @@ protocol HomePresenterProtocol: AnyObject {
 // MARK: - Presenter Output
 protocol HomePresenterOutput: AnyObject {
     func showCurrentUser(user: UserPresentation)
-    func showPopularMovies(movies popularMovies: [PopularMoviesPresentation])
+    func showPopularMovies(movies popularMovies: [MoviePresentation])
     func showTopRatedMovies(movies topRatedMovies: [TopRatedMoviesPresentation])
-    func showGenres(genres: [GenresPresentation])
+    func showGenres(genres: [GenrePresentation])
 }
 
 // MARK: - Router Contracts

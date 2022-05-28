@@ -12,33 +12,33 @@ struct Section {
     let title: String
     let option: [SettingOption]
     
-    static var settings: [Section] = [
-        Section(title: "Account",
+    static let settings: [Section] = [
+        Section(title: K.Settings.accountSection,
                 option: [
-                    SettingOption(title: "Profile",
-                                   icon: UIImage(named: "profile")),
-                    SettingOption(title: "Change Password",
-                                   icon: UIImage(named: "padlock")),
+                    SettingOption(title: K.Settings.profileTitle,
+                                  icon: K.Settings.profileImage),
+                    SettingOption(title: K.Settings.changePasswordTitle,
+                                  icon: K.Settings.changePassowordImage),
                 ]),
-        Section(title: "General",
+        Section(title: K.Settings.generalSection,
                 option: [
-                    SettingOption(title: "Notification",
-                                   icon: UIImage(named: "notification")),
-                    SettingOption(title: "Language",
-                                   icon:UIImage(named: "language")),
-                    SettingOption(title: "Country",
-                                   icon: UIImage(named: "country")),
-                    SettingOption(title: "Clear Cache",
-                                   icon: UIImage(named: "trash")),
+                    SettingOption(title: K.Settings.notificationTitle,
+                                  icon: K.Settings.notificationImage),
+                    SettingOption(title: K.Settings.languageTitle,
+                                  icon: K.Settings.languageImage),
+                    SettingOption(title: K.Settings.countryTitle,
+                                  icon: K.Settings.countryImage),
+                    SettingOption(title: K.Settings.clearCacheTitle,
+                                  icon: K.Settings.clearCacheImage),
                 ]),
-        Section(title: "More",
+        Section(title: K.Settings.moreSection,
                 option: [
-                    SettingOption(title: "Legal And Policies",
-                                   icon: UIImage(named: "policies")),
-                    SettingOption(title: "Help & Feedbacks",
-                                   icon: UIImage(named: "help")),
-                    SettingOption(title: "About Us",
-                                   icon: UIImage(named: "info")),
+                    SettingOption(title: K.Settings.policiesTitle,
+                                  icon: K.Settings.policiesImage),
+                    SettingOption(title: K.Settings.helpTitle,
+                                  icon: K.Settings.helpImage),
+                    SettingOption(title: K.Settings.aboutTitle,
+                                  icon: K.Settings.aboutImage),
                 ])
     ]
 }

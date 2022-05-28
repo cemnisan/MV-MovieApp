@@ -24,12 +24,12 @@ extension GoogleStorageAdapter: UploadMediaService {
         let imageName = String("\(selectedPicker.rawValue)-\(Auth.auth().currentUser!.uid).jpeg")
         
         let metaData = StorageMetadata()
-        metaData.contentType = "image/jpeg"
+        metaData.contentType = K.Firebase.dataContentType
         
         let storageRef = Storage
             .storage()
             .reference()
-            .child("User")
+            .child(K.Firebase.userChild)
             .child(imageName)
         let uploadTask = storageRef.putData(pictureData,
                                             metadata: metaData) { (_, error) in

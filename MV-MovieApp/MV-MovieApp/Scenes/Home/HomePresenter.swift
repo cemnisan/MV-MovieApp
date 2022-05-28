@@ -50,12 +50,12 @@ extension HomePresenter: HomeInteractorOutput {
     }
     
     func showPopularMovies(movies popularMovies: [Movies]) {
-        let popularMoviesPresentation = popularMovies.map { PopularMoviesPresentation(movies: $0) }
+        let popularMoviesPresentation = popularMovies.map { MoviePresentation(movie: $0) }
         view.showPopularMovies(movies: popularMoviesPresentation)
     }
     
     func showGenres(genres: [Genre]) {
-        let genresPresentation = genres.map { GenresPresentation(genre: $0) }
+        let genresPresentation = genres.map { GenrePresentation(genre: $0) }
         view.showGenres(genres: genresPresentation)
     }
     

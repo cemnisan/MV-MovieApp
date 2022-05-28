@@ -8,34 +8,28 @@
 import UIKit
 import MV_Components
 
-fileprivate typealias DataSource = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
-fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
+fileprivate typealias DataSource   = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
+fileprivate typealias Snapshot     = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
 
 final class HomeViewController: BaseViewController {
     
-    private let userPicture  = MVImageView(cornerRadius: 25)
-    private let userFullname = MVTitleLabel(
-        textAlignment: .left,
-        fontSize: 18,
-        textColor: .white)
-    private let homeDescription = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 16,
-        textColor: K.Styles.globalColor,
-        text: K.Home.screenDescription)
-    private let popularMoviesLabel = MVTitleLabel(
-        textAlignment: .left,
-        fontSize: 20,
-        textColor: .white)
-    private let searchTextField = MVTextField(placeHolder: K.Home.searchPlaceHolder)
+    private let userPicture        = MVImageView(cornerRadius: 25)
+    private let userFullname       = MVTitleLabel(textAlignment: .left,
+                                                  fontSize: 18,
+                                                  textColor: .white)
+    private let homeDescription    = MVSecondaryLabel(textAlignment: .left,
+                                                      fontSize: 16,
+                                                      textColor: K.Styles.globalColor,
+                                                      text: K.Home.screenDescription)
+    private let searchTextField    = MVTextField(placeHolder: K.Home.searchPlaceHolder)
     private let searchFilterButton = MVButton(image: K.Home.searchFilterButton)
     
-    private var moviesCollectionView: UICollectionView! = nil
-    private var moviesDataSource: DataSource!           = nil
-        
-    private var popularMovies: [PopularMoviesPresentation]   = []
+    private var moviesCollectionView: UICollectionView!      = nil
+    private var moviesDataSource: DataSource!                = nil
+    
+    private var popularMovies: [MoviePresentation]           = []
     private var topRatedMovies: [TopRatedMoviesPresentation] = []
-    private var genres: [GenresPresentation]                 = []
+    private var genres: [GenrePresentation]                  = []
     
     var homePresenter: HomePresenter!
     
@@ -101,7 +95,7 @@ extension HomeViewController {
     private func configureSearchTextField() {
         view.addSubview(searchTextField)
         searchTextField.layer.cornerRadius = 22
-        searchTextField.backgroundColor = K.Styles.childViewsColor
+        searchTextField.backgroundColor    = K.Styles.childViewsColor
         searchTextField.configureConstraints(
             top: (userPicture.bottomAnchor, 32),
             leading: (view.leadingAnchor, 24),
@@ -138,12 +132,11 @@ extension HomeViewController {
         collectionView.addGestureRecognizer(tapGestureRecognizer)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionView.register(cellType: PopularCell.self)
+        collectionView.register(cellType: MovieCell.self)
         collectionView.register(cellType: CategoryCell.self)
         collectionView.register(cellType: TopRatedCell.self)
-        collectionView.register(
-            cellType: MVHeaderView.self,
-            sectionHeader: K.Home.sectionHeader)
+        collectionView.register(cellType: MVHeaderView.self,
+                                sectionHeader: K.Home.sectionHeader)
         collectionView.configureConstraints(
             top: (searchTextField.bottomAnchor, 8),
             leading: (view.leadingAnchor, 24),
@@ -161,23 +154,20 @@ extension HomeViewController {
             
             switch sectionType {
             case .popular:
-                let cell = collectionView.dequeView(
-                    cellType: PopularCell.self,
-                    indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: MovieCell.self,
+                                                    indexPath: indexPath)
                 let popularMovie = self.popularMovies[indexPath.row]
                 cell.set(with: popularMovie)
                 return cell
             case .category:
-                let cell = collectionView.dequeView(
-                    cellType: CategoryCell.self,
-                    indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: CategoryCell.self,
+                                                    indexPath: indexPath)
                 let genre = self.genres[indexPath.row]
                 cell.set(with: genre)
                 return cell
             case .topRated:
-                let cell = collectionView.dequeView(
-                    cellType: TopRatedCell.self,
-                    indexPath: indexPath)
+                let cell = collectionView.dequeView(cellType: TopRatedCell.self,
+                                                    indexPath: indexPath)
                 let topRatedMovie = self.topRatedMovies[indexPath.row]
                 cell.set(with: topRatedMovie)
                 return cell
@@ -236,12 +226,12 @@ extension HomeViewController: HomePresenterOutput {
         userFullname.text = String(format: K.Home.welcomeLabel, user.fullName)
     }
     
-    func showPopularMovies(movies popularMovies: [PopularMoviesPresentation]) {
+    func showPopularMovies(movies popularMovies: [MoviePresentation]) {
         self.popularMovies.append(contentsOf: popularMovies)
         configureDataSource()
     }
     
-    func showGenres(genres: [GenresPresentation]) {
+    func showGenres(genres: [GenrePresentation]) {
         self.genres.append(contentsOf: genres)
         configureDataSource()
     }

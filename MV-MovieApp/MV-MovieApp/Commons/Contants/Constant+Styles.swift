@@ -15,6 +15,7 @@ extension K {
         static let childViewsColor             = #colorLiteral(red: 0.2078431373, green: 0.2039215686, blue: 0.2509803922, alpha: 1)
         static let actionButtonColor           = #colorLiteral(red: 0.6673278213, green: 0.4603560567, blue: 0.3788063228, alpha: 1)
         static let labelTextColor: UIColor     = .white
+        static let accesoryButton              = UIImage(named: "left-arrow")
         static let navTitleColor: [NSAttributedString.Key: UIColor] = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }

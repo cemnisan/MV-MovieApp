@@ -318,7 +318,7 @@ extension ProfileViewController {
             trailing: (view.trailingAnchor, -16),
             bottom: (view.bottomAnchor, -8))
         favoriteCollectionView.register(
-            FavoriteCollectionViewCell.self,
+            FavoriteCell.self,
             forCellWithReuseIdentifier: "favoriteCell")
         favoriteCollectionView.backgroundColor = K.Styles.backgroundColor
         favoriteCollectionView.delegate   = self
@@ -380,7 +380,7 @@ extension ProfileViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "favoriteCell",
-            for: indexPath) as! FavoriteCollectionViewCell
+            for: indexPath) as! FavoriteCell
         cell.set()
         return cell
     }

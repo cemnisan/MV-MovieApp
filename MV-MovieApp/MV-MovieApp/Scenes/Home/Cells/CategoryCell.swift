@@ -9,14 +9,12 @@ import UIKit
 import MV_Components
 
 final class CategoryCell: UICollectionViewCell {
-        
-    private let containerView = UIView()
-    private let categoryName = MVSecondaryLabel(
-        textAlignment: .center,
-        fontSize: 17,
-        textColor: .white,
-        text: nil)
     
+    private let containerView      = MVContainerView(backgroundColor: K.Styles.childViewsColor)
+    private let categoryNameLabel  = MVSecondaryLabel(textAlignment: .center,
+                                                      fontSize: 17,
+                                                      textColor: .white,
+                                                      text: nil)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,36 +26,40 @@ final class CategoryCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        categoryName.text = nil
+        categoryNameLabel.text = nil
     }
 }
 
-// MARK: - Configure
+// MARK: - Configure Cell
 extension CategoryCell {
     
     private func configure() {
+        configureContainerView()
+        configureCategoryNameLabel()
+    }
+    
+    private func configureContainerView() {
         contentView.addSubview(containerView)
-        containerView.backgroundColor = K.Styles.childViewsColor
-        containerView.layer.cornerRadius = 12
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(categoryName)
-        
         containerView.configureConstraints(
             top: (contentView.topAnchor, 0),
             leading: (contentView.leadingAnchor, 0),
             trailing: (contentView.trailingAnchor, 0),
             bottom: (contentView.bottomAnchor, 0))
-        categoryName.configureConstraints(
+    }
+    
+    private func configureCategoryNameLabel() {
+        containerView.addSubview(categoryNameLabel)
+        categoryNameLabel.configureConstraints(
             centerX: (containerView.centerXAnchor, 0),
             centerY: (containerView.centerYAnchor, 0))
-        categoryName.configureHeight(height: 20)
+        categoryNameLabel.configureHeight(height: 20)
     }
 }
 
-// MARK: - Set
+// MARK: - Set Cell
 extension CategoryCell {
     
-    func set(with genres: GenresPresentation) {
-        categoryName.text = genres.name
+    func set(with genre: GenrePresentation) {
+        categoryNameLabel.text = genre.name
     }
 }

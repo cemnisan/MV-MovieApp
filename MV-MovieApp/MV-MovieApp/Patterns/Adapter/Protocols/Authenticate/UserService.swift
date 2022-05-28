@@ -8,6 +8,5 @@
 import Foundation
 
 protocol UserService {
-    func signOut(completed: @escaping () -> Void,
-                 failure: @escaping (Error) -> Void)
+    func signOut(completed: @escaping () -> Void, failure: @escaping (Error) -> Void)
 }

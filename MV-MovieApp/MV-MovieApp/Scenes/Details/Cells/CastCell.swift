@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import MV_Components
 
 final class CastCell: UICollectionViewCell {
     
     private let containerView = UIView()
-    private let castImageView = UIImageView()
+    private let castImageView = MVImageView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,9 +28,15 @@ final class CastCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Configure Cell
 extension CastCell {
     
     private func configure() {
+        configureContainerView()
+        configureCastImageView()
+    }
+    
+    private func configureContainerView() {
         contentView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.configureConstraints(
@@ -37,11 +44,11 @@ extension CastCell {
             leading: (contentView.leadingAnchor, 0),
             trailing: (contentView.trailingAnchor, 0),
             bottom: (contentView.bottomAnchor, 0))
+    }
+    
+    private func configureCastImageView() {
         containerView.addSubview(castImageView)
-
         castImageView.layer.cornerRadius = contentView.frame.width / 2
-        castImageView.clipsToBounds = true
-        castImageView.translatesAutoresizingMaskIntoConstraints = false
         castImageView.configureConstraints(
             top: (containerView.topAnchor, 0),
             leading: (containerView.leadingAnchor, 0),
@@ -50,9 +57,10 @@ extension CastCell {
     }
 }
 
+// MARK: - Set Cell
 extension CastCell {
-    
     func set(with cast: MovieCastPresentation) {
-        castImageView.setImage(with: "\(K.API.w180Image)\(cast.castPosterPath ?? "")")
+        let castImage = "\(K.API.w180Image)\(cast.castPosterPath ?? "")"
+        castImageView.setImage(with: castImage)
     }
 }

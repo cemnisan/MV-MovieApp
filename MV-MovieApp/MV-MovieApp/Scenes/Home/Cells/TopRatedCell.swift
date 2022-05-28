@@ -9,28 +9,23 @@ import UIKit
 import MV_Components
 
 final class TopRatedCell: UICollectionViewCell {
-        
-    private let containerView = UIView()
-    private let imageView = UIImageView()
-    private let rateView = UIView()
-    private let rateLogo = MVLogoImage(
-        image: K.Home.rateLogo,
-        tintColor: .systemOrange)
-    private let rateLabel = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 16,
-        textColor: .systemOrange,
-        text: nil)
-    private let titleLabel = MVTitleLabel(
-        textAlignment: .left,
-        fontSize: 18,
-        textColor: .white)
-    private let dateLabel = MVSecondaryLabel(
-        textAlignment: .left,
-        fontSize: 16,
-        textColor: .gray,
-        text: nil)
     
+    private let containerView = UIView()
+    private let imageView     = MVImageView(cornerRadius: 10)
+    private let rateView      = MVContainerView(backgroundColor: K.Styles.containerViewColor)
+    private let rateLogo      = MVLogoImage(image: K.Home.rateLogo,
+                                            tintColor: .systemOrange)
+    private let rateLabel     = MVSecondaryLabel(textAlignment: .left,
+                                                 fontSize: 16,
+                                                 textColor: .systemOrange,
+                                                 text: nil)
+    private let titleLabel    = MVTitleLabel(textAlignment: .left,
+                                             fontSize: 18,
+                                             textColor: .white)
+    private let dateLabel     = MVSecondaryLabel(textAlignment: .left,
+                                                 fontSize: 16,
+                                                 textColor: .gray,
+                                                 text: nil)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,7 +44,7 @@ final class TopRatedCell: UICollectionViewCell {
     }
 }
 
-// MARK: - Configure
+// MARK: - Configure Cell
 extension TopRatedCell {
     
     private func configure() {
@@ -73,9 +68,6 @@ extension TopRatedCell {
     
     private func configureImageView() {
         containerView.addSubview(imageView)
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.configureConstraints(
             top: (containerView.topAnchor, 0),
             leading: (containerView.leadingAnchor, 0),
@@ -85,9 +77,6 @@ extension TopRatedCell {
     
     private func configureRateElements() {
         containerView.addSubview(rateView)
-        rateView.layer.cornerRadius = 10
-        rateView.backgroundColor = K.Styles.containerViewColor
-        rateView.translatesAutoresizingMaskIntoConstraints = false
         rateView.configureConstraints(
             top: (containerView.topAnchor, 8),
             trailing: (containerView.trailingAnchor, -8))
@@ -127,7 +116,7 @@ extension TopRatedCell {
     }
 }
 
-// MARK: - Set
+// MARK: - Set Cell
 extension TopRatedCell {
     
     func set(with topRatedMovies: TopRatedMoviesPresentation) {

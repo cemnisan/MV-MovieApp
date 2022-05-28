@@ -24,7 +24,10 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     func createUser(user: UserPresentation) {
         if let userID = Auth.auth().currentUser?.uid {
             do {
-                try db.collection("users").document(userID).setData(from: user)
+                try db
+                    .collection(K.Firebase.userCollection)
+                    .document(userID)
+                    .setData(from: user)
             } catch {
                 fatalError("Something went wrong: \(error)")
             }
@@ -33,7 +36,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     
     func readUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
         if let userID  = Auth.auth().currentUser?.uid {
-            let docRef = db.collection("users").document(userID)
+            let docRef = db.collection(K.Firebase.userCollection).document(userID)
             docRef.getDocument(as: UserPresentation.self) { result in
                 switch result {
                 case .success(let user):
@@ -53,8 +56,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         completion: @escaping (Result<UserPresentation, Error>) -> Void)
     {
         if let userID  = Auth.auth().currentUser?.uid {
-            let docRef = db.collection("users").document(userID)
-            
+            let docRef = db.collection(K.Firebase.userCollection).document(userID)
             let userObject: [AnyHashable: Any] = [
                 "fullName": fullName,
                 "username": username,
@@ -79,8 +81,8 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     
     func saveLoggedInUserIfNeeded(loggedInUser: UserPresentation) {
         let docRef = db
-            .collection("users")
-            .whereField("id", isEqualTo: loggedInUser.id)
+            .collection(K.Firebase.userCollection)
+            .whereField(K.Firebase.idField, isEqualTo: loggedInUser.id)
         docRef.getDocuments { [weak self] (snapshot, error) in
             guard let self = self,
                   error == nil,
@@ -92,10 +94,9 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
     func isUsernameAlreadyExist(username: String?,
                                 completion: @escaping (Bool) -> Void) {
         guard let username = username else { completion(false); return }
-        
         let docRef = db
-            .collection("users")
-            .whereField("username", isEqualTo: username)
+            .collection(K.Firebase.userCollection)
+            .whereField(K.Firebase.usernameField, isEqualTo: username)
         docRef.getDocuments { (snapshot, error) in
             guard error == nil else { return }
             

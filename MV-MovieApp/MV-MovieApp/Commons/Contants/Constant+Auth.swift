@@ -16,9 +16,11 @@ extension K {
         static let dummyBackgroundPic          = "https://dummyimage.com/600x300/000/fff"
         
         static let userNameLabel               = "Username"
-        static let userNameTextField           = "Enter your username"
+        static let userNamePlaceHolder         = "Enter your username"
+        static let fullNameLabel               = "Full Name"
+        static let fullNamePlaceholder         = "Enter your Full Name"
         static let emailLabel                  = "Email"
-        static let emailTextField              = "Enter your email"
+        static let emailPlaceholder            = "Enter your email"
         static let passwordLabel               = "Password"
         static let passwordTextField           = "Enter your password"
                 

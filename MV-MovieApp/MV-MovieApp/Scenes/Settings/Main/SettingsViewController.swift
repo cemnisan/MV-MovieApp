@@ -12,15 +12,13 @@ final class SettingsViewController: BaseViewController {
     
     private let userContainerView = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let userImageView     = MVImageView(cornerRadius: 30)
-    private let userNameLabel = MVTitleLabel(
-        textAlignment: .left,
-        fontSize: 20,
-        textColor: .white)
-    private let userEmailLabel = MVTitleLabel(
-        textAlignment: .left,
-        fontSize: 17,
-        textColor: .systemGray2)
-    private let userEditButton    = MVButton(image: UIImage(named: "edit")!)
+    private let userNameLabel     = MVTitleLabel(textAlignment: .left,
+                                                 fontSize: 20,
+                                                 textColor: .white)
+    private let userEmailLabel    = MVTitleLabel(textAlignment: .left,
+                                                 fontSize: 17,
+                                                 textColor: .systemGray2)
+    private let userEditButton    = MVButton(image: K.Settings.userEditButton)
     private let settingsTableView = UITableView(frame: .zero, style: .grouped)
     private let logOutButton      = MVButton(frame: .zero)
     
@@ -52,9 +50,9 @@ extension SettingsViewController {
     }
     
     private func configureViewController() {
-        title = "Settings"
+        title = K.Settings.navTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Log out",
+            title: K.Settings.logOutTitle,
             style: .done,
             target: self,
             action: #selector(logOutButtonDidTapped))
@@ -112,9 +110,8 @@ extension SettingsViewController {
     
     private func configureSettingsTableView() {
         view.addSubview(settingsTableView)
-        settingsTableView.register(
-            SettingTableViewCell.self,
-            forCellReuseIdentifier: SettingTableViewCell.identifier)
+        settingsTableView.register(SettingCell.self,
+                                   forCellReuseIdentifier: SettingCell.identifier)
         settingsTableView.backgroundColor = K.Styles.backgroundColor
         settingsTableView.dataSource = self
         settingsTableView.delegate   = self
@@ -139,9 +136,9 @@ extension SettingsViewController {
     private func logOutButtonDidTapped() {
         showAlert(
             type: .action,
-            title: "Log out",
-            message: "When you did tapped on log out button, you are going to login page.\nAre you sure?",
-            buttonTitle: "Log Out",
+            title: K.Settings.logOutTitle,
+            message: K.Settings.infoAlertBody,
+            buttonTitle: K.Settings.logOutTitle,
             delegate: self)
     }
 }
@@ -176,12 +173,10 @@ extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: SettingTableViewCell.identifier,
-            for: indexPath) as! SettingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier,
+                                                 for: indexPath) as! SettingCell
         let setting = Section.settings[indexPath.section].option[indexPath.row]
         cell.set(with: setting)
-        
         return cell
     }
 }

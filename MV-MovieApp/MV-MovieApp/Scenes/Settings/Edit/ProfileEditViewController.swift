@@ -13,7 +13,6 @@ final class ProfileEditViewController: BaseViewController {
     
     private let contentView               = UIView()
     private let scrollView                = UIScrollView()
-    
     private let progressView              = UIProgressView(progressViewStyle: .bar)
     private let currentBackgroundImage    = MVImageView(frame: .zero)
     private let editBackgroundImageView   = MVContainerView(backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5952762831))
@@ -21,7 +20,6 @@ final class ProfileEditViewController: BaseViewController {
     private let currentProfileImage       = MVImageView(cornerRadius: 60)
     private let editProfileImageView      = MVContainerView(backgroundColor: K.Styles.backgroundColor)
     private let editProfileImageButton    = MVButton(frame: .zero)
-    
     private let currentNameLabel = MVTitleLabel(
         textAlignment: .left,
         fontSize: 24,
@@ -33,24 +31,23 @@ final class ProfileEditViewController: BaseViewController {
         text: nil)
     private let usernameForm = MVForm(
         frame: .zero,
-        label: "Username",
-        placeHolder: "Select a Username",
+        label: K.Auth.userNameLabel,
+        placeHolder: K.Auth.userNamePlaceHolder,
         height: 40)
     private let fullNameForm = MVForm(
         frame: .zero,
-        label: "Full Name",
-        placeHolder: "Select a Full name",
+        label: K.Auth.fullNameLabel,
+        placeHolder: K.Auth.fullNamePlaceholder,
         height: 40)
     private let emailForm = MVForm(
         frame: .zero,
-        label: "Email",
-        placeHolder: "Select a E-mail",
+        label: K.Auth.emailLabel,
+        placeHolder: K.Auth.emailPlaceholder,
         height: 40)
     private let saveChangesButton = MVButton(
         backgroundColor: K.Styles.actionButtonColor,
-        title: "Save Changes",
+        title: K.ProfileEdit.saveChangesLabel,
         cornerRadius: 20)
-    
     private let formStackView = MVFormStackView(stackSpacing: 24)
     
     var profileEditPresenter: ProfileEditPresenterProtocol!
@@ -82,7 +79,7 @@ extension ProfileEditViewController {
     }
     
     private func configureViewController() {
-        title = "Edit Profile"
+        title = K.ProfileEdit.navTitle
     }
     
     private func configureScrollView() {
@@ -132,7 +129,7 @@ extension ProfileEditViewController {
     private func configureEditBackgroundImageButton() {
         contentView.addSubview(editBackgroundImageButton)
         editBackgroundImageButton.setBackgroundImage(
-            UIImage(systemName: "camera"),
+            K.ProfileEdit.editBackgroundImage,
             for: .normal)
         editBackgroundImageButton.addTarget(
             self,
@@ -158,7 +155,6 @@ extension ProfileEditViewController {
     private func configureEditImageContainerView() {
         contentView.addSubview(editProfileImageView)
         editProfileImageView.layer.cornerRadius = 16
-        
         editProfileImageView.configureConstraints(
             trailing: (currentProfileImage.trailingAnchor, 4),
             bottom: (currentProfileImage.bottomAnchor, -8))
@@ -169,7 +165,7 @@ extension ProfileEditViewController {
     private func configureEditImageButton() {
         editProfileImageView.addSubview(editProfileImageButton)
         editProfileImageButton.setImage(
-            UIImage(named: "edit2"),
+            K.ProfileEdit.editProfileImage,
             for: .normal)
         editProfileImageButton.addTarget(
             self,
@@ -283,10 +279,8 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
     func showCurrentUser(currentUser: UserPresentation) {
         currentBackgroundImage.setImage(with: currentUser.backgroundPic)
         currentProfileImage.setImage(with: currentUser.profilePic)
-        
-        currentNameLabel.text      = currentUser.fullName
-        currentEmailLabel.text     = currentUser.email
-        
+        currentNameLabel.text           = currentUser.fullName
+        currentEmailLabel.text          = currentUser.email
         usernameForm.formTextField.text = currentUser.username
         fullNameForm.formTextField.text = currentUser.fullName
         emailForm.formTextField.text    = currentUser.email
@@ -301,7 +295,6 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         if let chosenBackgroundPic = chosenBackgroundPic {
             currentBackgroundImage.image = chosenBackgroundPic
         }
-        
         editProfileImageButton.isEnabled    = false
         editBackgroundImageButton.isEnabled = false
         configureSaveChangesButton(isEnabled: false)
@@ -321,7 +314,6 @@ extension ProfileEditViewController: ProfileEditPresenterOutput {
         if let backgroundUrl = backgroundUrl {
             currentBackgroundImage.setImage(with: backgroundUrl)
         }
-        
         progressView.isHidden = true
         progressView.setProgress(0, animated: true)
         

@@ -30,7 +30,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
 protocol MovieDetailPresenterOutput: AnyObject {
     func showMovieDetail(movie: MovieDetailPresentation)
     func showCast(cast: [MovieCastPresentation])
-    func showRelatedMovies(movies: [SimilarMoviesPresentation])
+    func showRelatedMovies(movies: [MoviePresentation])
 }
 
 protocol MovieDetailRoute: AnyObject {

@@ -51,7 +51,7 @@ extension MovieDetailPresenter: MovieDetailInteractorOutput {
     }
     
     func showRelatedMovies(movies: [Movies]) {
-        let similarMovies = movies.map { SimilarMoviesPresentation(movies: $0) }
+        let similarMovies = movies.map { MoviePresentation(movie: $0) }
         view.showRelatedMovies(movies: similarMovies)
     }
     

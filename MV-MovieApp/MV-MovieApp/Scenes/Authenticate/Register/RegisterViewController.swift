@@ -14,7 +14,7 @@ final class RegisterViewController: BaseAuthViewController {
     private let usernameForm = MVForm(
         frame: .zero,
         label: K.Auth.userNameLabel,
-        placeHolder: K.Auth.userNameTextField,
+        placeHolder: K.Auth.userNamePlaceHolder,
         height: 55)
     
     var registerPresenter: RegisterPresenterProtocol!
