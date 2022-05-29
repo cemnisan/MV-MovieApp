@@ -51,7 +51,7 @@ extension MovieDetailInteractor: MovieDetailInteractorProtocol {
         switch indexPath.section {
         case 0:
             let selectedCast = movieCast[indexPath.row]
-            print(selectedCast)
+            delegate?.showCastDetail(with: String(selectedCast.id))
         case 1:
             let selectedMovie = similarMovies[indexPath.row]
             delegate?.showMovieDetail(with: selectedMovie.id)

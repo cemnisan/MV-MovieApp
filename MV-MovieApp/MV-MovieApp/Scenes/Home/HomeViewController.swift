@@ -30,7 +30,7 @@ final class HomeViewController: BaseViewController {
     private var popularMovies: [MoviePresentation]           = []
     private var topRatedMovies: [TopRatedMoviesPresentation] = []
     private var genres: [GenrePresentation]                  = []
-    
+
     var homePresenter: HomePresenter!
     
     override func viewDidLoad() {

@@ -8,7 +8,6 @@
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-import FirebaseStorage
 
 final class GoogleFireStoreAdapter {
     

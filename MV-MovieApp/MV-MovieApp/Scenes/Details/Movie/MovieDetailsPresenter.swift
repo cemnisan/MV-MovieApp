@@ -56,6 +56,10 @@ extension MovieDetailPresenter: MovieDetailInteractorOutput {
     }
     
     func showMovieDetail(with movieID: Int) {
-        router.toDetail(with: movieID)
+        router.toMovieDetail(with: movieID)
+    }
+    
+    func showCastDetail(with castID: String) {
+        router.toCastDetail(with: castID)
     }
 }

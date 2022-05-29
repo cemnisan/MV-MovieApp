@@ -20,6 +20,7 @@ protocol MovieDetailInteractorOutput: AnyObject {
     func showCast(cast: [Cast])
     func showRelatedMovies(movies: [Movies])
     func showMovieDetail(with movieID: Int)
+    func showCastDetail(with castID: String)
 }
 
 protocol MovieDetailPresenterProtocol: AnyObject {
@@ -34,5 +35,6 @@ protocol MovieDetailPresenterOutput: AnyObject {
 }
 
 protocol MovieDetailRoute: AnyObject {
-    func toDetail(with movieID: Int)
+    func toMovieDetail(with movieID: Int)
+    func toCastDetail(with castID: String)
 }

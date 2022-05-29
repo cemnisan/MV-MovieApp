@@ -93,7 +93,7 @@ extension GenerateLayout {
         return section
     }
     
-    fileprivate static func generateDiscoverMovies(isWide: Bool) -> NSCollectionLayoutSection {
+    static func generateDiscoverMovies(isWide: Bool) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalWidth(1/3))

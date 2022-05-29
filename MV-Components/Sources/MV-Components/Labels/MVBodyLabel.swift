@@ -18,6 +18,12 @@ public final class MVBodyLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public convenience init(textAlignment: NSTextAlignment, textColor: UIColor) {
+        self.init(frame: .zero)
+        self.textAlignment = textAlignment
+        self.textColor     = textColor
+    }
 }
 
 extension MVBodyLabel {

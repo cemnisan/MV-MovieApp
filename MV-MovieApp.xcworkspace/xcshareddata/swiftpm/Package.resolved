@@ -118,15 +118,6 @@
       }
     },
     {
-      "identity" : "moviedb-wrapper",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/cemnisan/MovieDB-Wrapper.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "4977176579941ffa89fa3ab45a2df8704b053e76"
-      }
-    },
-    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",

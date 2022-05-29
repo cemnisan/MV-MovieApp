@@ -143,7 +143,7 @@ extension GoogleAuthenticatorAdapter {
     }
 }
 
-// MARK: - Sign in Helpers
+// MARK: - Sign in Helper
 extension GoogleAuthenticatorAdapter {
     // Received from https://github.com/firebase/quickstart-ios/blob/master/authentication/AuthenticationExample/ViewControllers/AuthViewController.swift
     private func randomNonceString(length: Int = 32) -> String {
