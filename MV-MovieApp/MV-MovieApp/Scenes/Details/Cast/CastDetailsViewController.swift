@@ -29,15 +29,16 @@ final class CastDetailsViewController: BaseViewController {
     private var castCollectionView: UICollectionView! = nil
     private var castDataSource: DataSource!           = nil
     
-    var castDetailsPresenter: CastDetailsPresenterProtocol!
+    private var actorDetails: ActorDetailPresentation?
+    private var actorMoviesPresentation: [TopRatedMoviesPresentation] = []
     
-    var actorDetails: ActorDetailPresentation?
+    var castDetailsPresenter: CastDetailsPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
-        castDetailsPresenter.loadCastDetail()
+        castDetailsPresenter.loadActorServicesWithTaskGroup()
     }
 }
 
@@ -54,13 +55,18 @@ extension CastDetailsViewController {
             frame: .zero,
             collectionViewLayout: GenerateLayout.generateCastLayout())
         view.addSubview(collectionView)
+        
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.backgroundColor  = K.Styles.backgroundColor
+        collectionView.delegate         = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         collectionView.register(cellType: ActorCell.self)
         collectionView.register(cellType: TopRatedCell.self)
-        collectionView.register(cellType: MVHeaderView.self, sectionHeader: K.Home.sectionHeader)
+        collectionView.register(
+            cellType: MVHeaderView.self,
+            sectionHeader: K.Home.sectionHeader)
         collectionView.configureConstraints(
             top: (view.topAnchor, 0),
             leading: (view.leadingAnchor, 16),
@@ -85,8 +91,8 @@ extension CastDetailsViewController {
             case .actorMovies:
                 let cell = collectionView.dequeView(cellType: TopRatedCell.self,
                                                     indexPath: indexPath)
-                let actorMovie = ActorCells.actorMovies[indexPath.row]
-                cell.set(with: actorMovie.image)
+                let actorMovie = self.actorMoviesPresentation[indexPath.row]
+                cell.set(with: actorMovie)
                 return cell
             case .actorTVSeries: return UICollectionViewCell()
             }
@@ -114,14 +120,27 @@ extension CastDetailsViewController {
         snapshot.appendItems([actorDetails])
         
         snapshot.appendSections([CastSection.actorMovies])
-        snapshot.appendItems(ActorCells.actorMovies)
+        snapshot.appendItems(actorMoviesPresentation)
         return snapshot
     }
 }
 
+extension CastDetailsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        castDetailsPresenter.userDidSelectMovie(at: indexPath)
+    }
+}
+
 extension CastDetailsViewController: CastDetailsPresenterOutput {
+    
     func showCastDetails(details: ActorDetailPresentation) {
         self.actorDetails = details
+        configureDataSource()
+    }
+    
+    func showActorMovies(movies: [TopRatedMoviesPresentation]) {
+        actorMoviesPresentation.append(contentsOf: movies)
         configureDataSource()
     }
 }

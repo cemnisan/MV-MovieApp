@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import struct MovieDB_Wrapper.People
+import MovieDB_Wrapper
 
 final class CastDetailsPresenter {
     
@@ -26,8 +26,12 @@ final class CastDetailsPresenter {
 
 extension CastDetailsPresenter: CastDetailsPresenterProtocol {
     
-    func loadCastDetail() {
-        interactor.loadCastDetails()
+    func loadActorServicesWithTaskGroup() {
+        interactor.loadActorServicesWithTaskGroup()
+    }
+    
+    func userDidSelectMovie(at indexPath: IndexPath) {
+        interactor.userDidSelectMovie(at: indexPath)
     }
 }
 
@@ -36,5 +40,14 @@ extension CastDetailsPresenter: CastDetailsInteractorOutput {
     func showCastDetails(details: People) {
         let actorDetailPresentation = ActorDetailPresentation(people: details)
         view.showCastDetails(details: actorDetailPresentation)
+    }
+    
+    func showActorMovies(movies: [Movies]) {
+        let moviesPresentation = movies.map { TopRatedMoviesPresentation(movies: $0) }
+        view.showActorMovies(movies: moviesPresentation)
+    }
+    
+    func showMovieDetails(with movieID: Int) {
+        router.toMovieDetails(with: movieID)
     }
 }

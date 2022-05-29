@@ -15,7 +15,7 @@ struct MovieDetailPresentation {
     let movieTitle: String
     let movieVoteAverage: Double
     let movieReleaseDate: String
-    let movieOverview: String
+    var movieOverview: String?
     
     init(detail: MovieDetail) {
         self.moviePosterPath     = detail.posterPath
