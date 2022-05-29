@@ -24,7 +24,7 @@ extension MovieDetailRouter: MovieDetailRoute {
     }
     
     func toCastDetail(with castID: String) {
-        let targetView = CastDetailsBuilder.make(with: castID)
+        let targetView = ActorDetailsBuilder.make(with: castID)
         view.navigationController?.pushViewController(targetView, animated: true)
     }
 }

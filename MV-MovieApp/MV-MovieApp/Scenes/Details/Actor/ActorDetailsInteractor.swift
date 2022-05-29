@@ -1,5 +1,5 @@
 //
-//  CastDetailsInteractor.swift
+//  ActorDetailsInteractor.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 28.05.2022.
@@ -8,28 +8,29 @@
 import Foundation
 import MovieDB_Wrapper
 
-final class CastDetailsInteractor {
+final class ActorDetailsInteractor {
     
-    var delegate: CastDetailsInteractorOutput?
+    var delegate: ActorDetailsInteractorOutput?
     private let peopleService: PeopleServiceableProtocol
     
-    private let currentCastID: String
+    private let currentActorID: String
     private var actorMovies: [Movies] = []
+    private var actor: People?
     
     init(peopleService: PeopleServiceableProtocol,
-         currentCastID: String) {
+         currentActorID: String) {
         self.peopleService  = peopleService
-        self.currentCastID  = currentCastID
+        self.currentActorID = currentActorID
     }
 }
 
-extension CastDetailsInteractor: CastDetailsInteractorProtocol {
+extension ActorDetailsInteractor: ActorDetailsInteractorProtocol {
 
     func loadActorServicesWithTaskGroup() {
         Task {
             await withTaskGroup(of: Void.self, body: { group in
                 group.addTask(priority: .background) {
-                    await self.loadCastDetails()
+                    await self.loadActorDetails()
                 }
                 
                 group.addTask(priority: .background) {
@@ -51,27 +52,28 @@ extension CastDetailsInteractor: CastDetailsInteractorProtocol {
 }
 
 // MARK: - Loader
-extension CastDetailsInteractor {
+extension ActorDetailsInteractor {
     
-    private func loadCastDetails() async  {
-        let result = await peopleService.getPeopleDetails(with: currentCastID)
-        await castDetailsResult(result: result)
+    private func loadActorDetails() async  {
+        let result = await peopleService.getPeopleDetails(with: currentActorID)
+        await actorDetailsResult(result: result)
     }
     
     private func loadActorMovies() async {
-        let result = await peopleService.getPeopleMovies(with: currentCastID)
+        let result = await peopleService.getPeopleMovies(with: currentActorID)
         await actorMoviesResult(result: result)
     }
 }
 
 // MARK: - Result Helper
-extension CastDetailsInteractor {
+extension ActorDetailsInteractor {
     
     @MainActor
-    private func castDetailsResult(result: Result<People>) {
+    private func actorDetailsResult(result: Result<People>) {
         switch result {
         case .success(let castDetails):
-            delegate?.showCastDetails(details: castDetails)
+            self.actor = castDetails
+            delegate?.showActorDetails(details: castDetails)
         case .failure(let error): print(error)
         }
     }

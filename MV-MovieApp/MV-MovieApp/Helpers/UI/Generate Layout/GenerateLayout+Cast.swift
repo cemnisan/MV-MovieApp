@@ -19,9 +19,8 @@ extension GenerateLayout {
                 .effectiveContentSize.width > 500
             let sectionLayoutKind = CastSection.allCases[sectionIndex]
             switch sectionLayoutKind {
-            case .actorName: return generateActorLayout()
+            case .actor: return generateActorLayout()
             case .actorMovies: return generateDiscoverMovies(isWide: isWideView)
-            case .actorTVSeries: return generateActorLayout()
             }
         }
         return layout

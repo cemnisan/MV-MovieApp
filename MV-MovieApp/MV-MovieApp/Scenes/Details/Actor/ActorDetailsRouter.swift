@@ -1,5 +1,5 @@
 //
-//  CastDetailsRouter.swift
+//  ActorDetailsRouter.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 28.05.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CastDetailsRouter {
+final class ActorDetailsRouter {
     
     private unowned var view: UIViewController
     
@@ -16,7 +16,7 @@ final class CastDetailsRouter {
     }
 }
 
-extension CastDetailsRouter: CastDetailsRoute {
+extension ActorDetailsRouter: ActorDetailsRoute {
     
     func toMovieDetails(with movieID: Int) {
         let targetView = MovieDetailsBuilder.make(with: movieID)
