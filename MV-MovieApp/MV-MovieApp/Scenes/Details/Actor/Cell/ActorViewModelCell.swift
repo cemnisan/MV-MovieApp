@@ -1,5 +1,5 @@
 //
-//  ActorCellViewModel.swift
+//  ActorViewModelCell.swift
 //  MV-MovieApp
 //
 //  Created by Cem Nisan on 30.05.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ActorCellViewModel: Hashable {
+struct ActorViewModelCell {
     var actorDetail: ActorDetailPresentation?
     var actorMovies: [MoviePresentation]?
     

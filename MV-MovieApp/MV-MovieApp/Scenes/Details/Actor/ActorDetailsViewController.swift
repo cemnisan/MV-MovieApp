@@ -88,18 +88,23 @@ extension ActorDetailsViewController {
             supplementaryView.label.text = CastSection.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        
         let snapshot = snapshotCurrentState()
         actorDataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func snapshotCurrentState() -> Snapshot {
-        var snapshot = Snapshot()
+        let actorDetail = actorDetailsPresenter
+            .actorViewModelCell
+            .actorDetail
+        let actorMovies = actorDetailsPresenter
+            .actorViewModelCell
+            .actorMovies ?? []
+        var snapshot    = Snapshot()
         snapshot.appendSections([CastSection.actor])
-        snapshot.appendItems([actorDetailsPresenter.actorViewModelCell.actorDetail])
+        snapshot.appendItems([actorDetail])
         
         snapshot.appendSections([CastSection.actorMovies])
-        snapshot.appendItems(actorDetailsPresenter.actorViewModelCell.actorMovies ?? [])
+        snapshot.appendItems(actorMovies)
         return snapshot
     }
 }

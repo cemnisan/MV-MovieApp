@@ -120,9 +120,10 @@ extension TopRatedCell {
 extension TopRatedCell {
     
     func set(with topRatedMovies: MoviePresentation) {
-        imageView.setImage(with: "https://image.tmdb.org/t/p/original\(topRatedMovies.moviePosterPath ?? "")")
-        titleLabel.text = topRatedMovies.movieTitle
-        rateLabel.text  = "\(topRatedMovies.voteAverage)"
-        dateLabel.text  = topRatedMovies.releaseDate
+        let moviePosterPath = "\(K.API.originalImage)\(topRatedMovies.moviePosterPath ?? "")"
+        imageView.setImage(with: moviePosterPath)
+        titleLabel.text     = topRatedMovies.movieTitle
+        rateLabel.text      = "\(topRatedMovies.voteAverage)"
+        dateLabel.text      = topRatedMovies.releaseDate
     }
 }

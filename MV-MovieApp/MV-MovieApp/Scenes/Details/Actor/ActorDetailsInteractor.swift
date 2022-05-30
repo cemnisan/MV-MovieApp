@@ -10,7 +10,7 @@ import MovieDB_Wrapper
 
 final class ActorDetailsInteractor {
     
-    var delegate: ActorDetailsInteractorOutput?
+    weak var delegate: ActorDetailsInteractorOutput?
     private let peopleService: PeopleServiceableProtocol
     
     private let currentActorID: String
@@ -24,6 +24,7 @@ final class ActorDetailsInteractor {
     }
 }
 
+// MARK: - Actor Details Interactor Protocol
 extension ActorDetailsInteractor: ActorDetailsInteractorProtocol {
 
     func loadActorServicesWithTaskGroup() {

@@ -10,7 +10,7 @@ import MovieDB_Wrapper
 
 final class ActorDetailsPresenter {
     
-    var actorViewModelCell = ActorCellViewModel()
+    var actorViewModelCell = ActorViewModelCell()
     
     private unowned var view: ActorDetailsPresenterOutput
     private let interactor: ActorDetailsInteractorProtocol
@@ -26,6 +26,7 @@ final class ActorDetailsPresenter {
     }
 }
 
+// MARK: - Actor Details Presenter Protocol
 extension ActorDetailsPresenter: ActorDetailsPresenterProtocol {
     
     func viewDidLoad() {
@@ -37,6 +38,7 @@ extension ActorDetailsPresenter: ActorDetailsPresenterProtocol {
     }
 }
 
+// MARK: - Actor Details Interactor Output
 extension ActorDetailsPresenter: ActorDetailsInteractorOutput {
     
     func showActorMovies(movies: [Movies]) {

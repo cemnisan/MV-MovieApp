@@ -22,7 +22,7 @@ protocol ActorDetailsInteractorOutput: AnyObject {
 }
 
 protocol ActorDetailsPresenterProtocol: AnyObject {
-    var actorViewModelCell: ActorCellViewModel { get set }
+    var actorViewModelCell: ActorViewModelCell { get set }
     
     func viewDidLoad()
     func userDidSelectMovie(at indexPath: IndexPath)
