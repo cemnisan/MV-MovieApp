@@ -46,9 +46,7 @@ extension MovieDetailPresenter: MovieDetailInteractorOutput {
     }
     
     func showCast(cast: [Cast]) {
-        detailsViewModelCell.movieCast = cast
-            .filter { $0.profilePath != nil }
-            .map { MovieCastPresentation(cast: $0) }
+        detailsViewModelCell.movieCast = cast.map { MovieCastPresentation(cast: $0) }
         view.showCast()
     }
     

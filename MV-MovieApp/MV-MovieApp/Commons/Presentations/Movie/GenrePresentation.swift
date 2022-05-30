@@ -15,4 +15,13 @@ struct GenrePresentation: Hashable {
         self.id   = genre.id
         self.name = genre.name
     }
+    
+    static func ==(rhs: GenrePresentation,
+                   lhs: GenrePresentation) -> Bool {
+        return rhs.id == lhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

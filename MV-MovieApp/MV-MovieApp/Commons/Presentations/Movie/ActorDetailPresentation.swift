@@ -9,6 +9,7 @@ import Foundation
 import struct MovieDB_Wrapper.People
 
 struct ActorDetailPresentation: Hashable {
+    let id = UUID()
     var actorPosterPath: String?
     let actorName: String
     var actorBorn: String?
@@ -19,5 +20,14 @@ struct ActorDetailPresentation: Hashable {
         self.actorName       = people.name
         self.actorBorn       = people.placeOfBirth
         self.actorBio        = people.biography
+    }
+    
+    static func ==(rhs: ActorDetailPresentation,
+                   lhs: ActorDetailPresentation) -> Bool {
+        return rhs.id == lhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

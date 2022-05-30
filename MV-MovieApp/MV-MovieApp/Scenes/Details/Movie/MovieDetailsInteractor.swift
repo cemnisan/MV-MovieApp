@@ -110,7 +110,7 @@ extension MovieDetailInteractor {
     private func movieCastResult(result: Result<MovieCredits>) {
         switch result {
         case .success(let movieCast):
-            self.movieCast = movieCast.cast
+            self.movieCast = movieCast.cast ?? []
             delegate?.showCast(cast: self.movieCast.lazy.map { $0 })
         case .failure(let error):
             print(error)

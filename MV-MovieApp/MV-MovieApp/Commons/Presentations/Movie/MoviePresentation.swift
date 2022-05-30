@@ -9,6 +9,7 @@ import Foundation
 import struct MovieDB_Wrapper.Movies
 
 struct MoviePresentation: Hashable {
+    let id = UUID()
     let movieTitle: String
     var movieBackgroundPath: String?
     var moviePosterPath: String?
@@ -21,5 +22,14 @@ struct MoviePresentation: Hashable {
         self.moviePosterPath     = movie.posterPath
         self.voteAverage         = movie.voteAverage
         self.releaseDate         = movie.releaseDate
+    }
+    
+    static func ==(rhs: MoviePresentation,
+                   lhs: MoviePresentation) -> Bool {
+        return rhs.id == lhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
