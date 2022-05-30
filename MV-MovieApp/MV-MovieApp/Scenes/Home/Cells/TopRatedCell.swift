@@ -119,17 +119,10 @@ extension TopRatedCell {
 // MARK: - Set Cell
 extension TopRatedCell {
     
-    func set(with topRatedMovies: TopRatedMoviesPresentation) {
-        imageView.setImage(with: "https://image.tmdb.org/t/p/original\(topRatedMovies.image ?? "")")
-        titleLabel.text = topRatedMovies.title
-        rateLabel.text  = "\(topRatedMovies.rating)"
-        dateLabel.text  = topRatedMovies.date
-    }
-    
-    func set(with image: UIImage) {
-        imageView.setImage(with: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg")
-        titleLabel.text = "Bir Rüya İçin Ağıt"
-        rateLabel.text  = "8.7"
-        dateLabel.text  = "2017-4-23"
+    func set(with topRatedMovies: MoviePresentation) {
+        imageView.setImage(with: "https://image.tmdb.org/t/p/original\(topRatedMovies.moviePosterPath ?? "")")
+        titleLabel.text = topRatedMovies.movieTitle
+        rateLabel.text  = "\(topRatedMovies.voteAverage)"
+        dateLabel.text  = topRatedMovies.releaseDate
     }
 }

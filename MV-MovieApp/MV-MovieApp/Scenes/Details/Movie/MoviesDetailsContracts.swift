@@ -24,14 +24,16 @@ protocol MovieDetailInteractorOutput: AnyObject {
 }
 
 protocol MovieDetailPresenterProtocol: AnyObject {
-    func loadMovieServiceWithTaskgroup()
+    var detailsViewModelCell: DetailsViewModelCell { get set }
+    
+    func viewDidLoad()
     func userDidSelectItem(at indexPath: IndexPath)
 }
 
 protocol MovieDetailPresenterOutput: AnyObject {
     func showMovieDetail(movie: MovieDetailPresentation)
-    func showCast(cast: [MovieCastPresentation])
-    func showRelatedMovies(movies: [MoviePresentation])
+    func showCast()
+    func showRelatedMovies()
 }
 
 protocol MovieDetailRoute: AnyObject {

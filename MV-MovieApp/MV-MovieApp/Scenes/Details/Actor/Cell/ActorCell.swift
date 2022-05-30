@@ -92,7 +92,7 @@ extension ActorCell {
 extension ActorCell {
     
     func set(with actorPresentation: ActorDetailPresentation) {
-        let actorImageURL = "https://image.tmdb.org/t/p/original\(actorPresentation.actorPosterPath ?? "")"
+        let actorImageURL   = "https://image.tmdb.org/t/p/original\(actorPresentation.actorPosterPath ?? "")"
         actorImageView.setImage(with: actorImageURL)
         actorBioLabel.text  = actorPresentation.actorBio
         actorBornLabel.text = actorPresentation.actorBorn

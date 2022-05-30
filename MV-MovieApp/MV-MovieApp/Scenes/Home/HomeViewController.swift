@@ -8,10 +8,10 @@
 import UIKit
 import MV_Components
 
-fileprivate typealias DataSource   = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
-fileprivate typealias Snapshot     = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
-
 final class HomeViewController: BaseViewController {
+
+    private typealias DataSource   = UICollectionViewDiffableDataSource<HomeSection, AnyHashable>
+    private typealias Snapshot     = NSDiffableDataSourceSnapshot<HomeSection, AnyHashable>
     
     private let userPicture        = MVImageView(cornerRadius: 25)
     private let userFullname       = MVTitleLabel(textAlignment: .left,
@@ -24,12 +24,8 @@ final class HomeViewController: BaseViewController {
     private let searchTextField    = MVTextField(placeHolder: K.Home.searchPlaceHolder)
     private let searchFilterButton = MVButton(image: K.Home.searchFilterButton)
     
-    private var moviesCollectionView: UICollectionView!      = nil
-    private var moviesDataSource: DataSource!                = nil
-    
-    private var popularMovies: [MoviePresentation]           = []
-    private var topRatedMovies: [TopRatedMoviesPresentation] = []
-    private var genres: [GenrePresentation]                  = []
+    private var moviesCollectionView: UICollectionView! = nil
+    private var moviesDataSource: DataSource!           = nil
 
     var homePresenter: HomePresenter!
     
@@ -37,7 +33,7 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         configure()
-        homePresenter.loadHomeServicesWithTaskGroup()
+        homePresenter.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,20 +152,17 @@ extension HomeViewController {
             case .popular:
                 let cell = collectionView.dequeView(cellType: MovieCell.self,
                                                     indexPath: indexPath)
-                let popularMovie = self.popularMovies[indexPath.row]
-                cell.set(with: popularMovie)
+                if let popularMovie = item as? MoviePresentation { cell.set(with: popularMovie) }
                 return cell
             case .category:
                 let cell = collectionView.dequeView(cellType: CategoryCell.self,
                                                     indexPath: indexPath)
-                let genre = self.genres[indexPath.row]
-                cell.set(with: genre)
+                if let genre = item as? GenrePresentation { cell.set(with: genre) }
                 return cell
             case .topRated:
                 let cell = collectionView.dequeView(cellType: TopRatedCell.self,
                                                     indexPath: indexPath)
-                let topRatedMovie = self.topRatedMovies[indexPath.row]
-                cell.set(with: topRatedMovie)
+                if let topRatedMovie = item as? MoviePresentation { cell.set(with: topRatedMovie) }
                 return cell
             }
         }
@@ -192,13 +185,13 @@ extension HomeViewController {
     private func snapshotCurrentState() -> Snapshot {
         var snapshot = Snapshot()
         snapshot.appendSections([HomeSection.popular])
-        snapshot.appendItems(popularMovies)
+        snapshot.appendItems(homePresenter.homeViewModelCell.popularMovies ?? [])
         
         snapshot.appendSections([HomeSection.category])
-        snapshot.appendItems(genres)
+        snapshot.appendItems(homePresenter.homeViewModelCell.categoryOfMovies ?? [])
         
         snapshot.appendSections([HomeSection.topRated])
-        snapshot.appendItems(topRatedMovies)
+        snapshot.appendItems(homePresenter.homeViewModelCell.topRatedMovies ?? [])
         
         return snapshot
     }
@@ -212,7 +205,8 @@ extension HomeViewController {
     
     @objc
     private func didSelectItem(_ sender: UITapGestureRecognizer) {
-        if let indexPath = moviesCollectionView?.indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
+        if let indexPath = moviesCollectionView?
+            .indexPathForItem(at: sender.location(in: self.moviesCollectionView)) {
             homePresenter.userDidSelectItem(with: indexPath)
         }
     }
@@ -226,18 +220,15 @@ extension HomeViewController: HomePresenterOutput {
         userFullname.text = String(format: K.Home.welcomeLabel, user.fullName)
     }
     
-    func showPopularMovies(movies popularMovies: [MoviePresentation]) {
-        self.popularMovies.append(contentsOf: popularMovies)
+    func showPopularMovies() {
         configureDataSource()
     }
     
-    func showGenres(genres: [GenrePresentation]) {
-        self.genres.append(contentsOf: genres)
+    func showGenres() {
         configureDataSource()
     }
     
-    func showTopRatedMovies(movies topRatedMovies: [TopRatedMoviesPresentation]) {
-        self.topRatedMovies.append(contentsOf: topRatedMovies)
+    func showTopRatedMovies() {
         configureDataSource()
     }
 }

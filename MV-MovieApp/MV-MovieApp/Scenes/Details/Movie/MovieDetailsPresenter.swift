@@ -14,6 +14,8 @@ final class MovieDetailPresenter {
     private let interactor: MovieDetailInteractorProtocol
     private let router: MovieDetailRoute
     
+    var detailsViewModelCell = DetailsViewModelCell()
+    
     init(view: MovieDetailPresenterOutput,
          interactor: MovieDetailInteractorProtocol,
          router: MovieDetailRoute) {
@@ -27,7 +29,7 @@ final class MovieDetailPresenter {
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
     
-    func loadMovieServiceWithTaskgroup() {
+    func viewDidLoad() {
         interactor.loadMovieServicesWithTaskgroup()
     }
     
@@ -44,15 +46,15 @@ extension MovieDetailPresenter: MovieDetailInteractorOutput {
     }
     
     func showCast(cast: [Cast]) {
-        let movieCastPresentation = cast
+        detailsViewModelCell.movieCast = cast
             .filter { $0.profilePath != nil }
             .map { MovieCastPresentation(cast: $0) }
-        view.showCast(cast: movieCastPresentation)
+        view.showCast()
     }
     
     func showRelatedMovies(movies: [Movies]) {
-        let similarMovies = movies.map { MoviePresentation(movie: $0) }
-        view.showRelatedMovies(movies: similarMovies)
+        detailsViewModelCell.similarMovies = movies.map { MoviePresentation(movie: $0) }
+        view.showRelatedMovies()
     }
     
     func showMovieDetail(with movieID: Int) {

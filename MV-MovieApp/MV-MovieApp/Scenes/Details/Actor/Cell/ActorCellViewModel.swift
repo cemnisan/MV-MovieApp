@@ -9,10 +9,10 @@ import Foundation
 
 struct ActorCellViewModel: Hashable {
     var actorDetail: ActorDetailPresentation?
-    var actorMovies: [TopRatedMoviesPresentation]?
+    var actorMovies: [MoviePresentation]?
     
     init(actorDetail: ActorDetailPresentation? = nil,
-         actorMovies: [TopRatedMoviesPresentation]? = nil) {
+         actorMovies: [MoviePresentation]? = nil) {
         self.actorDetail = actorDetail
         self.actorMovies = actorMovies
     }

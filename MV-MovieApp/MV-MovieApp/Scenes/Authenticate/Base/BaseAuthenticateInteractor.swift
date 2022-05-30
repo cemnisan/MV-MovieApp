@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import enum MovieDB_Wrapper.Result
 import AuthenticationServices
 
 class BaseAuthenticateInteractor {
@@ -53,7 +54,7 @@ extension BaseAuthenticateInteractor: BaseAuthenticateInteractorProtocol {
 
 // MARK: - Login Results
 extension BaseAuthenticateInteractor {
-    private func loginResults(result: Result<UserPresentation, Error>) {
+    private func loginResults(result: Result<UserPresentation>) {
         switch result {
         case .success(let user):
             fireStoreService.saveLoggedInUserIfNeeded(loggedInUser: user)

@@ -40,7 +40,7 @@ extension ActorDetailsPresenter: ActorDetailsPresenterProtocol {
 extension ActorDetailsPresenter: ActorDetailsInteractorOutput {
     
     func showActorMovies(movies: [Movies]) {
-        actorViewModelCell.actorMovies = movies.map { TopRatedMoviesPresentation(movies: $0) }
+        actorViewModelCell.actorMovies = movies.map { MoviePresentation(movie: $0) }
         view.showActorMovies()
     }
     

@@ -8,6 +8,7 @@
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import enum MovieDB_Wrapper.Result
 
 final class GoogleFireStoreAdapter {
     
@@ -33,7 +34,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         }
     }
     
-    func readUser(completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+    func readUser(completion: @escaping (Result<UserPresentation>) -> Void) {
         if let userID  = Auth.auth().currentUser?.uid {
             let docRef = db.collection(K.Firebase.userCollection).document(userID)
             docRef.getDocument(as: UserPresentation.self) { result in
@@ -52,7 +53,7 @@ extension GoogleFireStoreAdapter: GoogleFireStoreService {
         username: String?,
         profilePic: String?,
         backgroundPic: String?,
-        completion: @escaping (Result<UserPresentation, Error>) -> Void)
+        completion: @escaping (Result<UserPresentation>) -> Void)
     {
         if let userID  = Auth.auth().currentUser?.uid {
             let docRef = db.collection(K.Firebase.userCollection).document(userID)

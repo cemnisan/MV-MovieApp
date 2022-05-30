@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit.UIViewController
+import enum MovieDB_Wrapper.Result
 
 protocol LoginService: BaseAuthenticateService {
     func login(with email: String,
                password: String,
-               completion: @escaping (Result<UserPresentation, Error>) -> Void)
+               completion: @escaping (Result<UserPresentation>) -> Void)
 }

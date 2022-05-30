@@ -58,7 +58,6 @@ extension CategoryCell {
 
 // MARK: - Set Cell
 extension CategoryCell {
-    
     func set(with genre: GenrePresentation) {
         categoryNameLabel.text = genre.name
     }

@@ -8,10 +8,10 @@
 import UIKit
 import MV_Components
 
-fileprivate typealias DataSource = UICollectionViewDiffableDataSource<DetailsSection, AnyHashable>
-fileprivate typealias Snapshot   = NSDiffableDataSourceSnapshot<DetailsSection, AnyHashable>
-
 final class MovieDetailViewController: UIViewController {
+    
+    private typealias DataSource = UICollectionViewDiffableDataSource<DetailsSection, AnyHashable>
+    private typealias Snapshot   = NSDiffableDataSourceSnapshot<DetailsSection, AnyHashable>
     
     private let contentView           = UIView()
     private let scrollView            = UIScrollView()
@@ -50,11 +50,8 @@ final class MovieDetailViewController: UIViewController {
                                                      textColor: .white)
     private let synopsisContent       = MVBodyLabel(frame: .zero)
     
-    private var detailsCollectionView: UICollectionView!   = nil
-    private var detailsDataSource: DataSource!             = nil
-    
-    private var similarMovies: [MoviePresentation] = []
-    private var movieCast: [MovieCastPresentation]         = []
+    private var detailsCollectionView: UICollectionView! = nil
+    private var detailsDataSource: DataSource!           = nil
     
     var detailsPresenter: MovieDetailPresenterProtocol!
     
@@ -62,7 +59,7 @@ final class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        detailsPresenter.loadMovieServiceWithTaskgroup()
+        detailsPresenter.viewDidLoad()
     }
 }
 
@@ -145,10 +142,12 @@ extension MovieDetailViewController {
     }
     
     private func configureButtons() {
-        saveButton.setBackgroundImage(K.Details.saveButton,
-                                      for: .normal)
-        shareButton.setBackgroundImage(K.Details.shareButton,
-                                       for: .normal)
+        saveButton.setBackgroundImage(
+            K.Details.saveButton,
+            for: .normal)
+        shareButton.setBackgroundImage(
+            K.Details.shareButton,
+            for: .normal)
     }
     
     private func configureButtonsStackView() {
@@ -212,8 +211,9 @@ extension MovieDetailViewController {
     }
     
     private func configureCollectionView() {
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: GenerateLayout.generateDetailLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: GenerateLayout.generateDetailLayout())
         contentView.addSubview(collectionView)
         
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -245,14 +245,12 @@ extension MovieDetailViewController {
             case .movieCast:
                 let cell = collectionView.dequeView(cellType: CastCell.self,
                                                     indexPath: indexPath)
-                let cast = self.movieCast[indexPath.row]
-                cell.set(with: cast)
+                if let cast = item as? MovieCastPresentation { cell.set(with: cast) }
                 return cell
             case .relatedMovies:
                 let cell = collectionView.dequeView(cellType: MovieCell.self,
                                                     indexPath: indexPath)
-                let similarMovie = self.similarMovies[indexPath.row]
-                cell.set(with: similarMovie)
+                if let similarMovie = item as? MoviePresentation { cell.set(with: similarMovie) }
                 return cell
             }
         }
@@ -273,7 +271,14 @@ extension MovieDetailViewController {
     }
     
     private func snapshotCurrentState() -> Snapshot {
-        var snapshot = Snapshot()
+        let movieCast     = detailsPresenter
+            .detailsViewModelCell
+            .movieCast ?? []
+        let similarMovies = detailsPresenter
+            .detailsViewModelCell
+            .similarMovies ?? []
+        var snapshot      = Snapshot()
+        
         snapshot.appendSections([DetailsSection.movieCast])
         snapshot.appendItems(movieCast)
         
@@ -306,13 +311,11 @@ extension MovieDetailViewController: MovieDetailPresenterOutput {
         moviePosterImage.setImage(with: posterImage)
     }
     
-    func showCast(cast: [MovieCastPresentation]) {
-        movieCast.append(contentsOf: cast)
+    func showCast() {
         configureDataSource()
     }
     
-    func showRelatedMovies(movies: [MoviePresentation]) {
-        similarMovies.append(contentsOf: movies)
+    func showRelatedMovies() {
         configureDataSource()
     }
 }

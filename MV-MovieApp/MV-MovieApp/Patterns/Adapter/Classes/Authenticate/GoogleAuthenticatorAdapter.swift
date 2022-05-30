@@ -11,6 +11,7 @@ import FirebaseAuth
 import GoogleSignIn
 import AuthenticationServices
 import CryptoKit
+import enum MovieDB_Wrapper.Result
 
 final class GoogleAuthenticatorAdapter {
     
@@ -24,7 +25,7 @@ final class GoogleAuthenticatorAdapter {
 extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
     
     func login(withGooglePresenter presenter: UIViewController,
-               completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+               completion: @escaping (Result<UserPresentation>) -> Void) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config         = GIDConfiguration(clientID: clientID)
         
@@ -67,7 +68,7 @@ extension GoogleAuthenticatorAdapter: BaseAuthenticateService {
     }
     
     func loginWithAppleCredential(credential appleCredential: ASAuthorizationAppleIDCredential,
-                                  completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+                                  completion: @escaping (Result<UserPresentation>) -> Void) {
         guard let nonce         = currentNonce else { return }
         guard let appleIDToken  = appleCredential.identityToken else { return }
         guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else { return }
@@ -88,7 +89,7 @@ extension GoogleAuthenticatorAdapter: LoginService {
     
     func login(with email: String,
                password: String,
-               completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+               completion: @escaping (Result<UserPresentation>) -> Void) {
         firebaseAuth.signIn(withEmail: email,
                             password: password) { [weak self] (result, error) in
             guard let self = self,
@@ -105,7 +106,7 @@ extension GoogleAuthenticatorAdapter: RegisterService {
     func register(with username: String,
                   email: String,
                   password: String,
-                  completion: @escaping (Result<UserPresentation, Error>) -> Void) {
+                  completion: @escaping (Result<UserPresentation>) -> Void) {
         firebaseAuth.createUser(withEmail: email,
                                 password: password) { [weak self] (result, error) in
             guard let self = self,

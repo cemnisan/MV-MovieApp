@@ -12,8 +12,8 @@ import MovieDB_Wrapper
 protocol HomeInteractorProtocol: AnyObject {
     var delegate: HomeInteractorOutput? { get set }
     
-    func loadCurrentUser()
-    func loadMovieServicesWithTaskGroup()
+    func loadCurrentUser() async
+    func loadServicesWithTaskGroup()
     
     func userDidSelectItem(with indexPath: IndexPath)
 }
@@ -29,17 +29,18 @@ protocol HomeInteractorOutput: AnyObject {
 
 // MARK: - Presenter Protocol
 protocol HomePresenterProtocol: AnyObject {
-    func loadCurrentUser()
-    func loadHomeServicesWithTaskGroup()
+    var homeViewModelCell: HomeViewModelCell { get set }
+    
+    func viewDidLoad()
     func userDidSelectItem(with indexPath: IndexPath)
 }
 
 // MARK: - Presenter Output
 protocol HomePresenterOutput: AnyObject {
     func showCurrentUser(user: UserPresentation)
-    func showPopularMovies(movies popularMovies: [MoviePresentation])
-    func showTopRatedMovies(movies topRatedMovies: [TopRatedMoviesPresentation])
-    func showGenres(genres: [GenrePresentation])
+    func showPopularMovies()
+    func showTopRatedMovies()
+    func showGenres()
 }
 
 // MARK: - Router Contracts

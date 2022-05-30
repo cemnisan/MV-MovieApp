@@ -34,15 +34,17 @@ final class HomeInteractor {
 // MARK: - Home Interactor Protocol
 extension HomeInteractor: HomeInteractorProtocol {
     
-    func loadCurrentUser() {
-        fireStoreService.readUser { (result) in
-            switch result {
-            case .success(let user):
-                self.delegate?.showCurrentUser(user: user)
-            case .failure(let error):
-                print(error)
+    private func loadCurrentUserToAsync() async -> Result<UserPresentation> {
+        return await withCheckedContinuation({ continuation in
+            fireStoreService.readUser { (result) in
+                continuation.resume(returning: result)
             }
-        }
+        })
+    }
+    
+    func loadCurrentUser() async {
+        let result = await loadCurrentUserToAsync()
+        await currentUserResult(result: result)
     }
     
     private func loadPopularMovies() async {
@@ -66,9 +68,13 @@ extension HomeInteractor: HomeInteractorProtocol {
         await topRatedMoviesResult(result: result)
     }
     
-    func loadMovieServicesWithTaskGroup() {
+    func loadServicesWithTaskGroup() {
         Task {
             await withTaskGroup(of: Void.self, body: { group in
+                group.addTask(priority: .background) {
+                    await self.loadCurrentUser()
+                }
+                
                 group.addTask(priority: .background) {
                     await self.loadPopularMovies()
                 }
@@ -100,33 +106,42 @@ extension HomeInteractor: HomeInteractorProtocol {
 // MARK: - Results Helper
 extension HomeInteractor {
     
-    @MainActor private func popularMoviesResult(result: Result<PopularMovies>) {
+    @MainActor
+    private func currentUserResult(result: Result<UserPresentation>) {
+        switch result {
+        case .success(let user):
+            delegate?.showCurrentUser(user: user)
+        case .failure(let error): print(error)
+        }
+    }
+    
+    @MainActor
+    private func popularMoviesResult(result: Result<PopularMovies>) {
         switch result {
         case .success(let popularMovies):
             self.popularMovies.append(contentsOf: popularMovies.results)
             delegate?.showPopularMovies(movies: self.popularMovies.lazy.map { $0 })
-        case .failure(let error):
-            print(error)
+        case .failure(let error): print(error)
         }
     }
     
-    @MainActor private func topRatedMoviesResult(result: Result<TopRatedMoviesResult>) {
+    @MainActor
+    private func topRatedMoviesResult(result: Result<TopRatedMoviesResult>) {
         switch result {
         case .success(let topRatedMovies):
             self.topRatedMovies.append(contentsOf: topRatedMovies.results)
             delegate?.showTopRatedMovies(movies: self.topRatedMovies.lazy.map { $0 })
-        case .failure(let error):
-            print(error)
+        case .failure(let error): print(error)
         }
     }
     
-    @MainActor private func genresResult(result: Result<GenresResult>) {
+    @MainActor
+    private func genresResult(result: Result<GenresResult>) {
         switch result {
         case .success(let genres):
             self.genres.append(contentsOf: genres.genres)
             delegate?.showGenres(genres: self.genres)
-        case .failure(let error):
-            print(error)
+        case .failure(let error): print(error)
         }
     }
 }

@@ -15,6 +15,8 @@ final class HomePresenter {
     private let interactor: HomeInteractorProtocol
     private let router: HomeRoute
         
+    var homeViewModelCell = HomeViewModelCell()
+    
     init(view: HomePresenterOutput,
          interactor: HomeInteractorProtocol,
          router: HomeRoute) {
@@ -30,11 +32,11 @@ final class HomePresenter {
 extension HomePresenter: HomePresenterProtocol {
     
     func loadCurrentUser() {
-        interactor.loadCurrentUser()
+        Task(priority: .background) { await interactor.loadCurrentUser() }
     }
     
-    func loadHomeServicesWithTaskGroup() {
-        interactor.loadMovieServicesWithTaskGroup()
+    func viewDidLoad() {
+        interactor.loadServicesWithTaskGroup()
     }
     
     func userDidSelectItem(with indexPath: IndexPath) {
@@ -50,18 +52,18 @@ extension HomePresenter: HomeInteractorOutput {
     }
     
     func showPopularMovies(movies popularMovies: [Movies]) {
-        let popularMoviesPresentation = popularMovies.map { MoviePresentation(movie: $0) }
-        view.showPopularMovies(movies: popularMoviesPresentation)
+        homeViewModelCell.popularMovies = popularMovies.map { MoviePresentation(movie: $0) }
+        view.showPopularMovies()
     }
     
     func showGenres(genres: [Genre]) {
-        let genresPresentation = genres.map { GenrePresentation(genre: $0) }
-        view.showGenres(genres: genresPresentation)
+        homeViewModelCell.categoryOfMovies = genres.map { GenrePresentation(genre: $0) }
+        view.showGenres()
     }
     
     func showTopRatedMovies(movies topRatedMovies: [Movies]) {
-        let topRatedPresentation = topRatedMovies.map { TopRatedMoviesPresentation(movies: $0) }
-        view.showTopRatedMovies(movies: topRatedPresentation)
+        homeViewModelCell.topRatedMovies = topRatedMovies.map { MoviePresentation(movie: $0) }
+        view.showTopRatedMovies()
     }
     
     func showMovieDetail(with movieID: Int) {

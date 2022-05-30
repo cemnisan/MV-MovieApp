@@ -72,7 +72,7 @@ extension ActorDetailsViewController {
             case .actorMovies:
                 let cell = collectionView.dequeView(cellType: TopRatedCell.self,
                                                     indexPath: indexPath)
-                if let actorMovie = item as? TopRatedMoviesPresentation { cell.set(with: actorMovie) }
+                if let actorMovie = item as? MoviePresentation { cell.set(with: actorMovie) }
                 return cell
             }
         }
